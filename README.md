@@ -19,8 +19,7 @@
     - [【Demand Analysis】](https://rjwalmzfj2.feishu.cn/docx/Mp6XdDhTPoZhclxc2Yvc4kRZn9i)
 
 
-## Thanks for
-- SwanHub
+## Acknowledgements
 - IDEA-ReadPaper Project Group
 - 火山引擎
 

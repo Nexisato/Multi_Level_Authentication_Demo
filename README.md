@@ -3,20 +3,14 @@
 ## Environment
 - **OS**：Ubuntu 20.04 （Windows Subsystem for Linux 2）
 - **Language**：C++, Rust, Golang, Python
-- **CL-PKS Communication Auth**：
-  - **Compliler**：g++ v9.4.0
-  - **Build**：CMake v3.16.3
-  - **参数计算依赖**：OpenSSL 1.1.1v（C++）
-  - **认证流程依赖库**：
-    - PyPBC （Python）、PBC lib(C++)
-    - gmsm 国密算法库（Golang）
-- **Accmulator Auth**：
-  - 参数计算依赖：OpenSSL 1.1.1v
-  - **Build**：Cargo
-  - 密码学累加器依赖库
-    - Accmulator-rs (Rust)
-    - libsm国密算法库(Rust)
-
+- **Dependencies**：
+  - OpenSSL 3.0.10（C++）
+  - gmpy2 (Python)
+  - PyPBC Python）
+  - Accumulator-rs(Rust): [[Repo]](https://github.com/mikelodder7/accumulator-rs)
+  - libsm(rust): [[Repo]](https://github.com/citahub/libsm) 
+  - 蚂蚁金服铜锁密码库：
+    - https://www.yuque.com/tsdoc/ts
 
 
 ## References

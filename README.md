@@ -1,9 +1,17 @@
 # Multi-Level Authentication Demo
 ---
+
+## Logs
+- 2023-09-17: finish CL_Auth_Demo with PBC: 
+  - References: https://github.com/Superhank718/Java_CLS_jpbc
+
 ## Environment
 - **OS**：Ubuntu 20.04 （Windows Subsystem for Linux 2）
 - **Language**：C++, Rust, Golang, Python
 - **Dependencies**：
+  - pbc library & PBC-Wrapper: 无证书通信构造
+    - https://crysp.uwaterloo.ca/software/PBCWrapper/
+    - https://jeza-chen.com/2020/06/05/PBC-Cpp-Wrapper/ 
   - OpenSSL 3.0.10（C++）
   - gmpy2 (Python)
   - PyPBC Python）

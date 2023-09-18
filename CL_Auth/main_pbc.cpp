@@ -24,6 +24,18 @@ double count_time(chrono_time t0, chrono_time t1) {
     return res;
 }
 
+
+/**
+ * @brief 
+ * Implementation of CL-PKS Algorithm
+ * 
+ * @Class: KGC: Key Generation Center
+ * @Struct Payload: Message Payload produced(recevide) by process
+ * @Class: Process: Process Entity in the system
+ */
+
+
+
 class KGC {
 private:
     element_t s;

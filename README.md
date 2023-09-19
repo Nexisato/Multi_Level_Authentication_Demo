@@ -21,6 +21,7 @@
     - https://www.yuque.com/tsdoc/ts
 
 ## UI
+- Electron 模板：https://github.com/dromara/electron-egg
 - 前端模板：https://github.com/773579084/leno-admin-electron
 
 

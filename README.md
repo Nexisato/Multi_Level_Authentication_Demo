@@ -2,6 +2,8 @@
 ---
 
 ## Logs
+- 2023-09-23: finish batch compute of MD5 digest, to store in JSON
+  - ignore all built target dirs
 - 2023-09-17: finish CL_Auth_Demo with PBC: 
   - References: https://github.com/Superhank718/Java_CLS_jpbc
 

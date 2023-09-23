@@ -1,0 +1,16 @@
+{
+   "packages" : [
+      {
+         "file" : "wps-office_11.1.0.11704_amd64",
+         "md5" : "d837574222efd75877f7e89708a59fdd"
+      },
+      {
+         "file" : "linuxqq_3.2.1-17153_amd64",
+         "md5" : "485ab0ee479da6dd8f6c724df4bde69c"
+      },
+      {
+         "file" : "Feishu-linux_x64-6.9.16",
+         "md5" : "540f105b2dc71a143b2a87d5b71f168b"
+      }
+   ]
+}

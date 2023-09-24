@@ -21,23 +21,17 @@ link_directories(
 
 set(CODE_SOURCES 
     rsa_acc.cpp
+    utils.cpp
 )
 
 
 add_executable(${TARGET_NAME} ${CODE_SOURCES})
 
 
-target_include_directories( ${TARGET_NAME}  PRIVATE
-    /usr/local/openssl/include
-)
-
-
 target_link_libraries(${TARGET_NAME} 
     ${OPENSSL_LIBRARIES}
-    cryptopp
+    ${PROJECT_SOURCE_DIR}/lib/libgmp.so
+    ${PROJECT_SOURCE_DIR}/lib/libgmpxx.so
     jsoncpp
-    flint
-    mpfr
-    gmp
 )
 

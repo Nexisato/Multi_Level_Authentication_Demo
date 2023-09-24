@@ -20,8 +20,9 @@ link_directories(
 )
 
 set(CODE_SOURCES 
-    preprocess.cpp
+    preload.cpp
     utils.cpp
+    preprocess.cpp
 )
 
 

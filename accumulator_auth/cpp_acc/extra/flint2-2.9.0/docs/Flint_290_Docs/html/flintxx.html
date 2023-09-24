@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>flintxx – C++ Wrapper &#8212; Flint 2.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    
+    <script src="_static/documentation_options.js?v=182a64a0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="References" href="references.html" />
+    <link rel="prev" title="mpfr_mat.h – matrices of MPFR floating-point numbers" href="mpfr_mat.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="references.html" title="References"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="mpfr_mat.html" title="mpfr_mat.h – matrices of MPFR floating-point numbers"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>flintxx</strong> – C++ Wrapper</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="flintxx-c-wrapper">
+<span id="flintxx"></span><h1><strong>flintxx</strong> – C++ Wrapper<a class="headerlink" href="#flintxx-c-wrapper" title="Link to this heading">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<p>Flint provides a C++ wrapper which makes extensive use of metaprogramming.
+It is currently not maintained for the whole of Flint due to lack of a C++
+developer willing to step up and maintain it. Therefore it is provided as-is,
+though we do try to do sufficient maintenance to keep the
+<a class="reference external" href="https://github.com/wbhart/flint2/blob/trunk/doc/source/flintxx_functions.txt">currently wrapped functions</a>
+compiling.</p>
+<p>In this section we describe how to use <code class="docutils literal notranslate"><span class="pre">flintxx</span></code> the Flint C++ wrapper.</p>
+<p>We begin with a simple example:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;fmpzxx.h&quot;</span>
+
+<span class="n">using</span><span class="w"> </span><span class="n">namespace</span><span class="w"> </span><span class="n">flint</span><span class="p">;</span>
+<span class="n">fmpzxx</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7u</span><span class="p">;</span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;^2 = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>As can be seen, if a FLINT C interface is called <code class="docutils literal notranslate"><span class="pre">foo``and</span> <span class="pre">resides</span> <span class="pre">in</span>
+<span class="pre">``foo.h</span></code>, then the C++ version is called <code class="docutils literal notranslate"><span class="pre">fooxx</span></code> and resides in
+<code class="docutils literal notranslate"><span class="pre">fooxx.h</span></code>. All flintxx classes live inside <code class="docutils literal notranslate"><span class="pre">namespace</span> <span class="pre">flint</span></code>.</p>
+<p>Functions which operate on wrapper classes are usually implemented as
+overloaded stand-alone functions, with the type prefix dropped. For example,
+a call to <code class="docutils literal notranslate"><span class="pre">flint::gcd(f1,</span> <span class="pre">f2)</span></code> yields an expression template evaluating via
+<code class="docutils literal notranslate"><span class="pre">fmpz_gcd</span></code>, provided <code class="docutils literal notranslate"><span class="pre">f1</span></code> and <code class="docutils literal notranslate"><span class="pre">f2</span></code> evaluate to instances of
+<code class="docutils literal notranslate"><span class="pre">fmpzxx</span></code>.</p>
+<p>Sometimes we felt that dropping the type prefix would yield incomprehensible
+names, as for example in <code class="docutils literal notranslate"><span class="pre">fmpq_next_minimal</span></code>, or <code class="docutils literal notranslate"><span class="pre">fmpq_reconstruct</span></code>. In
+these cases the type prefix is swapped for the flintxx equivalent, so the
+flintxx version would be called <code class="docutils literal notranslate"><span class="pre">fmpqxx_reconstruct</span></code>.</p>
+<p>In this situation, usually the same functionality is also exposed as a
+(possibly static) member function, and this is the preferred way of
+accessing the functionality. Thus one should write
+<code class="docutils literal notranslate"><span class="pre">fmpqxx::reconstruct(a,</span> <span class="pre">m)</span></code> or <code class="docutils literal notranslate"><span class="pre">fmpqxx(0,</span> <span class="pre">1u).next_minimal()</span></code>.</p>
+</section>
+<section id="expression-templates">
+<h2>Expression templates<a class="headerlink" href="#expression-templates" title="Link to this heading">¶</a></h2>
+<p>The implementation of flintxx tries very hard not to incur any overhead over
+using the native C interface. For this reason, we use <code class="docutils literal notranslate"><span class="pre">expression</span> <span class="pre">templates</span></code>
+for lazily evaluating expressions. This allows us to avoid creating
+excessively many temporaries, for example.</p>
+<p>This means that even if <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are of type <code class="docutils literal notranslate"><span class="pre">fmpzxx</span></code>, then <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span></code>
+will not be of type <code class="docutils literal notranslate"><span class="pre">fmpzxx</span></code>. Instead it will be an object which for most
+purposes behaves just like <code class="docutils literal notranslate"><span class="pre">fmpzxx</span></code>, but really only expresses the fact
+that it represents the sum of <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+<p>This distinction almost never matters, since expression templates are evaluated
+automatically in most cases. Thus <code class="docutils literal notranslate"><span class="pre">cout</span> <span class="pre">&lt;&lt;</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span></code> or <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span> <span class="pre">==</span> <span class="pre">7</span></code> will
+work just as one might expect.</p>
+<p>There are ways to request explicit evaluation of an expression template, most
+notably <code class="docutils literal notranslate"><span class="pre">(x</span> <span class="pre">+</span> <span class="pre">y).evaluate()</span></code> and <code class="docutils literal notranslate"><span class="pre">fmpzxx(x</span> <span class="pre">+</span> <span class="pre">y)</span></code>.</p>
+<p>One caveat of the expression template approach is that compiler error messages
+can be long and hard to understand.</p>
+<p>In flintxx we strive to type-check template parameters as early as possible in
+order to keep error messages short and close to the actual user error.
+Excessively long error messages are often indicative of a bug in flintxx.</p>
+</section>
+<section id="tuples">
+<h2>Tuples<a class="headerlink" href="#tuples" title="Link to this heading">¶</a></h2>
+<p>Many FLINT functions naturally return two or more arguments. A typical example
+is <code class="docutils literal notranslate"><span class="pre">divrem</span></code>. The underlying C function is
+<code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">fmpz_poly_divrem(fmpz_poly_t</span> <span class="pre">Q,</span> <span class="pre">fmpz_poly_t</span> <span class="pre">R,</span> <span class="pre">const</span> <span class="pre">fmpz_poly_t</span> <span class="pre">A,</span> <span class="pre">const</span> <span class="pre">fmpz_poly_t</span> <span class="pre">B)</span></code>.</p>
+<p>Mapping this directly to C++ would yield something like
+<code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">divrem(fmpz_polyxx&amp;</span> <span class="pre">Q,</span> <span class="pre">fmpz_polyxx&amp;</span> <span class="pre">R,</span> <span class="pre">const</span> <span class="pre">fmpz_polyxx&amp;</span> <span class="pre">A,</span> <span class="pre">const</span> <span class="pre">fmpz_polyxx&amp;</span> <span class="pre">B)}</span></code>.</p>
+<p>While functional, this is not particularly nice; the syntax
+<code class="docutils literal notranslate"><span class="pre">divrem(Q,</span> <span class="pre">R,</span> <span class="pre">A,</span> <span class="pre">B)</span></code>, where the first two arguments are modified, is just
+very reminiscent of C. We prefer an expression closer to the python analogue
+<code class="docutils literal notranslate"><span class="pre">(Q,</span> <span class="pre">R)</span> <span class="pre">=</span> <span class="pre">divrem(A,</span> <span class="pre">B)</span></code>.</p>
+<p>For this purpose, flintxx uses lazy tuples and the following is a valid
+flintxx expression: <code class="docutils literal notranslate"><span class="pre">ltupleref(Q,</span> <span class="pre">R)</span> <span class="pre">=</span> <span class="pre">divrem(A,</span> <span class="pre">B)</span></code>.</p>
+<p>For the purpose of this documentation, ltuple types are denoted
+as follows: <code class="docutils literal notranslate"><span class="pre">Ltuple&lt;Type1,</span> <span class="pre">Type2,</span> <span class="pre">...,</span> <span class="pre">Typer&gt;</span></code>.</p>
+<p>Thus, <code class="docutils literal notranslate"><span class="pre">divrem</span></code> would return an object of type
+<code class="docutils literal notranslate"><span class="pre">Ltuple&lt;fmpz_polyxx,</span> <span class="pre">fmpz_polyxx&gt;</span></code>.</p>
+<p>The user should never try to construct such types by hand; instead use the
+function <code class="docutils literal notranslate"><span class="pre">ltupleref</span></code> (and perhaps occasionally <code class="docutils literal notranslate"><span class="pre">ltuple</span></code>; both documented
+later).</p>
+<p>One thing to observe is that ltuples are typed fairly weakly. Thus assignments
+and equality comparisons can be performed as long as both sides have the same
+length, and the operation can be performed on all components (whether or not
+the component types match).</p>
+<p>Another interesting feature of ltuples is the type
+<code class="docutils literal notranslate"><span class="pre">flint::detail::IGNORED_TYPE</span></code>. In an ltuple assignment, where the left hand
+side contains a reference to this type, the relevant entry is just discarded.</p>
+<p>Since the <code class="docutils literal notranslate"><span class="pre">ltuple.h</span></code> header automatically creates a static instance <code class="docutils literal notranslate"><span class="pre">_</span></code> of
+this type, in the following listing, the lines marked (1) and (2) have the same
+effect (but the second is potentially more efficient).</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;fmpz_polyxx.h&quot;</span>
+
+<span class="n">using</span><span class="w"> </span><span class="n">namespace</span><span class="w"> </span><span class="n">flint</span><span class="p">;</span>
+
+<span class="n">fmpz_polyxx</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">;</span>
+
+<span class="n">fmpz_polyxx</span><span class="w"> </span><span class="n">R</span><span class="p">;</span>
+<span class="n">ltupleref</span><span class="p">(</span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">divrem</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">);</span><span class="w"> </span><span class="c1">// (1)</span>
+<span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">g</span><span class="p">;</span><span class="w">                      </span><span class="c1">// (2)</span>
+</pre></div>
+</div>
+<p>Note finally that using <code class="docutils literal notranslate"><span class="pre">ltuple</span></code> intermediates often results in more
+copies than necessary. For example the expression
+<code class="docutils literal notranslate"><span class="pre">ltupleref(num,</span> <span class="pre">_)</span> <span class="pre">=</span> <span class="pre">divrem(a,</span> <span class="pre">b)</span></code> assigns the quotient to <code class="docutils literal notranslate"><span class="pre">num</span></code>,
+creating just a temporary <code class="docutils literal notranslate"><span class="pre">fmpzxx</span></code> to hold the remainder. In contrast,
+<code class="docutils literal notranslate"><span class="pre">num</span> <span class="pre">=</span> <span class="pre">divrem(a,</span> <span class="pre">b).get&lt;0&gt;()</span></code> creates two temporary instances of
+<code class="docutils literal notranslate"><span class="pre">fmpzxx</span></code>.</p>
+</section>
+<section id="reference-types">
+<h2>Reference types<a class="headerlink" href="#reference-types" title="Link to this heading">¶</a></h2>
+<p>One subtlety in wrapping a C library is that references do not work as easily
+as one might expect. For example, consider the class <code class="docutils literal notranslate"><span class="pre">fmpqxx</span></code>, wrapping
+<code class="docutils literal notranslate"><span class="pre">fmpq_t</span></code>, i.e. rational numbers. As such, an instance of <code class="docutils literal notranslate"><span class="pre">fmpqxx</span></code> has a
+numerator and denominator. In C, these are accessible via macros
+<code class="docutils literal notranslate"><span class="pre">fmpq_numref</span></code> and <code class="docutils literal notranslate"><span class="pre">fmpq_denref</span></code>, which yield <code class="docutils literal notranslate"><span class="pre">fmpz*</span></code>, which can be used
+essentially interchangeably with <code class="docutils literal notranslate"><span class="pre">fmpz_t</span></code>. In particular, any library
+function which operates on <code class="docutils literal notranslate"><span class="pre">fmpz_t</span></code> can operate on the numerator or
+denominator of an <code class="docutils literal notranslate"><span class="pre">fmpq_t</span></code>. In C++, we would like to have a member functions
+<code class="docutils literal notranslate"><span class="pre">den`</span> <span class="pre">and</span> <span class="pre">``num</span></code> which return an object of type <code class="docutils literal notranslate"><span class="pre">fmpzxx&amp;</span></code> (i.e.
+a reference to <code class="docutils literal notranslate"><span class="pre">fmpzxx</span></code>).</p>
+<p>However, this is not possible, since <code class="docutils literal notranslate"><span class="pre">fmpqxx</span></code> is not implemented as a pair
+of <code class="docutils literal notranslate"><span class="pre">fmpzxx</span></code>, and instead simply contains an <code class="docutils literal notranslate"><span class="pre">fmpq_t</span></code>.</p>
+<p>For this reason, for every C interface <code class="docutils literal notranslate"><span class="pre">foo</span></code>, flintxx provides two
+additional types, called <code class="docutils literal notranslate"><span class="pre">fooxx_ref</span></code> and <code class="docutils literal notranslate"><span class="pre">fooxx_srcref</span></code>, acting as
+replacements for <code class="docutils literal notranslate"><span class="pre">fooxx&amp;</span></code> and <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">foox&amp;</span></code>, respectively, in
+situations where no underlying C++ object exists.</p>
+<p>Instances of <code class="docutils literal notranslate"><span class="pre">fooxx_ref</span></code> or <code class="docutils literal notranslate"><span class="pre">fooxx_srcref</span></code> behave exactly like instances
+of <code class="docutils literal notranslate"><span class="pre">fooxx</span></code>. In fact, the user should never notice a difference. Any flintxx
+operation or expression which works on objects of type <code class="docutils literal notranslate"><span class="pre">foo</span></code> also works on
+objects of type <code class="docutils literal notranslate"><span class="pre">fooxx_ref</span></code> and <code class="docutils literal notranslate"><span class="pre">fooxx_srcref</span></code>.</p>
+<p>Moreover, instances of <code class="docutils literal notranslate"><span class="pre">foo</span></code> can be converted implicitly to <code class="docutils literal notranslate"><span class="pre">fooxx_ref</span></code>
+or <code class="docutils literal notranslate"><span class="pre">fooxx_srcref</span></code>, and <code class="docutils literal notranslate"><span class="pre">fooxx_ref</span></code> can be converted implicitly to
+<code class="docutils literal notranslate"><span class="pre">fooxx_srcref</span></code>.</p>
+<p>It is also possible to explicitly convert reference types <code class="docutils literal notranslate"><span class="pre">fooxx_*ref</span></code> to
+<code class="docutils literal notranslate"><span class="pre">fooxx</span></code> (since this entails copying, we provide no implicit conversion).</p>
+<p>In summary, the class <code class="docutils literal notranslate"><span class="pre">fooxx_ref</span></code> behaves like a reference to an object of
+type <code class="docutils literal notranslate"><span class="pre">fooxx</span></code>. As such it can be used both as a right hand side and as a
+left hand side, just like <code class="docutils literal notranslate"><span class="pre">fooxx</span></code>.</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">fooxx_srcref</span></code> behaves like a reference to a constant object of
+type <code class="docutils literal notranslate"><span class="pre">fooxx</span></code>, and so cannot be used as a left hand side. These objects are
+created by flintxx automatically,`for example upon calling
+<code class="docutils literal notranslate"><span class="pre">fmpqxx::num()</span></code>.</p>
+</section>
+<section id="unified-coefficient-access">
+<h2>Unified coefficient access<a class="headerlink" href="#unified-coefficient-access" title="Link to this heading">¶</a></h2>
+<p>Consider again the <code class="docutils literal notranslate"><span class="pre">x.num()</span></code> method of <code class="docutils literal notranslate"><span class="pre">fmpqxx</span></code>. In various situations,
+this can have different return types. Namely, if <code class="docutils literal notranslate"><span class="pre">x</span></code> is a writable
+expression, then <code class="docutils literal notranslate"><span class="pre">x.num()</span></code> returns an <code class="docutils literal notranslate"><span class="pre">fmpzxx_ref</span></code>. In particular the
+return value behaves just like <code class="docutils literal notranslate"><span class="pre">fmpzxx</span></code>, no evaluation is necessary to
+obtain it, there are no copies, and it is possible to change the
+return value (and thus change <code class="docutils literal notranslate"><span class="pre">x</span></code>).</p>
+<p>If on the other hand <code class="docutils literal notranslate"><span class="pre">x</span></code> is a readonly immediate, then the return value of
+<code class="docutils literal notranslate"><span class="pre">x.num()</span></code> has type <code class="docutils literal notranslate"><span class="pre">fmpzxx_srcref</span></code>. This again behaves just like
+<code class="docutils literal notranslate"><span class="pre">fmpzxx</span></code> and no evaluations or copies are necessary, but this time it is
+not possible to change the return value (and so it is not possible to change
+<code class="docutils literal notranslate"><span class="pre">x</span></code>, either).</p>
+<p>Finally, if <code class="docutils literal notranslate"><span class="pre">x</span></code> is a lazy expression, then the return value is actually a
+lazy expression template. Thus to obtain the “actual” value of <code class="docutils literal notranslate"><span class="pre">x.num()</span></code>,
+evaluations are necessary, and potentially so are copies.</p>
+<p>Thus in any case the return value behaves just like <code class="docutils literal notranslate"><span class="pre">fmpqxx</span></code>, but apart
+from that the behaviour of <code class="docutils literal notranslate"><span class="pre">x.num()</span></code> varies quite drastically in the
+different situations. We call this “unified coefficient access” (the
+coefficients of a <code class="docutils literal notranslate"><span class="pre">fmpqxx</span></code> being <code class="docutils literal notranslate"><span class="pre">num(),</span> <span class="pre">den()</span></code>), and the same
+behaviour occurs in many other flintxx types, e.g. in
+<code class="docutils literal notranslate"><span class="pre">fmpz_polyxx.coeff()</span></code>, etc.</p>
+</section>
+<section id="type-conversion">
+<h2>Type conversion<a class="headerlink" href="#type-conversion" title="Link to this heading">¶</a></h2>
+<p>As a rule, flintxx does not perform automatic type conversions (except when
+related to the promotion to reference types, c/f earlier discussion). In
+expression templates, operands can be automatically promoted if the underlying
+C interface provides this facility. Beyond that, types have to be converted
+explicitly.</p>
+<p>There are two ways of doing this. The preferred one is using static
+constructor functions. Typical examples are
+<code class="docutils literal notranslate"><span class="pre">fmpz_polyxx::from_ground(fmpzarg)</span></code> and
+<code class="docutils literal notranslate"><span class="pre">nmod_polyxx::reduce(mplimbarg,</span> <span class="pre">nmodctxarg)</span></code>. The former takes an (expression
+template evaluating to) <code class="docutils literal notranslate"><span class="pre">fmpzxx</span></code> and returns an <code class="docutils literal notranslate"><span class="pre">fmpz_polyxx</span></code> representing
+the constant polynomial with value the <code class="docutils literal notranslate"><span class="pre">fmpzxx</span></code>. The latter takes an argument
+of type <code class="docutils literal notranslate"><span class="pre">mp_limb_t</span></code> and one of type <code class="docutils literal notranslate"><span class="pre">nmodxx_ctx_srcref</span></code> (essentially a
+word-sized modulus) and returns an <code class="docutils literal notranslate"><span class="pre">nmod_polyxx</span></code> representing the constant
+polynomial obtained by reducing <code class="docutils literal notranslate"><span class="pre">mplimbarg</span></code>.</p>
+<p>The general format for this is <code class="docutils literal notranslate"><span class="pre">totype::constructorname(arg1,</span> <span class="pre">arg2,</span> <span class="pre">...)</span></code>.
+We prefer this because it makes explicit the type that is being converted to,
+and the way the arguments are to be interpreted.</p>
+<p>This format only works if the target type is part of flintxx. In other cases,
+we use a <code class="docutils literal notranslate"><span class="pre">.to&lt;totype&gt;()</span></code> syntax, as in <code class="docutils literal notranslate"><span class="pre">fmpzexpr.to&lt;slong&gt;()</span></code>.</p>
+</section>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading">¶</a></h2>
+<p>In C++ it is customary to provide input and output via iostreams, and
+overloading the operators <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code>. When wrapping a C library which
+works on the <code class="docutils literal notranslate"><span class="pre">FILE</span></code> interface, this is rather hard to accomplish.</p>
+<p>For this reason, flintxx only provides streaming output (i.e. <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code>), and
+only when there is a <code class="docutils literal notranslate"><span class="pre">to_string</span></code> method. Unfortunately this applies to only
+a small subset of the FLINT types.</p>
+<p>For output in other cases, and input in all cases, we provide C-like functions.
+Namely, the functions <code class="docutils literal notranslate"><span class="pre">print</span></code>, <code class="docutils literal notranslate"><span class="pre">print_pretty</span></code>, <code class="docutils literal notranslate"><span class="pre">read</span></code> and <code class="docutils literal notranslate"><span class="pre">read_pretty</span></code>
+can be used similarly to the C <code class="docutils literal notranslate"><span class="pre">flint_printf</span></code> and <code class="docutils literal notranslate"><span class="pre">scanf</span></code>.</p>
+<p>For example, <code class="docutils literal notranslate"><span class="pre">print(x)</span></code> where <code class="docutils literal notranslate"><span class="pre">x</span></code> is an <code class="docutils literal notranslate"><span class="pre">fmpz</span></code> has the same effect as
+<code class="docutils literal notranslate"><span class="pre">std::cout</span> <span class="pre">&lt;&lt;</span> <span class="pre">x</span></code>.</p>
+</section>
+<section id="inheritance-and-flintxx">
+<h2>Inheritance and flintxx<a class="headerlink" href="#inheritance-and-flintxx" title="Link to this heading">¶</a></h2>
+<p>The flintxx classes are not designed for inheritance. If you want to modify
+behaviour, you should wrap flintxx types into your own classes (extension by
+aggregation, not inheritance).</p>
+</section>
+<section id="notation-and-conventions-in-flintxx-documentation">
+<h2>Notation and conventions in flintxx documentation<a class="headerlink" href="#notation-and-conventions-in-flintxx-documentation" title="Link to this heading">¶</a></h2>
+<p>As explained above, the flintxx classes and functions perform quite a number of
+operations which should be invisible to the user. Some template types implement
+methods which only make sense for some template arguments, etc.</p>
+<p>For example, every expression template built from <code class="docutils literal notranslate"><span class="pre">fmpq_polyxx</span></code> (polynomials
+with rational coefficients) has a method <code class="docutils literal notranslate"><span class="pre">set_coeff</span></code>. However, this method
+only makes sense for objects of type <code class="docutils literal notranslate"><span class="pre">fmpq_polyxx</span></code> or <code class="docutils literal notranslate"><span class="pre">fmpq_polyxx_ref</span></code>
+(calling it on other types will result in a compilation error), and its
+existence in objects of other types should be considered an implementation
+detail.</p>
+<p>In what follows, we document a “virtual” set of classes and functions, which
+explain how the user should expect its objects to behave, and which we
+guarantee to maintain. Other interfaces should be considered implementation
+details and subject to change.</p>
+<p>Consider the interface <code class="docutils literal notranslate"><span class="pre">fmpzxx</span></code>, and more concretely an instance <code class="docutils literal notranslate"><span class="pre">a</span></code>.
+As in the above discussion, we see that from <code class="docutils literal notranslate"><span class="pre">a</span></code> we can build a lot of
+different objects: expression templates like <code class="docutils literal notranslate"><span class="pre">a+a</span></code>, constant objects like
+<code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">fmpzxx&amp;</span> <span class="pre">b</span> <span class="pre">=</span> <span class="pre">a;</span></code>, reference objects like <code class="docutils literal notranslate"><span class="pre">fmpzxx_ref</span> <span class="pre">c(a)</span></code>, etc.
+These by nature behave somewhat differently. For our purposes, we classify
+types into “targets” (things which can be assigned to), “sources” (things
+which contain actual computed data, or references thereto, as opposed to lazy
+expression templates) and “expressions” (sources or expression templates).</p>
+<p>Note that every target is a source, and every source is an expression.</p>
+<p>We denote any type which can act as a target for <code class="docutils literal notranslate"><span class="pre">fmpzxx</span></code> as <code class="docutils literal notranslate"><span class="pre">Fmpz_target</span></code>
+(note the initial capital letter!), any <code class="docutils literal notranslate"><span class="pre">fmpzxx</span></code> source as <code class="docutils literal notranslate"><span class="pre">Fmpz_source</span></code>
+and any <code class="docutils literal notranslate"><span class="pre">fmpzxx</span></code> expression as <code class="docutils literal notranslate"><span class="pre">Fmpz_expr</span></code>. Such made up type names
+(always with initial capital letter) are referred to as “virtual types” in the
+documentation. These are used for all flint classes (e.g. <code class="docutils literal notranslate"><span class="pre">Fmpq_expr</span></code> or
+<code class="docutils literal notranslate"><span class="pre">Fmpz_polyxx_src</span></code>).</p>
+<p>When using virtual types, we will suppress reference notation. No flintxx types
+are ever copied automatically, unless the documentation explicitly says so.
+This is a general philosophy of flintxx: the library does as many things
+automatically as it can, without introducing additional calls to underlying
+Flint C functions. So for example, it is not possible to implicitly convert
+<code class="docutils literal notranslate"><span class="pre">int</span></code> to <code class="docutils literal notranslate"><span class="pre">fmpzxx</span></code> (since doing so requires a C call). Of course explicit
+conversions (or assignments) work completely fine.</p>
+<p>It is also often the case that flintxx functions are conditionally enabled
+templates. A notation such as <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">foo(T:is_signed_integer)</span></code> denotes a
+template function which is enabled whenever the template parameter <code class="docutils literal notranslate"><span class="pre">T</span></code>
+satisfies the type trait <code class="docutils literal notranslate"><span class="pre">is_signed_integer</span></code>. These type traits should be
+self-explanatory.</p>
+<p>In what follows, we will never document copy constructors, or implicit
+conversion constructors pertaining to reference types. We will also not
+document assignment operators for expressions of the same type. Thus if
+<code class="docutils literal notranslate"><span class="pre">x</span></code> is an <code class="docutils literal notranslate"><span class="pre">fmpzxx</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> is an <code class="docutils literal notranslate"><span class="pre">fmpqxx</span></code>, then <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">x</span></code> and
+<code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">x</span></code> are both valid, but only the second assignment operator is
+documented explicitly.</p>
+<p>Most flintxx functions and methods wrap underlying C functions in a way which
+is evident from the signature of the flintxx function/method. If this is the
+case, no further documentation is provided. For example, the function
+<code class="docutils literal notranslate"><span class="pre">double</span> <span class="pre">dlog(Fmpz_expr</span> <span class="pre">x)</span></code> simply wraps <code class="docutils literal notranslate"><span class="pre">double</span> <span class="pre">fmpz_dlog(const</span> <span class="pre">fmpz_t)</span></code>.</p>
+<p>As is evident from the return type, <code class="docutils literal notranslate"><span class="pre">dlog</span></code> immediately evaluates its
+argument, and then computes the logarithm. In contrast, a function like
+<code class="docutils literal notranslate"><span class="pre">Fmpz_expr</span> <span class="pre">gcd(Fmpz_expr,</span> <span class="pre">Fmpz_expr)</span></code> returns a lazily evaluated expression
+template and wraps <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">fmpz_gcd(fmpz_t,</span> <span class="pre">const</span> <span class="pre">fmpz_t,</span> <span class="pre">const</span> <span class="pre">fmpz_t)</span></code>.</p>
+<p>In case a Flint C function has more than one return value in the form of
+arguments passed in by reference, the C++ wrapper returns an <code class="docutils literal notranslate"><span class="pre">ltuple</span></code>. In
+this case, the order of the <code class="docutils literal notranslate"><span class="pre">ltuple</span></code> arguments is the same as the order of
+the function arguments; so for example <code class="docutils literal notranslate"><span class="pre">ltupleref(Q,</span> <span class="pre">R)</span> <span class="pre">=</span> <span class="pre">divrem(A,</span> <span class="pre">B)</span></code> has
+the same effect as <code class="docutils literal notranslate"><span class="pre">fmpz_poly_divrem(q,</span> <span class="pre">r,</span> <span class="pre">a,</span> <span class="pre">b)</span></code>, provided <code class="docutils literal notranslate"><span class="pre">Q,</span> <span class="pre">R,</span> <span class="pre">A,</span> <span class="pre">B</span></code>
+are <code class="docutils literal notranslate"><span class="pre">fmpz_polyxx</span></code> and <code class="docutils literal notranslate"><span class="pre">q,</span> <span class="pre">r,</span> <span class="pre">a,</span> <span class="pre">b</span></code> are the underlying <code class="docutils literal notranslate"><span class="pre">fmpz_poly_t</span></code>.</p>
+<p>If such a convention is followed, the documentation below may not further
+explain anything. In all other cases, further explanation is provided (this
+applies in particular if the C function has return type different from
+<code class="docutils literal notranslate"><span class="pre">void</span></code>).</p>
+</section>
+<section id="global-functions-or-member-functions">
+<h2>Global functions or member functions?<a class="headerlink" href="#global-functions-or-member-functions" title="Link to this heading">¶</a></h2>
+<p>Often it is not clear if functionality is exposed as a global function,
+such as <code class="docutils literal notranslate"><span class="pre">gcd(a,</span> <span class="pre">b)</span></code>, or as a member function, such as <code class="docutils literal notranslate"><span class="pre">a.gcd(b)</span></code>. In
+flintxx, we strive to make both available when feasible.</p>
+<p>In the documentation, the global versions are documented in detail (explaining
+the allowed types etc), whereas the member function versions are summarised
+more briefly under e.g. <code class="docutils literal notranslate"><span class="pre">Fmpz_expr::unary</span> <span class="pre">operation()</span> <span class="pre">const</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Fmpz_expr::binary</span> <span class="pre">operation(??)</span> <span class="pre">const</span></code> etc.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><strong>flintxx</strong> – C++ Wrapper</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#expression-templates">Expression templates</a></li>
+<li><a class="reference internal" href="#tuples">Tuples</a></li>
+<li><a class="reference internal" href="#reference-types">Reference types</a></li>
+<li><a class="reference internal" href="#unified-coefficient-access">Unified coefficient access</a></li>
+<li><a class="reference internal" href="#type-conversion">Type conversion</a></li>
+<li><a class="reference internal" href="#input-and-output">Input and output</a></li>
+<li><a class="reference internal" href="#inheritance-and-flintxx">Inheritance and flintxx</a></li>
+<li><a class="reference internal" href="#notation-and-conventions-in-flintxx-documentation">Notation and conventions in flintxx documentation</a></li>
+<li><a class="reference internal" href="#global-functions-or-member-functions">Global functions or member functions?</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="mpfr_mat.html"
+                          title="previous chapter"><strong>mpfr_mat.h</strong> – matrices of MPFR floating-point numbers</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="references.html"
+                          title="next chapter">References</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/flintxx.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="references.html" title="References"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="mpfr_mat.html" title="mpfr_mat.h – matrices of MPFR floating-point numbers"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>flintxx</strong> – C++ Wrapper</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2018, The Flint development team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

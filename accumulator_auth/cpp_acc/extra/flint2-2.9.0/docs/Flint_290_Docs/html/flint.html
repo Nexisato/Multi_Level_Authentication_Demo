@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>flint.h – global definitions &#8212; Flint 2.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    
+    <script src="_static/documentation_options.js?v=182a64a0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="profiler.h – performance profiling" href="profiler.html" />
+    <link rel="prev" title="Threading" href="threading.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="profiler.html" title="profiler.h – performance profiling"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="threading.html" title="Threading"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>flint.h</strong> – global definitions</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="flint-h-global-definitions">
+<span id="flint"></span><h1><strong>flint.h</strong> – global definitions<a class="headerlink" href="#flint-h-global-definitions" title="Link to this heading">¶</a></h1>
+<section id="allocation-functions">
+<h2>Allocation Functions<a class="headerlink" href="#allocation-functions" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.flint_malloc">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">flint_malloc</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_malloc" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Allocate <code class="docutils literal notranslate"><span class="pre">size</span></code> bytes of memory.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.flint_realloc">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">flint_realloc</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ptr</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_realloc" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Reallocate an area of memory previously allocated by <a class="reference internal" href="#c.flint_malloc" title="flint_malloc"><code class="xref c c-func docutils literal notranslate"><span class="pre">flint_malloc()</span></code></a>,
+<a class="reference internal" href="#c.flint_realloc" title="flint_realloc"><code class="xref c c-func docutils literal notranslate"><span class="pre">flint_realloc()</span></code></a>, or <a class="reference internal" href="#c.flint_calloc" title="flint_calloc"><code class="xref c c-func docutils literal notranslate"><span class="pre">flint_calloc()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.flint_calloc">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">flint_calloc</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_calloc" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Allocate <code class="docutils literal notranslate"><span class="pre">num</span></code> objects of <code class="docutils literal notranslate"><span class="pre">size</span></code> bytes each, and zero the allocated memory.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.flint_free">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flint_free</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ptr</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_free" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Free a section of memory allocated by  <a class="reference internal" href="#c.flint_malloc" title="flint_malloc"><code class="xref c c-func docutils literal notranslate"><span class="pre">flint_malloc()</span></code></a>,
+<a class="reference internal" href="#c.flint_realloc" title="flint_realloc"><code class="xref c c-func docutils literal notranslate"><span class="pre">flint_realloc()</span></code></a>, or <a class="reference internal" href="#c.flint_calloc" title="flint_calloc"><code class="xref c c-func docutils literal notranslate"><span class="pre">flint_calloc()</span></code></a>.</p>
+</dd></dl>
+
+</section>
+<section id="random-numbers">
+<h2>Random Numbers<a class="headerlink" href="#random-numbers" title="Link to this heading">¶</a></h2>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.flint_rand_s">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flint_rand_s</span></span></span><a class="headerlink" href="#c.flint_rand_s" title="Link to this definition">¶</a><br /></dt>
+<dd><p>A structure holding the state of a flint pseudo random number generator.</p>
+</dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.flint_rand_t">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flint_rand_t</span></span></span><a class="headerlink" href="#c.flint_rand_t" title="Link to this definition">¶</a><br /></dt>
+<dd><p>An array of length 1 of <a class="reference internal" href="#c.flint_rand_s" title="flint_rand_s"><code class="xref c c-type docutils literal notranslate"><span class="pre">flint_rand_s</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.flint_rand_alloc">
+<a class="reference internal" href="#c.flint_rand_s" title="flint_rand_s"><span class="n"><span class="pre">flint_rand_s</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">flint_rand_alloc</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_rand_alloc" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Allocates a <code class="docutils literal notranslate"><span class="pre">flint_rand_t</span></code> object to be used like a heap-allocated
+<code class="docutils literal notranslate"><span class="pre">flint_rand_t</span></code> in external libraries.
+The random state is not initialised.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.flint_rand_free">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flint_rand_free</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.flint_rand_s" title="flint_rand_s"><span class="n"><span class="pre">flint_rand_s</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">state</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_rand_free" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Frees a random state object as allocated using <a class="reference internal" href="#c.flint_rand_alloc" title="flint_rand_alloc"><code class="xref c c-func docutils literal notranslate"><span class="pre">flint_rand_alloc()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.flint_randinit">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flint_randinit</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_randinit" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initialize a <a class="reference internal" href="#c.flint_rand_t" title="flint_rand_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">flint_rand_t</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.flint_randclear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flint_randclear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_randclear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Free all memory allocated by <code class="xref c c-func docutils literal notranslate"><span class="pre">flint_rand_init()</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="thread-functions">
+<h2>Thread functions<a class="headerlink" href="#thread-functions" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.flint_set_num_threads">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flint_set_num_threads</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">num_threads</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_set_num_threads" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set up a thread pool of <code class="docutils literal notranslate"><span class="pre">num_threads</span> <span class="pre">-</span> <span class="pre">1</span></code> worker threads (in addition
+to the master thread) and set the maximum number of worker threads the
+master thread can start to <code class="docutils literal notranslate"><span class="pre">num_threads</span> <span class="pre">-</span> <span class="pre">1</span></code>.</p>
+<p>This function may only be called globally from the master thread. It can
+also be called at a global level to change the size of the thread pool, but
+an exception is raised if the thread pool is in use (threads have been
+woken but not given back). The function cannot be called from inside
+worker threads.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.flint_get_num_threads">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flint_get_num_threads</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_get_num_threads" title="Link to this definition">¶</a><br /></dt>
+<dd><p>When called at the global level, this function returns one more than the
+number of worker threads in the Flint thread pool, i.e. it counts the
+workers in the thread pool plus one more for the master thread.</p>
+<p>In general, this function returns one more than the number of additional
+worker threads that can be started by the current thread.</p>
+<p>Use <a class="reference internal" href="thread_pool.html#c.thread_pool_wake" title="thread_pool_wake"><code class="xref c c-func docutils literal notranslate"><span class="pre">thread_pool_wake()</span></code></a> to set this number for a given worker thread.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.flint_set_num_workers">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flint_set_num_workers</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">num_workers</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_set_num_workers" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Restricts the number of worker threads that can be started by the current
+thread to <code class="docutils literal notranslate"><span class="pre">num_workers</span></code>. This function can be called from any thread.</p>
+<p>Assumes that the Flint thread pool is already set up.</p>
+<p>The function returns the old number of worker threads that can be started.</p>
+<p>The function can only be used to reduce the number of workers that can be
+started from a thread. It cannot be used to increase the number. If a
+higher number is passed, the function has no effect.</p>
+<p>The number of workers must be restored to the original value by a call to
+<a class="reference internal" href="#c.flint_reset_num_workers" title="flint_reset_num_workers"><code class="xref c c-func docutils literal notranslate"><span class="pre">flint_reset_num_workers()</span></code></a> before the thread is returned to the thread
+pool.</p>
+<p>The main use of this function and <a class="reference internal" href="#c.flint_reset_num_workers" title="flint_reset_num_workers"><code class="xref c c-func docutils literal notranslate"><span class="pre">flint_reset_num_workers()</span></code></a> is to cheaply
+and temporarily restrict the number of workers that can be started, e.g. by
+a function that one wishes to call from a thread, and cheaply restore the
+number of workers to its original value before exiting the current thread.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.flint_reset_num_workers">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flint_reset_num_workers</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">num_workers</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_reset_num_workers" title="Link to this definition">¶</a><br /></dt>
+<dd><p>After a call to <a class="reference internal" href="#c.flint_set_num_workers" title="flint_set_num_workers"><code class="xref c c-func docutils literal notranslate"><span class="pre">flint_set_num_workers()</span></code></a> this function must be called to
+set the number of workers that may be started by the current thread back to
+its original value.</p>
+</dd></dl>
+
+</section>
+<section id="input-output">
+<h2>Input/Output<a class="headerlink" href="#input-output" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.flint_printf">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flint_printf</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">str</span></span>, <span class="p"><span class="pre">...</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_printf" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.flint_vprintf">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flint_vprintf</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">str</span></span>, <span class="n"><span class="pre">va_list</span></span><span class="w"> </span><span class="n"><span class="pre">ap</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_vprintf" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.flint_fprintf">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flint_fprintf</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FILE</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">str</span></span>, <span class="p"><span class="pre">...</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_fprintf" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.flint_sprintf">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flint_sprintf</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">str</span></span>, <span class="p"><span class="pre">...</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_sprintf" title="Link to this definition">¶</a><br /></dt>
+<dd><p>These are equivalent to the standard library functions <code class="docutils literal notranslate"><span class="pre">printf</span></code>,
+<code class="docutils literal notranslate"><span class="pre">vprintf</span></code>, <code class="docutils literal notranslate"><span class="pre">fprintf</span></code>, and <code class="docutils literal notranslate"><span class="pre">sprintf</span></code> with an additional length modifier
+“w” for use with an <code class="xref c c-type docutils literal notranslate"><span class="pre">mp_limb_t</span></code> type. This modifier can be used with
+format specifiers “d”, “x”, or “u”, thereby outputting the limb as a signed
+decimal, hexadecimal, or unsigned decimal integer.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.flint_scanf">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flint_scanf</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">str</span></span>, <span class="p"><span class="pre">...</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_scanf" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.flint_fscanf">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flint_fscanf</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FILE</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">str</span></span>, <span class="p"><span class="pre">...</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_fscanf" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.flint_sscanf">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flint_sscanf</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">str</span></span>, <span class="p"><span class="pre">...</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_sscanf" title="Link to this definition">¶</a><br /></dt>
+<dd><p>These are equivalent to the standard library functions <code class="docutils literal notranslate"><span class="pre">scanf</span></code>,
+<code class="docutils literal notranslate"><span class="pre">fscanf</span></code>, and <code class="docutils literal notranslate"><span class="pre">sscanf</span></code> with an additional length modifier “w” for
+reading an <code class="xref c c-type docutils literal notranslate"><span class="pre">mp_limb_t</span></code> type.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><strong>flint.h</strong> – global definitions</a><ul>
+<li><a class="reference internal" href="#allocation-functions">Allocation Functions</a></li>
+<li><a class="reference internal" href="#random-numbers">Random Numbers</a></li>
+<li><a class="reference internal" href="#thread-functions">Thread functions</a></li>
+<li><a class="reference internal" href="#input-output">Input/Output</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="threading.html"
+                          title="previous chapter"><strong>Threading</strong></a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="profiler.html"
+                          title="next chapter"><strong>profiler.h</strong> – performance profiling</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/flint.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="profiler.html" title="profiler.h – performance profiling"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="threading.html" title="Threading"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>flint.h</strong> – global definitions</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2018, The Flint development team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

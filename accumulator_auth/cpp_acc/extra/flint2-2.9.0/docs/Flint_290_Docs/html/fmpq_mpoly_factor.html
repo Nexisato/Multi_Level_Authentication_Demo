@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>fmpq_mpoly_factor.h – factorisation of multivariate polynomials over the rational numbers &#8212; Flint 2.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    
+    <script src="_static/documentation_options.js?v=182a64a0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="fmpq_mpoly.h – multivariate polynomials over the rational numbers" href="fmpq_mpoly.html" />
+    <link rel="prev" title="fmpq_poly.h – univariate polynomials over the rational numbers" href="fmpq_poly.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="fmpq_mpoly.html" title="fmpq_mpoly.h – multivariate polynomials over the rational numbers"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="fmpq_poly.html" title="fmpq_poly.h – univariate polynomials over the rational numbers"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="fmpq-mpoly-factor-h-factorisation-of-multivariate-polynomials-over-the-rational-numbers">
+<span id="fmpq-mpoly-factor"></span><h1><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers<a class="headerlink" href="#fmpq-mpoly-factor-h-factorisation-of-multivariate-polynomials-over-the-rational-numbers" title="Link to this heading">¶</a></h1>
+<section id="types-macros-and-constants">
+<h2>Types, macros and constants<a class="headerlink" href="#types-macros-and-constants" title="Link to this heading">¶</a></h2>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.fmpq_mpoly_factor_struct">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mpoly_factor_struct</span></span></span><a class="headerlink" href="#c.fmpq_mpoly_factor_struct" title="Link to this definition">¶</a><br /></dt>
+<dd><p>A struct for holding a factored rational polynomial. There is a
+single constant and a product of bases to corresponding exponents.</p>
+</dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.fmpq_mpoly_factor_t">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mpoly_factor_t</span></span></span><a class="headerlink" href="#c.fmpq_mpoly_factor_t" title="Link to this definition">¶</a><br /></dt>
+<dd><p>An array of length <span class="math notranslate nohighlight">\(1\)</span> of <code class="docutils literal notranslate"><span class="pre">fmpq_mpoly_factor_struct</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="memory-management">
+<h2>Memory management<a class="headerlink" href="#memory-management" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mpoly_factor_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mpoly_factor_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mpoly_factor_t" title="fmpq_mpoly_factor_t"><span class="n"><span class="pre">fmpq_mpoly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq_mpoly.html#c.fmpq_mpoly_ctx_t" title="fmpq_mpoly_ctx_t"><span class="n"><span class="pre">fmpq_mpoly_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mpoly_factor_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initialise <em>f</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mpoly_factor_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mpoly_factor_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mpoly_factor_t" title="fmpq_mpoly_factor_t"><span class="n"><span class="pre">fmpq_mpoly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq_mpoly.html#c.fmpq_mpoly_ctx_t" title="fmpq_mpoly_ctx_t"><span class="n"><span class="pre">fmpq_mpoly_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mpoly_factor_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clear <em>f</em>.</p>
+</dd></dl>
+
+</section>
+<section id="basic-manipulation">
+<h2>Basic manipulation<a class="headerlink" href="#basic-manipulation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mpoly_factor_swap">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mpoly_factor_swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mpoly_factor_t" title="fmpq_mpoly_factor_t"><span class="n"><span class="pre">fmpq_mpoly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="#c.fmpq_mpoly_factor_t" title="fmpq_mpoly_factor_t"><span class="n"><span class="pre">fmpq_mpoly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq_mpoly.html#c.fmpq_mpoly_ctx_t" title="fmpq_mpoly_ctx_t"><span class="n"><span class="pre">fmpq_mpoly_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mpoly_factor_swap" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Efficiently swap <em>f</em> and <em>g</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mpoly_factor_length">
+<span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mpoly_factor_length</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mpoly_factor_t" title="fmpq_mpoly_factor_t"><span class="n"><span class="pre">fmpq_mpoly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq_mpoly.html#c.fmpq_mpoly_ctx_t" title="fmpq_mpoly_ctx_t"><span class="n"><span class="pre">fmpq_mpoly_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mpoly_factor_length" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Return the length of the product in <em>f</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mpoly_factor_get_constant_fmpq">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mpoly_factor_get_constant_fmpq</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">c</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mpoly_factor_t" title="fmpq_mpoly_factor_t"><span class="n"><span class="pre">fmpq_mpoly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq_mpoly.html#c.fmpq_mpoly_ctx_t" title="fmpq_mpoly_ctx_t"><span class="n"><span class="pre">fmpq_mpoly_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mpoly_factor_get_constant_fmpq" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set <em>c</em> to the constant of <em>f</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mpoly_factor_get_base">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mpoly_factor_get_base</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq_mpoly.html#c.fmpq_mpoly_t" title="fmpq_mpoly_t"><span class="n"><span class="pre">fmpq_mpoly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mpoly_factor_t" title="fmpq_mpoly_factor_t"><span class="n"><span class="pre">fmpq_mpoly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">i</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq_mpoly.html#c.fmpq_mpoly_ctx_t" title="fmpq_mpoly_ctx_t"><span class="n"><span class="pre">fmpq_mpoly_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mpoly_factor_get_base" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_mpoly_factor_swap_base">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mpoly_factor_swap_base</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq_mpoly.html#c.fmpq_mpoly_t" title="fmpq_mpoly_t"><span class="n"><span class="pre">fmpq_mpoly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <a class="reference internal" href="#c.fmpq_mpoly_factor_t" title="fmpq_mpoly_factor_t"><span class="n"><span class="pre">fmpq_mpoly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">i</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq_mpoly.html#c.fmpq_mpoly_ctx_t" title="fmpq_mpoly_ctx_t"><span class="n"><span class="pre">fmpq_mpoly_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mpoly_factor_swap_base" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set (resp. swap) <em>B</em> to (resp. with) the base of the term of index <em>i</em> in  <em>A</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mpoly_factor_get_exp_si">
+<span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mpoly_factor_get_exp_si</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mpoly_factor_t" title="fmpq_mpoly_factor_t"><span class="n"><span class="pre">fmpq_mpoly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">i</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq_mpoly.html#c.fmpq_mpoly_ctx_t" title="fmpq_mpoly_ctx_t"><span class="n"><span class="pre">fmpq_mpoly_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mpoly_factor_get_exp_si" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Return the exponent of the term of index <em>i</em> in <em>A</em>. It is assumed to fit an <code class="docutils literal notranslate"><span class="pre">slong</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mpoly_factor_sort">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mpoly_factor_sort</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mpoly_factor_t" title="fmpq_mpoly_factor_t"><span class="n"><span class="pre">fmpq_mpoly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq_mpoly.html#c.fmpq_mpoly_ctx_t" title="fmpq_mpoly_ctx_t"><span class="n"><span class="pre">fmpq_mpoly_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mpoly_factor_sort" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sort the product of <em>f</em> first by exponent and then by base.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mpoly_factor_make_monic">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mpoly_factor_make_monic</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mpoly_factor_t" title="fmpq_mpoly_factor_t"><span class="n"><span class="pre">fmpq_mpoly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq_mpoly.html#c.fmpq_mpoly_ctx_t" title="fmpq_mpoly_ctx_t"><span class="n"><span class="pre">fmpq_mpoly_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mpoly_factor_make_monic" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_mpoly_factor_make_integral">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mpoly_factor_make_integral</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mpoly_factor_t" title="fmpq_mpoly_factor_t"><span class="n"><span class="pre">fmpq_mpoly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq_mpoly.html#c.fmpq_mpoly_ctx_t" title="fmpq_mpoly_ctx_t"><span class="n"><span class="pre">fmpq_mpoly_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mpoly_factor_make_integral" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Make the bases in <em>f</em> monic (resp. integral and primitive with positive leading coefficient).
+Return <span class="math notranslate nohighlight">\(1\)</span> for success, <span class="math notranslate nohighlight">\(0\)</span> for failure.</p>
+</dd></dl>
+
+</section>
+<section id="factorisation">
+<h2>Factorisation<a class="headerlink" href="#factorisation" title="Link to this heading">¶</a></h2>
+<blockquote>
+<div><p>A return of <span class="math notranslate nohighlight">\(1\)</span> indicates that the function was successful. Otherwise,
+the return is <span class="math notranslate nohighlight">\(0\)</span> and <em>f</em> is undefined. None of these functions
+multiply <em>f</em> by <em>A</em>: <em>f</em> is simply set to a factorisation of <em>A</em>, and thus
+these functions should not depend on the initial value of the output <em>f</em>.
+The normalization of the factors is not yet specified: use <a class="reference internal" href="#c.fmpq_mpoly_factor_make_monic" title="fmpq_mpoly_factor_make_monic"><code class="xref c c-func docutils literal notranslate"><span class="pre">fmpq_mpoly_factor_make_monic()</span></code></a>
+or <a class="reference internal" href="#c.fmpq_mpoly_factor_make_integral" title="fmpq_mpoly_factor_make_integral"><code class="xref c c-func docutils literal notranslate"><span class="pre">fmpq_mpoly_factor_make_integral()</span></code></a> for common normalizations.</p>
+</div></blockquote>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mpoly_factor_squarefree">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mpoly_factor_squarefree</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mpoly_factor_t" title="fmpq_mpoly_factor_t"><span class="n"><span class="pre">fmpq_mpoly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq_mpoly.html#c.fmpq_mpoly_t" title="fmpq_mpoly_t"><span class="n"><span class="pre">fmpq_mpoly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq_mpoly.html#c.fmpq_mpoly_ctx_t" title="fmpq_mpoly_ctx_t"><span class="n"><span class="pre">fmpq_mpoly_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mpoly_factor_squarefree" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set <em>f</em> to a factorization of <em>A</em> where the bases are primitive and
+pairwise relatively prime. If the product of all irreducible factors with
+a given exponent is desired, it is recommend to call <a class="reference internal" href="#c.fmpq_mpoly_factor_sort" title="fmpq_mpoly_factor_sort"><code class="xref c c-func docutils literal notranslate"><span class="pre">fmpq_mpoly_factor_sort()</span></code></a>
+and then multiply the bases with the desired exponent.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mpoly_factor">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mpoly_factor</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mpoly_factor_t" title="fmpq_mpoly_factor_t"><span class="n"><span class="pre">fmpq_mpoly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq_mpoly.html#c.fmpq_mpoly_t" title="fmpq_mpoly_t"><span class="n"><span class="pre">fmpq_mpoly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq_mpoly.html#c.fmpq_mpoly_ctx_t" title="fmpq_mpoly_ctx_t"><span class="n"><span class="pre">fmpq_mpoly_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mpoly_factor" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set <em>f</em> to a factorization of <em>A</em> where the bases are irreducible.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers</a><ul>
+<li><a class="reference internal" href="#types-macros-and-constants">Types, macros and constants</a></li>
+<li><a class="reference internal" href="#memory-management">Memory management</a></li>
+<li><a class="reference internal" href="#basic-manipulation">Basic manipulation</a></li>
+<li><a class="reference internal" href="#factorisation">Factorisation</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="fmpq_poly.html"
+                          title="previous chapter"><strong>fmpq_poly.h</strong> – univariate polynomials over the rational numbers</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="fmpq_mpoly.html"
+                          title="next chapter"><strong>fmpq_mpoly.h</strong> – multivariate polynomials over the rational numbers</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/fmpq_mpoly_factor.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="fmpq_mpoly.html" title="fmpq_mpoly.h – multivariate polynomials over the rational numbers"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="fmpq_poly.html" title="fmpq_poly.h – univariate polynomials over the rational numbers"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2018, The Flint development team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

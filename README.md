@@ -2,6 +2,16 @@
 ---
 
 ## Logs
+- 2023-09-24: RSA Accumulator init
+  - References: https://github.com/etremel/crypto-accumulators
+  - Dependencies (DO NOT MAKE INSTALL, PUT HERE):
+    - flint-2.9.0: (local docs)
+      - compile the docs manually
+    - gmp-6.3.0: https://gmplib.org/
+    - mpfr-4.2.1: https://www.mpfr.org/
+  - cryptopp880 (INSTALLED in /usr/local)
+  - jsoncpp (INSTALLED in /usr/local)
+  - OpenSSL (INSTALLED in /usr/local/openssl)
 - 2023-09-23: finish batch compute of MD5 checksum stored in JSON
   - ignore all built target dirs
 - 2023-09-17: finish CL_Auth_Demo with PBC: 
@@ -32,6 +42,8 @@
 - [【Original Share Space】](https://rjwalmzfj2.feishu.cn/drive/folder/fldcnpvD9hTdMQ1ZXHU9ufPumTf?from=space_shared_folder&fromShareWithMeNew=1)
     - [【Design Docs】](https://uqc1fm1ybzl.feishu.cn/docx/TveddkLhtoxDByxmqmBcS9fsnge)
     - [【Demand Analysis】](https://rjwalmzfj2.feishu.cn/docx/Mp6XdDhTPoZhclxc2Yvc4kRZn9i)
+
+- TREMEL E. Real-World Performance of Cryptographic Accumulators.
 
 
 ## Acknowledgements

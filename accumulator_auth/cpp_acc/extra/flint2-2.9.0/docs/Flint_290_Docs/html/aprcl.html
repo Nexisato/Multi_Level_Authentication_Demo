@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>aprcl.h – APRCL primality testing &#8212; Flint 2.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    
+    <script src="_static/documentation_options.js?v=182a64a0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="arith.h – arithmetic and special functions" href="arith.html" />
+    <link rel="prev" title="mpn_extras.h – support functions for limb arrays" href="mpn_extras.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="arith.html" title="arith.h – arithmetic and special functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="mpn_extras.html" title="mpn_extras.h – support functions for limb arrays"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>aprcl.h</strong> – APRCL primality testing</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="aprcl-h-aprcl-primality-testing">
+<span id="aprcl"></span><h1><strong>aprcl.h</strong> – APRCL primality testing<a class="headerlink" href="#aprcl-h-aprcl-primality-testing" title="Link to this heading">¶</a></h1>
+<p>This module implements the rigorous APRCL primality test, suitable for integers
+up to a few thousand digits.</p>
+<p>Authors:</p>
+<ul class="simple">
+<li><p>Vladimir Glazachev (Google Summer of Code, 2015)</p></li>
+</ul>
+<section id="primality-test-functions">
+<h2>Primality test functions<a class="headerlink" href="#primality-test-functions" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_is_prime">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_is_prime</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_is_prime" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Tests <span class="math notranslate nohighlight">\(n\)</span> for primality using the APRCL test.
+This is the same as <a class="reference internal" href="#c.aprcl_is_prime_jacobi" title="aprcl_is_prime_jacobi"><code class="xref c c-func docutils literal notranslate"><span class="pre">aprcl_is_prime_jacobi()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_is_prime_jacobi">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_is_prime_jacobi</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_is_prime_jacobi" title="Link to this definition">¶</a><br /></dt>
+<dd><p>If <span class="math notranslate nohighlight">\(n\)</span> prime returns 1; otherwise returns 0. The algorithm is well described
+in “Implementation of a New Primality Test” by H. Cohen and A.K. Lenstra and
+“A Course in Computational Algebraic Number Theory” by H. Cohen.</p>
+<p>It is theoretically possible that this function fails to prove that
+<span class="math notranslate nohighlight">\(n\)</span> is prime. In this event, <code class="xref c c-func docutils literal notranslate"><span class="pre">flint_abort()</span></code> is called.
+To handle this condition, the <a class="reference internal" href="#c._aprcl_is_prime_jacobi" title="_aprcl_is_prime_jacobi"><code class="xref c c-func docutils literal notranslate"><span class="pre">_aprcl_is_prime_jacobi()</span></code></a> function
+can be used.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_is_prime_gauss">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_is_prime_gauss</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_is_prime_gauss" title="Link to this definition">¶</a><br /></dt>
+<dd><p>If <span class="math notranslate nohighlight">\(n\)</span> is prime returns 1; otherwise returns 0.
+Uses the Cyclotomic primality testing algorithm described in
+“Four primality testing algorithms” by Rene Schoof.
+The minimum required numbers <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(R\)</span> are computed automatically.</p>
+<p>By default <span class="math notranslate nohighlight">\(R \ge 180\)</span>. In some cases this function fails to prove
+that <span class="math notranslate nohighlight">\(n\)</span> is prime. This means that we select a too small <span class="math notranslate nohighlight">\(R\)</span> value.
+In this event, <code class="xref c c-func docutils literal notranslate"><span class="pre">flint_abort()</span></code> is called.
+To handle this condition, the <a class="reference internal" href="#c._aprcl_is_prime_jacobi" title="_aprcl_is_prime_jacobi"><code class="xref c c-func docutils literal notranslate"><span class="pre">_aprcl_is_prime_jacobi()</span></code></a> function
+can be used.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._aprcl_is_prime_jacobi">
+<span class="n"><span class="pre">primality_test_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_aprcl_is_prime_jacobi</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.aprcl_config" title="aprcl_config"><span class="n"><span class="pre">aprcl_config</span></span></a><span class="w"> </span><span class="n"><span class="pre">config</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._aprcl_is_prime_jacobi" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Jacobi sum test for <span class="math notranslate nohighlight">\(n\)</span>. Possible return values:
+<code class="docutils literal notranslate"><span class="pre">PRIME</span></code>, <code class="docutils literal notranslate"><span class="pre">COMPOSITE</span></code> and <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code> (if we cannot
+prove primality).</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._aprcl_is_prime_gauss">
+<span class="n"><span class="pre">primality_test_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_aprcl_is_prime_gauss</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.aprcl_config" title="aprcl_config"><span class="n"><span class="pre">aprcl_config</span></span></a><span class="w"> </span><span class="n"><span class="pre">config</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._aprcl_is_prime_gauss" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Tests <span class="math notranslate nohighlight">\(n\)</span> for primality with fixed <code class="docutils literal notranslate"><span class="pre">config</span></code>. Possible return values:
+<code class="docutils literal notranslate"><span class="pre">PRIME</span></code>, <code class="docutils literal notranslate"><span class="pre">COMPOSITE</span></code> and <code class="docutils literal notranslate"><span class="pre">PROBABPRIME</span></code>
+(if we cannot prove primality).</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_is_prime_gauss_min_R">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_is_prime_gauss_min_R</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">R</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_is_prime_gauss_min_R" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#c.aprcl_is_prime_gauss" title="aprcl_is_prime_gauss"><code class="xref c c-func docutils literal notranslate"><span class="pre">aprcl_is_prime_gauss()</span></code></a> with fixed minimum value of <span class="math notranslate nohighlight">\(R\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_is_prime_final_division">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_is_prime_final_division</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">s</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">r</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_is_prime_final_division" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns 0 if for some <span class="math notranslate nohighlight">\(a = n^k \bmod s\)</span>, where <span class="math notranslate nohighlight">\(k \in [1, r - 1]\)</span>,
+we have that <span class="math notranslate nohighlight">\(a | n\)</span>; otherwise returns 1.</p>
+</dd></dl>
+
+</section>
+<section id="configuration-functions">
+<h2>Configuration functions<a class="headerlink" href="#configuration-functions" title="Link to this heading">¶</a></h2>
+<dl class="c type">
+<dt class="sig sig-object c" id="c._aprcl_config">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_aprcl_config</span></span></span><a class="headerlink" href="#c._aprcl_config" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.aprcl_config">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_config</span></span></span><a class="headerlink" href="#c.aprcl_config" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Holds precomputed parameters.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_config_gauss_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_config_gauss_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.aprcl_config" title="aprcl_config"><span class="n"><span class="pre">aprcl_config</span></span></a><span class="w"> </span><span class="n"><span class="pre">conf</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_config_gauss_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(R\)</span> values used in the cyclotomic primality test,
+<span class="math notranslate nohighlight">\(s^2 &gt; n\)</span> and <span class="math notranslate nohighlight">\(s=\prod\limits_{\substack{q-1|R \\ q \text{ prime}}}q\)</span>.
+Also stores factors of <span class="math notranslate nohighlight">\(R\)</span> and <span class="math notranslate nohighlight">\(s\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_config_gauss_init_min_R">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_config_gauss_init_min_R</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.aprcl_config" title="aprcl_config"><span class="n"><span class="pre">aprcl_config</span></span></a><span class="w"> </span><span class="n"><span class="pre">conf</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">R</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_config_gauss_init_min_R" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the <span class="math notranslate nohighlight">\(s\)</span> with fixed minimum <span class="math notranslate nohighlight">\(R\)</span> such that <span class="math notranslate nohighlight">\(a^R \equiv 1 \mod{s}\)</span>
+for all integer <span class="math notranslate nohighlight">\(a\)</span> coprime to <span class="math notranslate nohighlight">\(s\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_config_gauss_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_config_gauss_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.aprcl_config" title="aprcl_config"><span class="n"><span class="pre">aprcl_config</span></span></a><span class="w"> </span><span class="n"><span class="pre">conf</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_config_gauss_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears the given <code class="docutils literal notranslate"><span class="pre">aprcl_config</span></code> element. It must be reinitialised in
+order to be used again.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_R_value">
+<span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_R_value</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_R_value" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a precomputed <span class="math notranslate nohighlight">\(R\)</span> value for APRCL, such that the
+corresponding <span class="math notranslate nohighlight">\(s\)</span> value is greater than <span class="math notranslate nohighlight">\(\sqrt{n}\)</span>. The maximum
+stored value <span class="math notranslate nohighlight">\(6983776800\)</span> allows to test numbers up to <span class="math notranslate nohighlight">\(6000\)</span> digits.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_config_jacobi_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_config_jacobi_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.aprcl_config" title="aprcl_config"><span class="n"><span class="pre">aprcl_config</span></span></a><span class="w"> </span><span class="n"><span class="pre">conf</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_config_jacobi_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(R\)</span> values used in the cyclotomic primality test,
+<span class="math notranslate nohighlight">\(s^2 &gt; n\)</span> and <span class="math notranslate nohighlight">\(a^R \equiv 1 \mod{s}\)</span> for all <span class="math notranslate nohighlight">\(a\)</span> coprime to <span class="math notranslate nohighlight">\(s\)</span>.
+Also stores factors of <span class="math notranslate nohighlight">\(R\)</span> and <span class="math notranslate nohighlight">\(s\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_config_jacobi_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_config_jacobi_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.aprcl_config" title="aprcl_config"><span class="n"><span class="pre">aprcl_config</span></span></a><span class="w"> </span><span class="n"><span class="pre">conf</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_config_jacobi_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears the given <code class="docutils literal notranslate"><span class="pre">aprcl_config</span></code> element. It must be reinitialised in
+order to be used again.</p>
+</dd></dl>
+
+</section>
+<section id="cyclotomic-arithmetic">
+<h2>Cyclotomic arithmetic<a class="headerlink" href="#cyclotomic-arithmetic" title="Link to this heading">¶</a></h2>
+<p>This code implements arithmetic in cyclotomic rings.</p>
+<section id="types">
+<h3>Types<a class="headerlink" href="#types" title="Link to this heading">¶</a></h3>
+<dl class="c type">
+<dt class="sig sig-object c" id="c._unity_zp">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_unity_zp</span></span></span><a class="headerlink" href="#c._unity_zp" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.unity_zp">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp</span></span></span><a class="headerlink" href="#c.unity_zp" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Represents an element of <span class="math notranslate nohighlight">\(\mathbb{Z}[\zeta_{p^{exp}}]/(n)\)</span> as an
+<a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">fmpz_mod_poly_t</span></code></a> reduced modulo a cyclotomic polynomial.</p>
+</dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c._unity_zpq">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_unity_zpq</span></span></span><a class="headerlink" href="#c._unity_zpq" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.unity_zpq">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq</span></span></span><a class="headerlink" href="#c.unity_zpq" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Represents an element of <span class="math notranslate nohighlight">\(\mathbb{Z}[\zeta_q, \zeta_p]/(n)\)</span>
+as an array of <a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">fmpz_mod_poly_t</span></code></a>.</p>
+</dd></dl>
+
+</section>
+<section id="memory-management">
+<h3>Memory management<a class="headerlink" href="#memory-management" title="Link to this heading">¶</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">exp</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <span class="math notranslate nohighlight">\(f\)</span> as an element of <span class="math notranslate nohighlight">\(\mathbb{Z}[\zeta_{p^{exp}}]/(n)\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears the given element. It must be reinitialised in
+order to be used again.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_copy">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_copy</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_copy" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g\)</span>. <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_swap">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_swap" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Swaps <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span>. <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_set_zero">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_set_zero</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_set_zero" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to zero.</p>
+</dd></dl>
+
+</section>
+<section id="comparison">
+<h3>Comparison<a class="headerlink" href="#comparison" title="Link to this heading">¶</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_is_unity">
+<span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_is_unity</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_is_unity" title="Link to this definition">¶</a><br /></dt>
+<dd><p>If <span class="math notranslate nohighlight">\(f = \zeta^h\)</span> returns h; otherwise returns -1.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_equal">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_equal</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_equal" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if <span class="math notranslate nohighlight">\(f = g\)</span> reduced by the <span class="math notranslate nohighlight">\(p^{exp}\)</span>-th cyclotomic
+polynomial.</p>
+</dd></dl>
+
+</section>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading">¶</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_print">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_print</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_print" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints the contents of the <span class="math notranslate nohighlight">\(f\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="coefficient-management">
+<h3>Coefficient management<a class="headerlink" href="#coefficient-management" title="Link to this heading">¶</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_coeff_set_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_coeff_set_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">ind</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_coeff_set_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.unity_zp_coeff_set_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_coeff_set_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">ind</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_coeff_set_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the coefficient of <span class="math notranslate nohighlight">\(\zeta^{ind}\)</span> to <span class="math notranslate nohighlight">\(x\)</span>.
+<span class="math notranslate nohighlight">\(ind\)</span> must be less than <span class="math notranslate nohighlight">\(p^{exp}\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_coeff_add_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_coeff_add_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">ind</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_coeff_add_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.unity_zp_coeff_add_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_coeff_add_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">ind</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_coeff_add_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Adds <span class="math notranslate nohighlight">\(x\)</span> to the coefficient of <span class="math notranslate nohighlight">\(\zeta^{ind}\)</span>.
+<span class="math notranslate nohighlight">\(x\)</span> must be less than <span class="math notranslate nohighlight">\(n\)</span>.
+<span class="math notranslate nohighlight">\(ind\)</span> must be less than <span class="math notranslate nohighlight">\(p^{exp}\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_coeff_inc">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_coeff_inc</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">ind</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_coeff_inc" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Increments the coefficient of <span class="math notranslate nohighlight">\(\zeta^{ind}\)</span>.
+<span class="math notranslate nohighlight">\(ind\)</span> must be less than <span class="math notranslate nohighlight">\(p^{exp}\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_coeff_dec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_coeff_dec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">ind</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_coeff_dec" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Decrements the coefficient of <span class="math notranslate nohighlight">\(\zeta^{ind}\)</span>.
+<span class="math notranslate nohighlight">\(ind\)</span> must be less than <span class="math notranslate nohighlight">\(p^{exp}\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="scalar-multiplication">
+<h3>Scalar multiplication<a class="headerlink" href="#scalar-multiplication" title="Link to this heading">¶</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_mul_scalar_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_mul_scalar_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">s</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_mul_scalar_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(s \cdot g\)</span>. <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with
+same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_mul_scalar_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_mul_scalar_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">s</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_mul_scalar_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(s \cdot g\)</span>. <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with
+same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="addition-and-multiplication">
+<h3>Addition and multiplication<a class="headerlink" href="#addition-and-multiplication" title="Link to this heading">¶</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_add">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_add</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">h</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_add" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g + h\)</span>.
+<span class="math notranslate nohighlight">\(f\)</span>, <span class="math notranslate nohighlight">\(g\)</span> and <span class="math notranslate nohighlight">\(h\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_mul">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_mul</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">h</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_mul" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g \cdot h\)</span>.
+<span class="math notranslate nohighlight">\(f\)</span>, <span class="math notranslate nohighlight">\(g\)</span> and <span class="math notranslate nohighlight">\(h\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_sqr">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_sqr</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_sqr" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g \cdot g\)</span>.
+<span class="math notranslate nohighlight">\(f\)</span>, <span class="math notranslate nohighlight">\(g\)</span> and <span class="math notranslate nohighlight">\(h\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_mul_inplace">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_mul_inplace</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">untiy_zp</span></span><span class="w"> </span><span class="n"><span class="pre">h</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">t</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_mul_inplace" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g \cdot h\)</span>. If <span class="math notranslate nohighlight">\(p^{exp} = 3, 4, 5, 7, 8, 9, 11, 16\)</span> special
+multiplication functions are used. The preallocated array <span class="math notranslate nohighlight">\(t\)</span> of <code class="docutils literal notranslate"><span class="pre">fmpz_t</span></code> is
+used for all computations in this case.
+<span class="math notranslate nohighlight">\(f\)</span>, <span class="math notranslate nohighlight">\(g\)</span> and <span class="math notranslate nohighlight">\(h\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_sqr_inplace">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_sqr_inplace</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">t</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_sqr_inplace" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g \cdot g\)</span>. If <span class="math notranslate nohighlight">\(p^{exp} = 3, 4, 5, 7, 8, 9, 11, 16\)</span> special
+multiplication functions are used. The preallocated array <span class="math notranslate nohighlight">\(t\)</span> of <code class="docutils literal notranslate"><span class="pre">fmpz_t</span></code> is
+used for all computations in this case.
+<span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="powering-functions">
+<h3>Powering functions<a class="headerlink" href="#powering-functions" title="Link to this heading">¶</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_pow_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_pow_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">pow</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_pow_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g^{pow}\)</span>. <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with
+same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_pow_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_pow_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">pow</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_pow_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g^{pow}\)</span>. <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with
+same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._unity_zp_pow_select_k">
+<span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_unity_zp_pow_select_k</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._unity_zp_pow_select_k" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the smallest integer <span class="math notranslate nohighlight">\(k\)</span> satisfying
+<span class="math notranslate nohighlight">\(\log (n) &lt; (k(k + 1)2^{2k}) / (2^{k + 1} - k - 2) + 1\)</span></p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_pow_2k_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_pow_2k_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">pow</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_pow_2k_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g^{pow}\)</span> using the <span class="math notranslate nohighlight">\(2^k\)</span>-ary exponentiation method.
+<span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_pow_2k_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_pow_2k_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">pow</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_pow_2k_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g^{pow}\)</span> using the <span class="math notranslate nohighlight">\(2^k\)</span>-ary exponentiation method.
+<span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_pow_sliding_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_pow_sliding_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">pow</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_pow_sliding_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g^{pow}\)</span> using the sliding window exponentiation method.
+<span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="cyclotomic-reduction">
+<h3>Cyclotomic reduction<a class="headerlink" href="#cyclotomic-reduction" title="Link to this heading">¶</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._unity_zp_reduce_cyclotomic_divmod">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_unity_zp_reduce_cyclotomic_divmod</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._unity_zp_reduce_cyclotomic_divmod" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c._unity_zp_reduce_cyclotomic">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_unity_zp_reduce_cyclotomic</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._unity_zp_reduce_cyclotomic" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f = f \bmod \Phi_{p^{exp}}\)</span>. <span class="math notranslate nohighlight">\(\Phi_{p^{exp}}\)</span> is the <span class="math notranslate nohighlight">\(p^{exp}\)</span>-th
+cyclotomic polynomial. <span class="math notranslate nohighlight">\(g\)</span> must be reduced by <span class="math notranslate nohighlight">\(x^{p^{exp}}-1\)</span> poly.
+<span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_reduce_cyclotomic">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_reduce_cyclotomic</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_reduce_cyclotomic" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f = g \bmod \Phi_{p^{exp}}\)</span>. <span class="math notranslate nohighlight">\(\Phi_{p^{exp}}\)</span> is the <span class="math notranslate nohighlight">\(p^{exp}\)</span>-th
+cyclotomic polynomial.</p>
+</dd></dl>
+
+</section>
+<section id="automorphism-and-inverse">
+<h3>Automorphism and inverse<a class="headerlink" href="#automorphism-and-inverse" title="Link to this heading">¶</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_aut">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_aut</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_aut" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f = \sigma_x(g)\)</span>, the automorphism <span class="math notranslate nohighlight">\(\sigma_x(\zeta)=\zeta^x\)</span>.
+<span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with the same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_aut_inv">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_aut_inv</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_aut_inv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f = \sigma_x^{-1}(g)\)</span>, so <span class="math notranslate nohighlight">\(\sigma_x(f) = g\)</span>.
+<span class="math notranslate nohighlight">\(g\)</span> must be reduced by <span class="math notranslate nohighlight">\(\Phi_{p^{exp}}\)</span>.
+<span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with the same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="jacobi-sum">
+<h3>Jacobi sum<a class="headerlink" href="#jacobi-sum" title="Link to this heading">¶</a></h3>
+<p>Here <span class="math notranslate nohighlight">\(\chi_{p, q}\)</span> is the character defined by
+<span class="math notranslate nohighlight">\(\chi_{p, q}(g^x) = \zeta_{p^k}^x\)</span>, where <span class="math notranslate nohighlight">\(g\)</span> is
+a primitive root modulo <span class="math notranslate nohighlight">\(q\)</span>.</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_jacobi_sum_pq">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_jacobi_sum_pq</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_jacobi_sum_pq" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to the Jacobi sum <span class="math notranslate nohighlight">\(J(p, q) = j(\chi_{p, q}, \chi_{p, q})\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_jacobi_sum_2q_one">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_jacobi_sum_2q_one</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_jacobi_sum_2q_one" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to the Jacobi sum
+<span class="math notranslate nohighlight">\(J_2(q) = j(\chi_{2, q}^{2^{k - 3}}, \chi_{2, q}^{3 \cdot 2^{k - 3}}))^2\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_jacobi_sum_2q_two">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_jacobi_sum_2q_two</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_jacobi_sum_2q_two" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to the Jacobi sum
+<span class="math notranslate nohighlight">\(J_3(1) = j(\chi_{2, q}, \chi_{2, q}, \chi_{2, q}) =
+J(2, q) \cdot j(\chi_{2, q}^2, \chi_{2, q})\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="extended-rings">
+<h3>Extended rings<a class="headerlink" href="#extended-rings" title="Link to this heading">¶</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <span class="math notranslate nohighlight">\(f\)</span> as an element of <span class="math notranslate nohighlight">\(\mathbb{Z}[\zeta_q, \zeta_p]/(n)\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears the given element. It must be reinitialized in
+order to be used again.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_copy">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_copy</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_copy" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g\)</span>. <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with
+same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_swap">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_swap" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Swaps <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span>. <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with
+same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_equal">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_equal</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_equal" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if <span class="math notranslate nohighlight">\(f = g\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_p_unity">
+<span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_p_unity</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_p_unity" title="Link to this definition">¶</a><br /></dt>
+<dd><p>If <span class="math notranslate nohighlight">\(f = \zeta_p^x\)</span> returns <span class="math notranslate nohighlight">\(x in [0, p - 1]\)</span>; otherwise returns <span class="math notranslate nohighlight">\(p\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_is_p_unity">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_is_p_unity</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_is_p_unity" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if <span class="math notranslate nohighlight">\(f = \zeta_p^x\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_is_p_unity_generator">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_is_p_unity_generator</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_is_p_unity_generator" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if <span class="math notranslate nohighlight">\(f\)</span> is a generator of the cyclic group <span class="math notranslate nohighlight">\(&lt;\zeta_p&gt;\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_coeff_set_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_coeff_set_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">i</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">j</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_coeff_set_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the coefficient of <span class="math notranslate nohighlight">\(\zeta_q^i \zeta_p^j\)</span> to <span class="math notranslate nohighlight">\(x\)</span>.
+<span class="math notranslate nohighlight">\(i\)</span> must be less than <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(j\)</span> must be less than <span class="math notranslate nohighlight">\(p\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_coeff_set_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_coeff_set_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">i</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">j</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_coeff_set_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the coefficient of <span class="math notranslate nohighlight">\(\zeta_q^i \zeta_p^j\)</span> to <span class="math notranslate nohighlight">\(x\)</span>.
+<span class="math notranslate nohighlight">\(i\)</span> must be less than <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(j\)</span> must be less then <span class="math notranslate nohighlight">\(p\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_coeff_add">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_coeff_add</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">i</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">j</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_coeff_add" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Adds <span class="math notranslate nohighlight">\(x\)</span> to the coefficient of <span class="math notranslate nohighlight">\(\zeta_p^i \zeta_q^j\)</span>. <span class="math notranslate nohighlight">\(x\)</span> must be less than <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_add">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_add</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">h</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_add" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g + h\)</span>.
+<span class="math notranslate nohighlight">\(f\)</span>, <span class="math notranslate nohighlight">\(g\)</span> and <span class="math notranslate nohighlight">\(h\)</span> must be initialized with same
+<span class="math notranslate nohighlight">\(q\)</span>, <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_mul">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_mul</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">h</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_mul" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g \cdot h\)</span>.
+<span class="math notranslate nohighlight">\(f\)</span>, <span class="math notranslate nohighlight">\(g\)</span> and <span class="math notranslate nohighlight">\(h\)</span> must be initialized with same
+<span class="math notranslate nohighlight">\(q\)</span>, <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._unity_zpq_mul_unity_p">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_unity_zpq_mul_unity_p</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._unity_zpq_mul_unity_p" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f = f \cdot \zeta_p\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_mul_unity_p_pow">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_mul_unity_p_pow</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">k</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_mul_unity_p_pow" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g \cdot \zeta_p^k\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_pow">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_pow</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_pow" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g^p\)</span>. <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_pow_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_pow_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_pow_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g^p\)</span>. <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_gauss_sum">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_gauss_sum</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_gauss_sum" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f = \tau(\chi_{p, q})\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_gauss_sum_sigma_pow">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_gauss_sum_sigma_pow</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_gauss_sum_sigma_pow" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f = \tau^{\sigma_n}(\chi_{p, q})\)</span>.</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><strong>aprcl.h</strong> – APRCL primality testing</a><ul>
+<li><a class="reference internal" href="#primality-test-functions">Primality test functions</a></li>
+<li><a class="reference internal" href="#configuration-functions">Configuration functions</a></li>
+<li><a class="reference internal" href="#cyclotomic-arithmetic">Cyclotomic arithmetic</a><ul>
+<li><a class="reference internal" href="#types">Types</a></li>
+<li><a class="reference internal" href="#memory-management">Memory management</a></li>
+<li><a class="reference internal" href="#comparison">Comparison</a></li>
+<li><a class="reference internal" href="#output">Output</a></li>
+<li><a class="reference internal" href="#coefficient-management">Coefficient management</a></li>
+<li><a class="reference internal" href="#scalar-multiplication">Scalar multiplication</a></li>
+<li><a class="reference internal" href="#addition-and-multiplication">Addition and multiplication</a></li>
+<li><a class="reference internal" href="#powering-functions">Powering functions</a></li>
+<li><a class="reference internal" href="#cyclotomic-reduction">Cyclotomic reduction</a></li>
+<li><a class="reference internal" href="#automorphism-and-inverse">Automorphism and inverse</a></li>
+<li><a class="reference internal" href="#jacobi-sum">Jacobi sum</a></li>
+<li><a class="reference internal" href="#extended-rings">Extended rings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="mpn_extras.html"
+                          title="previous chapter"><strong>mpn_extras.h</strong> – support functions for limb arrays</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="arith.html"
+                          title="next chapter"><strong>arith.h</strong> – arithmetic and special functions</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/aprcl.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="arith.html" title="arith.h – arithmetic and special functions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="mpn_extras.html" title="mpn_extras.h – support functions for limb arrays"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>aprcl.h</strong> – APRCL primality testing</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2018, The Flint development team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

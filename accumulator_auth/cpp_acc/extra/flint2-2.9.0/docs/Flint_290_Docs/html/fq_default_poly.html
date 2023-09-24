@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>fq_default_poly.h – univariate polynomials over finite fields &#8212; Flint 2.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    
+    <script src="_static/documentation_options.js?v=182a64a0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="fq_poly_factor.h – factorisation of univariate polynomials over finite fields" href="fq_poly_factor.html" />
+    <link rel="prev" title="fq_poly.h – univariate polynomials over finite fields" href="fq_poly.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="fq_poly_factor.html" title="fq_poly_factor.h – factorisation of univariate polynomials over finite fields"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="fq_poly.html" title="fq_poly.h – univariate polynomials over finite fields"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="fq-default-poly-h-univariate-polynomials-over-finite-fields">
+<span id="fq-default-poly"></span><h1><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields<a class="headerlink" href="#fq-default-poly-h-univariate-polynomials-over-finite-fields" title="Link to this heading">¶</a></h1>
+<p>Description.</p>
+<section id="types-macros-and-constants">
+<h2>Types, macros and constants<a class="headerlink" href="#types-macros-and-constants" title="Link to this heading">¶</a></h2>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.fq_default_poly_t">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_t</span></span></span><a class="headerlink" href="#c.fq_default_poly_t" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Description.</p>
+</dd></dl>
+
+</section>
+<section id="memory-management">
+<h2>Memory management<a class="headerlink" href="#memory-management" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initialises <code class="docutils literal notranslate"><span class="pre">poly</span></code> for use, with context ctx, and setting its
+length to zero. A corresponding call to <a class="reference internal" href="#c.fq_default_poly_clear" title="fq_default_poly_clear"><code class="xref c c-func docutils literal notranslate"><span class="pre">fq_default_poly_clear()</span></code></a>
+must be made after finishing with the <code class="docutils literal notranslate"><span class="pre">fq_default_poly_t</span></code> to free the
+memory used by the polynomial.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_init2">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_init2</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">alloc</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_init2" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initialises <code class="docutils literal notranslate"><span class="pre">poly</span></code> with space for at least <code class="docutils literal notranslate"><span class="pre">alloc</span></code>
+coefficients and sets the length to zero.  The allocated
+coefficients are all set to zero.  A corresponding call to
+<a class="reference internal" href="#c.fq_default_poly_clear" title="fq_default_poly_clear"><code class="xref c c-func docutils literal notranslate"><span class="pre">fq_default_poly_clear()</span></code></a> must be made after finishing with the
+<code class="docutils literal notranslate"><span class="pre">fq_default_poly_t</span></code> to free the memory used by the polynomial.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_realloc">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_realloc</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">alloc</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_realloc" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Reallocates the given polynomial to have space for <code class="docutils literal notranslate"><span class="pre">alloc</span></code>
+coefficients.  If <code class="docutils literal notranslate"><span class="pre">alloc</span></code> is zero the polynomial is cleared
+and then reinitialised.  If the current length is greater than
+<code class="docutils literal notranslate"><span class="pre">alloc</span></code> the polynomial is first truncated to length
+<code class="docutils literal notranslate"><span class="pre">alloc</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_fit_length">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_fit_length</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_fit_length" title="Link to this definition">¶</a><br /></dt>
+<dd><p>If <code class="docutils literal notranslate"><span class="pre">len</span></code> is greater than the number of coefficients currently
+allocated, then the polynomial is reallocated to have space for at
+least <code class="docutils literal notranslate"><span class="pre">len</span></code> coefficients.  No data is lost when calling this
+function.</p>
+<p>The function efficiently deals with the case where
+<code class="docutils literal notranslate"><span class="pre">fit_length</span></code> is called many times in small increments by at
+least doubling the number of allocated coefficients when length is
+larger than the number of coefficients currently allocated.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears the given polynomial, releasing any memory used.  It must
+be reinitialised in order to be used again.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fq_default_poly_set_length">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fq_default_poly_set_length</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fq_default_poly_set_length" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set the length of <code class="docutils literal notranslate"><span class="pre">poly</span></code> to <code class="docutils literal notranslate"><span class="pre">len</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_truncate">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_truncate</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">newlen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_truncate" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Truncates the polynomial to length at most <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_set_trunc">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_set_trunc</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly1</span></span>, <a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">newlen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_set_trunc" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">poly1</span></code> to <code class="docutils literal notranslate"><span class="pre">poly2</span></code> truncated to length <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_reverse">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_reverse</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">input</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">m</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_reverse" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">output</span></code> to the reverse of <code class="docutils literal notranslate"><span class="pre">input</span></code>, thinking of it
+as a polynomial of length <code class="docutils literal notranslate"><span class="pre">m</span></code>, notionally zero-padded if
+necessary).  The length <code class="docutils literal notranslate"><span class="pre">m</span></code> must be non-negative, but there
+are no other restrictions. The output polynomial will be set to
+length <code class="docutils literal notranslate"><span class="pre">m</span></code> and then normalised.</p>
+</dd></dl>
+
+</section>
+<section id="polynomial-parameters">
+<h2>Polynomial parameters<a class="headerlink" href="#polynomial-parameters" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_degree">
+<span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_degree</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_degree" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the degree of the polynomial <code class="docutils literal notranslate"><span class="pre">poly</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_length">
+<span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_length</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_length" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the length of the polynomial <code class="docutils literal notranslate"><span class="pre">poly</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="randomisation">
+<h2>Randomisation<a class="headerlink" href="#randomisation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_randtest">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_randtest</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_randtest" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to a random polynomial of length at most <code class="docutils literal notranslate"><span class="pre">len</span></code>
+with entries in the field described by <code class="docutils literal notranslate"><span class="pre">ctx</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_randtest_not_zero">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_randtest_not_zero</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_randtest_not_zero" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Same as <code class="docutils literal notranslate"><span class="pre">fq_default_poly_randtest</span></code> but guarantees that the polynomial
+is not zero.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_randtest_monic">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_randtest_monic</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_randtest_monic" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to a random monic polynomial of length <code class="docutils literal notranslate"><span class="pre">len</span></code> with
+entries in the field described by <code class="docutils literal notranslate"><span class="pre">ctx</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_randtest_irreducible">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_randtest_irreducible</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_randtest_irreducible" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to a random monic, irreducible polynomial of length
+<code class="docutils literal notranslate"><span class="pre">len</span></code> with entries in the field described by <code class="docutils literal notranslate"><span class="pre">ctx</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="assignment-and-basic-manipulation">
+<h2>Assignment and basic manipulation<a class="headerlink" href="#assignment-and-basic-manipulation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_set">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_set</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_set" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the polynomial <code class="docutils literal notranslate"><span class="pre">poly1</span></code> to the polynomial <code class="docutils literal notranslate"><span class="pre">poly2</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_set_fq_default">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_set_fq_default</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_t</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_set_fq_default" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the polynomial <code class="docutils literal notranslate"><span class="pre">poly</span></code> to <code class="docutils literal notranslate"><span class="pre">c</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_swap">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1</span></span>, <a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_swap" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Swaps the two polynomials <code class="docutils literal notranslate"><span class="pre">op1</span></code> and <code class="docutils literal notranslate"><span class="pre">op2</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_zero">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_zero</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_zero" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">poly</span></code> to the zero polynomial.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_one">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_one</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_one" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">poly</span></code> to the constant polynomial <span class="math notranslate nohighlight">\(1\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_gen">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_gen</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_gen" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">poly</span></code> to the polynomial <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_make_monic">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_make_monic</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_make_monic" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">rop</span></code> to <code class="docutils literal notranslate"><span class="pre">op</span></code>, normed to have leading coefficient 1.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_set_nmod_poly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_set_nmod_poly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="nmod_poly.html#c.nmod_poly_t" title="nmod_poly_t"><span class="n"><span class="pre">nmod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_set_nmod_poly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the polynomial <code class="docutils literal notranslate"><span class="pre">rop</span></code> to the polynomial <code class="docutils literal notranslate"><span class="pre">op</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_set_fmpz_mod_poly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_set_fmpz_mod_poly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_set_fmpz_mod_poly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the polynomial <code class="docutils literal notranslate"><span class="pre">rop</span></code> to the polynomial <code class="docutils literal notranslate"><span class="pre">op</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_set_fmpz_poly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_set_fmpz_poly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_poly.html#c.fmpz_poly_t" title="fmpz_poly_t"><span class="n"><span class="pre">fmpz_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_set_fmpz_poly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the polynomial <code class="docutils literal notranslate"><span class="pre">rop</span></code> to the polynomial <code class="docutils literal notranslate"><span class="pre">op</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="getting-and-setting-coefficients">
+<h2>Getting and setting coefficients<a class="headerlink" href="#getting-and-setting-coefficients" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_get_coeff">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_get_coeff</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">fq_default_t</span></span><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_get_coeff" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(x\)</span> to the coefficient of <span class="math notranslate nohighlight">\(X^n\)</span> in <code class="docutils literal notranslate"><span class="pre">poly</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_set_coeff">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_set_coeff</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_t</span></span><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_set_coeff" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the coefficient of <span class="math notranslate nohighlight">\(X^n\)</span> in <code class="docutils literal notranslate"><span class="pre">poly</span></code> to <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_set_coeff_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_set_coeff_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_set_coeff_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the coefficient of <span class="math notranslate nohighlight">\(X^n\)</span> in the polynomial to <span class="math notranslate nohighlight">\(x\)</span>,
+assuming <span class="math notranslate nohighlight">\(n \geq 0\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="comparison">
+<h2>Comparison<a class="headerlink" href="#comparison" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_equal">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_equal</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_equal" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if the two polynomials <code class="docutils literal notranslate"><span class="pre">poly1</span></code> and <code class="docutils literal notranslate"><span class="pre">poly2</span></code>
+are equal, otherwise returns zero.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_equal_trunc">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_equal_trunc</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_equal_trunc" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Notionally truncate <code class="docutils literal notranslate"><span class="pre">poly1</span></code> and <code class="docutils literal notranslate"><span class="pre">poly2</span></code> to length <span class="math notranslate nohighlight">\(n\)</span> and
+return nonzero if they are equal, otherwise return zero.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_is_zero">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_is_zero</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_is_zero" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns whether the polynomial <code class="docutils literal notranslate"><span class="pre">poly</span></code> is the zero polynomial.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_is_one">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_is_one</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_is_one" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns whether the polynomial <code class="docutils literal notranslate"><span class="pre">poly</span></code> is equal
+to the constant polynomial <span class="math notranslate nohighlight">\(1\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_is_gen">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_is_gen</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_is_gen" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns whether the polynomial <code class="docutils literal notranslate"><span class="pre">poly</span></code> is equal
+to the polynomial <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_is_unit">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_is_unit</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_is_unit" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns whether the polynomial <code class="docutils literal notranslate"><span class="pre">poly</span></code> is a unit in the polynomial
+ring <span class="math notranslate nohighlight">\(\mathbf{F}_q[X]\)</span>, i.e. if it has degree <span class="math notranslate nohighlight">\(0\)</span> and is non-zero.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_equal_fq_default">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_equal_fq_default</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_t</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_equal_fq_default" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns whether the polynomial <code class="docutils literal notranslate"><span class="pre">poly</span></code> is equal the (constant)
+<span class="math notranslate nohighlight">\(\mathbf{F}_q\)</span> element <code class="docutils literal notranslate"><span class="pre">c</span></code></p>
+</dd></dl>
+
+</section>
+<section id="addition-and-subtraction">
+<h2>Addition and subtraction<a class="headerlink" href="#addition-and-subtraction" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_add">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_add</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_add" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the sum of <code class="docutils literal notranslate"><span class="pre">poly1</span></code> and <code class="docutils literal notranslate"><span class="pre">poly2</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_add_si">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_add_si</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly1</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_add_si" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the sum of <code class="docutils literal notranslate"><span class="pre">poly1</span></code> and <code class="docutils literal notranslate"><span class="pre">c</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_add_series">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_add_series</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_add_series" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Notionally truncate <code class="docutils literal notranslate"><span class="pre">poly1</span></code> and <code class="docutils literal notranslate"><span class="pre">poly2</span></code> to length <code class="docutils literal notranslate"><span class="pre">n</span></code> and set
+<code class="docutils literal notranslate"><span class="pre">res</span></code> to the sum.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_sub">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_sub</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_sub" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the difference of <code class="docutils literal notranslate"><span class="pre">poly1</span></code> and <code class="docutils literal notranslate"><span class="pre">poly2</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_sub_series">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_sub_series</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_sub_series" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Notionally truncate <code class="docutils literal notranslate"><span class="pre">poly1</span></code> and <code class="docutils literal notranslate"><span class="pre">poly2</span></code> to length <code class="docutils literal notranslate"><span class="pre">n</span></code> and set
+<code class="docutils literal notranslate"><span class="pre">res</span></code> to the difference.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_neg">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_neg</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_neg" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the additive inverse of <code class="docutils literal notranslate"><span class="pre">poly</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="scalar-multiplication-and-division">
+<h2>Scalar multiplication and division<a class="headerlink" href="#scalar-multiplication-and-division" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_scalar_mul_fq_default">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_scalar_mul_fq_default</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_t</span></span><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_scalar_mul_fq_default" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">rop</span></code> to the product of <code class="docutils literal notranslate"><span class="pre">op</span></code> by the scalar <code class="docutils literal notranslate"><span class="pre">x</span></code>, in the context
+defined by <code class="docutils literal notranslate"><span class="pre">ctx</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_scalar_addmul_fq_default">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_scalar_addmul_fq_default</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_t</span></span><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_scalar_addmul_fq_default" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Adds to <code class="docutils literal notranslate"><span class="pre">rop</span></code> the product of <code class="docutils literal notranslate"><span class="pre">op</span></code> by the
+scalar <code class="docutils literal notranslate"><span class="pre">x</span></code>, in the context defined by <code class="docutils literal notranslate"><span class="pre">ctx</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_scalar_submul_fq_default">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_scalar_submul_fq_default</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_t</span></span><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_scalar_submul_fq_default" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Subtracts from <code class="docutils literal notranslate"><span class="pre">rop</span></code> the product of <code class="docutils literal notranslate"><span class="pre">op</span></code> by the
+scalar <code class="docutils literal notranslate"><span class="pre">x</span></code>, in the context defined by <code class="docutils literal notranslate"><span class="pre">ctx</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_scalar_div_fq_default">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_scalar_div_fq_default</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_t</span></span><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_scalar_div_fq_default" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">rop</span></code> to the quotient of <code class="docutils literal notranslate"><span class="pre">op</span></code> by the scalar <code class="docutils literal notranslate"><span class="pre">x</span></code>, in the context
+defined by <code class="docutils literal notranslate"><span class="pre">ctx</span></code>. An exception is raised if <code class="docutils literal notranslate"><span class="pre">x</span></code> is zero.</p>
+</dd></dl>
+
+</section>
+<section id="multiplication">
+<h2>Multiplication<a class="headerlink" href="#multiplication" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_mul">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_mul</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_mul" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">rop</span></code> to the product of <code class="docutils literal notranslate"><span class="pre">op1</span></code> and <code class="docutils literal notranslate"><span class="pre">op2</span></code>,
+choosing an appropriate algorithm.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_mullow">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_mullow</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_mullow" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">rop</span></code> to the lowest <span class="math notranslate nohighlight">\(n\)</span> coefficients of the product of
+<code class="docutils literal notranslate"><span class="pre">op1</span></code> and <code class="docutils literal notranslate"><span class="pre">op2</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_mulhigh">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_mulhigh</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">start</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_mulhigh" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the product of <code class="docutils literal notranslate"><span class="pre">poly1</span></code> and <code class="docutils literal notranslate"><span class="pre">poly2</span></code> and writes the
+coefficients from <code class="docutils literal notranslate"><span class="pre">start</span></code> onwards into the high coefficients of
+<code class="docutils literal notranslate"><span class="pre">res</span></code>, the remaining coefficients being arbitrary but reduced.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_mulmod">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_mulmod</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_mulmod" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the remainder of the product of <code class="docutils literal notranslate"><span class="pre">poly1</span></code>
+and <code class="docutils literal notranslate"><span class="pre">poly2</span></code> upon polynomial division by <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="squaring">
+<h2>Squaring<a class="headerlink" href="#squaring" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_sqr">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_sqr</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_sqr" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">rop</span></code> to the square of <code class="docutils literal notranslate"><span class="pre">op</span></code>,
+choosing an appropriate algorithm.</p>
+</dd></dl>
+
+</section>
+<section id="powering">
+<h2>Powering<a class="headerlink" href="#powering" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_pow">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_pow</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">e</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_pow" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes <code class="docutils literal notranslate"><span class="pre">rop</span> <span class="pre">=</span> <span class="pre">op^e</span></code>.  If <span class="math notranslate nohighlight">\(e\)</span> is zero, returns one,
+so that in particular <code class="docutils literal notranslate"><span class="pre">0^0</span> <span class="pre">=</span> <span class="pre">1</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_powmod_ui_binexp">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_powmod_ui_binexp</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">e</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_powmod_ui_binexp" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to <code class="docutils literal notranslate"><span class="pre">poly</span></code> raised to the power <code class="docutils literal notranslate"><span class="pre">e</span></code> modulo
+<code class="docutils literal notranslate"><span class="pre">f</span></code>, using binary exponentiation. We require <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">&gt;=</span> <span class="pre">0</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_powmod_fmpz_binexp">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_powmod_fmpz_binexp</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">e</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_powmod_fmpz_binexp" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to <code class="docutils literal notranslate"><span class="pre">poly</span></code> raised to the power <code class="docutils literal notranslate"><span class="pre">e</span></code> modulo
+<code class="docutils literal notranslate"><span class="pre">f</span></code>, using binary exponentiation. We require <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">&gt;=</span> <span class="pre">0</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_pow_trunc">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_pow_trunc</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">e</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">trunc</span></span>, <span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_pow_trunc" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the low <code class="docutils literal notranslate"><span class="pre">trunc</span></code> coefficients of <code class="docutils literal notranslate"><span class="pre">poly</span></code>
+to the power <code class="docutils literal notranslate"><span class="pre">e</span></code>. This is equivalent to doing a powering
+followed by a truncation.</p>
+</dd></dl>
+
+</section>
+<section id="shifting">
+<h2>Shifting<a class="headerlink" href="#shifting" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_shift_left">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_shift_left</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_shift_left" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">rop</span></code> to <code class="docutils literal notranslate"><span class="pre">op</span></code> shifted left by <span class="math notranslate nohighlight">\(n\)</span> coeffs.  Zero
+coefficients are inserted.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_shift_right">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_shift_right</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_shift_right" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">rop</span></code> to <code class="docutils literal notranslate"><span class="pre">op</span></code> shifted right by <span class="math notranslate nohighlight">\(n\)</span> coefficients.
+If <span class="math notranslate nohighlight">\(n\)</span> is equal to or greater than the current length of
+<code class="docutils literal notranslate"><span class="pre">op</span></code>, <code class="docutils literal notranslate"><span class="pre">rop</span></code> is set to the zero polynomial.</p>
+</dd></dl>
+
+</section>
+<section id="norms">
+<h2>Norms<a class="headerlink" href="#norms" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_hamming_weight">
+<span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_hamming_weight</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_hamming_weight" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the number of non-zero entries in the polynomial <code class="docutils literal notranslate"><span class="pre">op</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="euclidean-division">
+<h2>Euclidean division<a class="headerlink" href="#euclidean-division" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_divrem">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_divrem</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">Q</span></span>, <a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">R</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_divrem" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes <span class="math notranslate nohighlight">\(Q\)</span>, <span class="math notranslate nohighlight">\(R\)</span> such that <span class="math notranslate nohighlight">\(A = B Q + R\)</span> with
+<span class="math notranslate nohighlight">\(0 \leq \operatorname{len}(R) &lt; \operatorname{len}(B)\)</span>.</p>
+<p>Assumes that the leading coefficient of <span class="math notranslate nohighlight">\(B\)</span> is invertible.  This can
+be taken for granted the context is for a finite field, that is, when
+<span class="math notranslate nohighlight">\(p\)</span> is prime and <span class="math notranslate nohighlight">\(f(X)\)</span> is irreducible.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_rem">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_rem</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">R</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_rem" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">R</span></code> to the remainder of the division of <code class="docutils literal notranslate"><span class="pre">A</span></code> by
+<code class="docutils literal notranslate"><span class="pre">B</span></code> in the context described by <code class="docutils literal notranslate"><span class="pre">ctx</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_inv_series">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_inv_series</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">Qinv</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">Q</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_inv_series" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Given <code class="docutils literal notranslate"><span class="pre">Q</span></code> find <code class="docutils literal notranslate"><span class="pre">Qinv</span></code> such that <code class="docutils literal notranslate"><span class="pre">Q</span> <span class="pre">*</span> <span class="pre">Qinv</span></code> is
+<code class="docutils literal notranslate"><span class="pre">1</span></code> modulo <span class="math notranslate nohighlight">\(x^n\)</span>. The constant coefficient of <code class="docutils literal notranslate"><span class="pre">Q</span></code> must
+be invertible modulo the modulus of <code class="docutils literal notranslate"><span class="pre">Q</span></code>. An exception is
+raised if this is not the case or if <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">0</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_div_series">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_div_series</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">Q</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_div_series" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set <span class="math notranslate nohighlight">\(Q\)</span> to the quotient of the series <span class="math notranslate nohighlight">\(A\)</span> by <span class="math notranslate nohighlight">\(B\)</span>, thinking of the series as
+though they were of length <span class="math notranslate nohighlight">\(n\)</span>. We assume that the bottom coefficient of
+<span class="math notranslate nohighlight">\(B\)</span> is invertible.</p>
+</dd></dl>
+
+</section>
+<section id="greatest-common-divisor">
+<h2>Greatest common divisor<a class="headerlink" href="#greatest-common-divisor" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_gcd">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_gcd</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_gcd" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">rop</span></code> to the greatest common divisor of <code class="docutils literal notranslate"><span class="pre">op1</span></code> and
+<code class="docutils literal notranslate"><span class="pre">op2</span></code>, using the either the Euclidean or HGCD algorithm. The
+GCD of zero polynomials is defined to be zero, whereas the GCD of
+the zero polynomial and some other polynomial <span class="math notranslate nohighlight">\(P\)</span> is defined to be
+<span class="math notranslate nohighlight">\(P\)</span>. Except in the case where the GCD is zero, the GCD <span class="math notranslate nohighlight">\(G\)</span> is made
+monic.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_xgcd">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_xgcd</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">S</span></span>, <a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">T</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_xgcd" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the GCD of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>. The GCD of zero polynomials is
+defined to be zero, whereas the GCD of the zero polynomial and some other
+polynomial <span class="math notranslate nohighlight">\(P\)</span> is defined to be <span class="math notranslate nohighlight">\(P\)</span>. Except in the case where
+the GCD is zero, the GCD <span class="math notranslate nohighlight">\(G\)</span> is made monic.</p>
+<p>Polynomials <code class="docutils literal notranslate"><span class="pre">S</span></code> and <code class="docutils literal notranslate"><span class="pre">T</span></code> are computed such that
+<code class="docutils literal notranslate"><span class="pre">S*A</span> <span class="pre">+</span> <span class="pre">T*B</span> <span class="pre">=</span> <span class="pre">G</span></code>. The length of <code class="docutils literal notranslate"><span class="pre">S</span></code> will be at most
+<code class="docutils literal notranslate"><span class="pre">lenB</span></code> and the length of <code class="docutils literal notranslate"><span class="pre">T</span></code> will be at most <code class="docutils literal notranslate"><span class="pre">lenA</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="divisibility-testing">
+<h2>Divisibility testing<a class="headerlink" href="#divisibility-testing" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_divides">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_divides</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">Q</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_divides" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns <span class="math notranslate nohighlight">\(1\)</span> if <span class="math notranslate nohighlight">\(B\)</span> divides <span class="math notranslate nohighlight">\(A\)</span> exactly and sets <span class="math notranslate nohighlight">\(Q\)</span> to the quotient,
+otherwise returns <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p>This function is currently unoptimised and provided for convenience
+only.</p>
+</dd></dl>
+
+</section>
+<section id="derivative">
+<h2>Derivative<a class="headerlink" href="#derivative" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_derivative">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_derivative</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_derivative" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">rop</span></code> to the derivative of <code class="docutils literal notranslate"><span class="pre">op</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="square-root">
+<h2>Square root<a class="headerlink" href="#square-root" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_invsqrt_series">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_invsqrt_series</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">h</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_invsqrt_series" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set <span class="math notranslate nohighlight">\(g\)</span> to the series expansion of <span class="math notranslate nohighlight">\(1/\sqrt{h}\)</span> to order <span class="math notranslate nohighlight">\(O(x^n)\)</span>.
+It is assumed that <span class="math notranslate nohighlight">\(h\)</span> has constant term 1.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_sqrt_series">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_sqrt_series</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">h</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_sqrt_series" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set <span class="math notranslate nohighlight">\(g\)</span> to the series expansion of <span class="math notranslate nohighlight">\(\sqrt{h}\)</span> to order <span class="math notranslate nohighlight">\(O(x^n)\)</span>.
+It is assumed that <span class="math notranslate nohighlight">\(h\)</span> has constant term 1.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_sqrt">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_sqrt</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">s</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">mod</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_sqrt" title="Link to this definition">¶</a><br /></dt>
+<dd><p>If <span class="math notranslate nohighlight">\(p\)</span> is a perfect square, sets <span class="math notranslate nohighlight">\(s\)</span> to a square root of <span class="math notranslate nohighlight">\(p\)</span>
+and returns 1. Otherwise returns 0.</p>
+</dd></dl>
+
+</section>
+<section id="evaluation">
+<h2>Evaluation<a class="headerlink" href="#evaluation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_evaluate_fq_default">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_evaluate_fq_default</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">fq_default_t</span></span><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_t</span></span><span class="w"> </span><span class="n"><span class="pre">a</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_evaluate_fq_default" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">rop</span></code> to the value of <span class="math notranslate nohighlight">\(f(a)\)</span>.</p>
+<p>As the coefficient ring <span class="math notranslate nohighlight">\(\mathbf{F}_q\)</span> is finite, Horner’s method
+is sufficient.</p>
+</dd></dl>
+
+</section>
+<section id="composition">
+<h2>Composition<a class="headerlink" href="#composition" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_compose">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_compose</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_compose" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">rop</span></code> to the composition of <code class="docutils literal notranslate"><span class="pre">op1</span></code> and <code class="docutils literal notranslate"><span class="pre">op2</span></code>.
+To be precise about the order of composition, denoting <code class="docutils literal notranslate"><span class="pre">rop</span></code>,
+<code class="docutils literal notranslate"><span class="pre">op1</span></code>, and <code class="docutils literal notranslate"><span class="pre">op2</span></code> by <span class="math notranslate nohighlight">\(f\)</span>, <span class="math notranslate nohighlight">\(g\)</span>, and <span class="math notranslate nohighlight">\(h\)</span>, respectively,
+sets <span class="math notranslate nohighlight">\(f(t) = g(h(t))\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_compose_mod">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_compose_mod</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">h</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_compose_mod" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the composition <span class="math notranslate nohighlight">\(f(g)\)</span> modulo <span class="math notranslate nohighlight">\(h\)</span>. We require
+that <span class="math notranslate nohighlight">\(h\)</span> is nonzero.</p>
+</dd></dl>
+
+</section>
+<section id="output">
+<h2>Output<a class="headerlink" href="#output" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_fprint_pretty">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_fprint_pretty</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FILE</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">file</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_fprint_pretty" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints the pretty representation of <code class="docutils literal notranslate"><span class="pre">poly</span></code> to the stream
+<code class="docutils literal notranslate"><span class="pre">file</span></code>, using the string <code class="docutils literal notranslate"><span class="pre">x</span></code> to represent the indeterminate.</p>
+<p>In case of success, returns a positive value.  In case of failure,
+returns a non-positive value.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_print_pretty">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_print_pretty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_print_pretty" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints the pretty representation of <code class="docutils literal notranslate"><span class="pre">poly</span></code> to <code class="docutils literal notranslate"><span class="pre">stdout</span></code>,
+using the string <code class="docutils literal notranslate"><span class="pre">x</span></code> to represent the indeterminate.</p>
+<p>In case of success, returns a positive value.  In case of failure,
+returns a non-positive value.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_fprint">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_fprint</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FILE</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">file</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_fprint" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints the pretty representation of <code class="docutils literal notranslate"><span class="pre">poly</span></code> to the stream
+<code class="docutils literal notranslate"><span class="pre">file</span></code>.</p>
+<p>In case of success, returns a positive value.  In case of failure,
+returns a non-positive value.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_print">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_print</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_print" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints the representation of <code class="docutils literal notranslate"><span class="pre">poly</span></code> to <code class="docutils literal notranslate"><span class="pre">stdout</span></code>.</p>
+<p>In case of success, returns a positive value.  In case of failure,
+returns a non-positive value.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_get_str">
+<span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_get_str</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_get_str" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the plain FLINT string representation of the polynomial
+<code class="docutils literal notranslate"><span class="pre">poly</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_get_str_pretty">
+<span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_get_str_pretty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_get_str_pretty" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a pretty representation of the polynomial <code class="docutils literal notranslate"><span class="pre">poly</span></code> using the
+null-terminated string <code class="docutils literal notranslate"><span class="pre">x</span></code> as the variable name</p>
+</dd></dl>
+
+</section>
+<section id="inflation-and-deflation">
+<h2>Inflation and deflation<a class="headerlink" href="#inflation-and-deflation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_inflate">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_inflate</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">result</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">input</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">inflation</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_inflate" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">result</span></code> to the inflated polynomial <span class="math notranslate nohighlight">\(p(x^n)\)</span> where
+<span class="math notranslate nohighlight">\(p\)</span> is given by <code class="docutils literal notranslate"><span class="pre">input</span></code> and <span class="math notranslate nohighlight">\(n\)</span> is given by <code class="docutils literal notranslate"><span class="pre">inflation</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_deflate">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_deflate</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">result</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">input</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">deflation</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_deflate" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">result</span></code> to the deflated polynomial <span class="math notranslate nohighlight">\(p(x^{1/n})\)</span> where
+<span class="math notranslate nohighlight">\(p\)</span> is given by <code class="docutils literal notranslate"><span class="pre">input</span></code> and <span class="math notranslate nohighlight">\(n\)</span> is given by <code class="docutils literal notranslate"><span class="pre">deflation</span></code>.
+Requires <span class="math notranslate nohighlight">\(n &gt; 0\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_default_poly_deflation">
+<span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_default_poly_deflation</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_default_poly_t" title="fq_default_poly_t"><span class="n"><span class="pre">fq_default_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">input</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">fq_default_ctx_t</span></span><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_default_poly_deflation" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the largest integer by which <code class="docutils literal notranslate"><span class="pre">input</span></code> can be deflated.
+As special cases, returns 0 if <code class="docutils literal notranslate"><span class="pre">input</span></code> is the zero polynomial
+and 1 of <code class="docutils literal notranslate"><span class="pre">input</span></code> is a constant polynomial.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a><ul>
+<li><a class="reference internal" href="#types-macros-and-constants">Types, macros and constants</a></li>
+<li><a class="reference internal" href="#memory-management">Memory management</a></li>
+<li><a class="reference internal" href="#polynomial-parameters">Polynomial parameters</a></li>
+<li><a class="reference internal" href="#randomisation">Randomisation</a></li>
+<li><a class="reference internal" href="#assignment-and-basic-manipulation">Assignment and basic manipulation</a></li>
+<li><a class="reference internal" href="#getting-and-setting-coefficients">Getting and setting coefficients</a></li>
+<li><a class="reference internal" href="#comparison">Comparison</a></li>
+<li><a class="reference internal" href="#addition-and-subtraction">Addition and subtraction</a></li>
+<li><a class="reference internal" href="#scalar-multiplication-and-division">Scalar multiplication and division</a></li>
+<li><a class="reference internal" href="#multiplication">Multiplication</a></li>
+<li><a class="reference internal" href="#squaring">Squaring</a></li>
+<li><a class="reference internal" href="#powering">Powering</a></li>
+<li><a class="reference internal" href="#shifting">Shifting</a></li>
+<li><a class="reference internal" href="#norms">Norms</a></li>
+<li><a class="reference internal" href="#euclidean-division">Euclidean division</a></li>
+<li><a class="reference internal" href="#greatest-common-divisor">Greatest common divisor</a></li>
+<li><a class="reference internal" href="#divisibility-testing">Divisibility testing</a></li>
+<li><a class="reference internal" href="#derivative">Derivative</a></li>
+<li><a class="reference internal" href="#square-root">Square root</a></li>
+<li><a class="reference internal" href="#evaluation">Evaluation</a></li>
+<li><a class="reference internal" href="#composition">Composition</a></li>
+<li><a class="reference internal" href="#output">Output</a></li>
+<li><a class="reference internal" href="#inflation-and-deflation">Inflation and deflation</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="fq_poly.html"
+                          title="previous chapter"><strong>fq_poly.h</strong> – univariate polynomials over finite fields</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="fq_poly_factor.html"
+                          title="next chapter"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/fq_default_poly.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="fq_poly_factor.html" title="fq_poly_factor.h – factorisation of univariate polynomials over finite fields"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="fq_poly.html" title="fq_poly.h – univariate polynomials over finite fields"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2018, The Flint development team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

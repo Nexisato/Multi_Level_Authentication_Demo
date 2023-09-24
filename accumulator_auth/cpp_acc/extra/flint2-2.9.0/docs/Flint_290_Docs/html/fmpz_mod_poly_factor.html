@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>fmpz_mod_poly_factor.h – factorisation of polynomials over integers mod n &#8212; Flint 2.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    
+    <script src="_static/documentation_options.js?v=182a64a0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="fmpz_mod_mpoly.h – polynomials over the integers mod n" href="fmpz_mod_mpoly.html" />
+    <link rel="prev" title="fmpz_mod_poly.h – polynomials over integers mod n" href="fmpz_mod_poly.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="fmpz_mod_mpoly.html" title="fmpz_mod_mpoly.h – polynomials over the integers mod n"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="fmpz_mod_poly.html" title="fmpz_mod_poly.h – polynomials over integers mod n"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="fmpz-mod-poly-factor-h-factorisation-of-polynomials-over-integers-mod-n">
+<span id="fmpz-mod-poly-factor"></span><h1><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n<a class="headerlink" href="#fmpz-mod-poly-factor-h-factorisation-of-polynomials-over-integers-mod-n" title="Link to this heading">¶</a></h1>
+<p>Description.</p>
+<section id="types-macros-and-constants">
+<h2>Types, macros and constants<a class="headerlink" href="#types-macros-and-constants" title="Link to this heading">¶</a></h2>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_factor_struct">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_factor_struct</span></span></span><a class="headerlink" href="#c.fmpz_mod_poly_factor_struct" title="Link to this definition">¶</a><br /></dt>
+<dd><p>A structure representing a polynomial in factorised form as a product of
+polynomials with associated exponents.</p>
+</dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_factor_t">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></span><a class="headerlink" href="#c.fmpz_mod_poly_factor_t" title="Link to this definition">¶</a><br /></dt>
+<dd><p>An array of length 1 of <code class="docutils literal notranslate"><span class="pre">fmpz_mpoly_factor_struct</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="factorisation">
+<h2>Factorisation<a class="headerlink" href="#factorisation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_factor_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_factor_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_mod_poly_factor_t" title="fmpz_mod_poly_factor_t"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">fac</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_factor_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initialises <code class="docutils literal notranslate"><span class="pre">fac</span></code> for use.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_factor_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_factor_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_mod_poly_factor_t" title="fmpz_mod_poly_factor_t"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">fac</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_factor_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Frees all memory associated with <code class="docutils literal notranslate"><span class="pre">fac</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_factor_realloc">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_factor_realloc</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_mod_poly_factor_t" title="fmpz_mod_poly_factor_t"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">fac</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">alloc</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_factor_realloc" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Reallocates the factor structure to provide space for
+precisely <code class="docutils literal notranslate"><span class="pre">alloc</span></code> factors.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_factor_fit_length">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_factor_fit_length</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_mod_poly_factor_t" title="fmpz_mod_poly_factor_t"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">fac</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_factor_fit_length" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Ensures that the factor structure has space for at
+least <code class="docutils literal notranslate"><span class="pre">len</span></code> factors.  This function takes care
+of the case of repeated calls by always, at least
+doubling the number of factors the structure can hold.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_factor_set">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_factor_set</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_mod_poly_factor_t" title="fmpz_mod_poly_factor_t"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpz_mod_poly_factor_t" title="fmpz_mod_poly_factor_t"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">fac</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_factor_set" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the same factorisation as <code class="docutils literal notranslate"><span class="pre">fac</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_factor_print">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_factor_print</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpz_mod_poly_factor_t" title="fmpz_mod_poly_factor_t"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">fac</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_factor_print" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints the entries of <code class="docutils literal notranslate"><span class="pre">fac</span></code> to standard output.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_factor_insert">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_factor_insert</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_mod_poly_factor_t" title="fmpz_mod_poly_factor_t"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">fac</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">exp</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_factor_insert" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Inserts the factor <code class="docutils literal notranslate"><span class="pre">poly</span></code> with multiplicity <code class="docutils literal notranslate"><span class="pre">exp</span></code> into
+the factorisation <code class="docutils literal notranslate"><span class="pre">fac</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">fac</span></code> already contains <code class="docutils literal notranslate"><span class="pre">poly</span></code>, then <code class="docutils literal notranslate"><span class="pre">exp</span></code> simply
+gets added to the exponent of the existing entry.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_factor_concat">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_factor_concat</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_mod_poly_factor_t" title="fmpz_mod_poly_factor_t"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpz_mod_poly_factor_t" title="fmpz_mod_poly_factor_t"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">fac</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_factor_concat" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Concatenates two factorisations.</p>
+<p>This is equivalent to calling <a class="reference internal" href="#c.fmpz_mod_poly_factor_insert" title="fmpz_mod_poly_factor_insert"><code class="xref c c-func docutils literal notranslate"><span class="pre">fmpz_mod_poly_factor_insert()</span></code></a>
+repeatedly with the individual factors of <code class="docutils literal notranslate"><span class="pre">fac</span></code>.</p>
+<p>Does not support aliasing between <code class="docutils literal notranslate"><span class="pre">res</span></code> and <code class="docutils literal notranslate"><span class="pre">fac</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_factor_pow">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_factor_pow</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_mod_poly_factor_t" title="fmpz_mod_poly_factor_t"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">fac</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">exp</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_factor_pow" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Raises <code class="docutils literal notranslate"><span class="pre">fac</span></code> to the power <code class="docutils literal notranslate"><span class="pre">exp</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_is_irreducible">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_is_irreducible</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_is_irreducible" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns 1 if the polynomial <code class="docutils literal notranslate"><span class="pre">f</span></code> is irreducible, otherwise returns 0.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_is_irreducible_ddf">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_is_irreducible_ddf</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_is_irreducible_ddf" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns 1 if the polynomial <code class="docutils literal notranslate"><span class="pre">f</span></code> is irreducible, otherwise returns 0.
+Uses fast distinct-degree factorisation.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_is_irreducible_rabin">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_is_irreducible_rabin</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_is_irreducible_rabin" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns 1 if the polynomial <code class="docutils literal notranslate"><span class="pre">f</span></code> is irreducible, otherwise returns 0.
+Uses Rabin irreducibility test.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_is_irreducible_rabin_f">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_is_irreducible_rabin_f</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">r</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_is_irreducible_rabin_f" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Either sets <span class="math notranslate nohighlight">\(r\)</span> to <span class="math notranslate nohighlight">\(1\)</span> and return 1 if the polynomial <code class="docutils literal notranslate"><span class="pre">f</span></code> is
+irreducible or <span class="math notranslate nohighlight">\(0\)</span> otherwise, or set <span class="math notranslate nohighlight">\(r\)</span> to a nontrivial factor of
+<span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p>This algorithm correctly determines whether <span class="math notranslate nohighlight">\(f\)</span> to is irreducible over
+<span class="math notranslate nohighlight">\(\mathbb{Z}/p\mathbb{Z}\)</span>, even for composite <span class="math notranslate nohighlight">\(f\)</span>, or it finds a factor
+of <span class="math notranslate nohighlight">\(p\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_mod_poly_is_squarefree">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_mod_poly_is_squarefree</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_mod_poly_is_squarefree" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns 1 if <code class="docutils literal notranslate"><span class="pre">(f,</span> <span class="pre">len)</span></code> is squarefree, and 0 otherwise. As a
+special case, the zero polynomial is not considered squarefree.
+There are no restrictions on the length.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_mod_poly_is_squarefree_f">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_mod_poly_is_squarefree_f</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">fac</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_mod_poly_is_squarefree_f" title="Link to this definition">¶</a><br /></dt>
+<dd><p>If <span class="math notranslate nohighlight">\(fac\)</span> returns with the value <span class="math notranslate nohighlight">\(1\)</span> then the function operates as per
+<a class="reference internal" href="#c._fmpz_mod_poly_is_squarefree" title="_fmpz_mod_poly_is_squarefree"><code class="xref c c-func docutils literal notranslate"><span class="pre">_fmpz_mod_poly_is_squarefree()</span></code></a>, otherwise <span class="math notranslate nohighlight">\(f\)</span> is set to a nontrivial
+factor of <span class="math notranslate nohighlight">\(p\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_is_squarefree">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_is_squarefree</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_is_squarefree" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns 1 if <code class="docutils literal notranslate"><span class="pre">f</span></code> is squarefree, and 0 otherwise. As a special
+case, the zero polynomial is not considered squarefree.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_is_squarefree_f">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_is_squarefree_f</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">fac</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_is_squarefree_f" title="Link to this definition">¶</a><br /></dt>
+<dd><p>If <span class="math notranslate nohighlight">\(fac\)</span> returns with the value <span class="math notranslate nohighlight">\(1\)</span> then the function operates as per
+<a class="reference internal" href="#c.fmpz_mod_poly_is_squarefree" title="fmpz_mod_poly_is_squarefree"><code class="xref c c-func docutils literal notranslate"><span class="pre">fmpz_mod_poly_is_squarefree()</span></code></a>, otherwise <span class="math notranslate nohighlight">\(f\)</span> is set to a nontrivial
+factor of <span class="math notranslate nohighlight">\(p\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_factor_equal_deg_prob">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_factor_equal_deg_prob</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">pol</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">d</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_factor_equal_deg_prob" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Probabilistic equal degree factorisation of <code class="docutils literal notranslate"><span class="pre">pol</span></code> into
+irreducible factors of degree <code class="docutils literal notranslate"><span class="pre">d</span></code>. If it passes, a factor is
+placed in <code class="docutils literal notranslate"><span class="pre">factor</span></code> and 1 is returned, otherwise 0 is returned and
+the value of factor is undetermined.</p>
+<p>Requires that <code class="docutils literal notranslate"><span class="pre">pol</span></code> be monic, non-constant and squarefree.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_factor_equal_deg">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_factor_equal_deg</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_mod_poly_factor_t" title="fmpz_mod_poly_factor_t"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factors</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">pol</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">d</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_factor_equal_deg" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Assuming <code class="docutils literal notranslate"><span class="pre">pol</span></code> is a product of irreducible factors all of
+degree <code class="docutils literal notranslate"><span class="pre">d</span></code>, finds all those factors and places them in factors.
+Requires that <code class="docutils literal notranslate"><span class="pre">pol</span></code> be monic, non-constant and squarefree.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_factor_distinct_deg">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_factor_distinct_deg</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_mod_poly_factor_t" title="fmpz_mod_poly_factor_t"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">degs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_factor_distinct_deg" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Factorises a monic non-constant squarefree polynomial <code class="docutils literal notranslate"><span class="pre">poly</span></code>
+of degree n into factors <span class="math notranslate nohighlight">\(f[d]\)</span> such that for <span class="math notranslate nohighlight">\(1 \leq d \leq n\)</span>
+<span class="math notranslate nohighlight">\(f[d]\)</span> is the product of the monic irreducible factors of <code class="docutils literal notranslate"><span class="pre">poly</span></code>
+of degree <span class="math notranslate nohighlight">\(d\)</span>. Factors <span class="math notranslate nohighlight">\(f[d]\)</span> are stored in <code class="docutils literal notranslate"><span class="pre">res</span></code>, and the degree <span class="math notranslate nohighlight">\(d\)</span>
+of the irreducible factors is stored in <code class="docutils literal notranslate"><span class="pre">degs</span></code> in the same order
+as the factors.</p>
+<p>Requires that <code class="docutils literal notranslate"><span class="pre">degs</span></code> has enough space for <span class="math notranslate nohighlight">\((n/2)+1 * sizeof(slong)\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_factor_distinct_deg_threaded">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_factor_distinct_deg_threaded</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_mod_poly_factor_t" title="fmpz_mod_poly_factor_t"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">degs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_factor_distinct_deg_threaded" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Multithreaded version of <a class="reference internal" href="#c.fmpz_mod_poly_factor_distinct_deg" title="fmpz_mod_poly_factor_distinct_deg"><code class="xref c c-func docutils literal notranslate"><span class="pre">fmpz_mod_poly_factor_distinct_deg()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_factor_squarefree">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_factor_squarefree</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_mod_poly_factor_t" title="fmpz_mod_poly_factor_t"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_factor_squarefree" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to a squarefree factorization of <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_factor">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_factor</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_mod_poly_factor_t" title="fmpz_mod_poly_factor_t"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_factor" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Factorises a non-constant polynomial <code class="docutils literal notranslate"><span class="pre">f</span></code> into monic irreducible
+factors choosing the best algorithm for given modulo and degree.
+Choice is based on heuristic measurements.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_factor_cantor_zassenhaus">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_factor_cantor_zassenhaus</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_mod_poly_factor_t" title="fmpz_mod_poly_factor_t"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_factor_cantor_zassenhaus" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Factorises a non-constant polynomial <code class="docutils literal notranslate"><span class="pre">f</span></code> into monic irreducible
+factors using the Cantor-Zassenhaus algorithm.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_factor_kaltofen_shoup">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_factor_kaltofen_shoup</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_mod_poly_factor_t" title="fmpz_mod_poly_factor_t"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_factor_kaltofen_shoup" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Factorises a non-constant polynomial <code class="docutils literal notranslate"><span class="pre">poly</span></code> into monic irreducible
+factors using the fast version of Cantor-Zassenhaus algorithm proposed by
+Kaltofen and Shoup (1998). More precisely this algorithm uses a
+baby step/giant step strategy for the distinct-degree factorization
+step. If <a class="reference internal" href="flint.html#c.flint_get_num_threads" title="flint_get_num_threads"><code class="xref c c-func docutils literal notranslate"><span class="pre">flint_get_num_threads()</span></code></a> is greater than one
+<a class="reference internal" href="#c.fmpz_mod_poly_factor_distinct_deg_threaded" title="fmpz_mod_poly_factor_distinct_deg_threaded"><code class="xref c c-func docutils literal notranslate"><span class="pre">fmpz_mod_poly_factor_distinct_deg_threaded()</span></code></a> is used.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_factor_berlekamp">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_factor_berlekamp</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_mod_poly_factor_t" title="fmpz_mod_poly_factor_t"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factors</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_factor_berlekamp" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Factorises a non-constant polynomial <code class="docutils literal notranslate"><span class="pre">f</span></code> into monic irreducible
+factors using the Berlekamp algorithm.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_mod_poly_interval_poly_worker">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_mod_poly_interval_poly_worker</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">arg_ptr</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_mod_poly_interval_poly_worker" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Worker function to compute interval polynomials in distinct degree
+factorisation. Input/output is stored in
+<code class="xref c c-type docutils literal notranslate"><span class="pre">fmpz_mod_poly_interval_poly_arg_t</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="root-finding">
+<h2>Root Finding<a class="headerlink" href="#root-finding" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_roots">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_roots</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_mod_poly_factor_t" title="fmpz_mod_poly_factor_t"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">r</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">with_multiplicity</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_roots" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Fill <span class="math notranslate nohighlight">\(r\)</span> with factors of the form <span class="math notranslate nohighlight">\(x - r_i\)</span> where the <span class="math notranslate nohighlight">\(r_i\)</span> are the distinct roots of a nonzero <span class="math notranslate nohighlight">\(f\)</span> in <span class="math notranslate nohighlight">\(Z/pZ\)</span>.
+It is expected and not checked that the modulus of <span class="math notranslate nohighlight">\(ctx\)</span> is prime.
+If <span class="math notranslate nohighlight">\(with_multiplicity\)</span> is zero, the exponent <span class="math notranslate nohighlight">\(e_i\)</span> of the factor <span class="math notranslate nohighlight">\(x - r_i\)</span> is <span class="math notranslate nohighlight">\(1\)</span>. Otherwise, it is the largest <span class="math notranslate nohighlight">\(e_i\)</span> such that <span class="math notranslate nohighlight">\((x-r_i)^e_i\)</span> divides <span class="math notranslate nohighlight">\(f\)</span>.
+This function throws if <span class="math notranslate nohighlight">\(f\)</span> is zero, but is otherwise always successful.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_mod_poly_roots_factored">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_mod_poly_roots_factored</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_mod_poly_factor_t" title="fmpz_mod_poly_factor_t"><span class="n"><span class="pre">fmpz_mod_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">r</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><span class="n"><span class="pre">fmpz_mod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">with_multiplicity</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_factor.html#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod.html#c.fmpz_mod_ctx_t" title="fmpz_mod_ctx_t"><span class="n"><span class="pre">fmpz_mod_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_mod_poly_roots_factored" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Fill <span class="math notranslate nohighlight">\(r\)</span> with factors of the form <span class="math notranslate nohighlight">\(x - r_i\)</span> where the <span class="math notranslate nohighlight">\(r_i\)</span> are the distinct roots of a nonzero <span class="math notranslate nohighlight">\(f\)</span> in <span class="math notranslate nohighlight">\(Z/nZ\)</span>.
+It is expected and not checked that <span class="math notranslate nohighlight">\(n\)</span> is a prime factorization of the modulus of <span class="math notranslate nohighlight">\(ctx\)</span>.
+If <span class="math notranslate nohighlight">\(with_multiplicity\)</span> is zero, the exponent <span class="math notranslate nohighlight">\(e_i\)</span> of the factor <span class="math notranslate nohighlight">\(x - r_i\)</span> is <span class="math notranslate nohighlight">\(1\)</span>. Otherwise, it is the largest <span class="math notranslate nohighlight">\(e_i\)</span> such that <span class="math notranslate nohighlight">\((x-r_i)^e_i\)</span> divides <span class="math notranslate nohighlight">\(f\)</span>.
+The roots are first found modulo the primes in <span class="math notranslate nohighlight">\(n\)</span>, then lifted to the corresponding prime powers, then combined into roots of the original polynomial <span class="math notranslate nohighlight">\(f\)</span>.
+A return of <span class="math notranslate nohighlight">\(1\)</span> indicates the function was successful. A return of <span class="math notranslate nohighlight">\(0\)</span> indicates the function was not able to find the roots, possibly because there are too many of them.
+This function throws if <span class="math notranslate nohighlight">\(f\)</span> is zero.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n</a><ul>
+<li><a class="reference internal" href="#types-macros-and-constants">Types, macros and constants</a></li>
+<li><a class="reference internal" href="#factorisation">Factorisation</a></li>
+<li><a class="reference internal" href="#root-finding">Root Finding</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="fmpz_mod_poly.html"
+                          title="previous chapter"><strong>fmpz_mod_poly.h</strong> – polynomials over integers mod n</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="fmpz_mod_mpoly.html"
+                          title="next chapter"><strong>fmpz_mod_mpoly.h</strong> – polynomials over the integers mod n</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/fmpz_mod_poly_factor.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="fmpz_mod_mpoly.html" title="fmpz_mod_mpoly.h – polynomials over the integers mod n"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="fmpz_mod_poly.html" title="fmpz_mod_poly.h – polynomials over integers mod n"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2018, The Flint development team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

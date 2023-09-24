@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>d_mat.h – double precision matrices &#8212; Flint 2.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    
+    <script src="_static/documentation_options.js?v=182a64a0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="mpf_vec.h – vectors of MPF floating-point numbers" href="mpf_vec.html" />
+    <link rel="prev" title="d_vec.h – double precision vectors" href="d_vec.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="mpf_vec.html" title="mpf_vec.h – vectors of MPF floating-point numbers"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="d_vec.html" title="d_vec.h – double precision vectors"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>d_mat.h</strong> – double precision matrices</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="d-mat-h-double-precision-matrices">
+<span id="d-mat"></span><h1><strong>d_mat.h</strong> – double precision matrices<a class="headerlink" href="#d-mat-h-double-precision-matrices" title="Link to this heading">¶</a></h1>
+<section id="memory-management">
+<h2>Memory management<a class="headerlink" href="#memory-management" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_init</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">rows</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">cols</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initialises a matrix with the given number of rows and columns for use.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_clear</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears the given matrix.</p>
+</dd></dl>
+
+</section>
+<section id="basic-assignment-and-manipulation">
+<h2>Basic assignment and manipulation<a class="headerlink" href="#basic-assignment-and-manipulation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_set">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_set</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_set" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">mat1</span></code> to a copy of <code class="docutils literal notranslate"><span class="pre">mat2</span></code>. The dimensions of
+<code class="docutils literal notranslate"><span class="pre">mat1</span></code> and <code class="docutils literal notranslate"><span class="pre">mat2</span></code> must be the same.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_swap">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_swap</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_swap" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Swaps two matrices. The dimensions of <code class="docutils literal notranslate"><span class="pre">mat1</span></code> and <code class="docutils literal notranslate"><span class="pre">mat2</span></code>
+are allowed to be different.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_swap_entrywise">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_swap_entrywise</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_swap_entrywise" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Swaps two matrices by swapping the individual entries rather than swapping
+the contents of the structs.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_entry">
+<span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_entry</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">i</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">j</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_entry" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the entry of <code class="docutils literal notranslate"><span class="pre">mat</span></code> at row <span class="math notranslate nohighlight">\(i\)</span> and column <span class="math notranslate nohighlight">\(j\)</span>.
+Both <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> must not exceed the dimensions of the matrix.
+This function is implemented as a macro.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_get_entry">
+<span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_get_entry</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">i</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">j</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_get_entry" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the entry of <code class="docutils literal notranslate"><span class="pre">mat</span></code> at row <span class="math notranslate nohighlight">\(i\)</span> and column <span class="math notranslate nohighlight">\(j\)</span>.
+Both <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> must not exceed the dimensions of the matrix.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_entry_ptr">
+<span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_entry_ptr</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">i</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">j</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_entry_ptr" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a pointer to the entry of <code class="docutils literal notranslate"><span class="pre">mat</span></code> at row <span class="math notranslate nohighlight">\(i\)</span> and column
+<span class="math notranslate nohighlight">\(j\)</span>. Both <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> must not exceed the dimensions of the matrix.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_zero">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_zero</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_zero" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets all entries of <code class="docutils literal notranslate"><span class="pre">mat</span></code> to 0.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_one">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_one</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_one" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">mat</span></code> to the unit matrix, having ones on the main diagonal
+and zeroes elsewhere. If <code class="docutils literal notranslate"><span class="pre">mat</span></code> is nonsquare, it is set to the
+truncation of a unit matrix.</p>
+</dd></dl>
+
+</section>
+<section id="random-matrix-generation">
+<h2>Random matrix generation<a class="headerlink" href="#random-matrix-generation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_randtest">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_randtest</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">minexp</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">maxexp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_randtest" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the entries of <code class="docutils literal notranslate"><span class="pre">mat</span></code> to random signed numbers with exponents
+between <code class="docutils literal notranslate"><span class="pre">minexp</span></code> and <code class="docutils literal notranslate"><span class="pre">maxexp</span></code> or zero.</p>
+</dd></dl>
+
+</section>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_print">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_print</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_print" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints the given matrix to the stream <code class="docutils literal notranslate"><span class="pre">stdout</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="comparison">
+<h2>Comparison<a class="headerlink" href="#comparison" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_equal">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_equal</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_equal" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a non-zero value if <code class="docutils literal notranslate"><span class="pre">mat1</span></code> and <code class="docutils literal notranslate"><span class="pre">mat2</span></code> have
+the same dimensions and entries, and zero otherwise.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_approx_equal">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_approx_equal</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat2</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n"><span class="pre">eps</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_approx_equal" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a non-zero value if <code class="docutils literal notranslate"><span class="pre">mat1</span></code> and <code class="docutils literal notranslate"><span class="pre">mat2</span></code> have
+the same dimensions and entries within <code class="docutils literal notranslate"><span class="pre">eps</span></code> of each other,
+and zero otherwise.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_is_zero">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_is_zero</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_is_zero" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a non-zero value if all entries <code class="docutils literal notranslate"><span class="pre">mat</span></code> are zero, and
+otherwise returns zero.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_is_approx_zero">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_is_approx_zero</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n"><span class="pre">eps</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_is_approx_zero" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a non-zero value if all entries <code class="docutils literal notranslate"><span class="pre">mat</span></code> are zero to within
+<code class="docutils literal notranslate"><span class="pre">eps</span></code> and otherwise returns zero.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_is_empty">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_is_empty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_is_empty" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a non-zero value if the number of rows or the number of
+columns in <code class="docutils literal notranslate"><span class="pre">mat</span></code> is zero, and otherwise returns
+zero.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_is_square">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_is_square</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_is_square" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a non-zero value if the number of rows is equal to the
+number of columns in <code class="docutils literal notranslate"><span class="pre">mat</span></code>, and otherwise returns zero.</p>
+</dd></dl>
+
+</section>
+<section id="transpose">
+<h2>Transpose<a class="headerlink" href="#transpose" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_transpose">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_transpose</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">A</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_transpose" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(B\)</span> to <span class="math notranslate nohighlight">\(A^T\)</span>, the transpose of <span class="math notranslate nohighlight">\(A\)</span>. Dimensions must be compatible.
+<span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are allowed to be the same object if <span class="math notranslate nohighlight">\(A\)</span> is a square matrix.</p>
+</dd></dl>
+
+</section>
+<section id="matrix-multiplication">
+<h2>Matrix multiplication<a class="headerlink" href="#matrix-multiplication" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_mul_classical">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_mul_classical</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">C</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_mul_classical" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">C</span></code> to the matrix product <span class="math notranslate nohighlight">\(C = A B\)</span>. The matrices must have
+compatible dimensions for matrix multiplication (an exception is raised
+otherwise). Aliasing is allowed.</p>
+</dd></dl>
+
+</section>
+<section id="gram-schmidt-orthogonalisation-and-qr-decomposition">
+<h2>Gram-Schmidt Orthogonalisation and QR Decomposition<a class="headerlink" href="#gram-schmidt-orthogonalisation-and-qr-decomposition" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_gso">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_gso</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">A</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_gso" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Takes a subset of <span class="math notranslate nohighlight">\(R^m\)</span> <span class="math notranslate nohighlight">\(S = {a_1, a_2, \ldots, a_n}\)</span> (as the columns of
+a <span class="math notranslate nohighlight">\(m x n\)</span> matrix <code class="docutils literal notranslate"><span class="pre">A</span></code>) and generates an orthonormal set
+<span class="math notranslate nohighlight">\(S' = {b_1, b_2, \ldots, b_n}\)</span> (as the columns of the <span class="math notranslate nohighlight">\(m x n\)</span> matrix
+<code class="docutils literal notranslate"><span class="pre">B</span></code>) that spans the same subspace of <span class="math notranslate nohighlight">\(R^m\)</span> as <span class="math notranslate nohighlight">\(S\)</span>.</p>
+<p>This uses an algorithm of Schwarz-Rutishauser. See pp. 9 of
+<a class="reference external" href="https://people.inf.ethz.ch/gander/papers/qrneu.pdf">https://people.inf.ethz.ch/gander/papers/qrneu.pdf</a></p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_mat_qr">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_mat_qr</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">Q</span></span>, <span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">R</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">d_mat_t</span></span><span class="w"> </span><span class="n"><span class="pre">A</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_mat_qr" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the <span class="math notranslate nohighlight">\(QR\)</span> decomposition of a matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> using the Gram-Schmidt
+process. (Sets <code class="docutils literal notranslate"><span class="pre">Q</span></code> and <code class="docutils literal notranslate"><span class="pre">R</span></code> such that <span class="math notranslate nohighlight">\(A = QR\)</span> where <code class="docutils literal notranslate"><span class="pre">R</span></code> is
+an upper triangular matrix and <code class="docutils literal notranslate"><span class="pre">Q</span></code> is an orthogonal matrix.)</p>
+<p>This uses an algorithm of Schwarz-Rutishauser. See pp. 9 of
+<a class="reference external" href="https://people.inf.ethz.ch/gander/papers/qrneu.pdf">https://people.inf.ethz.ch/gander/papers/qrneu.pdf</a></p>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><strong>d_mat.h</strong> – double precision matrices</a><ul>
+<li><a class="reference internal" href="#memory-management">Memory management</a></li>
+<li><a class="reference internal" href="#basic-assignment-and-manipulation">Basic assignment and manipulation</a></li>
+<li><a class="reference internal" href="#random-matrix-generation">Random matrix generation</a></li>
+<li><a class="reference internal" href="#input-and-output">Input and output</a></li>
+<li><a class="reference internal" href="#comparison">Comparison</a></li>
+<li><a class="reference internal" href="#transpose">Transpose</a></li>
+<li><a class="reference internal" href="#matrix-multiplication">Matrix multiplication</a></li>
+<li><a class="reference internal" href="#gram-schmidt-orthogonalisation-and-qr-decomposition">Gram-Schmidt Orthogonalisation and QR Decomposition</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="d_vec.html"
+                          title="previous chapter"><strong>d_vec.h</strong> – double precision vectors</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="mpf_vec.html"
+                          title="next chapter"><strong>mpf_vec.h</strong> – vectors of MPF floating-point numbers</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/d_mat.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="mpf_vec.html" title="mpf_vec.h – vectors of MPF floating-point numbers"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="d_vec.html" title="d_vec.h – double precision vectors"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>d_mat.h</strong> – double precision matrices</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2018, The Flint development team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

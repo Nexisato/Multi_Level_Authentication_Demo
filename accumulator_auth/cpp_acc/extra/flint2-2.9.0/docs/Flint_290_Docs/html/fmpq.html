@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>fmpq.h – rational numbers &#8212; Flint 2.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    
+    <script src="_static/documentation_options.js?v=182a64a0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="fmpq_vec.h – vectors over rational numbers" href="fmpq_vec.html" />
+    <link rel="prev" title="qsieve.h – Quadratic sieve" href="qsieve.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="fmpq_vec.html" title="fmpq_vec.h – vectors over rational numbers"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="qsieve.html" title="qsieve.h – Quadratic sieve"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>fmpq.h</strong> – rational numbers</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="fmpq-h-rational-numbers">
+<span id="fmpq"></span><h1><strong>fmpq.h</strong> – rational numbers<a class="headerlink" href="#fmpq-h-rational-numbers" title="Link to this heading">¶</a></h1>
+<p>Description.</p>
+<section id="types-macros-and-constants">
+<h2>Types, macros and constants<a class="headerlink" href="#types-macros-and-constants" title="Link to this heading">¶</a></h2>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.fmpq">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq</span></span></span><a class="headerlink" href="#c.fmpq" title="Link to this definition">¶</a><br /></dt>
+<dd><p>An fmpq is implemented as a struct containing two fmpz’s, one for the
+numerator, and one for the denominator.</p>
+</dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.fmpq_t">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_t</span></span></span><a class="headerlink" href="#c.fmpq_t" title="Link to this definition">¶</a><br /></dt>
+<dd><p>An array of length 1 of fmpq’s.  This is used to pass fmpq’s around by
+reference without fuss, similar to the way mpq_t’s work.</p>
+</dd></dl>
+
+</section>
+<section id="memory-management">
+<h2>Memory management<a class="headerlink" href="#memory-management" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initialises the <code class="docutils literal notranslate"><span class="pre">fmpq_t</span></code> variable <code class="docutils literal notranslate"><span class="pre">x</span></code> for use. Its value
+is set to 0.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears the <code class="docutils literal notranslate"><span class="pre">fmpq_t</span></code> variable <code class="docutils literal notranslate"><span class="pre">x</span></code>. To use the variable again,
+it must be re-initialised with <code class="docutils literal notranslate"><span class="pre">fmpq_init</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="canonicalisation">
+<h2>Canonicalisation<a class="headerlink" href="#canonicalisation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_canonicalise">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_canonicalise</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_canonicalise" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Puts <code class="docutils literal notranslate"><span class="pre">res</span></code> in canonical form: the numerator and denominator are
+reduced to lowest terms, and the denominator is made positive.
+If the numerator is zero, the denominator is set to one.</p>
+<p>If the denominator is zero, the outcome of calling this function is
+undefined, regardless of the value of the numerator.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_canonicalise">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_canonicalise</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_canonicalise" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Does the same thing as <code class="docutils literal notranslate"><span class="pre">fmpq_canonicalise</span></code>, but for numerator
+and denominator given explicitly as <code class="docutils literal notranslate"><span class="pre">fmpz_t</span></code> variables. Aliasing
+of <code class="docutils literal notranslate"><span class="pre">num</span></code> and <code class="docutils literal notranslate"><span class="pre">den</span></code> is not allowed.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_is_canonical">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_is_canonical</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_is_canonical" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if <code class="docutils literal notranslate"><span class="pre">fmpq_t</span></code> x is in canonical form
+(as produced by <code class="docutils literal notranslate"><span class="pre">fmpq_canonicalise</span></code>), and zero otherwise.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_is_canonical">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_is_canonical</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_is_canonical" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Does the same thing as <code class="docutils literal notranslate"><span class="pre">fmpq_is_canonical</span></code>, but for numerator
+and denominator given explicitly as <code class="docutils literal notranslate"><span class="pre">fmpz_t</span></code> variables.</p>
+</dd></dl>
+
+</section>
+<section id="basic-assignment">
+<h2>Basic assignment<a class="headerlink" href="#basic-assignment" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_set">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_set</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">dest</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_set" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">dest</span></code> to a copy of <code class="docutils literal notranslate"><span class="pre">src</span></code>. No canonicalisation
+is performed.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_swap">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1</span></span>, <a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_swap" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Swaps the two rational numbers <code class="docutils literal notranslate"><span class="pre">op1</span></code> and <code class="docutils literal notranslate"><span class="pre">op2</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_neg">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_neg</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">dest</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_neg" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">dest</span></code> to the additive inverse of <code class="docutils literal notranslate"><span class="pre">src</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_abs">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_abs</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">dest</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_abs" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">dest</span></code> to the absolute value of <code class="docutils literal notranslate"><span class="pre">src</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_zero">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_zero</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_zero" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the value of <code class="docutils literal notranslate"><span class="pre">res</span></code> to 0.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_one">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_one</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_one" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the value of <code class="docutils literal notranslate"><span class="pre">res</span></code> to <span class="math notranslate nohighlight">\(1\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="comparison">
+<h2>Comparison<a class="headerlink" href="#comparison" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_is_zero">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_is_zero</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_is_zero" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if <code class="docutils literal notranslate"><span class="pre">res</span></code> has value 0, and returns zero otherwise.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_is_one">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_is_one</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_is_one" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if <code class="docutils literal notranslate"><span class="pre">res</span></code> has value <span class="math notranslate nohighlight">\(1\)</span>, and returns zero otherwise.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_is_pm1">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_is_pm1</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_is_pm1" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if <code class="docutils literal notranslate"><span class="pre">res</span></code> has value <span class="math notranslate nohighlight">\(\pm{1}\)</span> and zero otherwise.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_equal">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_equal</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_equal" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are equal, and zero otherwise.
+Assumes that <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are both in canonical form.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_sgn">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_sgn</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_sgn" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the sign of the rational number <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_cmp">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_cmp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_cmp" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_cmp_fmpz">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_cmp_fmpz</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_cmp_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_cmp_ui">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_cmp_ui</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_cmp_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns negative if <span class="math notranslate nohighlight">\(x &lt; y\)</span>, zero if <span class="math notranslate nohighlight">\(x = y\)</span>, and positive if <span class="math notranslate nohighlight">\(x &gt; y\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_cmp_si">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_cmp_si</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_cmp_si" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns negative if <span class="math notranslate nohighlight">\(x &lt; y\)</span>, zero if <span class="math notranslate nohighlight">\(x = y\)</span>, and positive if <span class="math notranslate nohighlight">\(x &gt; y\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_equal_ui">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_equal_ui</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_equal_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns <span class="math notranslate nohighlight">\(1\)</span> if <span class="math notranslate nohighlight">\(x = y\)</span>, otherwise returns <span class="math notranslate nohighlight">\(0\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_equal_si">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_equal_si</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_equal_si" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns <span class="math notranslate nohighlight">\(1\)</span> if <span class="math notranslate nohighlight">\(x = y\)</span>, otherwise returns <span class="math notranslate nohighlight">\(0\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_height">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_height</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">height</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_height" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">height</span></code> to the height of <span class="math notranslate nohighlight">\(x\)</span>, defined as the larger of
+the absolute values of the numerator and denominator of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_height_bits">
+<span class="n"><span class="pre">flint_bitcnt_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_height_bits</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_height_bits" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the number of bits in the height of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="conversion">
+<h2>Conversion<a class="headerlink" href="#conversion" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_set_fmpz_frac">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_set_fmpz_frac</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_set_fmpz_frac" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the canonical form of the fraction <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">/</span> <span class="pre">q</span></code>.
+This is equivalent to assigning the numerator and denominator
+separately and calling <code class="docutils literal notranslate"><span class="pre">fmpq_canonicalise</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_get_mpz_frac">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_get_mpz_frac</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mpz_t</span></span><span class="w"> </span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">mpz_t</span></span><span class="w"> </span><span class="n"><span class="pre">b</span></span>, <a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_get_mpz_frac" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code> to the numerator and denominator of <code class="docutils literal notranslate"><span class="pre">c</span></code>
+respectively.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_set_si">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_set_si</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_set_si" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the canonical form of the fraction <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">/</span> <span class="pre">q</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_set_si">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_set_si</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_set_si" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(rnum,</span> <span class="pre">rden)</span></code> to the canonical form of the fraction
+<code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">/</span> <span class="pre">q</span></code>. <code class="docutils literal notranslate"><span class="pre">rnum</span></code> and <code class="docutils literal notranslate"><span class="pre">rden</span></code> may not be aliased.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_set_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_set_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_set_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the canonical form of the fraction <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">/</span> <span class="pre">q</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_set_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_set_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_set_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(rnum,</span> <span class="pre">rden)</span></code> to the canonical form of the fraction
+<code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">/</span> <span class="pre">q</span></code>. <code class="docutils literal notranslate"><span class="pre">rnum</span></code> and <code class="docutils literal notranslate"><span class="pre">rden</span></code> may not be aliased.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_set_mpq">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_set_mpq</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">dest</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">mpq_t</span></span><span class="w"> </span><span class="n"><span class="pre">src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_set_mpq" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the value of <code class="docutils literal notranslate"><span class="pre">dest</span></code> to that of the <code class="docutils literal notranslate"><span class="pre">mpq_t</span></code> variable
+<code class="docutils literal notranslate"><span class="pre">src</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_set_str">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_set_str</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">dest</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">s</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">base</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_set_str" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the value of <code class="docutils literal notranslate"><span class="pre">dest</span></code> to the value represented in the string
+<code class="docutils literal notranslate"><span class="pre">s</span></code> in base <code class="docutils literal notranslate"><span class="pre">base</span></code>.</p>
+<p>Returns 0 if no error occurs. Otherwise returns -1 and <code class="docutils literal notranslate"><span class="pre">dest</span></code> is
+set to zero.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_init_set_mpz_frac_readonly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_init_set_mpz_frac_readonly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">z</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">mpz_t</span></span><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">mpz_t</span></span><span class="w"> </span><span class="n"><span class="pre">q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_init_set_mpz_frac_readonly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Assuming <code class="docutils literal notranslate"><span class="pre">z</span></code> is an <code class="docutils literal notranslate"><span class="pre">fmpz_t</span></code> which will not be cleaned up,
+this temporarily copies <code class="docutils literal notranslate"><span class="pre">p</span></code> and <code class="docutils literal notranslate"><span class="pre">q</span></code> into the numerator and
+denominator of <code class="docutils literal notranslate"><span class="pre">z</span></code> for read only operations only. The user must not
+run <code class="docutils literal notranslate"><span class="pre">fmpq_clear</span></code> on <code class="docutils literal notranslate"><span class="pre">z</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_get_d">
+<span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_get_d</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_get_d" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns <span class="math notranslate nohighlight">\(f\)</span> as a <code class="docutils literal notranslate"><span class="pre">double</span></code>, rounding towards zero if <code class="docutils literal notranslate"><span class="pre">f</span></code> cannot be represented exactly. The return is system dependent if <code class="docutils literal notranslate"><span class="pre">f</span></code> is too large or too small to fit in a <code class="docutils literal notranslate"><span class="pre">double</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_get_mpq">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_get_mpq</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mpq_t</span></span><span class="w"> </span><span class="n"><span class="pre">dest</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_get_mpq" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the value of <code class="docutils literal notranslate"><span class="pre">dest</span></code></p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_get_mpfr">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_get_mpfr</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mpfr_t</span></span><span class="w"> </span><span class="n"><span class="pre">dest</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">src</span></span>, <span class="n"><span class="pre">mpfr_rnd_t</span></span><span class="w"> </span><span class="n"><span class="pre">rnd</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_get_mpfr" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the MPFR variable <code class="docutils literal notranslate"><span class="pre">dest</span></code> to the value of <code class="docutils literal notranslate"><span class="pre">src</span></code>,
+rounded to the nearest representable binary floating-point value
+in direction <code class="docutils literal notranslate"><span class="pre">rnd</span></code>. Returns the sign of the rounding,
+according to MPFR conventions.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_get_str">
+<span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_get_str</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">str</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">b</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_get_str" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_get_str">
+<span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_get_str</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">str</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">b</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_get_str" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints the string representation of <span class="math notranslate nohighlight">\(x\)</span> in base <span class="math notranslate nohighlight">\(b \in [2, 36]\)</span>
+to a suitable buffer.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">str</span></code> is not <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, this is used as the buffer and
+also the return value.  If <code class="docutils literal notranslate"><span class="pre">str</span></code> is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, allocates
+sufficient space and returns a pointer to the string.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.flint_mpq_init_set_readonly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flint_mpq_init_set_readonly</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mpq_t</span></span><span class="w"> </span><span class="n"><span class="pre">z</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_mpq_init_set_readonly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the uninitialised <code class="docutils literal notranslate"><span class="pre">mpq_t</span></code> <span class="math notranslate nohighlight">\(z\)</span> to the value of the
+readonly <code class="docutils literal notranslate"><span class="pre">fmpq_t</span></code> <span class="math notranslate nohighlight">\(f\)</span>.</p>
+<p>Note that it is assumed that <span class="math notranslate nohighlight">\(f\)</span> does not change during
+the lifetime of <span class="math notranslate nohighlight">\(z\)</span>.</p>
+<p>The rational <span class="math notranslate nohighlight">\(z\)</span> has to be cleared by a call to
+<a class="reference internal" href="#c.flint_mpq_clear_readonly" title="flint_mpq_clear_readonly"><code class="xref c c-func docutils literal notranslate"><span class="pre">flint_mpq_clear_readonly()</span></code></a>.</p>
+<p>The suggested use of the two functions is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fmpq_t</span> <span class="n">f</span><span class="p">;</span>
+<span class="o">...</span>
+<span class="p">{</span>
+    <span class="n">mpq_t</span> <span class="n">z</span><span class="p">;</span>
+
+    <span class="n">flint_mpq_init_set_readonly</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+    <span class="n">foo</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">z</span><span class="p">);</span>
+    <span class="n">flint_mpq_clear_readonly</span><span class="p">(</span><span class="n">z</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This provides a convenient function for user code, only
+requiring to work with the types <code class="docutils literal notranslate"><span class="pre">fmpq_t</span></code> and <code class="docutils literal notranslate"><span class="pre">mpq_t</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.flint_mpq_clear_readonly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flint_mpq_clear_readonly</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mpq_t</span></span><span class="w"> </span><span class="n"><span class="pre">z</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_mpq_clear_readonly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears the readonly <code class="docutils literal notranslate"><span class="pre">mpq_t</span></code> <span class="math notranslate nohighlight">\(z\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_init_set_readonly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_init_set_readonly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">mpq_t</span></span><span class="w"> </span><span class="n"><span class="pre">z</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_init_set_readonly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the uninitialised <code class="docutils literal notranslate"><span class="pre">fmpq_t</span></code> <span class="math notranslate nohighlight">\(f\)</span> to a readonly
+version of the rational <span class="math notranslate nohighlight">\(z\)</span>.</p>
+<p>Note that the value of <span class="math notranslate nohighlight">\(z\)</span> is assumed to remain constant
+throughout the lifetime of <span class="math notranslate nohighlight">\(f\)</span>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">fmpq_t</span></code> <span class="math notranslate nohighlight">\(f\)</span> has to be cleared by calling the
+function <a class="reference internal" href="#c.fmpq_clear_readonly" title="fmpq_clear_readonly"><code class="xref c c-func docutils literal notranslate"><span class="pre">fmpq_clear_readonly()</span></code></a>.</p>
+<p>The suggested use of the two functions is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpq_t</span> <span class="n">z</span><span class="p">;</span>
+<span class="o">...</span>
+<span class="p">{</span>
+    <span class="n">fmpq_t</span> <span class="n">f</span><span class="p">;</span>
+
+    <span class="n">fmpq_init_set_readonly</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">z</span><span class="p">);</span>
+    <span class="n">foo</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+    <span class="n">fmpq_clear_readonly</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_clear_readonly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_clear_readonly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_clear_readonly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears the readonly <code class="docutils literal notranslate"><span class="pre">fmpq_t</span></code> <span class="math notranslate nohighlight">\(f\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_fprint">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_fprint</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FILE</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">file</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_fprint" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints <code class="docutils literal notranslate"><span class="pre">x</span></code> as a fraction to the stream <code class="docutils literal notranslate"><span class="pre">file</span></code>.
+The numerator and denominator are printed verbatim as integers,
+with a forward slash (/) printed in between.</p>
+<p>In case of success, returns a positive number. In case of failure,
+returns a non-positive number.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_fprint">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_fprint</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FILE</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">file</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_fprint" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Does the same thing as <code class="docutils literal notranslate"><span class="pre">fmpq_fprint</span></code>, but for numerator
+and denominator given explicitly as <code class="docutils literal notranslate"><span class="pre">fmpz_t</span></code> variables.</p>
+<p>In case of success, returns a positive number. In case of failure,
+returns a non-positive number.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_print">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_print</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_print" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints <code class="docutils literal notranslate"><span class="pre">x</span></code> as a fraction. The numerator and denominator are
+printed verbatim as integers, with a forward slash (/) printed in
+between.</p>
+<p>In case of success, returns a positive number. In case of failure,
+returns a non-positive number.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_print">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_print</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_print" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Does the same thing as <code class="docutils literal notranslate"><span class="pre">fmpq_print</span></code>, but for numerator
+and denominator given explicitly as <code class="docutils literal notranslate"><span class="pre">fmpz_t</span></code> variables.</p>
+<p>In case of success, returns a positive number. In case of failure,
+returns a non-positive number.</p>
+</dd></dl>
+
+</section>
+<section id="random-number-generation">
+<h2>Random number generation<a class="headerlink" href="#random-number-generation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_randtest">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_randtest</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="n"><span class="pre">flint_bitcnt_t</span></span><span class="w"> </span><span class="n"><span class="pre">bits</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_randtest" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to a random value, with numerator and denominator
+having up to <code class="docutils literal notranslate"><span class="pre">bits</span></code> bits. The fraction will be in canonical
+form. This function has an increased probability of generating
+special values which are likely to trigger corner cases.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_randtest">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_randtest</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="n"><span class="pre">flint_bitcnt_t</span></span><span class="w"> </span><span class="n"><span class="pre">bits</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_randtest" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Does the same thing as <code class="docutils literal notranslate"><span class="pre">fmpq_randtest</span></code>, but for numerator
+and denominator given explicitly as <code class="docutils literal notranslate"><span class="pre">fmpz_t</span></code> variables. Aliasing
+of <code class="docutils literal notranslate"><span class="pre">num</span></code> and <code class="docutils literal notranslate"><span class="pre">den</span></code> is not allowed.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_randtest_not_zero">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_randtest_not_zero</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="n"><span class="pre">flint_bitcnt_t</span></span><span class="w"> </span><span class="n"><span class="pre">bits</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_randtest_not_zero" title="Link to this definition">¶</a><br /></dt>
+<dd><p>As per <code class="docutils literal notranslate"><span class="pre">fmpq_randtest</span></code>, but the result will not be <span class="math notranslate nohighlight">\(0\)</span>.
+If <code class="docutils literal notranslate"><span class="pre">bits</span></code> is set to <span class="math notranslate nohighlight">\(0\)</span>, an exception will result.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_randbits">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_randbits</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="n"><span class="pre">flint_bitcnt_t</span></span><span class="w"> </span><span class="n"><span class="pre">bits</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_randbits" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to a random value, with numerator and denominator
+both having exactly <code class="docutils literal notranslate"><span class="pre">bits</span></code> bits before canonicalisation,
+and then puts <code class="docutils literal notranslate"><span class="pre">res</span></code> in canonical form. Note that as a result
+of the canonicalisation, the resulting numerator and denominator can
+be slightly smaller than <code class="docutils literal notranslate"><span class="pre">bits</span></code> bits.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_randbits">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_randbits</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="n"><span class="pre">flint_bitcnt_t</span></span><span class="w"> </span><span class="n"><span class="pre">bits</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_randbits" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Does the same thing as <code class="docutils literal notranslate"><span class="pre">fmpq_randbits</span></code>, but for numerator
+and denominator given explicitly as <code class="docutils literal notranslate"><span class="pre">fmpz_t</span></code> variables. Aliasing
+of <code class="docutils literal notranslate"><span class="pre">num</span></code> and <code class="docutils literal notranslate"><span class="pre">den</span></code> is not allowed.</p>
+</dd></dl>
+
+</section>
+<section id="arithmetic">
+<h2>Arithmetic<a class="headerlink" href="#arithmetic" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_add">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_add</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_add" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_sub">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_sub</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_sub" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_mul">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mul</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mul" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_div">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_div</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_div" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> respectively to <code class="docutils literal notranslate"><span class="pre">op1</span> <span class="pre">+</span> <span class="pre">op2</span></code>, <code class="docutils literal notranslate"><span class="pre">op1</span> <span class="pre">-</span> <span class="pre">op2</span></code>,
+<code class="docutils literal notranslate"><span class="pre">op1</span> <span class="pre">*</span> <span class="pre">op2</span></code>, or <code class="docutils literal notranslate"><span class="pre">op1</span> <span class="pre">/</span> <span class="pre">op2</span></code>. Assumes that the inputs
+are in canonical form, and produces output in canonical form.
+Division by zero results in an error.
+Aliasing between any combination of the variables is allowed.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_add">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_add</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1den</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2den</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_add" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c._fmpq_sub">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_sub</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1den</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2den</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_sub" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c._fmpq_mul">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_mul</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1den</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2den</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_mul" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c._fmpq_div">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_div</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1den</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2den</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_div" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(rnum,</span> <span class="pre">rden)</span></code> to the canonical form of the sum,
+difference, product or quotient respectively of the fractions
+represented by <code class="docutils literal notranslate"><span class="pre">(op1num,</span> <span class="pre">op1den)</span></code> and <code class="docutils literal notranslate"><span class="pre">(op2num,</span> <span class="pre">op2den)</span></code>.
+Aliasing between any combination of the variables is allowed,
+whilst no numerator is aliased with a denominator.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_add_si">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_add_si</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">r</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_add_si" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c._fmpq_sub_si">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_sub_si</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">r</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_sub_si" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c._fmpq_add_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_add_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">r</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_add_ui" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c._fmpq_sub_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_sub_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">r</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_sub_ui" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c._fmpq_add_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_add_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">r</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_add_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c._fmpq_sub_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_sub_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">r</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_sub_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(rnum,</span> <span class="pre">rden)</span></code> to the canonical form of the sum or difference
+respectively of the fractions represented by <code class="docutils literal notranslate"><span class="pre">(p,</span> <span class="pre">q)</span></code> and
+<code class="docutils literal notranslate"><span class="pre">(r,</span> <span class="pre">1)</span></code>. Numerators may not be aliased with denominators.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_add_si">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_add_si</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_add_si" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_sub_si">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_sub_si</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_sub_si" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_add_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_add_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_add_ui" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_sub_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_sub_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_sub_ui" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_add_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_add_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_add_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_sub_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_sub_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_sub_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the sum or difference respectively, of the fraction
+<code class="docutils literal notranslate"><span class="pre">op1</span></code> and the integer <span class="math notranslate nohighlight">\(c\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_mul_si">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_mul_si</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">r</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_mul_si" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(rnum,</span> <span class="pre">rden)</span></code> to the product of <code class="docutils literal notranslate"><span class="pre">(p,</span> <span class="pre">q)</span></code> and the integer <span class="math notranslate nohighlight">\(r\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mul_si">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mul_si</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mul_si" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the product of <code class="docutils literal notranslate"><span class="pre">op1</span></code> and the integer <span class="math notranslate nohighlight">\(c\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_mul_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_mul_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">r</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_mul_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(rnum,</span> <span class="pre">rden)</span></code> to the product of <code class="docutils literal notranslate"><span class="pre">(p,</span> <span class="pre">q)</span></code> and the integer <span class="math notranslate nohighlight">\(r\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mul_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mul_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mul_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the product of <code class="docutils literal notranslate"><span class="pre">op1</span></code> and the integer <span class="math notranslate nohighlight">\(c\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_addmul">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_addmul</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_addmul" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_submul">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_submul</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_submul" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to <code class="docutils literal notranslate"><span class="pre">res</span> <span class="pre">+</span> <span class="pre">op1</span> <span class="pre">*</span> <span class="pre">op2</span></code> or <code class="docutils literal notranslate"><span class="pre">res</span> <span class="pre">-</span> <span class="pre">op1</span> <span class="pre">*</span> <span class="pre">op2</span></code>
+respectively, placing the result in canonical form. Aliasing
+between any combination of the variables is allowed.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_addmul">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_addmul</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1den</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2den</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_addmul" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c._fmpq_submul">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_submul</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1den</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2den</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_submul" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(rnum,</span> <span class="pre">rden)</span></code> to the canonical form of the fraction
+<code class="docutils literal notranslate"><span class="pre">(rnum,</span> <span class="pre">rden)</span></code> + <code class="docutils literal notranslate"><span class="pre">(op1num,</span> <span class="pre">op1den)</span></code> * <code class="docutils literal notranslate"><span class="pre">(op2num,</span> <span class="pre">op2den)</span></code> or
+<code class="docutils literal notranslate"><span class="pre">(rnum,</span> <span class="pre">rden)</span></code> - <code class="docutils literal notranslate"><span class="pre">(op1num,</span> <span class="pre">op1den)</span></code> * <code class="docutils literal notranslate"><span class="pre">(op2num,</span> <span class="pre">op2den)</span></code>
+respectively. Aliasing between any combination of the variables is allowed,
+whilst no numerator is aliased with a denominator.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_inv">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_inv</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">dest</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_inv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">dest</span></code> to <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">src</span></code>. The result is placed in canonical
+form, assuming that <code class="docutils literal notranslate"><span class="pre">src</span></code> is already in canonical form.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_pow_si">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_pow_si</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">opnum</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">opden</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">e</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_pow_si" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_pow_si">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_pow_si</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">e</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_pow_si" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to <code class="docutils literal notranslate"><span class="pre">op</span></code> raised to the power~`e`, where~`e`
+is a <code class="docutils literal notranslate"><span class="pre">slong</span></code>.  If <span class="math notranslate nohighlight">\(e\)</span> is <span class="math notranslate nohighlight">\(0\)</span> and <code class="docutils literal notranslate"><span class="pre">op</span></code> is <span class="math notranslate nohighlight">\(0\)</span>, then
+<code class="docutils literal notranslate"><span class="pre">res</span></code> will be set to <span class="math notranslate nohighlight">\(1\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_pow_fmpz">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_pow_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">b</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">e</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_pow_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set <code class="docutils literal notranslate"><span class="pre">res</span></code> to <code class="docutils literal notranslate"><span class="pre">op</span></code> raised to the power~`e`.
+Return <span class="math notranslate nohighlight">\(1\)</span> for success and <span class="math notranslate nohighlight">\(0\)</span> for failure.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mul_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mul_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mul_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the product of the rational number <code class="docutils literal notranslate"><span class="pre">op</span></code>
+and the integer <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_div_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_div_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_div_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the quotient of the rational number <code class="docutils literal notranslate"><span class="pre">op</span></code>
+and the integer <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mul_2exp">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mul_2exp</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">flint_bitcnt_t</span></span><span class="w"> </span><span class="n"><span class="pre">exp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mul_2exp" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to <code class="docutils literal notranslate"><span class="pre">x</span></code> multiplied by <code class="docutils literal notranslate"><span class="pre">2^exp</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_div_2exp">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_div_2exp</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">flint_bitcnt_t</span></span><span class="w"> </span><span class="n"><span class="pre">exp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_div_2exp" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to <code class="docutils literal notranslate"><span class="pre">x</span></code> divided by <code class="docutils literal notranslate"><span class="pre">2^exp</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_gcd">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_gcd</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">r</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">s</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_gcd" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set <code class="docutils literal notranslate"><span class="pre">(rnum,</span> <span class="pre">rden)</span></code> to the gcd of <code class="docutils literal notranslate"><span class="pre">(p,</span> <span class="pre">q)</span></code> and <code class="docutils literal notranslate"><span class="pre">(r,</span> <span class="pre">s)</span></code>
+which we define to be the canonicalisation of gcd`(ps, qr)/(qs)`. (This is
+apparently Euclid’s original definition and is stable under scaling of
+numerator and denominator. It also agrees with the gcd on the integers.
+Note that it does not agree with gcd as defined in <code class="docutils literal notranslate"><span class="pre">fmpq_poly</span></code>.)
+This definition agrees with the result as output by Sage and Pari/GP.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_gcd">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_gcd</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_gcd" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set <code class="docutils literal notranslate"><span class="pre">res</span></code> to the gcd of <code class="docutils literal notranslate"><span class="pre">op1</span></code> and <code class="docutils literal notranslate"><span class="pre">op2</span></code>. See the low
+level function <code class="docutils literal notranslate"><span class="pre">_fmpq_gcd</span></code> for our definition of gcd.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_gcd_cofactors">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_gcd_cofactors</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">gnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">gden</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">abar</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">bbar</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">anum</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">aden</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">bnum</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">bden</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_gcd_cofactors" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_gcd_cofactors">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_gcd_cofactors</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">abar</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">bbar</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_gcd_cofactors" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set <span class="math notranslate nohighlight">\(g\)</span> to <span class="math notranslate nohighlight">\(\operatorname{gcd}(a,b)\)</span> as per <a class="reference internal" href="#c.fmpq_gcd" title="fmpq_gcd"><code class="xref c c-func docutils literal notranslate"><span class="pre">fmpq_gcd()</span></code></a> and also compute <span class="math notranslate nohighlight">\(\overline{a} = a/g\)</span> and <span class="math notranslate nohighlight">\(\overline{b} = b/g\)</span>.
+Unlike <a class="reference internal" href="#c.fmpq_gcd" title="fmpq_gcd"><code class="xref c c-func docutils literal notranslate"><span class="pre">fmpq_gcd()</span></code></a>, this function requires canonical inputs.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_add_small">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_add_small</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">p1</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">q1</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">p2</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">q2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_add_small" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(rnum,</span> <span class="pre">rden)</span></code> to the sum of <code class="docutils literal notranslate"><span class="pre">(p1,</span> <span class="pre">q1)</span></code> and <code class="docutils literal notranslate"><span class="pre">(p2,</span> <span class="pre">q2)</span></code>.
+Assumes that <code class="docutils literal notranslate"><span class="pre">(p1,</span> <span class="pre">q1)</span></code> and <code class="docutils literal notranslate"><span class="pre">(p2,</span> <span class="pre">q2)</span></code> are in canonical form
+and that all inputs are between <code class="docutils literal notranslate"><span class="pre">COEFF_MIN</span></code> and <code class="docutils literal notranslate"><span class="pre">COEFF_MAX</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_mul_small">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_mul_small</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">p1</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">q1</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">p2</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">q2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_mul_small" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(rnum,</span> <span class="pre">rden)</span></code> to the product of <code class="docutils literal notranslate"><span class="pre">(p1,</span> <span class="pre">q1)</span></code> and <code class="docutils literal notranslate"><span class="pre">(p2,</span> <span class="pre">q2)</span></code>.
+Assumes that <code class="docutils literal notranslate"><span class="pre">(p1,</span> <span class="pre">q1)</span></code> and <code class="docutils literal notranslate"><span class="pre">(p2,</span> <span class="pre">q2)</span></code> are in canonical form
+and that all inputs are between <code class="docutils literal notranslate"><span class="pre">COEFF_MIN</span></code> and <code class="docutils literal notranslate"><span class="pre">COEFF_MAX</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="modular-reduction-and-rational-reconstruction">
+<h2>Modular reduction and rational reconstruction<a class="headerlink" href="#modular-reduction-and-rational-reconstruction" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_mod_fmpz">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_mod_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mod</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_mod_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_mod_fmpz">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mod_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mod</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mod_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the integer <code class="docutils literal notranslate"><span class="pre">res</span></code> to the residue <span class="math notranslate nohighlight">\(a\)</span> of
+<span class="math notranslate nohighlight">\(x = n/d\)</span> = <code class="docutils literal notranslate"><span class="pre">(num,</span> <span class="pre">den)</span></code> modulo the positive integer <span class="math notranslate nohighlight">\(m\)</span> = <code class="docutils literal notranslate"><span class="pre">mod</span></code>,
+defined as the <span class="math notranslate nohighlight">\(0 \le a &lt; m\)</span> satisfying <span class="math notranslate nohighlight">\(n \equiv a d \pmod m\)</span>.
+If such an <span class="math notranslate nohighlight">\(a\)</span> exists, 1 will be returned, otherwise 0 will
+be returned.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_reconstruct_fmpz_2_naive">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_reconstruct_fmpz_2_naive</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">d</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">m</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">N</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">D</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_reconstruct_fmpz_2_naive" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c._fmpq_reconstruct_fmpz_2">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_reconstruct_fmpz_2</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">d</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">m</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">N</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">D</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_reconstruct_fmpz_2" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_reconstruct_fmpz_2">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_reconstruct_fmpz_2</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">m</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">N</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">D</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_reconstruct_fmpz_2" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Reconstructs a rational number from its residue <span class="math notranslate nohighlight">\(a\)</span> modulo <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<p>Given a modulus <span class="math notranslate nohighlight">\(m &gt; 2\)</span>, a residue <span class="math notranslate nohighlight">\(0 \le a &lt; m\)</span>, and positive <span class="math notranslate nohighlight">\(N, D\)</span>
+satisfying <span class="math notranslate nohighlight">\(2ND &lt; m\)</span>, this function attempts to find a fraction <span class="math notranslate nohighlight">\(n/d\)</span> with
+<span class="math notranslate nohighlight">\(0 \le |n| \le N\)</span> and <span class="math notranslate nohighlight">\(0 &lt; d \le D\)</span> such that <span class="math notranslate nohighlight">\(\gcd(n,d) = 1\)</span> and
+<span class="math notranslate nohighlight">\(n \equiv ad \pmod m\)</span>. If a solution exists, then it is also unique.
+The function returns 1 if successful, and 0 to indicate that no solution
+exists.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_reconstruct_fmpz">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_reconstruct_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">d</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">m</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_reconstruct_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_reconstruct_fmpz">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_reconstruct_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">m</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_reconstruct_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Reconstructs a rational number from its residue <span class="math notranslate nohighlight">\(a\)</span> modulo <span class="math notranslate nohighlight">\(m\)</span>,
+returning 1 if successful and 0 if no solution exists.
+Uses the balanced bounds <span class="math notranslate nohighlight">\(N = D = \lfloor\sqrt{\frac{m-1}{2}}\rfloor\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="rational-enumeration">
+<h2>Rational enumeration<a class="headerlink" href="#rational-enumeration" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_next_minimal">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_next_minimal</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_next_minimal" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_next_minimal">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_next_minimal</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_next_minimal" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Given <span class="math notranslate nohighlight">\(x\)</span> which is assumed to be nonnegative and in canonical form, sets
+<code class="docutils literal notranslate"><span class="pre">res</span></code> to the next rational number in the sequence obtained by
+enumerating all positive denominators <span class="math notranslate nohighlight">\(q\)</span>, for each <span class="math notranslate nohighlight">\(q\)</span> enumerating
+the numerators <span class="math notranslate nohighlight">\(1 \le p &lt; q\)</span> in order and generating both <span class="math notranslate nohighlight">\(p/q\)</span> and <span class="math notranslate nohighlight">\(q/p\)</span>,
+but skipping all <span class="math notranslate nohighlight">\(\gcd(p,q) \ne 1\)</span>. Starting with zero, this generates
+every nonnegative rational number once and only once, with the first
+few entries being:</p>
+<p><span class="math notranslate nohighlight">\(0, 1, 1/2, 2, 1/3, 3, 2/3, 3/2, 1/4, 4, 3/4, 4/3, 1/5, 5, 2/5, \ldots.\)</span></p>
+<p>This enumeration produces the rational numbers in order of
+minimal height. It has the disadvantage of being somewhat slower to
+compute than the Calkin-Wilf enumeration.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_next_signed_minimal">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_next_signed_minimal</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_next_signed_minimal" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_next_signed_minimal">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_next_signed_minimal</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_next_signed_minimal" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Given a signed rational number <span class="math notranslate nohighlight">\(x\)</span> assumed to be in canonical form, sets
+<code class="docutils literal notranslate"><span class="pre">res</span></code> to the next element in the minimal-height sequence
+generated by <code class="docutils literal notranslate"><span class="pre">fmpq_next_minimal</span></code> but with negative numbers
+interleaved:</p>
+<p><span class="math notranslate nohighlight">\(0, 1, -1, 1/2, -1/2, 2, -2, 1/3, -1/3, \ldots.\)</span></p>
+<p>Starting with zero, this generates every rational number once
+and only once, in order of minimal height.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_next_calkin_wilf">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_next_calkin_wilf</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_next_calkin_wilf" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_next_calkin_wilf">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_next_calkin_wilf</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_next_calkin_wilf" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Given <span class="math notranslate nohighlight">\(x\)</span> which is assumed to be nonnegative and in canonical form, sets
+<code class="docutils literal notranslate"><span class="pre">res</span></code> to the next number in the breadth-first traversal of the
+Calkin-Wilf tree. Starting with zero, this generates every nonnegative
+rational number once and only once, with the first few entries being:</p>
+<p><span class="math notranslate nohighlight">\(0, 1, 1/2, 2, 1/3, 3/2, 2/3, 3, 1/4, 4/3, 3/5, 5/2, 2/5, \ldots.\)</span></p>
+<p>Despite the appearance of the initial entries, the Calkin-Wilf
+enumeration does not produce the rational numbers in order of height:
+some small fractions will appear late in the sequence. This order
+has the advantage of being faster to produce than the minimal-height
+order.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_next_signed_calkin_wilf">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_next_signed_calkin_wilf</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rnum</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rden</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_next_signed_calkin_wilf" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_next_signed_calkin_wilf">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_next_signed_calkin_wilf</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_next_signed_calkin_wilf" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Given a signed rational number <span class="math notranslate nohighlight">\(x\)</span> assumed to be in canonical form, sets
+<code class="docutils literal notranslate"><span class="pre">res</span></code> to the next element in the Calkin-Wilf sequence with
+negative numbers interleaved:</p>
+<p><span class="math notranslate nohighlight">\(0, 1, -1, 1/2, -1/2, 2, -2, 1/3, -1/3, \ldots.\)</span></p>
+<p>Starting with zero, this generates every rational number once
+and only once, but not in order of minimal height.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_farey_neighbors">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_farey_neighbors</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">l</span></span>, <a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">r</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">Q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_farey_neighbors" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set <span class="math notranslate nohighlight">\(l\)</span> and <span class="math notranslate nohighlight">\(r\)</span> to the fractions directly below and above <span class="math notranslate nohighlight">\(x\)</span> in the Farey sequence of order <span class="math notranslate nohighlight">\(Q\)</span>.
+This function will throw if <span class="math notranslate nohighlight">\(x\)</span> is not canonical or <span class="math notranslate nohighlight">\(Q\)</span> is less than the denominator of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_simplest_between">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_simplest_between</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">l</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">r</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_simplest_between" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c._fmpq_simplest_between">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_simplest_between</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x_num</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x_den</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">l_num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">l_den</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">r_num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">r_den</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_simplest_between" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set <span class="math notranslate nohighlight">\(x\)</span> to the simplest fraction in the closed interval <span class="math notranslate nohighlight">\([l, r]\)</span>. The underscore version makes the additional assumption that <span class="math notranslate nohighlight">\(l \le r\)</span>.
+The endpoints <span class="math notranslate nohighlight">\(l\)</span> and <span class="math notranslate nohighlight">\(r\)</span> do not need to be reduced, but their denominators do need to be positive.
+<span class="math notranslate nohighlight">\(x\)</span> will be always be returned in canonical form. A canonical fraction <span class="math notranslate nohighlight">\(a_1/b_1\)</span> is defined to be simpler than <span class="math notranslate nohighlight">\(a_2/b_2\)</span> iff <span class="math notranslate nohighlight">\(b_1&lt;b_2\)</span> or <span class="math notranslate nohighlight">\(b_1=b_2\)</span> and <span class="math notranslate nohighlight">\(a_1&lt;a_2\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="continued-fractions">
+<h2>Continued fractions<a class="headerlink" href="#continued-fractions" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_get_cfrac">
+<span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_get_cfrac</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">c</span></span>, <a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rem</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_get_cfrac" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_get_cfrac_naive">
+<span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_get_cfrac_naive</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">c</span></span>, <a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rem</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_get_cfrac_naive" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Generates up to <span class="math notranslate nohighlight">\(n\)</span> terms of the (simple) continued fraction expansion
+of <span class="math notranslate nohighlight">\(x\)</span>, writing the coefficients to the vector <span class="math notranslate nohighlight">\(c\)</span> and the remainder <span class="math notranslate nohighlight">\(r\)</span>
+to the <code class="docutils literal notranslate"><span class="pre">rem</span></code> variable. The return value is the number <span class="math notranslate nohighlight">\(k\)</span> of
+generated terms. The output satisfies</p>
+<div class="math notranslate nohighlight">
+\[x = c_0 + \cfrac{1}{c_1 + \cfrac{1}{c_2 +
+    \cfrac{1}{ \ddots + \cfrac{1}{c_{k-1} + r }}}}\]</div>
+<p>If <span class="math notranslate nohighlight">\(r\)</span> is zero, the continued fraction expansion is complete.
+If <span class="math notranslate nohighlight">\(r\)</span> is nonzero, <span class="math notranslate nohighlight">\(1/r\)</span> can be passed back as input to generate
+<span class="math notranslate nohighlight">\(c_k, c_{k+1}, \ldots\)</span>. Calls to <code class="docutils literal notranslate"><span class="pre">fmpq_get_cfrac</span></code> can therefore
+be chained to generate the continued fraction incrementally,
+extracting any desired number of coefficients at a time.</p>
+<p>In general, a rational number has exactly two continued fraction
+expansions. By convention, we generate the shorter one. The longer
+expansion can be obtained by replacing the last coefficient
+<span class="math notranslate nohighlight">\(a_{k-1}\)</span> by the pair of coefficients <span class="math notranslate nohighlight">\(a_{k-1} - 1, 1\)</span>.</p>
+<dl class="simple">
+<dt>The behaviour of this function in corner cases is as follows:</dt><dd><ul class="simple">
+<li><p>if <span class="math notranslate nohighlight">\(x\)</span> is infinite (anything over 0), <code class="docutils literal notranslate"><span class="pre">rem</span></code> will be zero and the return is <span class="math notranslate nohighlight">\(k=0\)</span> regardless of <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
+<li><dl class="simple">
+<dt>else (if <span class="math notranslate nohighlight">\(x\)</span> is finite),</dt><dd><ul>
+<li><p>if <span class="math notranslate nohighlight">\(n &lt;= 0\)</span>, <code class="docutils literal notranslate"><span class="pre">rem</span></code> will be <span class="math notranslate nohighlight">\(1/x\)</span> (allowing for infinite in the case <span class="math notranslate nohighlight">\(x=0\)</span>) and the return is <span class="math notranslate nohighlight">\(k=0\)</span></p></li>
+<li><p>else (if <span class="math notranslate nohighlight">\(n &gt; 0\)</span>), <code class="docutils literal notranslate"><span class="pre">rem</span></code> will finite and the return is <span class="math notranslate nohighlight">\(0 &lt; k \le n\)</span>.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<p>Essentially, if this function is called with canonical <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(n &gt; 0\)</span>, then <code class="docutils literal notranslate"><span class="pre">rem</span></code> will be canonical.
+Therefore, applications relying on canonical <code class="docutils literal notranslate"><span class="pre">fmpq_t</span></code>’s should not call this function with <span class="math notranslate nohighlight">\(n &lt;= 0\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_set_cfrac">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_set_cfrac</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">c</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_set_cfrac" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(x\)</span> to the value of the continued fraction</p>
+<div class="math notranslate nohighlight">
+\[x = c_0 + \cfrac{1}{c_1 + \cfrac{1}{c_2 +
+    \cfrac{1}{ \ddots + \cfrac{1}{c_{n-1}}}}}\]</div>
+<p>where all <span class="math notranslate nohighlight">\(c_i\)</span> except <span class="math notranslate nohighlight">\(c_0\)</span> should be nonnegative.
+It is assumed that <span class="math notranslate nohighlight">\(n &gt; 0\)</span>.</p>
+<p>For large <span class="math notranslate nohighlight">\(n\)</span>, this function implements a subquadratic algorithm.
+The convergents are given by a chain product of 2 by 2 matrices.
+This product is split in half recursively to balance the size
+of the coefficients.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_cfrac_bound">
+<span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_cfrac_bound</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_cfrac_bound" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns an upper bound for the number of terms in the continued
+fraction expansion of <span class="math notranslate nohighlight">\(x\)</span>. The computed bound is not necessarily sharp.</p>
+<p>We use the fact that the smallest denominator
+that can give a continued fraction of length <span class="math notranslate nohighlight">\(n\)</span> is the Fibonacci
+number <span class="math notranslate nohighlight">\(F_{n+1}\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="special-functions">
+<h2>Special functions<a class="headerlink" href="#special-functions" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_harmonic_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_harmonic_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_harmonic_ui" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_harmonic_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_harmonic_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_harmonic_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the harmonic number <span class="math notranslate nohighlight">\(H_n = 1 + 1/2 + 1/3 + \dotsb + 1/n\)</span>.
+Table lookup is used for <span class="math notranslate nohighlight">\(H_n\)</span> whose numerator and denominator
+fit in single limb. For larger <span class="math notranslate nohighlight">\(n\)</span>, a divide and conquer strategy is used.</p>
+</dd></dl>
+
+</section>
+<section id="dedekind-sums">
+<h2>Dedekind sums<a class="headerlink" href="#dedekind-sums" title="Link to this heading">¶</a></h2>
+<p>Most of the definitions and relations used in the following section
+are given by Apostol <a class="reference internal" href="references.html#apostol1997" id="id1"><span>[Apostol1997]</span></a>. The Dedekind sum <span class="math notranslate nohighlight">\(s(h,k)\)</span> is
+defined for all integers <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(k\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[s(h,k) = \sum_{i=1}^{k-1} \left(\left(\frac{i}{k}\right)\right)
+\left(\left(\frac{hi}{k}\right)\right)\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}((x))=\begin{cases}
+x-\lfloor x\rfloor-1/2 &amp;\mbox{if }
+x\in\mathbf{Q}\setminus\mathbf{Z}\\
+0 &amp;\mbox{if }x\in\mathbf{Z}.
+\end{cases}\end{split}\]</div>
+<p>If <span class="math notranslate nohighlight">\(0 &lt; h &lt; k\)</span> and <span class="math notranslate nohighlight">\((h,k) = 1\)</span>, this reduces to</p>
+<div class="math notranslate nohighlight">
+\[s(h,k) = \sum_{i=1}^{k-1} \frac{i}{k}
+    \left(\frac{hi}{k}-\left\lfloor\frac{hi}{k}\right\rfloor
+    -\frac{1}{2}\right).\]</div>
+<p>The main formula for evaluating the series above is the following.
+Letting <span class="math notranslate nohighlight">\(r_0 = k\)</span>, <span class="math notranslate nohighlight">\(r_1 = h\)</span>, <span class="math notranslate nohighlight">\(r_2, r_3, \ldots, r_n, r_{n+1} = 1\)</span>
+be the remainder sequence in the Euclidean algorithm for
+computing GCD of <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(k\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[s(h,k) = \frac{1-(-1)^n}{8} - \frac{1}{12} \sum_{i=1}^{n+1}
+(-1)^i \left(\frac{1+r_i^2+r_{i-1}^2}{r_i r_{i-1}}\right).\]</div>
+<p>Writing <span class="math notranslate nohighlight">\(s(h,k) = p/q\)</span>, some useful properties employed are
+<span class="math notranslate nohighlight">\(|s| &lt; k / 12\)</span>, <span class="math notranslate nohighlight">\(q | 6k\)</span> and <span class="math notranslate nohighlight">\(2|p| &lt; k^2\)</span>.</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_dedekind_sum">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_dedekind_sum</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">s</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">h</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">k</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_dedekind_sum" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_dedekind_sum_naive">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_dedekind_sum_naive</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">s</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">h</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">k</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_dedekind_sum_naive" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes <span class="math notranslate nohighlight">\(s(h,k)\)</span> for arbitrary <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(k\)</span>. The naive version uses a straightforward
+implementation of the defining sum using <code class="docutils literal notranslate"><span class="pre">fmpz</span></code> arithmetic and is slow for large <span class="math notranslate nohighlight">\(k\)</span>.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><strong>fmpq.h</strong> – rational numbers</a><ul>
+<li><a class="reference internal" href="#types-macros-and-constants">Types, macros and constants</a></li>
+<li><a class="reference internal" href="#memory-management">Memory management</a></li>
+<li><a class="reference internal" href="#canonicalisation">Canonicalisation</a></li>
+<li><a class="reference internal" href="#basic-assignment">Basic assignment</a></li>
+<li><a class="reference internal" href="#comparison">Comparison</a></li>
+<li><a class="reference internal" href="#conversion">Conversion</a></li>
+<li><a class="reference internal" href="#input-and-output">Input and output</a></li>
+<li><a class="reference internal" href="#random-number-generation">Random number generation</a></li>
+<li><a class="reference internal" href="#arithmetic">Arithmetic</a></li>
+<li><a class="reference internal" href="#modular-reduction-and-rational-reconstruction">Modular reduction and rational reconstruction</a></li>
+<li><a class="reference internal" href="#rational-enumeration">Rational enumeration</a></li>
+<li><a class="reference internal" href="#continued-fractions">Continued fractions</a></li>
+<li><a class="reference internal" href="#special-functions">Special functions</a></li>
+<li><a class="reference internal" href="#dedekind-sums">Dedekind sums</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="qsieve.html"
+                          title="previous chapter"><strong>qsieve.h</strong> – Quadratic sieve</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="fmpq_vec.html"
+                          title="next chapter"><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/fmpq.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="fmpq_vec.html" title="fmpq_vec.h – vectors over rational numbers"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="qsieve.html" title="qsieve.h – Quadratic sieve"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>fmpq.h</strong> – rational numbers</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2018, The Flint development team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>fmpq_vec.h – vectors over rational numbers &#8212; Flint 2.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    
+    <script src="_static/documentation_options.js?v=182a64a0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="fmpq_mat.h – matrices over the rational numbers" href="fmpq_mat.html" />
+    <link rel="prev" title="fmpq.h – rational numbers" href="fmpq.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="fmpq_mat.html" title="fmpq_mat.h – matrices over the rational numbers"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="fmpq.html" title="fmpq.h – rational numbers"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="fmpq-vec-h-vectors-over-rational-numbers">
+<span id="fmpq-vec"></span><h1><strong>fmpq_vec.h</strong> – vectors over rational numbers<a class="headerlink" href="#fmpq-vec-h-vectors-over-rational-numbers" title="Link to this heading">¶</a></h1>
+<p>Description.</p>
+<section id="memory-management">
+<h2>Memory management<a class="headerlink" href="#memory-management" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_vec_init">
+<a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_vec_init</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_vec_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initialises a vector of <code class="docutils literal notranslate"><span class="pre">fmpq</span></code> values of length <span class="math notranslate nohighlight">\(n\)</span> and sets
+all values to 0. This is equivalent to generating a <code class="docutils literal notranslate"><span class="pre">fmpz</span></code> vector
+of length <span class="math notranslate nohighlight">\(2n\)</span> with <code class="docutils literal notranslate"><span class="pre">_fmpz_vec_init</span></code> and setting all denominators
+to 1.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_vec_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_vec_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_vec_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Frees an <code class="docutils literal notranslate"><span class="pre">fmpq</span></code> vector.</p>
+</dd></dl>
+
+</section>
+<section id="randomisation">
+<h2>Randomisation<a class="headerlink" href="#randomisation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_vec_randtest">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_vec_randtest</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="n"><span class="pre">flint_bitcnt_t</span></span><span class="w"> </span><span class="n"><span class="pre">bits</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_vec_randtest" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the entries of a vector of the given length to random rationals with
+numerator and denominator having up to the given number of bits per entry.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_vec_randtest_uniq_sorted">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_vec_randtest_uniq_sorted</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="n"><span class="pre">flint_bitcnt_t</span></span><span class="w"> </span><span class="n"><span class="pre">bits</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_vec_randtest_uniq_sorted" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the entries of a vector of the given length to random distinct
+rationals with numerator and denominator having up to the given number
+of bits per entry. The entries in the vector are sorted.</p>
+</dd></dl>
+
+</section>
+<section id="sorting">
+<h2>Sorting<a class="headerlink" href="#sorting" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_vec_sort">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_vec_sort</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_vec_sort" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sorts the entries of <code class="docutils literal notranslate"><span class="pre">(vec,</span> <span class="pre">len)</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="conversions">
+<h2>Conversions<a class="headerlink" href="#conversions" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_vec_set_fmpz_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_vec_set_fmpz_vec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_vec_set_fmpz_vec" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(res,</span> <span class="pre">len)</span></code> to <code class="docutils literal notranslate"><span class="pre">(vec,</span> <span class="pre">len)</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_vec_get_fmpz_vec_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_vec_get_fmpz_vec_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">num</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_vec_get_fmpz_vec_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Find a common denominator <code class="docutils literal notranslate"><span class="pre">den</span></code> of the entries of <code class="docutils literal notranslate"><span class="pre">a</span></code> and set <code class="docutils literal notranslate"><span class="pre">(num,</span> <span class="pre">len)</span></code> to the corresponding numerators.</p>
+</dd></dl>
+
+</section>
+<section id="dot-product">
+<h2>Dot product<a class="headerlink" href="#dot-product" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_vec_dot">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_vec_dot</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_vec_dot" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the dot product of the vectors <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len)</span></code> and
+<code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len)</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_vec_fprint">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_vec_fprint</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FILE</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">file</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_vec_fprint" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints the vector of given length to the stream <code class="docutils literal notranslate"><span class="pre">file</span></code>. The
+format is the length followed by two spaces, then a space separated
+list of coefficients. If the length is zero, only <span class="math notranslate nohighlight">\(0\)</span> is printed.</p>
+<p>In case of success, returns a positive value. In case of failure,
+returns a non-positive value.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_vec_print">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_vec_print</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_vec_print" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints the vector of given length to <code class="docutils literal notranslate"><span class="pre">stdout</span></code>.</p>
+<p>For further details, see <a class="reference internal" href="#c._fmpq_vec_fprint" title="_fmpq_vec_fprint"><code class="xref c c-func docutils literal notranslate"><span class="pre">_fmpq_vec_fprint()</span></code></a>.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><strong>fmpq_vec.h</strong> – vectors over rational numbers</a><ul>
+<li><a class="reference internal" href="#memory-management">Memory management</a></li>
+<li><a class="reference internal" href="#randomisation">Randomisation</a></li>
+<li><a class="reference internal" href="#sorting">Sorting</a></li>
+<li><a class="reference internal" href="#conversions">Conversions</a></li>
+<li><a class="reference internal" href="#dot-product">Dot product</a></li>
+<li><a class="reference internal" href="#input-and-output">Input and output</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="fmpq.html"
+                          title="previous chapter"><strong>fmpq.h</strong> – rational numbers</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="fmpq_mat.html"
+                          title="next chapter"><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/fmpq_vec.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="fmpq_mat.html" title="fmpq_mat.h – matrices over the rational numbers"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="fmpq.html" title="fmpq.h – rational numbers"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2018, The Flint development team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

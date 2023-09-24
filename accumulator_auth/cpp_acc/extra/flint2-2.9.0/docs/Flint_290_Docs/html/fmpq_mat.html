@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>fmpq_mat.h – matrices over the rational numbers &#8212; Flint 2.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    
+    <script src="_static/documentation_options.js?v=182a64a0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="fmpq_poly.h – univariate polynomials over the rational numbers" href="fmpq_poly.html" />
+    <link rel="prev" title="fmpq_vec.h – vectors over rational numbers" href="fmpq_vec.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="fmpq_poly.html" title="fmpq_poly.h – univariate polynomials over the rational numbers"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="fmpq_vec.html" title="fmpq_vec.h – vectors over rational numbers"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="fmpq-mat-h-matrices-over-the-rational-numbers">
+<span id="fmpq-mat"></span><h1><strong>fmpq_mat.h</strong> – matrices over the rational numbers<a class="headerlink" href="#fmpq-mat-h-matrices-over-the-rational-numbers" title="Link to this heading">¶</a></h1>
+<p>Description.</p>
+<section id="types-macros-and-constants">
+<h2>Types, macros and constants<a class="headerlink" href="#types-macros-and-constants" title="Link to this heading">¶</a></h2>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.fmpq_mat_struct">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_struct</span></span></span><a class="headerlink" href="#c.fmpq_mat_struct" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.fmpq_mat_t">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_t</span></span></span><a class="headerlink" href="#c.fmpq_mat_t" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Description.</p>
+</dd></dl>
+
+</section>
+<section id="memory-management">
+<h2>Memory management<a class="headerlink" href="#memory-management" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">rows</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">cols</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initialises a matrix with the given number of rows and columns for use.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_init_set">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_init_set</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_init_set" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initialises <code class="docutils literal notranslate"><span class="pre">mat1</span></code> and sets it equal to <code class="docutils literal notranslate"><span class="pre">mat2</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Frees all memory associated with the matrix. The matrix must be
+reinitialised if it is to be used again.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_swap">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_swap" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Swaps two matrices. The dimensions of <code class="docutils literal notranslate"><span class="pre">mat1</span></code> and <code class="docutils literal notranslate"><span class="pre">mat2</span></code>
+are allowed to be different.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_swap_entrywise">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_swap_entrywise</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_swap_entrywise" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Swaps two matrices by swapping the individual entries rather than swapping
+the contents of the structs.</p>
+</dd></dl>
+
+</section>
+<section id="entry-access">
+<h2>Entry access<a class="headerlink" href="#entry-access" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_entry">
+<a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_entry</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">i</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">j</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_entry" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Gives a reference to the entry at row <code class="docutils literal notranslate"><span class="pre">i</span></code> and column <code class="docutils literal notranslate"><span class="pre">j</span></code>.
+The reference can be passed as an input or output variable to any
+<code class="docutils literal notranslate"><span class="pre">fmpq</span></code> function for direct manipulation of the matrix element.
+No bounds checking is performed.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_entry_num">
+<a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_entry_num</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">i</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">j</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_entry_num" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Gives a reference to the numerator of the entry at row <code class="docutils literal notranslate"><span class="pre">i</span></code> and
+column <code class="docutils literal notranslate"><span class="pre">j</span></code>. The reference can be passed as an input or output
+variable to any <code class="docutils literal notranslate"><span class="pre">fmpz</span></code> function for direct manipulation of the
+matrix element. No bounds checking is performed.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_entry_den">
+<a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_entry_den</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">i</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">j</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_entry_den" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Gives a reference to the denominator of the entry at row <code class="docutils literal notranslate"><span class="pre">i</span></code> and
+column <code class="docutils literal notranslate"><span class="pre">j</span></code>. The reference can be passed as an input or output
+variable to any <code class="docutils literal notranslate"><span class="pre">fmpz</span></code> function for direct manipulation of the
+matrix element. No bounds checking is performed.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_nrows">
+<span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_nrows</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_nrows" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Return the number of rows of the matrix <code class="docutils literal notranslate"><span class="pre">mat</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_ncols">
+<span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_ncols</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_ncols" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Return the number of columns of the matrix <code class="docutils literal notranslate"><span class="pre">mat</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="basic-assignment">
+<h2>Basic assignment<a class="headerlink" href="#basic-assignment" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_set">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_set</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">dest</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_set" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the entries in <code class="docutils literal notranslate"><span class="pre">dest</span></code> to the same values as in <code class="docutils literal notranslate"><span class="pre">src</span></code>,
+assuming the two matrices have the same dimensions.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_zero">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_zero</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_zero" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">mat</span></code> to the zero matrix.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_one">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_one</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_one" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Let <span class="math notranslate nohighlight">\(m\)</span> be the minimum of the number of rows and columns
+in the matrix <code class="docutils literal notranslate"><span class="pre">mat</span></code>.  This function sets the first
+<span class="math notranslate nohighlight">\(m \times m\)</span> block to the identity matrix, and the remaining
+block to zero.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_transpose">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_transpose</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_transpose" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the matrix <code class="docutils literal notranslate"><span class="pre">rop</span></code> to the transpose of the matrix <code class="docutils literal notranslate"><span class="pre">op</span></code>,
+assuming that their dimensions are compatible.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_swap_rows">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_swap_rows</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">perm</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">r</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">s</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_swap_rows" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Swaps rows <code class="docutils literal notranslate"><span class="pre">r</span></code> and <code class="docutils literal notranslate"><span class="pre">s</span></code> of <code class="docutils literal notranslate"><span class="pre">mat</span></code>.  If <code class="docutils literal notranslate"><span class="pre">perm</span></code> is non-<code class="docutils literal notranslate"><span class="pre">NULL</span></code>, the
+permutation of the rows will also be applied to <code class="docutils literal notranslate"><span class="pre">perm</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_swap_cols">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_swap_cols</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">perm</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">r</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">s</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_swap_cols" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Swaps columns <code class="docutils literal notranslate"><span class="pre">r</span></code> and <code class="docutils literal notranslate"><span class="pre">s</span></code> of <code class="docutils literal notranslate"><span class="pre">mat</span></code>.  If <code class="docutils literal notranslate"><span class="pre">perm</span></code> is non-<code class="docutils literal notranslate"><span class="pre">NULL</span></code>, the
+permutation of the columns will also be applied to <code class="docutils literal notranslate"><span class="pre">perm</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_invert_rows">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_invert_rows</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">perm</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_invert_rows" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Swaps rows <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">-</span> <span class="pre">i</span></code> of <code class="docutils literal notranslate"><span class="pre">mat</span></code> for <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;=</span> <span class="pre">i</span> <span class="pre">&lt;</span> <span class="pre">r/2</span></code>, where
+<code class="docutils literal notranslate"><span class="pre">r</span></code> is the number of rows of <code class="docutils literal notranslate"><span class="pre">mat</span></code>. If <code class="docutils literal notranslate"><span class="pre">perm</span></code> is non-<code class="docutils literal notranslate"><span class="pre">NULL</span></code>, the
+permutation of the rows will also be applied to <code class="docutils literal notranslate"><span class="pre">perm</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_invert_cols">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_invert_cols</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">perm</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_invert_cols" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Swaps columns <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">c</span> <span class="pre">-</span> <span class="pre">i</span></code> of <code class="docutils literal notranslate"><span class="pre">mat</span></code> for <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;=</span> <span class="pre">i</span> <span class="pre">&lt;</span> <span class="pre">c/2</span></code>, where
+<code class="docutils literal notranslate"><span class="pre">c</span></code> is the number of columns of <code class="docutils literal notranslate"><span class="pre">mat</span></code>. If <code class="docutils literal notranslate"><span class="pre">perm</span></code> is non-<code class="docutils literal notranslate"><span class="pre">NULL</span></code>, the
+permutation of the columns will also be applied to <code class="docutils literal notranslate"><span class="pre">perm</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="addition-scalar-multiplication">
+<h2>Addition, scalar multiplication<a class="headerlink" href="#addition-scalar-multiplication" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_add">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_add</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_add" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">mat</span></code> to the sum of <code class="docutils literal notranslate"><span class="pre">mat1</span></code> and <code class="docutils literal notranslate"><span class="pre">mat2</span></code>,
+assuming that all three matrices have the same dimensions.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_sub">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_sub</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_sub" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">mat</span></code> to the difference of <code class="docutils literal notranslate"><span class="pre">mat1</span></code> and <code class="docutils literal notranslate"><span class="pre">mat2</span></code>,
+assuming that all three matrices have the same dimensions.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_neg">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_neg</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_neg" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">rop</span></code> to the negative of <code class="docutils literal notranslate"><span class="pre">op</span></code>, assuming that
+the two matrices have the same dimensions.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_scalar_mul_fmpq">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_scalar_mul_fmpq</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq.html#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_scalar_mul_fmpq" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">rop</span></code> to <code class="docutils literal notranslate"><span class="pre">op</span></code> multiplied by the rational <span class="math notranslate nohighlight">\(x\)</span>,
+assuming that the two matrices have the same dimensions.</p>
+<p>Note that the rational <code class="docutils literal notranslate"><span class="pre">x</span></code> may not be aliased with any part of the
+entries of <code class="docutils literal notranslate"><span class="pre">rop</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_scalar_mul_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_scalar_mul_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_scalar_mul_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">rop</span></code> to <code class="docutils literal notranslate"><span class="pre">op</span></code> multiplied by the integer <span class="math notranslate nohighlight">\(x\)</span>,
+assuming that the two matrices have the same dimensions.</p>
+<p>Note that the integer <span class="math notranslate nohighlight">\(x\)</span> may not be aliased with any part of
+the entries of <code class="docutils literal notranslate"><span class="pre">rop</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_scalar_div_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_scalar_div_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">rop</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">op</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_scalar_div_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">rop</span></code> to <code class="docutils literal notranslate"><span class="pre">op</span></code> divided by the integer <span class="math notranslate nohighlight">\(x\)</span>,
+assuming that the two matrices have the same dimensions
+and that <span class="math notranslate nohighlight">\(x\)</span> is non-zero.</p>
+<p>Note that the integer <span class="math notranslate nohighlight">\(x\)</span> may not be aliased with any part of
+the entries of <code class="docutils literal notranslate"><span class="pre">rop</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_print">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_print</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_print" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints the matrix <code class="docutils literal notranslate"><span class="pre">mat</span></code> to standard output.</p>
+</dd></dl>
+
+</section>
+<section id="random-matrix-generation">
+<h2>Random matrix generation<a class="headerlink" href="#random-matrix-generation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_randbits">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_randbits</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="n"><span class="pre">flint_bitcnt_t</span></span><span class="w"> </span><span class="n"><span class="pre">bits</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_randbits" title="Link to this definition">¶</a><br /></dt>
+<dd><p>This is equivalent to applying <code class="docutils literal notranslate"><span class="pre">fmpq_randbits</span></code> to all entries
+in the matrix.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_randtest">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_randtest</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="n"><span class="pre">flint_bitcnt_t</span></span><span class="w"> </span><span class="n"><span class="pre">bits</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_randtest" title="Link to this definition">¶</a><br /></dt>
+<dd><p>This is equivalent to applying <code class="docutils literal notranslate"><span class="pre">fmpq_randtest</span></code> to all entries
+in the matrix.</p>
+</dd></dl>
+
+</section>
+<section id="window">
+<h2>Window<a class="headerlink" href="#window" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_window_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_window_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">window</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">r1</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">c1</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">r2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">c2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_window_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes the matrix <code class="docutils literal notranslate"><span class="pre">window</span></code> to be an <code class="docutils literal notranslate"><span class="pre">r2</span> <span class="pre">-</span> <span class="pre">r1</span></code> by
+<code class="docutils literal notranslate"><span class="pre">c2</span> <span class="pre">-</span> <span class="pre">c1</span></code> submatrix of <code class="docutils literal notranslate"><span class="pre">mat</span></code> whose <code class="docutils literal notranslate"><span class="pre">(0,0)</span></code> entry
+is the <code class="docutils literal notranslate"><span class="pre">(r1,</span> <span class="pre">c1)</span></code> entry of <code class="docutils literal notranslate"><span class="pre">mat</span></code>. The memory for the
+elements of <code class="docutils literal notranslate"><span class="pre">window</span></code> is shared with <code class="docutils literal notranslate"><span class="pre">mat</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_window_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_window_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">window</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_window_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears the matrix <code class="docutils literal notranslate"><span class="pre">window</span></code> and releases any memory that it
+uses. Note that the memory to the underlying matrix that
+<code class="docutils literal notranslate"><span class="pre">window</span></code> points to is not freed.</p>
+</dd></dl>
+
+</section>
+<section id="concatenate">
+<h2>Concatenate<a class="headerlink" href="#concatenate" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_concat_vertical">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_concat_vertical</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_concat_vertical" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to vertical concatenation of (<code class="docutils literal notranslate"><span class="pre">mat1</span></code>, <code class="docutils literal notranslate"><span class="pre">mat2</span></code>) in that order. Matrix dimensions : <code class="docutils literal notranslate"><span class="pre">mat1</span></code> : <span class="math notranslate nohighlight">\(m \times n\)</span>, <code class="docutils literal notranslate"><span class="pre">mat2</span></code> : <span class="math notranslate nohighlight">\(k \times n\)</span>, <code class="docutils literal notranslate"><span class="pre">res</span></code> : <span class="math notranslate nohighlight">\((m + k) \times n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_concat_horizontal">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_concat_horizontal</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_concat_horizontal" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to horizontal concatenation of (<code class="docutils literal notranslate"><span class="pre">mat1</span></code>, <code class="docutils literal notranslate"><span class="pre">mat2</span></code>) in that order. Matrix dimensions : <code class="docutils literal notranslate"><span class="pre">mat1</span></code> : <span class="math notranslate nohighlight">\(m \times n\)</span>, <code class="docutils literal notranslate"><span class="pre">mat2</span></code> : <span class="math notranslate nohighlight">\(m \times k\)</span>, <code class="docutils literal notranslate"><span class="pre">res</span></code>  : <span class="math notranslate nohighlight">\(m \times (n + k)\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="special-matrices">
+<h2>Special matrices<a class="headerlink" href="#special-matrices" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_hilbert_matrix">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_hilbert_matrix</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_hilbert_matrix" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">mat</span></code> to a Hilbert matrix of the given size. That is,
+the entry at row <span class="math notranslate nohighlight">\(i\)</span> and column <span class="math notranslate nohighlight">\(j\)</span> is set to <span class="math notranslate nohighlight">\(1/(i+j+1)\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="basic-comparison-and-properties">
+<h2>Basic comparison and properties<a class="headerlink" href="#basic-comparison-and-properties" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_equal">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_equal</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_equal" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if <code class="docutils literal notranslate"><span class="pre">mat1</span></code> and <code class="docutils literal notranslate"><span class="pre">mat2</span></code> have the same shape and
+all their entries agree, and returns zero otherwise. Assumes the
+entries in both <code class="docutils literal notranslate"><span class="pre">mat1</span></code> and <code class="docutils literal notranslate"><span class="pre">mat2</span></code> are in canonical form.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_is_integral">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_is_integral</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_is_integral" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if all entries in <code class="docutils literal notranslate"><span class="pre">mat</span></code> are integer-valued, and
+returns zero otherwise. Assumes that the entries in <code class="docutils literal notranslate"><span class="pre">mat</span></code>
+are in canonical form.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_is_zero">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_is_zero</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_is_zero" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if all entries in <code class="docutils literal notranslate"><span class="pre">mat</span></code> are zero, and returns
+zero otherwise.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_is_one">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_is_one</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_is_one" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if <code class="docutils literal notranslate"><span class="pre">mat</span></code> ones along the diagonal and zeros elsewhere,
+and returns zero otherwise.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_is_empty">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_is_empty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_is_empty" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a non-zero value if the number of rows or the number of
+columns in <code class="docutils literal notranslate"><span class="pre">mat</span></code> is zero, and otherwise returns
+zero.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_is_square">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_is_square</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_is_square" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a non-zero value if the number of rows is equal to the
+number of columns in <code class="docutils literal notranslate"><span class="pre">mat</span></code>, and otherwise returns zero.</p>
+</dd></dl>
+
+</section>
+<section id="integer-matrix-conversion">
+<h2>Integer matrix conversion<a class="headerlink" href="#integer-matrix-conversion" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_get_fmpz_mat">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_get_fmpz_mat</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">dest</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_get_fmpz_mat" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">dest</span></code> to <code class="docutils literal notranslate"><span class="pre">mat</span></code> and returns nonzero if all entries
+in <code class="docutils literal notranslate"><span class="pre">mat</span></code> are integer-valued. If not all entries in <code class="docutils literal notranslate"><span class="pre">mat</span></code>
+are integer-valued, sets <code class="docutils literal notranslate"><span class="pre">dest</span></code> to an undefined matrix
+and returns zero. Assumes that the entries in <code class="docutils literal notranslate"><span class="pre">mat</span></code> are
+in canonical form.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_get_fmpz_mat_entrywise">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_get_fmpz_mat_entrywise</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_get_fmpz_mat_entrywise" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the integer matrices <code class="docutils literal notranslate"><span class="pre">num</span></code> and <code class="docutils literal notranslate"><span class="pre">den</span></code> respectively
+to the numerators and denominators of the entries in <code class="docutils literal notranslate"><span class="pre">mat</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_get_fmpz_mat_matwise">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_get_fmpz_mat_matwise</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_get_fmpz_mat_matwise" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Converts all entries in <code class="docutils literal notranslate"><span class="pre">mat</span></code> to a common denominator,
+storing the rescaled numerators in <code class="docutils literal notranslate"><span class="pre">num</span></code> and the
+denominator in <code class="docutils literal notranslate"><span class="pre">den</span></code>. The denominator will be minimal
+if the entries in <code class="docutils literal notranslate"><span class="pre">mat</span></code> are in canonical form.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_get_fmpz_mat_rowwise">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_get_fmpz_mat_rowwise</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">den</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_get_fmpz_mat_rowwise" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears denominators in <code class="docutils literal notranslate"><span class="pre">mat</span></code> row by row. The rescaled
+numerators are written to <code class="docutils literal notranslate"><span class="pre">num</span></code>, and the denominator
+of row <code class="docutils literal notranslate"><span class="pre">i</span></code> is written to position <code class="docutils literal notranslate"><span class="pre">i</span></code> in <code class="docutils literal notranslate"><span class="pre">den</span></code>
+which can be a preinitialised <code class="docutils literal notranslate"><span class="pre">fmpz</span></code> vector. Alternatively,
+<code class="docutils literal notranslate"><span class="pre">NULL</span></code> can be passed as the <code class="docutils literal notranslate"><span class="pre">den</span></code> variable, in which
+case the denominators will not be stored.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_get_fmpz_mat_rowwise_2">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_get_fmpz_mat_rowwise_2</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num2</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">den</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_get_fmpz_mat_rowwise_2" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears denominators row by row of both <code class="docutils literal notranslate"><span class="pre">mat</span></code> and <code class="docutils literal notranslate"><span class="pre">mat2</span></code>,
+writing the respective numerators to <code class="docutils literal notranslate"><span class="pre">num</span></code> and <code class="docutils literal notranslate"><span class="pre">num2</span></code>.
+This is equivalent to concatenating <code class="docutils literal notranslate"><span class="pre">mat</span></code> and <code class="docutils literal notranslate"><span class="pre">mat2</span></code>
+horizontally, calling <code class="docutils literal notranslate"><span class="pre">fmpq_mat_get_fmpz_mat_rowwise</span></code>,
+and extracting the two submatrices in the result.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_get_fmpz_mat_colwise">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_get_fmpz_mat_colwise</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">den</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_get_fmpz_mat_colwise" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears denominators in <code class="docutils literal notranslate"><span class="pre">mat</span></code> column by column. The rescaled
+numerators are written to <code class="docutils literal notranslate"><span class="pre">num</span></code>, and the denominator
+of column <code class="docutils literal notranslate"><span class="pre">i</span></code> is written to position <code class="docutils literal notranslate"><span class="pre">i</span></code> in <code class="docutils literal notranslate"><span class="pre">den</span></code>
+which can be a preinitialised <code class="docutils literal notranslate"><span class="pre">fmpz</span></code> vector. Alternatively,
+<code class="docutils literal notranslate"><span class="pre">NULL</span></code> can be passed as the <code class="docutils literal notranslate"><span class="pre">den</span></code> variable, in which
+case the denominators will not be stored.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_set_fmpz_mat">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_set_fmpz_mat</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">dest</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_set_fmpz_mat" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">dest</span></code> to <code class="docutils literal notranslate"><span class="pre">src</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_set_fmpz_mat_div_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_set_fmpz_mat_div_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_set_fmpz_mat_div_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">mat</span></code> to the integer matrix <code class="docutils literal notranslate"><span class="pre">num</span></code> divided by the
+common denominator <code class="docutils literal notranslate"><span class="pre">den</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="modular-reduction-and-rational-reconstruction">
+<h2>Modular reduction and rational reconstruction<a class="headerlink" href="#modular-reduction-and-rational-reconstruction" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_get_fmpz_mat_mod_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_get_fmpz_mat_mod_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">dest</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mod</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_get_fmpz_mat_mod_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets each entry in <code class="docutils literal notranslate"><span class="pre">dest</span></code> to the corresponding entry in <code class="docutils literal notranslate"><span class="pre">mat</span></code>,
+reduced modulo <code class="docutils literal notranslate"><span class="pre">mod</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_set_fmpz_mat_mod_fmpz">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_set_fmpz_mat_mod_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">X</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">Xmod</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mod</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_set_fmpz_mat_mod_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set <code class="docutils literal notranslate"><span class="pre">X</span></code> to the entrywise rational reconstruction integer matrix
+<code class="docutils literal notranslate"><span class="pre">Xmod</span></code> modulo <code class="docutils literal notranslate"><span class="pre">mod</span></code>, and returns nonzero if the reconstruction
+is successful. If rational reconstruction fails for any element,
+returns zero and sets the entries in <code class="docutils literal notranslate"><span class="pre">X</span></code> to undefined values.</p>
+</dd></dl>
+
+</section>
+<section id="matrix-multiplication">
+<h2>Matrix multiplication<a class="headerlink" href="#matrix-multiplication" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_mul_direct">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_mul_direct</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">C</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_mul_direct" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">C</span></code> to the matrix product <code class="docutils literal notranslate"><span class="pre">AB</span></code>, computed
+naively using rational arithmetic. This is typically very slow and
+should only be used in circumstances where clearing denominators
+would consume too much memory.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_mul_cleared">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_mul_cleared</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">C</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_mul_cleared" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">C</span></code> to the matrix product <code class="docutils literal notranslate"><span class="pre">AB</span></code>, computed
+by clearing denominators and multiplying over the integers.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_mul">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_mul</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">C</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_mul" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">C</span></code> to the matrix product <code class="docutils literal notranslate"><span class="pre">AB</span></code>. This
+simply calls <code class="docutils literal notranslate"><span class="pre">fmpq_mat_mul_cleared</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_mul_fmpz_mat">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_mul_fmpz_mat</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">C</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_mul_fmpz_mat" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">C</span></code> to the matrix product <code class="docutils literal notranslate"><span class="pre">AB</span></code>, with <code class="docutils literal notranslate"><span class="pre">B</span></code>
+an integer matrix. This function works efficiently by clearing
+denominators of <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_mul_r_fmpz_mat">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_mul_r_fmpz_mat</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">C</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_mul_r_fmpz_mat" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">C</span></code> to the matrix product <code class="docutils literal notranslate"><span class="pre">AB</span></code>, with <code class="docutils literal notranslate"><span class="pre">A</span></code>
+an integer matrix. This function works efficiently by clearing
+denominators of <code class="docutils literal notranslate"><span class="pre">B</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_mul_fmpq_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_mul_fmpq_vec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">c</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">b</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">blen</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_mul_fmpq_vec" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_mat_mul_fmpz_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_mul_fmpz_vec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">c</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">b</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">blen</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_mul_fmpz_vec" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_mat_mul_fmpq_vec_ptr">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_mul_fmpq_vec_ptr</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">c</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">b</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">blen</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_mul_fmpq_vec_ptr" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_mat_mul_fmpz_vec_ptr">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_mul_fmpz_vec_ptr</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">c</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">b</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">blen</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_mul_fmpz_vec_ptr" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Compute a matrix-vector product of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">(b,</span> <span class="pre">blen)</span></code> and store the result in <code class="docutils literal notranslate"><span class="pre">c</span></code>.
+The vector <code class="docutils literal notranslate"><span class="pre">(b,</span> <span class="pre">blen)</span></code> is either truncated or zero-extended to the number of columns of <code class="docutils literal notranslate"><span class="pre">A</span></code>.
+The number entries written to <code class="docutils literal notranslate"><span class="pre">c</span></code> is always equal to the number of rows of <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_fmpq_vec_mul">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_fmpq_vec_mul</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">c</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">alen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_fmpq_vec_mul" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_mat_fmpz_vec_mul">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_fmpz_vec_mul</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">c</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">alen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_fmpz_vec_mul" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_mat_fmpq_vec_mul_ptr">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_fmpq_vec_mul_ptr</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">c</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">alen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_fmpq_vec_mul_ptr" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_mat_fmpz_vec_mul_ptr">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_fmpz_vec_mul_ptr</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">c</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">alen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_fmpz_vec_mul_ptr" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Compute a vector-matrix product of <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">alen)</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> and and store the result in <code class="docutils literal notranslate"><span class="pre">c</span></code>.
+The vector <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">alen)</span></code> is either truncated or zero-extended to the number of rows of <code class="docutils literal notranslate"><span class="pre">B</span></code>.
+The number entries written to <code class="docutils literal notranslate"><span class="pre">c</span></code> is always equal to the number of columns of <code class="docutils literal notranslate"><span class="pre">B</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="kronecker-product">
+<h2>Kronecker product<a class="headerlink" href="#kronecker-product" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_kronecker_product">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_kronecker_product</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">C</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_kronecker_product" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">C</span></code> to the Kronecker product of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="trace">
+<h2>Trace<a class="headerlink" href="#trace" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_trace">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_trace</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">trace</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_trace" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the trace of the matrix, i.e. the sum of the entries on
+the main diagonal. The matrix is required to be square.</p>
+</dd></dl>
+
+</section>
+<section id="determinant">
+<h2>Determinant<a class="headerlink" href="#determinant" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_det">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_det</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">det</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_det" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">det</span></code> to the determinant of <code class="docutils literal notranslate"><span class="pre">mat</span></code>. In the general case,
+the determinant is computed by clearing denominators and computing a
+determinant over the integers. Matrices of size 0, 1 or 2 are handled
+directly.</p>
+</dd></dl>
+
+</section>
+<section id="nonsingular-solving">
+<h2>Nonsingular solving<a class="headerlink" href="#nonsingular-solving" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_solve_fraction_free">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_solve_fraction_free</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">X</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_solve_fraction_free" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_mat_solve_dixon">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_solve_dixon</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">X</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_solve_dixon" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_mat_solve_multi_mod">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_solve_multi_mod</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">X</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_solve_multi_mod" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_mat_solve">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_solve</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">X</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_solve" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Solves <code class="docutils literal notranslate"><span class="pre">AX</span> <span class="pre">=</span> <span class="pre">B</span></code> for nonsingular <code class="docutils literal notranslate"><span class="pre">A</span></code>.
+Returns nonzero if <code class="docutils literal notranslate"><span class="pre">A</span></code> is nonsingular or if the right hand side
+is empty, and zero otherwise.</p>
+<p>All algorithms clear denominators to obtain a rescaled system over the integers.
+The <em>fraction_free</em> algorithm uses FFLU solving over the integers.
+The <em>dixon</em> and <em>multi_mod</em> algorithms use Dixon p-adic lifting
+or multimodular solving, followed by rational reconstruction
+with an adaptive stopping test. The <em>dixon</em> and <em>multi_mod</em> algorithms
+are generally the best choice for large systems.</p>
+<p>The default method chooses an algorithm automatically.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_solve_fmpz_mat_fraction_free">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_solve_fmpz_mat_fraction_free</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">X</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_solve_fmpz_mat_fraction_free" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_mat_solve_fmpz_mat_dixon">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_solve_fmpz_mat_dixon</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">X</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_solve_fmpz_mat_dixon" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_mat_solve_fmpz_mat_multi_mod">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_solve_fmpz_mat_multi_mod</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">X</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_solve_fmpz_mat_multi_mod" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpq_mat_solve_fmpz_mat">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_solve_fmpz_mat</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">X</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_solve_fmpz_mat" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Solves <code class="docutils literal notranslate"><span class="pre">AX</span> <span class="pre">=</span> <span class="pre">B</span></code> for nonsingular <code class="docutils literal notranslate"><span class="pre">A</span></code>, where <em>A</em> and <em>B</em> are integer
+matrices. Returns nonzero if <code class="docutils literal notranslate"><span class="pre">A</span></code> is nonsingular or if the right hand side
+is empty, and zero otherwise.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_can_solve_multi_mod">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_can_solve_multi_mod</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">X</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_can_solve_multi_mod" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns <span class="math notranslate nohighlight">\(1\)</span> if <code class="docutils literal notranslate"><span class="pre">AX</span> <span class="pre">=</span> <span class="pre">B</span></code> has a solution and if so, sets <code class="docutils literal notranslate"><span class="pre">X</span></code> to one such
+solution. The matrices can have any shape but must have the same number of
+rows.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_can_solve_fraction_free">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_can_solve_fraction_free</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">X</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_can_solve_fraction_free" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns <span class="math notranslate nohighlight">\(1\)</span> if <code class="docutils literal notranslate"><span class="pre">AX</span> <span class="pre">=</span> <span class="pre">B</span></code> has a solution and if so, sets <code class="docutils literal notranslate"><span class="pre">X</span></code> to one such
+solution. The matrices can have any shape but must have the same number of
+rows.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_can_solve">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_can_solve</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">X</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_can_solve" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns <span class="math notranslate nohighlight">\(1\)</span> if <code class="docutils literal notranslate"><span class="pre">AX</span> <span class="pre">=</span> <span class="pre">B</span></code> has a solution and if so, sets <code class="docutils literal notranslate"><span class="pre">X</span></code> to one such
+solution. The matrices can have any shape but must have the same number of
+rows.</p>
+</dd></dl>
+
+</section>
+<section id="inverse">
+<h2>Inverse<a class="headerlink" href="#inverse" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_inv">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_inv</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_inv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">B</span></code> to the inverse matrix of <code class="docutils literal notranslate"><span class="pre">A</span></code> and returns nonzero.
+Returns zero if <code class="docutils literal notranslate"><span class="pre">A</span></code> is singular. <code class="docutils literal notranslate"><span class="pre">A</span></code> must be a square matrix.</p>
+</dd></dl>
+
+</section>
+<section id="echelon-form">
+<h2>Echelon form<a class="headerlink" href="#echelon-form" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_pivot">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_pivot</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">perm</span></span>, <a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">r</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_pivot" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Helper function for row reduction. Returns 1 if the entry of <code class="docutils literal notranslate"><span class="pre">mat</span></code>
+at row <span class="math notranslate nohighlight">\(r\)</span> and column <span class="math notranslate nohighlight">\(c\)</span> is nonzero. Otherwise searches for a nonzero
+entry in the same column among rows <span class="math notranslate nohighlight">\(r+1, r+2, \ldots\)</span>. If a nonzero
+entry is found at row <span class="math notranslate nohighlight">\(s\)</span>, swaps rows <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(s\)</span> and the corresponding
+entries in <code class="docutils literal notranslate"><span class="pre">perm</span></code> (unless <code class="docutils literal notranslate"><span class="pre">NULL</span></code>) and returns -1. If no
+nonzero pivot entry is found, leaves the inputs unchanged and returns 0.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_rref_classical">
+<span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_rref_classical</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_rref_classical" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">B</span></code> to the reduced row echelon form of <code class="docutils literal notranslate"><span class="pre">A</span></code> and returns
+the rank. Performs Gauss-Jordan elimination directly over the rational
+numbers. This algorithm is usually inefficient and is mainly intended
+to be used for testing purposes.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_rref_fraction_free">
+<span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_rref_fraction_free</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_rref_fraction_free" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">B</span></code> to the reduced row echelon form of <code class="docutils literal notranslate"><span class="pre">A</span></code> and returns
+the rank. Clears denominators and performs fraction-free Gauss-Jordan
+elimination using <code class="docutils literal notranslate"><span class="pre">fmpz_mat</span></code> functions.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_rref">
+<span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_rref</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_rref" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">B</span></code> to the reduced row echelon form of <code class="docutils literal notranslate"><span class="pre">A</span></code> and returns
+the rank. This function automatically chooses between the classical and
+fraction-free algorithms depending on the size of the matrix.</p>
+</dd></dl>
+
+</section>
+<section id="gram-schmidt-orthogonalisation">
+<h2>Gram-Schmidt Orthogonalisation<a class="headerlink" href="#gram-schmidt-orthogonalisation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_gso">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_gso</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_gso" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Takes a subset of <span class="math notranslate nohighlight">\(\mathbb{Q}^m\)</span> <span class="math notranslate nohighlight">\(S = \{a_1, a_2, \ldots ,a_n\}\)</span> (as the
+columns of a <span class="math notranslate nohighlight">\(m \times n\)</span> matrix <code class="docutils literal notranslate"><span class="pre">A</span></code>) and generates an orthogonal set
+<span class="math notranslate nohighlight">\(S' = \{b_1, b_2, \ldots ,b_n\}\)</span> (as the columns of the <span class="math notranslate nohighlight">\(m \times n\)</span> matrix
+<code class="docutils literal notranslate"><span class="pre">B</span></code>) that spans the same subspace of <span class="math notranslate nohighlight">\(\mathbb{Q}^m\)</span> as <span class="math notranslate nohighlight">\(S\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="transforms">
+<h2>Transforms<a class="headerlink" href="#transforms" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_similarity">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_similarity</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">r</span></span>, <a class="reference internal" href="fmpq.html#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">d</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_similarity" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Applies a similarity transform to the <span class="math notranslate nohighlight">\(n\times n\)</span> matrix <span class="math notranslate nohighlight">\(M\)</span> in-place.</p>
+<p>If <span class="math notranslate nohighlight">\(P\)</span> is the <span class="math notranslate nohighlight">\(n\times n\)</span> identity matrix the zero entries of whose row
+<span class="math notranslate nohighlight">\(r\)</span> (<span class="math notranslate nohighlight">\(0\)</span>-indexed) have been replaced by <span class="math notranslate nohighlight">\(d\)</span>, this transform is equivalent
+to <span class="math notranslate nohighlight">\(M = P^{-1}MP\)</span>.</p>
+<p>Similarity transforms preserve the determinant, characteristic polynomial
+and minimal polynomial.</p>
+</dd></dl>
+
+</section>
+<section id="characteristic-polynomial">
+<h2>Characteristic polynomial<a class="headerlink" href="#characteristic-polynomial" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_mat_charpoly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_mat_charpoly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">coeffs</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_mat_charpoly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set <code class="docutils literal notranslate"><span class="pre">(coeffs,</span> <span class="pre">den)</span></code> to the characteristic polynomial of the given
+<span class="math notranslate nohighlight">\(n\times n\)</span> matrix.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_charpoly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_charpoly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq_poly.html#c.fmpq_poly_t" title="fmpq_poly_t"><span class="n"><span class="pre">fmpq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">pol</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_charpoly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set <code class="docutils literal notranslate"><span class="pre">pol</span></code> to the characteristic polynomial of the given <span class="math notranslate nohighlight">\(n\times n\)</span>
+matrix. If <code class="docutils literal notranslate"><span class="pre">mat</span></code> is not square, an exception is raised.</p>
+</dd></dl>
+
+</section>
+<section id="minimal-polynomial">
+<h2>Minimal polynomial<a class="headerlink" href="#minimal-polynomial" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpq_mat_minpoly">
+<span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpq_mat_minpoly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">coeffs</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpq_mat_minpoly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set <code class="docutils literal notranslate"><span class="pre">(coeffs,</span> <span class="pre">den)</span></code> to the minimal polynomial of the given
+<span class="math notranslate nohighlight">\(n\times n\)</span> matrix and return the length of the polynomial.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpq_mat_minpoly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpq_mat_minpoly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq_poly.html#c.fmpq_poly_t" title="fmpq_poly_t"><span class="n"><span class="pre">fmpq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">pol</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpq_mat_t" title="fmpq_mat_t"><span class="n"><span class="pre">fmpq_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpq_mat_minpoly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set <code class="docutils literal notranslate"><span class="pre">pol</span></code> to the minimal polynomial of the given <span class="math notranslate nohighlight">\(n\times n\)</span>
+matrix. If <code class="docutils literal notranslate"><span class="pre">mat</span></code> is not square, an exception is raised.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a><ul>
+<li><a class="reference internal" href="#types-macros-and-constants">Types, macros and constants</a></li>
+<li><a class="reference internal" href="#memory-management">Memory management</a></li>
+<li><a class="reference internal" href="#entry-access">Entry access</a></li>
+<li><a class="reference internal" href="#basic-assignment">Basic assignment</a></li>
+<li><a class="reference internal" href="#addition-scalar-multiplication">Addition, scalar multiplication</a></li>
+<li><a class="reference internal" href="#input-and-output">Input and output</a></li>
+<li><a class="reference internal" href="#random-matrix-generation">Random matrix generation</a></li>
+<li><a class="reference internal" href="#window">Window</a></li>
+<li><a class="reference internal" href="#concatenate">Concatenate</a></li>
+<li><a class="reference internal" href="#special-matrices">Special matrices</a></li>
+<li><a class="reference internal" href="#basic-comparison-and-properties">Basic comparison and properties</a></li>
+<li><a class="reference internal" href="#integer-matrix-conversion">Integer matrix conversion</a></li>
+<li><a class="reference internal" href="#modular-reduction-and-rational-reconstruction">Modular reduction and rational reconstruction</a></li>
+<li><a class="reference internal" href="#matrix-multiplication">Matrix multiplication</a></li>
+<li><a class="reference internal" href="#kronecker-product">Kronecker product</a></li>
+<li><a class="reference internal" href="#trace">Trace</a></li>
+<li><a class="reference internal" href="#determinant">Determinant</a></li>
+<li><a class="reference internal" href="#nonsingular-solving">Nonsingular solving</a></li>
+<li><a class="reference internal" href="#inverse">Inverse</a></li>
+<li><a class="reference internal" href="#echelon-form">Echelon form</a></li>
+<li><a class="reference internal" href="#gram-schmidt-orthogonalisation">Gram-Schmidt Orthogonalisation</a></li>
+<li><a class="reference internal" href="#transforms">Transforms</a></li>
+<li><a class="reference internal" href="#characteristic-polynomial">Characteristic polynomial</a></li>
+<li><a class="reference internal" href="#minimal-polynomial">Minimal polynomial</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="fmpq_vec.html"
+                          title="previous chapter"><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="fmpq_poly.html"
+                          title="next chapter"><strong>fmpq_poly.h</strong> – univariate polynomials over the rational numbers</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/fmpq_mat.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="fmpq_poly.html" title="fmpq_poly.h – univariate polynomials over the rational numbers"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="fmpq_vec.html" title="fmpq_vec.h – vectors over rational numbers"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2018, The Flint development team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

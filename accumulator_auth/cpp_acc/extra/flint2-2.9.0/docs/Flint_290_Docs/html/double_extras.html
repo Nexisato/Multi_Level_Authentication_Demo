@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>double_extras.h – support functions for double arithmetic &#8212; Flint 2.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    
+    <script src="_static/documentation_options.js?v=182a64a0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="d_vec.h – double precision vectors" href="d_vec.html" />
+    <link rel="prev" title="qadic.h – unramified extensions over p-adic numbers" href="qadic.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="d_vec.html" title="d_vec.h – double precision vectors"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="qadic.html" title="qadic.h – unramified extensions over p-adic numbers"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>double_extras.h</strong> – support functions for double arithmetic</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="double-extras-h-support-functions-for-double-arithmetic">
+<span id="double-extras"></span><h1><strong>double_extras.h</strong> – support functions for double arithmetic<a class="headerlink" href="#double-extras-h-support-functions-for-double-arithmetic" title="Link to this heading">¶</a></h1>
+<section id="random-functions">
+<h2>Random functions<a class="headerlink" href="#random-functions" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_randtest">
+<span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_randtest</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_randtest" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a random number in the interval <span class="math notranslate nohighlight">\([0.5, 1)\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_randtest_signed">
+<span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_randtest_signed</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">minexp</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">maxexp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_randtest_signed" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a random signed number with exponent between <code class="docutils literal notranslate"><span class="pre">minexp</span></code> and
+<code class="docutils literal notranslate"><span class="pre">maxexp</span></code> or zero.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_randtest_special">
+<span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_randtest_special</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">minexp</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">maxexp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_randtest_special" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a random signed number with exponent between <code class="docutils literal notranslate"><span class="pre">minexp</span></code> and
+<code class="docutils literal notranslate"><span class="pre">maxexp</span></code>, zero, <code class="docutils literal notranslate"><span class="pre">D_NAN</span></code> or pm``D_INF``.</p>
+</dd></dl>
+
+</section>
+<section id="arithmetic">
+<h2>Arithmetic<a class="headerlink" href="#arithmetic" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_polyval">
+<span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_polyval</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">poly</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_polyval" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Uses Horner’s rule to evaluate the the polynomial defined by the given
+<code class="docutils literal notranslate"><span class="pre">len</span></code> coefficients. Requires that <code class="docutils literal notranslate"><span class="pre">len</span></code> is nonzero.</p>
+</dd></dl>
+
+</section>
+<section id="special-functions">
+<h2>Special functions<a class="headerlink" href="#special-functions" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_lambertw">
+<span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_lambertw</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_lambertw" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the principal branch of the Lambert W function, solving
+the equation <span class="math notranslate nohighlight">\(x = W(x) \exp(W(x))\)</span>. If <span class="math notranslate nohighlight">\(x &lt; -1/e\)</span>, the solution is
+complex, and NaN is returned.</p>
+<p>Depending on the magnitude of <span class="math notranslate nohighlight">\(x\)</span>, we start from a piecewise rational
+approximation or a zeroth-order truncation of the asymptotic expansion
+at infinity, and perform 0, 1 or 2 iterations with Halley’s
+method to obtain full accuracy.</p>
+<p>A test of <span class="math notranslate nohighlight">\(10^7\)</span> random inputs showed a maximum relative error smaller
+than 0.95 times <code class="docutils literal notranslate"><span class="pre">DBL_EPSILON</span></code> (<span class="math notranslate nohighlight">\(2^{-52}\)</span>) for positive <span class="math notranslate nohighlight">\(x\)</span>.
+Accuracy for negative <span class="math notranslate nohighlight">\(x\)</span> is slightly worse, and can grow to
+about 10 times <code class="docutils literal notranslate"><span class="pre">DBL_EPSILON</span></code> close to <span class="math notranslate nohighlight">\(-1/e\)</span>.
+However, accuracy may be worse depending on compiler flags and
+the accuracy of the system libm functions.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_is_nan">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_is_nan</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_is_nan" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a nonzero integral value if <code class="docutils literal notranslate"><span class="pre">x</span></code> is <code class="docutils literal notranslate"><span class="pre">D_NAN</span></code>, and otherwise
+returns 0.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.d_log2">
+<span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_log2</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.d_log2" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the base 2 logarithm of <code class="docutils literal notranslate"><span class="pre">x</span></code> provided <code class="docutils literal notranslate"><span class="pre">x</span></code> is positive. If
+a domain or pole error occurs, the appropriate error value is returned.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><strong>double_extras.h</strong> – support functions for double arithmetic</a><ul>
+<li><a class="reference internal" href="#random-functions">Random functions</a></li>
+<li><a class="reference internal" href="#arithmetic">Arithmetic</a></li>
+<li><a class="reference internal" href="#special-functions">Special functions</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="qadic.html"
+                          title="previous chapter"><strong>qadic.h</strong> – unramified extensions over p-adic numbers</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="d_vec.html"
+                          title="next chapter"><strong>d_vec.h</strong> – double precision vectors</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/double_extras.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="d_vec.html" title="d_vec.h – double precision vectors"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="qadic.html" title="qadic.h – unramified extensions over p-adic numbers"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>double_extras.h</strong> – support functions for double arithmetic</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2018, The Flint development team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>longlong.h – support functions for multi-word arithmetic &#8212; Flint 2.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    
+    <script src="_static/documentation_options.js?v=182a64a0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="mpn_extras.h – support functions for limb arrays" href="mpn_extras.html" />
+    <link rel="prev" title="long_extras.h – support functions for signed word arithmetic" href="long_extras.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="mpn_extras.html" title="mpn_extras.h – support functions for limb arrays"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="long_extras.html" title="long_extras.h – support functions for signed word arithmetic"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>longlong.h</strong> – support functions for multi-word arithmetic</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="longlong-h-support-functions-for-multi-word-arithmetic">
+<span id="longlong"></span><h1><strong>longlong.h</strong> – support functions for multi-word arithmetic<a class="headerlink" href="#longlong-h-support-functions-for-multi-word-arithmetic" title="Link to this heading">¶</a></h1>
+<section id="auxiliary-asm-macros">
+<h2>Auxiliary asm macros<a class="headerlink" href="#auxiliary-asm-macros" title="Link to this heading">¶</a></h2>
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.umul_ppmm">
+<span class="sig-name descname"><span class="n"><span class="pre">umul_ppmm</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">high_prod</span></span>, <span class="n"><span class="pre">low_prod</span></span>, <span class="n"><span class="pre">multipler</span></span>, <span class="n"><span class="pre">multiplicand</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.umul_ppmm" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Multiplies two single limb integers <code class="docutils literal notranslate"><span class="pre">MULTIPLER</span></code> and
+<code class="docutils literal notranslate"><span class="pre">MULTIPLICAND</span></code>, and generates a two limb product in
+<code class="docutils literal notranslate"><span class="pre">HIGH_PROD</span></code> and <code class="docutils literal notranslate"><span class="pre">LOW_PROD</span></code>.</p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.smul_ppmm">
+<span class="sig-name descname"><span class="n"><span class="pre">smul_ppmm</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">high_prod</span></span>, <span class="n"><span class="pre">low_prod</span></span>, <span class="n"><span class="pre">multipler</span></span>, <span class="n"><span class="pre">multiplicand</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.smul_ppmm" title="Link to this definition">¶</a><br /></dt>
+<dd><p>As for <code class="docutils literal notranslate"><span class="pre">umul_ppmm()</span></code> but the numbers are signed.</p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.udiv_qrnnd">
+<span class="sig-name descname"><span class="n"><span class="pre">udiv_qrnnd</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">quotient</span></span>, <span class="n"><span class="pre">remainder</span></span>, <span class="n"><span class="pre">high_numerator</span></span>, <span class="n"><span class="pre">low_numerator</span></span>, <span class="n"><span class="pre">denominator</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.udiv_qrnnd" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Divides an unsigned integer, composed by the limb integers
+<code class="docutils literal notranslate"><span class="pre">HIGH_NUMERATOR</span></code> and\ <code class="docutils literal notranslate"><span class="pre">LOW_NUMERATOR</span></code>, by <code class="docutils literal notranslate"><span class="pre">DENOMINATOR</span></code>
+and places the quotient in <code class="docutils literal notranslate"><span class="pre">QUOTIENT</span></code> and the remainder in
+<code class="docutils literal notranslate"><span class="pre">REMAINDER</span></code>.  <code class="docutils literal notranslate"><span class="pre">HIGH_NUMERATOR</span></code> must be less than
+<code class="docutils literal notranslate"><span class="pre">DENOMINATOR</span></code> for correct operation.</p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.sdiv_qrnnd">
+<span class="sig-name descname"><span class="n"><span class="pre">sdiv_qrnnd</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">quotient</span></span>, <span class="n"><span class="pre">remainder</span></span>, <span class="n"><span class="pre">high_numerator</span></span>, <span class="n"><span class="pre">low_numerator</span></span>, <span class="n"><span class="pre">denominator</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.sdiv_qrnnd" title="Link to this definition">¶</a><br /></dt>
+<dd><p>As for <code class="docutils literal notranslate"><span class="pre">udiv_qrnnd()</span></code> but the numbers are signed.  The quotient is
+rounded towards <span class="math notranslate nohighlight">\(0\)</span>. Note that as the quotient is signed it must lie in
+the range <span class="math notranslate nohighlight">\([-2^63, 2^63)\)</span>.</p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.count_leading_zeros">
+<span class="sig-name descname"><span class="n"><span class="pre">count_leading_zeros</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">count</span></span>, <span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.count_leading_zeros" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Counts the number of zero-bits from the msb to the first non-zero bit
+in the limb <code class="docutils literal notranslate"><span class="pre">x</span></code>.  This is the number of steps <code class="docutils literal notranslate"><span class="pre">x</span></code> needs to
+be shifted left to set the msb. If <code class="docutils literal notranslate"><span class="pre">x</span></code> is <span class="math notranslate nohighlight">\(0\)</span> then count is
+undefined.</p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.count_trailing_zeros">
+<span class="sig-name descname"><span class="n"><span class="pre">count_trailing_zeros</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">count</span></span>, <span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.count_trailing_zeros" title="Link to this definition">¶</a><br /></dt>
+<dd><p>As for <code class="docutils literal notranslate"><span class="pre">count_leading_zeros()</span></code>, but counts from the least
+significant end. If <code class="docutils literal notranslate"><span class="pre">x</span></code> is zero then count is undefined.</p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.add_ssaaaa">
+<span class="sig-name descname"><span class="n"><span class="pre">add_ssaaaa</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">high_sum</span></span>, <span class="n"><span class="pre">low_sum</span></span>, <span class="n"><span class="pre">high_addend_1</span></span>, <span class="n"><span class="pre">low_addend_1</span></span>, <span class="n"><span class="pre">high_addend_2</span></span>, <span class="n"><span class="pre">low_addend_2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.add_ssaaaa" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Adds two limb integers, composed by <code class="docutils literal notranslate"><span class="pre">HIGH_ADDEND_1</span></code> and
+<code class="docutils literal notranslate"><span class="pre">LOW_ADDEND_1</span></code>, and\ <code class="docutils literal notranslate"><span class="pre">HIGH_ADDEND_2</span></code> and <code class="docutils literal notranslate"><span class="pre">LOW_ADDEND_2</span></code>,
+respectively.  The result is placed in <code class="docutils literal notranslate"><span class="pre">HIGH_SUM</span></code> and
+<code class="docutils literal notranslate"><span class="pre">LOW_SUM</span></code>.  Overflow, i.e.carry out, is not stored anywhere,
+and is lost.</p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.add_sssaaaaaa">
+<span class="sig-name descname"><span class="n"><span class="pre">add_sssaaaaaa</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">high_sum</span></span>, <span class="n"><span class="pre">mid_sum</span></span>, <span class="n"><span class="pre">low_sum</span></span>, <span class="n"><span class="pre">high_addend_1</span></span>, <span class="n"><span class="pre">mid_addend_1</span></span>, <span class="n"><span class="pre">low_addend_1</span></span>, <span class="n"><span class="pre">high_addend_2</span></span>, <span class="n"><span class="pre">mid_addend_2</span></span>, <span class="n"><span class="pre">low_addend_2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.add_sssaaaaaa" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Adds two three limb integers. Carry out is lost.</p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.sub_ddmmss">
+<span class="sig-name descname"><span class="n"><span class="pre">sub_ddmmss</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">high_difference</span></span>, <span class="n"><span class="pre">low_difference</span></span>, <span class="n"><span class="pre">high_minuend</span></span>, <span class="n"><span class="pre">low_minuend</span></span>, <span class="n"><span class="pre">high_subtrahend</span></span>, <span class="n"><span class="pre">low_subtrahend</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.sub_ddmmss" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Subtracts two limb integers, composed by <code class="docutils literal notranslate"><span class="pre">HIGH_MINUEND_1</span></code> and
+<code class="docutils literal notranslate"><span class="pre">LOW_MINUEND_1</span></code>, and <code class="docutils literal notranslate"><span class="pre">HIGH_SUBTRAHEND_2</span></code> and
+<code class="docutils literal notranslate"><span class="pre">LOW_SUBTRAHEND_2</span></code>, respectively.  The result is placed in\
+<code class="docutils literal notranslate"><span class="pre">HIGH_DIFFERENCE</span></code> and <code class="docutils literal notranslate"><span class="pre">LOW_DIFFERENCE</span></code>.  Overflow, i.e.carry out is not stored anywhere, and is lost.</p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.sub_dddmmmsss">
+<span class="sig-name descname"><span class="n"><span class="pre">sub_dddmmmsss</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">high_diff</span></span>, <span class="n"><span class="pre">mid_diff</span></span>, <span class="n"><span class="pre">low_diff</span></span>, <span class="n"><span class="pre">high_minuend_1</span></span>, <span class="n"><span class="pre">mid_minuend_1</span></span>, <span class="n"><span class="pre">low_minuend_1</span></span>, <span class="n"><span class="pre">high_subtrahend_2</span></span>, <span class="n"><span class="pre">mid_subtrahend_2</span></span>, <span class="n"><span class="pre">low_subtrahend_2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.sub_dddmmmsss" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Subtracts two three limb integers. Borrow out is lost.</p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.byte_swap">
+<span class="sig-name descname"><span class="n"><span class="pre">byte_swap</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.byte_swap" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Swap the order of the bytes in the word <span class="math notranslate nohighlight">\(x\)</span>, i.e. most significant byte
+becomes least significant byte, etc.</p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.invert_limb">
+<span class="sig-name descname"><span class="n"><span class="pre">invert_limb</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">invxl</span></span>, <span class="n"><span class="pre">xl</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.invert_limb" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes an approximate inverse <code class="docutils literal notranslate"><span class="pre">invxl</span></code> of the limb <code class="docutils literal notranslate"><span class="pre">xl</span></code>,
+with an implicit leading~`1`. More formally it computes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">invxl</span> <span class="o">=</span> <span class="p">(</span><span class="n">B</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="n">B</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">B</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">x</span> <span class="o">-</span> <span class="n">B</span>
+</pre></div>
+</div>
+<p>Note that <span class="math notranslate nohighlight">\(x\)</span> must be normalised, i.e.with msb set. This inverse
+makes use of the following theorem of Torbjorn Granlund and Peter
+Montgomery~[Lemma~8.1][GraMon1994]_:</p>
+<p>Let <span class="math notranslate nohighlight">\(d\)</span> be normalised, <span class="math notranslate nohighlight">\(d &lt; B\)</span>, i.e.it fits in a word, and suppose
+that <span class="math notranslate nohighlight">\(m d &lt; B^2 \leq (m+1) d\)</span>. Let <span class="math notranslate nohighlight">\(0 \leq n \leq B d - 1\)</span>.  Write
+<span class="math notranslate nohighlight">\(n = n_2 B + n_1 B/2 + n_0\)</span> with <span class="math notranslate nohighlight">\(n_1 = 0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(n_0 &lt; B/2\)</span>.
+Suppose <span class="math notranslate nohighlight">\(q_1 B + q_0 = n_2 B + (n_2 + n_1) (m - B) + n_1 (d-B/2) + n_0\)</span>
+and <span class="math notranslate nohighlight">\(0 \leq q_0 &lt; B\)</span>. Then <span class="math notranslate nohighlight">\(0 \leq q_1 &lt; B\)</span> and <span class="math notranslate nohighlight">\(0 \leq n - q_1 d &lt; 2 d\)</span>.</p>
+<p>In the theorem, <span class="math notranslate nohighlight">\(m\)</span> is the inverse of <span class="math notranslate nohighlight">\(d\)</span>. If we let
+<code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">=</span> <span class="pre">invxl</span> <span class="pre">+</span> <span class="pre">B</span></code> and <span class="math notranslate nohighlight">\(d = x\)</span> we have <span class="math notranslate nohighlight">\(m d = B^2 - 1 &lt; B^2\)</span> and
+<span class="math notranslate nohighlight">\((m+1) x = B^2 + d - 1 \geq B^2\)</span>.</p>
+<p>The theorem is often applied as follows: note that <span class="math notranslate nohighlight">\(n_0\)</span> and <span class="math notranslate nohighlight">\(n_1 (d-B/2)\)</span>
+are both less than <span class="math notranslate nohighlight">\(B/2\)</span>. Also note that <span class="math notranslate nohighlight">\(n_1 (m-B) &lt; B\)</span>. Thus the sum of
+all these terms contributes at most <span class="math notranslate nohighlight">\(1\)</span> to <span class="math notranslate nohighlight">\(q_1\)</span>. We are left with
+<span class="math notranslate nohighlight">\(n_2 B + n_2 (m-B)\)</span>. But note that <span class="math notranslate nohighlight">\((m-B)\)</span> is precisely our precomputed
+inverse <code class="docutils literal notranslate"><span class="pre">invxl</span></code>. If we write <span class="math notranslate nohighlight">\(q_1 B + q_0 = n_2 B + n_2 (m-B)\)</span>,
+then from the theorem, we have <span class="math notranslate nohighlight">\(0 \leq n - q_1 d &lt; 3 d\)</span>, i.e.the
+quotient is out by at most <span class="math notranslate nohighlight">\(2\)</span> and is always either correct or too small.</p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.udiv_qrnnd_preinv">
+<span class="sig-name descname"><span class="n"><span class="pre">udiv_qrnnd_preinv</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">q</span></span>, <span class="n"><span class="pre">r</span></span>, <span class="n"><span class="pre">nh</span></span>, <span class="n"><span class="pre">nl</span></span>, <span class="n"><span class="pre">d</span></span>, <span class="n"><span class="pre">di</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.udiv_qrnnd_preinv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>As for <code class="docutils literal notranslate"><span class="pre">udiv_qrnnd()</span></code> but takes a precomputed inverse <code class="docutils literal notranslate"><span class="pre">di</span></code> as
+computed by <code class="docutils literal notranslate"><span class="pre">invert_limb()</span></code>. The algorithm, in terms of the theorem
+above, is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nadj</span> <span class="o">=</span> <span class="n">n1</span><span class="o">*</span><span class="p">(</span><span class="n">d</span><span class="o">-</span><span class="n">B</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">n0</span>
+<span class="n">xh</span><span class="p">,</span> <span class="n">xl</span> <span class="o">=</span> <span class="p">(</span><span class="n">n2</span><span class="o">+</span><span class="n">n1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">m</span><span class="o">-</span><span class="n">B</span><span class="p">)</span>
+<span class="n">xh</span><span class="p">,</span> <span class="n">xl</span> <span class="o">+=</span> <span class="n">nadj</span> <span class="o">+</span> <span class="n">n2</span><span class="o">*</span><span class="n">B</span> <span class="p">(</span> <span class="n">xh</span><span class="p">,</span> <span class="n">xl</span> <span class="o">=</span> <span class="n">n2</span><span class="o">*</span><span class="n">B</span> <span class="o">+</span> <span class="p">(</span><span class="n">n2</span><span class="o">+</span><span class="n">n1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">m</span><span class="o">-</span><span class="n">B</span><span class="p">)</span> <span class="o">+</span> <span class="n">n1</span><span class="o">*</span><span class="p">(</span><span class="n">d</span><span class="o">-</span><span class="n">B</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">n0</span> <span class="p">)</span>
+<span class="n">_q1</span> <span class="o">=</span> <span class="n">B</span> <span class="o">-</span> <span class="n">xh</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">xh</span><span class="p">,</span> <span class="n">xl</span> <span class="o">=</span> <span class="n">_q1</span><span class="o">*</span><span class="n">d</span> <span class="o">+</span> <span class="n">nh</span><span class="p">,</span> <span class="n">nl</span> <span class="o">-</span> <span class="n">B</span><span class="o">*</span><span class="n">d</span> <span class="o">=</span> <span class="n">nh</span><span class="p">,</span> <span class="n">nl</span> <span class="o">-</span> <span class="n">q1</span><span class="o">*</span><span class="n">d</span> <span class="o">-</span> <span class="n">d</span> <span class="n">so</span> <span class="n">that</span> <span class="n">xh</span> <span class="o">=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">xl</span> <span class="o">+</span> <span class="n">xh</span><span class="o">*</span><span class="n">d</span> <span class="n">where</span> <span class="n">xh</span> <span class="ow">is</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">q1</span> <span class="ow">is</span> <span class="n">off</span> <span class="n">by</span> <span class="mi">1</span><span class="p">,</span> <span class="n">otherwise</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">xh</span> <span class="o">-</span> <span class="n">_q1</span> <span class="o">=</span> <span class="n">xh</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">n2</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><strong>longlong.h</strong> – support functions for multi-word arithmetic</a><ul>
+<li><a class="reference internal" href="#auxiliary-asm-macros">Auxiliary asm macros</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="long_extras.html"
+                          title="previous chapter"><strong>long_extras.h</strong> – support functions for signed word arithmetic</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="mpn_extras.html"
+                          title="next chapter"><strong>mpn_extras.h</strong> – support functions for limb arrays</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/longlong.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="mpn_extras.html" title="mpn_extras.h – support functions for limb arrays"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="long_extras.html" title="long_extras.h – support functions for signed word arithmetic"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>longlong.h</strong> – support functions for multi-word arithmetic</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2018, The Flint development team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

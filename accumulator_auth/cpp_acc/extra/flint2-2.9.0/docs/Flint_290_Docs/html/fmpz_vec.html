@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>fmpz_vec.h – vectors of integers &#8212; Flint 2.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    
+    <script src="_static/documentation_options.js?v=182a64a0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="fmpz_factor.h – integer factorisation" href="fmpz_factor.html" />
+    <link rel="prev" title="fmpz.h – integers" href="fmpz.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="fmpz_factor.html" title="fmpz_factor.h – integer factorisation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="fmpz.html" title="fmpz.h – integers"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>fmpz_vec.h</strong> – vectors of integers</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="fmpz-vec-h-vectors-of-integers">
+<span id="fmpz-vec"></span><h1><strong>fmpz_vec.h</strong> – vectors of integers<a class="headerlink" href="#fmpz-vec-h-vectors-of-integers" title="Link to this heading">¶</a></h1>
+<p>Description.</p>
+<section id="memory-management">
+<h2>Memory management<a class="headerlink" href="#memory-management" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_init">
+<a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_init</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns an initialised vector of <code class="docutils literal notranslate"><span class="pre">fmpz</span></code>’s of given length.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears the entries of <code class="docutils literal notranslate"><span class="pre">(vec,</span> <span class="pre">len)</span></code> and frees the space allocated
+for <code class="docutils literal notranslate"><span class="pre">vec</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="randomisation">
+<h2>Randomisation<a class="headerlink" href="#randomisation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_randtest">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_randtest</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="n"><span class="pre">flint_bitcnt_t</span></span><span class="w"> </span><span class="n"><span class="pre">bits</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_randtest" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the entries of a vector of the given length to random integers with
+up to the given number of bits per entry.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_randtest_unsigned">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_randtest_unsigned</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="n"><span class="pre">flint_bitcnt_t</span></span><span class="w"> </span><span class="n"><span class="pre">bits</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_randtest_unsigned" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the entries of a vector of the given length to random unsigned
+integers with up to the given number of bits per entry.</p>
+</dd></dl>
+
+</section>
+<section id="bit-sizes-and-norms">
+<h2>Bit sizes and norms<a class="headerlink" href="#bit-sizes-and-norms" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_max_bits">
+<span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_max_bits</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_max_bits" title="Link to this definition">¶</a><br /></dt>
+<dd><p>If <span class="math notranslate nohighlight">\(b\)</span> is the maximum number of bits of the absolute value of any
+coefficient of <code class="docutils literal notranslate"><span class="pre">vec</span></code>, then if any coefficient of <code class="docutils literal notranslate"><span class="pre">vec</span></code> is
+negative, <span class="math notranslate nohighlight">\(-b\)</span> is returned, else <span class="math notranslate nohighlight">\(b\)</span> is returned.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_max_bits_ref">
+<span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_max_bits_ref</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_max_bits_ref" title="Link to this definition">¶</a><br /></dt>
+<dd><p>If <span class="math notranslate nohighlight">\(b\)</span> is the maximum number of bits of the absolute value of any
+coefficient of <code class="docutils literal notranslate"><span class="pre">vec</span></code>, then if any coefficient of <code class="docutils literal notranslate"><span class="pre">vec</span></code> is
+negative, <span class="math notranslate nohighlight">\(-b\)</span> is returned, else <span class="math notranslate nohighlight">\(b\)</span> is returned.
+This is a slower reference implementation of <code class="docutils literal notranslate"><span class="pre">_fmpz_vec_max_bits</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_sum_max_bits">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_sum_max_bits</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">sumabs</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">maxabs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_sum_max_bits" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">sumabs</span></code> to the bit count of the sum of the absolute values of
+the elements of <code class="docutils literal notranslate"><span class="pre">vec</span></code>. Sets <code class="docutils literal notranslate"><span class="pre">maxabs</span></code> to the bit count of the
+maximum of the absolute values of the elements of <code class="docutils literal notranslate"><span class="pre">vec</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_max_limbs">
+<span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_max_limbs</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_max_limbs" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the maximum number of limbs needed to store the absolute value
+of any entry in <code class="docutils literal notranslate"><span class="pre">(vec,</span> <span class="pre">len)</span></code>.  If all entries are zero, returns
+zero.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_height">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_height</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">height</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_height" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the height of <code class="docutils literal notranslate"><span class="pre">(vec,</span> <span class="pre">len)</span></code>, defined as the largest of the
+absolute values the coefficients. Equivalently, this gives the infinity
+norm of the vector. If <code class="docutils literal notranslate"><span class="pre">len</span></code> is zero, the height is <span class="math notranslate nohighlight">\(0\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_height_index">
+<span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_height_index</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_height_index" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the index of an entry of maximum absolute value in the vector.
+The the length must be at least 1.</p>
+</dd></dl>
+
+</section>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_fread">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_fread</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FILE</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">file</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_fread" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Reads a vector from the stream <code class="docutils literal notranslate"><span class="pre">file</span></code> and stores it at
+<code class="docutils literal notranslate"><span class="pre">*vec</span></code>.  The format is the same as the output format of
+<code class="docutils literal notranslate"><span class="pre">_fmpz_vec_fprint()</span></code>, followed by either any character
+or the end of the file.</p>
+<p>The interpretation of the various input arguments depends on whether
+or not <code class="docutils literal notranslate"><span class="pre">*vec</span></code> is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>:</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">*vec</span> <span class="pre">==</span> <span class="pre">NULL</span></code>, the value of <code class="docutils literal notranslate"><span class="pre">*len</span></code> on input is ignored.
+Once the length has been read from <code class="docutils literal notranslate"><span class="pre">file</span></code>, <code class="docutils literal notranslate"><span class="pre">*len</span></code> is set
+to that value and a vector of this length is allocated at <code class="docutils literal notranslate"><span class="pre">*vec</span></code>.
+Finally, <code class="docutils literal notranslate"><span class="pre">*len</span></code> coefficients are read from the input stream.  In
+case of a file or parsing error, clears the vector and sets <code class="docutils literal notranslate"><span class="pre">*vec</span></code>
+and <code class="docutils literal notranslate"><span class="pre">*len</span></code> to <code class="docutils literal notranslate"><span class="pre">NULL</span></code> and <code class="docutils literal notranslate"><span class="pre">0</span></code>, respectively.</p>
+<p>Otherwise, if <code class="docutils literal notranslate"><span class="pre">*vec</span> <span class="pre">!=</span> <span class="pre">NULL</span></code>, it is assumed that <code class="docutils literal notranslate"><span class="pre">(*vec,</span> <span class="pre">*len)</span></code>
+is a properly initialised vector.  If the length on the input stream
+does not match <code class="docutils literal notranslate"><span class="pre">*len</span></code>, a parsing error is raised.  Attempts to read
+the right number of coefficients from the input stream.  In case of a
+file or parsing error, leaves the vector <code class="docutils literal notranslate"><span class="pre">(*vec,</span> <span class="pre">*len)</span></code> in its
+current state.</p>
+<p>In case of success, returns a positive value.  In case of failure,
+returns a non-positive value.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_read">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_read</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_read" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Reads a vector from <code class="docutils literal notranslate"><span class="pre">stdin</span></code> and stores it at <code class="docutils literal notranslate"><span class="pre">*vec</span></code>.</p>
+<p>For further details, see <code class="docutils literal notranslate"><span class="pre">_fmpz_vec_fread()</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_fprint">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_fprint</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FILE</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">file</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_fprint" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints the vector of given length to the stream <code class="docutils literal notranslate"><span class="pre">file</span></code>. The
+format is the length followed by two spaces, then a space separated
+list of coefficients. If the length is zero, only <span class="math notranslate nohighlight">\(0\)</span> is printed.</p>
+<p>In case of success, returns a positive value.  In case of failure,
+returns a non-positive value.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_print">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_print</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_print" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints the vector of given length to <code class="docutils literal notranslate"><span class="pre">stdout</span></code>.</p>
+<p>For further details, see <code class="docutils literal notranslate"><span class="pre">_fmpz_vec_fprint()</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="conversions">
+<h2>Conversions<a class="headerlink" href="#conversions" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_get_nmod_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_get_nmod_vec</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">poly</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="n"><span class="pre">nmod_t</span></span><span class="w"> </span><span class="n"><span class="pre">mod</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_get_nmod_vec" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Reduce the coefficients of <code class="docutils literal notranslate"><span class="pre">(poly,</span> <span class="pre">len)</span></code> modulo the given
+modulus and set <code class="docutils literal notranslate"><span class="pre">(res,</span> <span class="pre">len)</span></code> to the result.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_set_nmod_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_set_nmod_vec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">res</span></span>, <span class="n"><span class="pre">mp_srcptr</span></span><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="n"><span class="pre">nmod_t</span></span><span class="w"> </span><span class="n"><span class="pre">mod</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_set_nmod_vec" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set the coefficients of <code class="docutils literal notranslate"><span class="pre">(res,</span> <span class="pre">len)</span></code> to the symmetric modulus
+of the coefficients of <code class="docutils literal notranslate"><span class="pre">(poly,</span> <span class="pre">len)</span></code>, i.e. convert the given
+coefficients modulo the given modulus <span class="math notranslate nohighlight">\(n\)</span> to their signed integer
+representatives in the range <span class="math notranslate nohighlight">\([-n/2, n/2)\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_get_fft">
+<span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_get_fft</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mp_limb_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">coeffs_f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">coeffs_m</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">l</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">length</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_get_fft" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Convert the vector of coeffs <code class="docutils literal notranslate"><span class="pre">coeffs_m</span></code> to an fft vector
+<code class="docutils literal notranslate"><span class="pre">coeffs_f</span></code> of the given <code class="docutils literal notranslate"><span class="pre">length</span></code> with <code class="docutils literal notranslate"><span class="pre">l</span></code> limbs per
+coefficient with an additional limb for overflow.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_set_fft">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_set_fft</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">coeffs_m</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">length</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">coeffs_f</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">limbs</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">sign</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_set_fft" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Convert an fft vector <code class="docutils literal notranslate"><span class="pre">coeffs_f</span></code> of fully reduced Fermat numbers of the
+given <code class="docutils literal notranslate"><span class="pre">length</span></code> to a vector of <code class="docutils literal notranslate"><span class="pre">fmpz</span></code>’s. Each is assumed to be the given
+number of limbs in length with an additional limb for overflow. If the
+output coefficients are to be signed then set <code class="docutils literal notranslate"><span class="pre">sign</span></code>, otherwise clear it.
+The resulting <code class="docutils literal notranslate"><span class="pre">fmpz``s</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">range</span> <span class="pre">`[-n,n]`</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">signed</span> <span class="pre">case</span>
+<span class="pre">and</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">range</span> <span class="pre">`[0,2n]`</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">unsigned</span> <span class="pre">case</span> <span class="pre">where</span>
+<span class="pre">``n</span> <span class="pre">=</span> <span class="pre">2^(FLINT_BITS*limbs</span> <span class="pre">-</span> <span class="pre">1)</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_get_d_vec_2exp">
+<span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_get_d_vec_2exp</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">appv</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_get_d_vec_2exp" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Export the array of <code class="docutils literal notranslate"><span class="pre">len</span></code> entries starting at the pointer <code class="docutils literal notranslate"><span class="pre">vec</span></code>
+to an array of doubles <code class="docutils literal notranslate"><span class="pre">appv</span></code>, each entry of which is notionally
+multiplied by a single returned exponent to give the original entry. The
+returned exponent is set to be the maximum exponent of all the original
+entries so that all the doubles in <code class="docutils literal notranslate"><span class="pre">appv</span></code> have a maximum absolute
+value of 1.0.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_get_mpf_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_get_mpf_vec</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mpf</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">appv</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_get_mpf_vec" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Export the array of <code class="docutils literal notranslate"><span class="pre">len</span></code> entries starting at the pointer <code class="docutils literal notranslate"><span class="pre">vec</span></code>
+to an array of mpfs <code class="docutils literal notranslate"><span class="pre">appv</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="assignment-and-basic-manipulation">
+<h2>Assignment and basic manipulation<a class="headerlink" href="#assignment-and-basic-manipulation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_set">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_set</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_set" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Makes a copy of <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> into <code class="docutils literal notranslate"><span class="pre">vec1</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_swap">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_swap" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Swaps the integers in <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code> and <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_zero">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_zero</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_zero" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Zeros the entries of <code class="docutils literal notranslate"><span class="pre">(vec,</span> <span class="pre">len)</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_neg">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_neg</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_neg" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Negates <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> and places it into <code class="docutils literal notranslate"><span class="pre">vec1</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_abs">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_abs</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_abs" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Takes the absolute value of entries in <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> and places the
+result into <code class="docutils literal notranslate"><span class="pre">vec1</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="comparison">
+<h2>Comparison<a class="headerlink" href="#comparison" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_equal">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_equal</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_equal" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Compares two vectors of the given length and returns <span class="math notranslate nohighlight">\(1\)</span> if they are
+equal, otherwise returns <span class="math notranslate nohighlight">\(0\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_is_zero">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_is_zero</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_is_zero" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns <span class="math notranslate nohighlight">\(1\)</span> if <code class="docutils literal notranslate"><span class="pre">(vec,</span> <span class="pre">len)</span></code> is zero, and <span class="math notranslate nohighlight">\(0\)</span> otherwise.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_max">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_max</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec3</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_max" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">vec1</span></code> to the pointwise maximum of <code class="docutils literal notranslate"><span class="pre">vec2</span></code> and <code class="docutils literal notranslate"><span class="pre">vec3</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_max_inplace">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_max_inplace</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_max_inplace" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">vec1</span></code> to the pointwise maximum of <code class="docutils literal notranslate"><span class="pre">vec1</span></code> and <code class="docutils literal notranslate"><span class="pre">vec2</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="sorting">
+<h2>Sorting<a class="headerlink" href="#sorting" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_sort">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_sort</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_sort" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sorts the coefficients of <code class="docutils literal notranslate"><span class="pre">vec</span></code> in ascending order.</p>
+</dd></dl>
+
+</section>
+<section id="addition-and-subtraction">
+<h2>Addition and subtraction<a class="headerlink" href="#addition-and-subtraction" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_add">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_add</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_add" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(res,</span> <span class="pre">len2)</span></code> to the sum of <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code>
+and <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_sub">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_sub</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_sub" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(res,</span> <span class="pre">len2)</span></code> to <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code> minus <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="scalar-multiplication-and-division">
+<h2>Scalar multiplication and division<a class="headerlink" href="#scalar-multiplication-and-division" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_mul_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_mul_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_mul_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code> to <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> multiplied by <span class="math notranslate nohighlight">\(c\)</span>,
+where <span class="math notranslate nohighlight">\(c\)</span> is an <code class="docutils literal notranslate"><span class="pre">fmpz_t</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_mul_si">
+<span class="n"><span class="pre">id</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_mul_si</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_mul_si" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code> to <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> multiplied by <span class="math notranslate nohighlight">\(c\)</span>,
+where <span class="math notranslate nohighlight">\(c\)</span> is a <code class="docutils literal notranslate"><span class="pre">slong</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_mul_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_mul_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_mul_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code> to <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> multiplied by <span class="math notranslate nohighlight">\(c\)</span>,
+where <span class="math notranslate nohighlight">\(c\)</span> is an <code class="docutils literal notranslate"><span class="pre">ulong</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_mul_2exp">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_mul_2exp</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">exp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_mul_2exp" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code> to <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> multiplied by <code class="docutils literal notranslate"><span class="pre">2^exp</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_divexact_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_divexact_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_divexact_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code> to <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> divided by <span class="math notranslate nohighlight">\(x\)</span>, where the
+division is assumed to be exact for every entry in <code class="docutils literal notranslate"><span class="pre">vec2</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_divexact_si">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_divexact_si</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_divexact_si" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code> to <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> divided by <span class="math notranslate nohighlight">\(x\)</span>, where the
+division is assumed to be exact for every entry in <code class="docutils literal notranslate"><span class="pre">vec2</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_divexact_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_divexact_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_divexact_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code> to <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> divided by <span class="math notranslate nohighlight">\(x\)</span>, where the
+division is assumed to be exact for every entry in <code class="docutils literal notranslate"><span class="pre">vec2</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_fdiv_q_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_fdiv_q_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_fdiv_q_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code> to <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> divided by <span class="math notranslate nohighlight">\(c\)</span>, rounding
+down towards minus infinity whenever the division is not exact.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_fdiv_q_si">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_fdiv_q_si</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_fdiv_q_si" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code> to <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> divided by <span class="math notranslate nohighlight">\(c\)</span>, rounding
+down towards minus infinity whenever the division is not exact.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_fdiv_q_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_fdiv_q_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_fdiv_q_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code> to <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> divided by <span class="math notranslate nohighlight">\(c\)</span>, rounding
+down towards minus infinity whenever the division is not exact.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_fdiv_q_2exp">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_fdiv_q_2exp</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">exp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_fdiv_q_2exp" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code> to <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> divided by <code class="docutils literal notranslate"><span class="pre">2^exp</span></code>,
+rounding down towards minus infinity whenever the division is not exact.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_fdiv_r_2exp">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_fdiv_r_2exp</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">exp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_fdiv_r_2exp" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code> to the remainder of <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code>
+divided by <code class="docutils literal notranslate"><span class="pre">2^exp</span></code>, rounding down the quotient towards minus
+infinity whenever the division is not exact.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_tdiv_q_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_tdiv_q_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_tdiv_q_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code> to <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> divided by <span class="math notranslate nohighlight">\(c\)</span>, rounding
+towards zero whenever the division is not exact.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_tdiv_q_si">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_tdiv_q_si</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_tdiv_q_si" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code> to <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> divided by <span class="math notranslate nohighlight">\(c\)</span>, rounding
+towards zero whenever the division is not exact.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_tdiv_q_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_tdiv_q_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_tdiv_q_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code> to <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> divided by <span class="math notranslate nohighlight">\(c\)</span>, rounding
+towards zero whenever the division is not exact.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_tdiv_q_2exp">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_tdiv_q_2exp</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">exp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_tdiv_q_2exp" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code> to <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> divided by <code class="docutils literal notranslate"><span class="pre">2^exp</span></code>,
+rounding down towards zero whenever the division is not exact.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_addmul_si">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_addmul_si</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_addmul_si" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_addmul_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_addmul_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_addmul_ui" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_addmul_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_addmul_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_addmul_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Adds <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> times <span class="math notranslate nohighlight">\(c\)</span> to <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_addmul_si_2exp">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_addmul_si_2exp</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">exp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_addmul_si_2exp" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Adds <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> times <code class="docutils literal notranslate"><span class="pre">c</span> <span class="pre">*</span> <span class="pre">2^exp</span></code> to <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code>,
+where <span class="math notranslate nohighlight">\(c\)</span> is a <code class="docutils literal notranslate"><span class="pre">slong</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_submul_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_submul_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_submul_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Subtracts <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> times <span class="math notranslate nohighlight">\(c\)</span> from <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code>,
+where <span class="math notranslate nohighlight">\(c\)</span> is a <code class="docutils literal notranslate"><span class="pre">fmpz_t</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_submul_si">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_submul_si</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_submul_si" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Subtracts <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> times <span class="math notranslate nohighlight">\(c\)</span> from <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code>,
+where <span class="math notranslate nohighlight">\(c\)</span> is a <code class="docutils literal notranslate"><span class="pre">slong</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_submul_si_2exp">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_submul_si_2exp</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">e</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_submul_si_2exp" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Subtracts <code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code> times <span class="math notranslate nohighlight">\(c \times 2^e\)</span>
+from <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code>, where <span class="math notranslate nohighlight">\(c\)</span> is a <code class="docutils literal notranslate"><span class="pre">slong</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="sums-and-products">
+<h2>Sums and products<a class="headerlink" href="#sums-and-products" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_sum">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_sum</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_sum" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the sum of the entries in <code class="docutils literal notranslate"><span class="pre">(vec,</span> <span class="pre">len)</span></code>.
+Aliasing of <code class="docutils literal notranslate"><span class="pre">res</span></code> with the entries in <code class="docutils literal notranslate"><span class="pre">vec</span></code> is not permitted.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_prod">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_prod</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_prod" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the product of the entries in <code class="docutils literal notranslate"><span class="pre">(vec,</span> <span class="pre">len)</span></code>.
+Aliasing of <code class="docutils literal notranslate"><span class="pre">res</span></code> with the entries in <code class="docutils literal notranslate"><span class="pre">vec</span></code> is not permitted.
+Uses binary splitting.</p>
+</dd></dl>
+
+</section>
+<section id="reduction-mod-p">
+<h2>Reduction mod <span class="math notranslate nohighlight">\(p\)</span><a class="headerlink" href="#reduction-mod-p" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_mod_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_mod_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_mod_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Reduces all entries in <code class="docutils literal notranslate"><span class="pre">(vec,</span> <span class="pre">len)</span></code> modulo <span class="math notranslate nohighlight">\(p &gt; 0\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_scalar_smod_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_scalar_smod_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_scalar_smod_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Reduces all entries in <code class="docutils literal notranslate"><span class="pre">(vec,</span> <span class="pre">len)</span></code> modulo <span class="math notranslate nohighlight">\(p &gt; 0\)</span>, choosing
+the unique representative in <span class="math notranslate nohighlight">\((-p/2, p/2]\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="gaussian-content">
+<h2>Gaussian content<a class="headerlink" href="#gaussian-content" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_content">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_content</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_content" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the non-negative content of the entries in <code class="docutils literal notranslate"><span class="pre">vec</span></code>.
+The content of a zero vector, including the case when the length is zero,
+is defined to be zero.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_content_chained">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_content_chained</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">input</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_content_chained" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the non-negative content of <code class="docutils literal notranslate"><span class="pre">input</span></code> and the entries in <code class="docutils literal notranslate"><span class="pre">vec</span></code>.
+This is useful for calculating the common content of several vectors.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_lcm">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_lcm</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_lcm" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the nonnegative least common multiple of the entries
+in <code class="docutils literal notranslate"><span class="pre">vec</span></code>. The least common multiple is zero if any entry in
+the vector is zero. The least common multiple of a length zero vector is
+defined to be one.</p>
+</dd></dl>
+
+</section>
+<section id="dot-product">
+<h2>Dot product<a class="headerlink" href="#dot-product" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_dot">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_dot</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len2</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the dot product of <code class="docutils literal notranslate"><span class="pre">(vec1,</span> <span class="pre">len2)</span></code> and
+<code class="docutils literal notranslate"><span class="pre">(vec2,</span> <span class="pre">len2)</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_vec_dot_ptr">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_vec_dot_ptr</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">vec1</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">vec2</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">offset</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_vec_dot_ptr" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the dot product of <code class="docutils literal notranslate"><span class="pre">len</span></code> values at <code class="docutils literal notranslate"><span class="pre">vec1</span></code> and the
+<code class="docutils literal notranslate"><span class="pre">len</span></code> values <code class="docutils literal notranslate"><span class="pre">vec2[i]</span> <span class="pre">+</span> <span class="pre">offset</span></code> for <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">\leq</span> <span class="pre">i</span> <span class="pre">&lt;</span> <span class="pre">len</span></code>.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><strong>fmpz_vec.h</strong> – vectors of integers</a><ul>
+<li><a class="reference internal" href="#memory-management">Memory management</a></li>
+<li><a class="reference internal" href="#randomisation">Randomisation</a></li>
+<li><a class="reference internal" href="#bit-sizes-and-norms">Bit sizes and norms</a></li>
+<li><a class="reference internal" href="#input-and-output">Input and output</a></li>
+<li><a class="reference internal" href="#conversions">Conversions</a></li>
+<li><a class="reference internal" href="#assignment-and-basic-manipulation">Assignment and basic manipulation</a></li>
+<li><a class="reference internal" href="#comparison">Comparison</a></li>
+<li><a class="reference internal" href="#sorting">Sorting</a></li>
+<li><a class="reference internal" href="#addition-and-subtraction">Addition and subtraction</a></li>
+<li><a class="reference internal" href="#scalar-multiplication-and-division">Scalar multiplication and division</a></li>
+<li><a class="reference internal" href="#sums-and-products">Sums and products</a></li>
+<li><a class="reference internal" href="#reduction-mod-p">Reduction mod <span class="math notranslate nohighlight">\(p\)</span></a></li>
+<li><a class="reference internal" href="#gaussian-content">Gaussian content</a></li>
+<li><a class="reference internal" href="#dot-product">Dot product</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="fmpz.html"
+                          title="previous chapter"><strong>fmpz.h</strong> – integers</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="fmpz_factor.html"
+                          title="next chapter"><strong>fmpz_factor.h</strong> – integer factorisation</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/fmpz_vec.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="fmpz_factor.html" title="fmpz_factor.h – integer factorisation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="fmpz.html" title="fmpz.h – integers"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>fmpz_vec.h</strong> – vectors of integers</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2018, The Flint development team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

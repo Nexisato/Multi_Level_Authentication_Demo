@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Threading &#8212; Flint 2.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    
+    <script src="_static/documentation_options.js?v=182a64a0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="flint.h – global definitions" href="flint.html" />
+    <link rel="prev" title="Portability" href="portability.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="flint.html" title="flint.h – global definitions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="portability.html" title="Portability"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>Threading</strong></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="threading">
+<span id="id1"></span><h1><strong>Threading</strong><a class="headerlink" href="#threading" title="Link to this heading">¶</a></h1>
+<section id="multithreaded-flint">
+<h2>Multithreaded FLINT<a class="headerlink" href="#multithreaded-flint" title="Link to this heading">¶</a></h2>
+<p>FLINT provides a number of multithreaded functions, which use multiple threads
+by default if FLINT was built with at least pthreads. (This functionality works
+best when thread local storage is also available on the system.)</p>
+<p>By default, FLINT will just use one thread. To control the maximum number of
+threads FLINT uses, one can call the function <code class="docutils literal notranslate"><span class="pre">flint_set_num_threads(n)</span></code>,
+where <span class="math notranslate nohighlight">\(n\)</span> is the maximum number of threads to use.</p>
+<p>One can also query the current thread limit by calling
+<code class="docutils literal notranslate"><span class="pre">flint_get_num_threads()</span></code>.</p>
+<p>Each version of FLINT brings new functions that are threaded by default.</p>
+<p>Many core algorithms such as the FFT (for large integer and polynomial
+operations, including some factoring algorithms), integer factoring and
+multivariate polynomial algorithms are threaded in FLINT.</p>
+</section>
+<section id="writing-threaded-functions-in-flint">
+<h2>Writing threaded functions in FLINT<a class="headerlink" href="#writing-threaded-functions-in-flint" title="Link to this heading">¶</a></h2>
+<p>Flint uses a custom thread pool for threading. This involves creating a worker
+function, requesting threads from the thread pool, starting the threads,
+waiting for them to finish, then giving the threads back to the pool. Simple
+examples of this include <code class="docutils literal notranslate"><span class="pre">fmpz_mod_mat_mul_classical_threaded</span></code> and
+<code class="docutils literal notranslate"><span class="pre">fmpz_poly_taylor_shift_multi_mod</span></code>.</p>
+<p>The user should not have to run specialised versions of functions to get
+threading. This means that user facing functions should generally not have
+<code class="docutils literal notranslate"><span class="pre">_threaded</span></code> appended to their name. Either there is a single function that does
+the job, and it happens to be threaded, or there is a best-of-breed function
+that calls the appropriate threaded function when this is the best strategy.</p>
+<p>There are some instances where it may be desirable (e.g. for testing purposes,
+or because naming proves difficult) where one wants a _threaded in the name.
+But these cases should be rare.</p>
+<p>In some cases, one does not want functions to request threads from the pool
+themselves, but to accept threads from another function which has already
+obtained them. Such functions will accept an array of thread pool handles
+and a number of threads. The naming convention for such functions is to append
+<code class="docutils literal notranslate"><span class="pre">_threaded_pool</span></code> to the end of their name. However, the usual distinctions
+between underscore and non-underscore functions should still apply.</p>
+<p>Functions should request <code class="docutils literal notranslate"><span class="pre">flint_get_num_threads()</span></code> threads from the thread pool.
+The function should not exceed this number of threads in total. In general a
+thread that is woken should start zero additional workers. However, if this is
+not the desired behaviour, an option exists to the function for waking worker
+threads to alter how many threads it can start. In some cases it is also
+necessary to temporarily restrict the number of worker threads a given function
+can start. This is accomplished by calling flint_set_num_workers() and then
+once the function is called, calling flint_reset_num_workers(). Any function
+threaded function which calls flint_get_num_threads() to determine how many
+threads to request from the thread pool will be appropriately restricted by
+such calls.</p>
+<p>Note that if <code class="docutils literal notranslate"><span class="pre">flint_get_num_threads()</span></code> returns <code class="docutils literal notranslate"><span class="pre">n</span></code> then the number of workers that
+can be started is <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">-</span> <span class="pre">1</span></code> (in addition to the thread the function is already
+running in). For this reason our documentation often distinguishes number of
+workers and number of threads. Please refer to the thread pool interface and
+Flint threading interface documentation to see the exact specification.</p>
+</section>
+<section id="functional-parallel-programming-helpers">
+<h2>Functional parallel programming helpers<a class="headerlink" href="#functional-parallel-programming-helpers" title="Link to this heading">¶</a></h2>
+<p>The following convenience function are defined in <code class="docutils literal notranslate"><span class="pre">thread_support.h</span></code>.
+They are currently experimental, and
+the interfaces might change in a future version.</p>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.do_func_t">
+<span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">do_func_t</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#c.do_func_t" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.flint_parallel_do">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flint_parallel_do</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.do_func_t" title="do_func_t"><span class="n"><span class="pre">do_func_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">thread_limit</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_parallel_do" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Evaluate <code class="docutils literal notranslate"><span class="pre">f(i,</span> <span class="pre">args)</span></code> for <span class="math notranslate nohighlight">\(0 \le i &lt; n - 1\)</span> in parallel using
+up to <code class="docutils literal notranslate"><span class="pre">thread_limits</span></code> threads (including the master thread).
+If <em>thread_limit</em> is nonpositive, the number of threads defaults to
+<code class="docutils literal notranslate"><span class="pre">flint_get_num_threads()</span></code>.</p>
+<p>The following <code class="docutils literal notranslate"><span class="pre">flags</span></code> are supported:</p>
+<p><code class="docutils literal notranslate"><span class="pre">FLINT_PARALLEL_UNIFORM</span></code> - assumes that the cost of function
+calls is roughly constant, so that scheduling uniformly into
+blocks is efficient.</p>
+<p><code class="docutils literal notranslate"><span class="pre">FLINT_PARALLEL_STRIDED</span></code> - assumes that the cost increases
+or decreases monotonically with <code class="docutils literal notranslate"><span class="pre">i</span></code>, so that strided
+scheduling is efficient.</p>
+<p><code class="docutils literal notranslate"><span class="pre">FLINT_PARALLEL_DYNAMIC</span></code> (not implemented) - use dynamic
+scheduling.</p>
+<p><code class="docutils literal notranslate"><span class="pre">FLINT_PARALLEL_VERBOSE</span></code> - print information.</p>
+</dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.bsplit_merge_func_t">
+<span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">bsplit_merge_func_t</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">void</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#c.bsplit_merge_func_t" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.bsplit_basecase_func_t">
+<span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">bsplit_basecase_func_t</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">void</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">slong</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">slong</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#c.bsplit_basecase_func_t" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.bsplit_init_func_t">
+<span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">bsplit_init_func_t</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">void</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#c.bsplit_init_func_t" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.bsplit_clear_func_t">
+<span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">bsplit_clear_func_t</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">void</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#c.bsplit_clear_func_t" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.flint_parallel_binary_splitting">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flint_parallel_binary_splitting</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">res</span></span>, <a class="reference internal" href="#c.bsplit_basecase_func_t" title="bsplit_basecase_func_t"><span class="n"><span class="pre">bsplit_basecase_func_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">basecase</span></span>, <a class="reference internal" href="#c.bsplit_merge_func_t" title="bsplit_merge_func_t"><span class="n"><span class="pre">bsplit_merge_func_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">merge</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">sizeof_res</span></span>, <a class="reference internal" href="#c.bsplit_init_func_t" title="bsplit_init_func_t"><span class="n"><span class="pre">bsplit_init_func_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">init</span></span>, <a class="reference internal" href="#c.bsplit_clear_func_t" title="bsplit_clear_func_t"><span class="n"><span class="pre">bsplit_clear_func_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">clear</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">b</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">basecase_cutoff</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">thread_limit</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.flint_parallel_binary_splitting" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to <span class="math notranslate nohighlight">\(f(a) \circ f(a+1) \circ \cdots \circ f(b - 1)\)</span>
+computed using parallel binary splitting, using
+up to <code class="docutils literal notranslate"><span class="pre">thread_limits</span></code> threads (including the master thread).
+If <em>thread_limit</em> is nonpositive, the number of threads defaults to
+<code class="docutils literal notranslate"><span class="pre">flint_get_num_threads()</span></code>.</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">basecase(res,</span> <span class="pre">a,</span> <span class="pre">b,</span> <span class="pre">args)</span></code> gets called
+when <span class="math notranslate nohighlight">\(b - a\)</span> does not exceed <code class="docutils literal notranslate"><span class="pre">basecase_cutoff</span></code>, which
+must be at least 1.</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">merge(res,</span> <span class="pre">x,</span> <span class="pre">y,</span> <span class="pre">args)</span></code> implements the
+associative operation (<span class="math notranslate nohighlight">\(x \circ y\)</span>), writing the result to <code class="docutils literal notranslate"><span class="pre">res</span></code>.
+If called with <code class="docutils literal notranslate"><span class="pre">FLINT_PARALLEL_BSPLIT_LEFT_INPLACE</span></code> in <code class="docutils literal notranslate"><span class="pre">flags</span></code>,
+the same space will be used for <code class="docutils literal notranslate"><span class="pre">res</span></code> and <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<p>A result is assumed to fit in a structure of size <code class="docutils literal notranslate"><span class="pre">sizeof_res</span></code>.
+The functions <code class="docutils literal notranslate"><span class="pre">init(res,</span> <span class="pre">args)</span></code> and <code class="docutils literal notranslate"><span class="pre">clear(res,</span> <span class="pre">args)</span></code>
+initialize and clear intermediate result objects.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><strong>Threading</strong></a><ul>
+<li><a class="reference internal" href="#multithreaded-flint">Multithreaded FLINT</a></li>
+<li><a class="reference internal" href="#writing-threaded-functions-in-flint">Writing threaded functions in FLINT</a></li>
+<li><a class="reference internal" href="#functional-parallel-programming-helpers">Functional parallel programming helpers</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="portability.html"
+                          title="previous chapter"><strong>Portability</strong></a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="flint.html"
+                          title="next chapter"><strong>flint.h</strong> – global definitions</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/threading.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="flint.html" title="flint.h – global definitions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="portability.html" title="Portability"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>Threading</strong></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2018, The Flint development team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

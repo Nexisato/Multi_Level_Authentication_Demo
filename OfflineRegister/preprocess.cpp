@@ -71,9 +71,10 @@ void write_json(const char*& path, std::vector<std::string>& fileList, std::vect
     Json::Value arrayObj;
     for (int i = 0; i < fileList.size(); ++i) {
         Json::Value item;
-        size_t l_pos = fileList[i].find_last_of('/');
-        size_t r_pos = fileList[i].find_last_of('.');
-        item["file"] = fileList[i].substr(l_pos + 1, r_pos - l_pos - 1);
+        size_t l_pos = fileList[i].find_last_of('/') + 1;
+        //size_t r_pos = fileList[i].find_last_of('.');
+        size_t r_pos = fileList[i].length();
+        item["file"] = fileList[i].substr(l_pos, r_pos - l_pos);
         item["md5"] = md5List[i];
         arrayObj.append(item);
     }

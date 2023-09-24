@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Memory management &#8212; Flint 2.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    
+    <script src="_static/documentation_options.js?v=182a64a0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Portability" href="portability.html" />
+    <link rel="prev" title="Macros" href="macros.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="portability.html" title="Portability"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="macros.html" title="Macros"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>Memory management</strong></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="memory-management">
+<span id="memory"></span><h1><strong>Memory management</strong><a class="headerlink" href="#memory-management" title="Link to this heading">¶</a></h1>
+<section id="memory-management-in-flint">
+<h2>Memory management in FLINT<a class="headerlink" href="#memory-management-in-flint" title="Link to this heading">¶</a></h2>
+<p>The file <code class="docutils literal notranslate"><span class="pre">flint.h</span></code> defines functions <code class="docutils literal notranslate"><span class="pre">flint_malloc</span></code>,
+<code class="docutils literal notranslate"><span class="pre">flint_realloc</span></code>, <code class="docutils literal notranslate"><span class="pre">flint_calloc</span></code> and <code class="docutils literal notranslate"><span class="pre">flint_free</span></code>.
+They have the same interface as the standard library functions, but
+may perform additional error checking.</p>
+<p>FLINT may cache some data (such as allocated integers
+and tables of prime numbers) to speed up various computations.
+If FLINT is built in threadsafe mode, cached data is kept in thread-local
+storage by default (unless configured otherwise). Cached data can be freed
+by calling the <code class="docutils literal notranslate"><span class="pre">flint_cleanup()</span></code> function. It is recommended to call
+<code class="docutils literal notranslate"><span class="pre">flint_cleanup()</span></code> right before exiting a thread, and at the end of the
+main program.</p>
+<p>The user can register additional cleanup functions to be invoked
+by <code class="docutils literal notranslate"><span class="pre">flint_cleanup()</span></code> by passing a pointer
+to a function with signature <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">cleanup_function(void)</span></code>
+to <code class="docutils literal notranslate"><span class="pre">flint_register_cleanup_function()</span></code>.</p>
+<p>Flint also makes use of <code class="docutils literal notranslate"><span class="pre">malloc</span></code>, <code class="docutils literal notranslate"><span class="pre">realloc</span></code>, <code class="docutils literal notranslate"><span class="pre">calloc</span></code> and
+<code class="docutils literal notranslate"><span class="pre">free</span></code> by default to allocate memory internally. The user is able to
+override this behaviour by calling <code class="docutils literal notranslate"><span class="pre">__flint_set_memory_functions</span></code>
+passing the <code class="docutils literal notranslate"><span class="pre">malloc</span></code>, <code class="docutils literal notranslate"><span class="pre">realloc</span></code>, <code class="docutils literal notranslate"><span class="pre">calloc</span></code> and <code class="docutils literal notranslate"><span class="pre">free</span></code> function
+pointers as parameters (see <code class="docutils literal notranslate"><span class="pre">flint.h</span></code> for the exact prototype).</p>
+<p>The current memory functions can be returned in a similar manner by calling
+<code class="docutils literal notranslate"><span class="pre">__flint_get_memory_functions</span></code> passing the address of pointers in which
+the function pointers can be stored.</p>
+</section>
+<section id="temporary-allocation">
+<h2>Temporary allocation<a class="headerlink" href="#temporary-allocation" title="Link to this heading">¶</a></h2>
+<p>FLINT allows for temporary allocation of memory using <code class="docutils literal notranslate"><span class="pre">alloca</span></code>
+to allocate on the stack if the allocation is small enough.</p>
+<p>The following program demonstrates how to use this facility to
+allocate two different arrays.</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;gmp.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flint.h&quot;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">myfun</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="cm">/* other variable declarations */</span>
+<span class="w">   </span><span class="n">mp_ptr</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">   </span><span class="n">TMP_INIT</span><span class="p">;</span>
+
+<span class="w">   </span><span class="cm">/* arbitrary code*/</span>
+
+<span class="w">   </span><span class="n">TMP_START</span><span class="p">;</span><span class="w"> </span><span class="cm">/* we are about to do some allocation */</span>
+
+<span class="w">   </span><span class="cm">/* arbitrary code */</span>
+
+<span class="w">   </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TMP_ALLOC</span><span class="p">(</span><span class="mi">32</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="n">mp_limb_t</span><span class="p">));</span>
+<span class="w">   </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TMP_ALLOC</span><span class="p">(</span><span class="mi">64</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="n">mp_limb_t</span><span class="p">));</span>
+
+<span class="w">   </span><span class="cm">/* arbitrary code */</span>
+
+<span class="w">   </span><span class="n">TMP_END</span><span class="p">;</span><span class="w"> </span><span class="cm">/* cleans up a and b */</span>
+
+<span class="w">   </span><span class="cm">/* arbitrary code */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It is very important to note that temporary allocations should not be
+made in recursive functions, as many small allocations on the stack
+can exhaust the stack causing a stack overflow.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><strong>Memory management</strong></a><ul>
+<li><a class="reference internal" href="#memory-management-in-flint">Memory management in FLINT</a></li>
+<li><a class="reference internal" href="#temporary-allocation">Temporary allocation</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="macros.html"
+                          title="previous chapter"><strong>Macros</strong></a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="portability.html"
+                          title="next chapter"><strong>Portability</strong></a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/memory.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="portability.html" title="Portability"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="macros.html" title="Macros"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>Memory management</strong></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2018, The Flint development team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

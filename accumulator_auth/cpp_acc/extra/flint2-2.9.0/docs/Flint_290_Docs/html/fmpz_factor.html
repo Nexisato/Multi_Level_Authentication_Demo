@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>fmpz_factor.h – integer factorisation &#8212; Flint 2.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    
+    <script src="_static/documentation_options.js?v=182a64a0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="fmpz_mat.h – matrices over the integers" href="fmpz_mat.html" />
+    <link rel="prev" title="fmpz_vec.h – vectors of integers" href="fmpz_vec.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="fmpz_mat.html" title="fmpz_mat.h – matrices over the integers"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="fmpz_vec.html" title="fmpz_vec.h – vectors of integers"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>fmpz_factor.h</strong> – integer factorisation</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="fmpz-factor-h-integer-factorisation">
+<span id="fmpz-factor"></span><h1><strong>fmpz_factor.h</strong> – integer factorisation<a class="headerlink" href="#fmpz-factor-h-integer-factorisation" title="Link to this heading">¶</a></h1>
+<p>Description.</p>
+<section id="types-macros-and-constants">
+<h2>Types, macros and constants<a class="headerlink" href="#types-macros-and-constants" title="Link to this heading">¶</a></h2>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.fmpz_factor_struct">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_struct</span></span></span><a class="headerlink" href="#c.fmpz_factor_struct" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.fmpz_factor_t">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_t</span></span></span><a class="headerlink" href="#c.fmpz_factor_t" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Description.</p>
+</dd></dl>
+
+</section>
+<section id="factoring-integers">
+<h2>Factoring integers<a class="headerlink" href="#factoring-integers" title="Link to this heading">¶</a></h2>
+<p>An integer may be represented in factored form using the
+<code class="docutils literal notranslate"><span class="pre">fmpz_factor_t</span></code> data structure. This consists of two <code class="docutils literal notranslate"><span class="pre">fmpz</span></code>
+vectors representing bases and exponents, respectively. Canonically,
+the bases will be prime numbers sorted in ascending order and the
+exponents will be positive.
+A separate <code class="docutils literal notranslate"><span class="pre">int</span></code> field holds the sign, which may be <span class="math notranslate nohighlight">\(-1\)</span>, <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initialises an <code class="docutils literal notranslate"><span class="pre">fmpz_factor_t</span></code> structure.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears an <code class="docutils literal notranslate"><span class="pre">fmpz_factor_t</span></code> structure.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_factor_append_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_factor_append_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span>, <span class="n"><span class="pre">mp_limb_t</span></span><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">exp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_factor_append_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Append a factor <span class="math notranslate nohighlight">\(p\)</span> to the given exponent to the
+<code class="docutils literal notranslate"><span class="pre">fmpz_factor_t</span></code> structure <code class="docutils literal notranslate"><span class="pre">factor</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_factor_append">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_factor_append</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">exp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_factor_append" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Append a factor <span class="math notranslate nohighlight">\(p\)</span> to the given exponent to the
+<code class="docutils literal notranslate"><span class="pre">fmpz_factor_t</span></code> structure <code class="docutils literal notranslate"><span class="pre">factor</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Factors <span class="math notranslate nohighlight">\(n\)</span> into prime numbers. If <span class="math notranslate nohighlight">\(n\)</span> is zero or negative, the
+sign field of the <code class="docutils literal notranslate"><span class="pre">factor</span></code> object will be set accordingly.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_smooth">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_smooth</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">bits</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">proved</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_smooth" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Factors <span class="math notranslate nohighlight">\(n\)</span> into prime numbers up to approximately the given number of
+bits and possibly one additional cofactor, which may or may not be prime.</p>
+<p>If the number is definitely factored fully, the return value is <span class="math notranslate nohighlight">\(1\)</span>,
+otherwise the final factor (which may have exponent greater than <span class="math notranslate nohighlight">\(1\)</span>)
+is composite and needs to be factored further.</p>
+<p>If the number has a factor of around the given number of bits, there is
+at least a two-thirds chance of finding it. Smaller factors should be
+found with a much higher probability.</p>
+<p>The amount of time spent factoring can be controlled by lowering or
+increasing <code class="docutils literal notranslate"><span class="pre">bits</span></code>. However, the quadratic sieve may be faster if
+<code class="docutils literal notranslate"><span class="pre">bits</span></code> is set to more than one third of the number of bits of <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>The function uses trial factoring up to <code class="docutils literal notranslate"><span class="pre">bits</span> <span class="pre">=</span> <span class="pre">15</span></code>, followed by
+a primality test and a perfect power test to check if the factorisation
+is complete. If <code class="docutils literal notranslate"><span class="pre">bits</span></code> is at least 16, it proceeds to use the
+elliptic curve method to look for larger factors.</p>
+<p>The behavior of primality testing is determined by the <code class="docutils literal notranslate"><span class="pre">proved</span></code>
+parameter:</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">proved</span></code> is set to <span class="math notranslate nohighlight">\(1\)</span> the function will prove all factors prime
+(other than the last factor, if the return value is <span class="math notranslate nohighlight">\(0\)</span>).</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">proved</span></code> is set to <span class="math notranslate nohighlight">\(0\)</span>, the function will only check that factors are
+probable primes.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">proved</span></code> is set to <span class="math notranslate nohighlight">\(-1\)</span>, the function will not test primality
+after performing trial division. A perfect power test is still performed.</p>
+<p>As an exception to the rules stated above, this function will call
+<code class="docutils literal notranslate"><span class="pre">n_factor</span></code> internally if <span class="math notranslate nohighlight">\(n\)</span> or the remainder after trial division
+is smaller than one word, guaranteeing a complete factorisation.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_si">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_si</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_si" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Like <code class="docutils literal notranslate"><span class="pre">fmpz_factor</span></code>, but takes a machine integer <span class="math notranslate nohighlight">\(n\)</span> as input.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_trial_range">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_trial_range</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">start</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">num_primes</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_trial_range" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Factors <span class="math notranslate nohighlight">\(n\)</span> into prime factors using trial division. If <span class="math notranslate nohighlight">\(n\)</span> is
+zero or negative, the sign field of the <code class="docutils literal notranslate"><span class="pre">factor</span></code> object will be
+set accordingly.</p>
+<p>The algorithm starts with the given start index in the <code class="docutils literal notranslate"><span class="pre">flint_primes</span></code>
+table and uses at most <code class="docutils literal notranslate"><span class="pre">num_primes</span></code> primes from that point.</p>
+<p>The function returns 1 if <span class="math notranslate nohighlight">\(n\)</span> is completely factored, otherwise it returns
+<span class="math notranslate nohighlight">\(0\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_trial">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_trial</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">num_primes</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_trial" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Factors <span class="math notranslate nohighlight">\(n\)</span> into prime factors using trial division. If <span class="math notranslate nohighlight">\(n\)</span> is
+zero or negative, the sign field of the <code class="docutils literal notranslate"><span class="pre">factor</span></code> object will be
+set accordingly.</p>
+<p>The algorithm uses the given number of primes, which must be in the range
+<span class="math notranslate nohighlight">\([0, 3512]\)</span>. An exception is raised if a number outside this range is
+passed.</p>
+<p>The function returns 1 if <span class="math notranslate nohighlight">\(n\)</span> is completely factored, otherwise it returns
+<span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p>The final entry in the factor struct is set to the cofactor after removing
+prime factors, if this is not <span class="math notranslate nohighlight">\(1\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_refine">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_refine</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_refine" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Attempts to improve a partial factorization of an integer by “refining”
+the factorization <code class="docutils literal notranslate"><span class="pre">f</span></code> to a more complete factorization <code class="docutils literal notranslate"><span class="pre">res</span></code>
+whose bases are pairwise relatively prime.</p>
+<p>This function does not require its input to be in canonical form,
+nor does it guarantee that the resulting factorization will be canonical.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_expand_iterative">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_expand_iterative</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_expand_iterative" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Evaluates an integer in factored form back to an <code class="docutils literal notranslate"><span class="pre">fmpz_t</span></code>.</p>
+<p>This currently exponentiates the bases separately and multiplies
+them together one by one, although much more efficient algorithms
+exist.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_pp1">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_pp1</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">B1</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">B2_sqrt</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_pp1" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Use Williams’ <span class="math notranslate nohighlight">\(p + 1\)</span> method to factor <span class="math notranslate nohighlight">\(n\)</span>, using a prime bound in
+stage 1 of <code class="docutils literal notranslate"><span class="pre">B1</span></code> and a prime limit in stage 2 of at least the square
+of <code class="docutils literal notranslate"><span class="pre">B2_sqrt</span></code>. If a factor is found, the function returns <span class="math notranslate nohighlight">\(1\)</span> and
+<code class="docutils literal notranslate"><span class="pre">factor</span></code> is set to the factor that is found. Otherwise, the function
+returns <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p>The value <span class="math notranslate nohighlight">\(c\)</span> should be a random value greater than <span class="math notranslate nohighlight">\(2\)</span>. Successive
+calls to the function with different values of <span class="math notranslate nohighlight">\(c\)</span> give additional
+chances to factor <span class="math notranslate nohighlight">\(n\)</span> with roughly exponentially decaying probability
+of finding a factor which has been missed (if <span class="math notranslate nohighlight">\(p+1\)</span> or <span class="math notranslate nohighlight">\(p-1\)</span> is not
+smooth for any prime factors <span class="math notranslate nohighlight">\(p\)</span> of <span class="math notranslate nohighlight">\(n\)</span> then the function will
+not ever succeed).</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_pollard_brent_single">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_pollard_brent_single</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p_factor</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n_in</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">yi</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ai</span></span>, <span class="n"><span class="pre">mp_limb_t</span></span><span class="w"> </span><span class="n"><span class="pre">max_iters</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_pollard_brent_single" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Pollard Rho algorithm for integer factorization. Assumes that the <span class="math notranslate nohighlight">\(n\)</span> is
+not prime. <code class="docutils literal notranslate"><span class="pre">factor</span></code> is set as the factor if found. Takes as input the initial
+value <span class="math notranslate nohighlight">\(y\)</span>, to start polynomial evaluation and <span class="math notranslate nohighlight">\(a\)</span>, the constant of the polynomial
+used. It is not assured that the factor found will be prime. Does not compute
+the complete factorization, just one factor. Returns the number of limbs of
+factor if factorization is successful (non trivial factor is found), else returns 0.</p>
+<p><code class="docutils literal notranslate"><span class="pre">max_iters</span></code> is the number of iterations tried in process of finding the cycle.
+If the algorithm fails to find a non trivial factor in one call, it tries again
+(this time with a different set of random values).</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_pollard_brent">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_pollard_brent</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">mp_limb_t</span></span><span class="w"> </span><span class="n"><span class="pre">max_tries</span></span>, <span class="n"><span class="pre">mp_limb_t</span></span><span class="w"> </span><span class="n"><span class="pre">max_iters</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_pollard_brent" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Pollard Rho algorithm for integer factorization. Assumes that the <span class="math notranslate nohighlight">\(n\)</span> is
+not prime. <code class="docutils literal notranslate"><span class="pre">factor</span></code> is set as the factor if found. It is not assured that the
+factor found will be prime. Does not compute the complete factorization,
+just one factor. Returns the number of limbs of factor if factorization is
+successful (non trivial factor is found), else returns 0.</p>
+<p><code class="docutils literal notranslate"><span class="pre">max_iters</span></code> is the number of iterations tried in process of finding the cycle.
+If the algorithm fails to find a non trivial factor in one call, it tries again
+(this time with a different set of random values). This process is repeated a
+maximum of <code class="docutils literal notranslate"><span class="pre">max_tries</span></code> times.</p>
+<p>The algorithm used is a modification of the original Pollard Rho algorithm,
+suggested by Richard Brent. It can be found in the paper available at
+<a class="reference external" href="https://maths-people.anu.edu.au/~brent/pd/rpb051i.pdf">https://maths-people.anu.edu.au/~brent/pd/rpb051i.pdf</a></p>
+</dd></dl>
+
+</section>
+<section id="elliptic-curve-ecm-method">
+<h2>Elliptic curve (ECM) method<a class="headerlink" href="#elliptic-curve-ecm-method" title="Link to this heading">¶</a></h2>
+<p>Factoring of <code class="docutils literal notranslate"><span class="pre">fmpz</span></code> integers using ECM</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_ecm_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_ecm_init</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ecm_t</span></span><span class="w"> </span><span class="n"><span class="pre">ecm_inf</span></span>, <span class="n"><span class="pre">mp_limb_t</span></span><span class="w"> </span><span class="n"><span class="pre">sz</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_ecm_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes the <code class="docutils literal notranslate"><span class="pre">ecm_t</span></code> struct. This is needed in some functions
+and carries data between subsequent calls.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_ecm_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_ecm_clear</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ecm_t</span></span><span class="w"> </span><span class="n"><span class="pre">ecm_inf</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_ecm_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears the <code class="docutils literal notranslate"><span class="pre">ecm_t</span></code> struct.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_ecm_addmod">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_ecm_addmod</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">b</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">c</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">mp_limb_t</span></span><span class="w"> </span><span class="n"><span class="pre">n_size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_ecm_addmod" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(a\)</span> to <span class="math notranslate nohighlight">\((b + c)\)</span> <code class="docutils literal notranslate"><span class="pre">%</span></code> <span class="math notranslate nohighlight">\(n\)</span>. This is not a normal add mod function,
+it assumes <span class="math notranslate nohighlight">\(n\)</span> is normalized (highest bit set) and <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span> are reduced
+modulo <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>Used for arithmetic operations in <code class="docutils literal notranslate"><span class="pre">fmpz_factor_ecm</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_ecm_submod">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_ecm_submod</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">a</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">b</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">mp_limb_t</span></span><span class="w"> </span><span class="n"><span class="pre">n_size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_ecm_submod" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\((a - b)\)</span> <code class="docutils literal notranslate"><span class="pre">%</span></code> <span class="math notranslate nohighlight">\(n\)</span>. This is not a normal subtract mod
+function, it assumes <span class="math notranslate nohighlight">\(n\)</span> is normalized (highest bit set)
+and <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span> are reduced modulo <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>Used for arithmetic operations in <code class="docutils literal notranslate"><span class="pre">fmpz_factor_ecm</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_ecm_double">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_ecm_double</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">z</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">x0</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">z0</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">ecm_t</span></span><span class="w"> </span><span class="n"><span class="pre">ecm_inf</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_ecm_double" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the point <span class="math notranslate nohighlight">\((x : z)\)</span> to two times <span class="math notranslate nohighlight">\((x_0 : z_0)\)</span> modulo <span class="math notranslate nohighlight">\(n\)</span> according
+to the formula</p>
+<div class="math notranslate nohighlight">
+\[x = (x_0 + z_0)^2 \cdot (x_0 - z_0)^2 \mod n,\]</div>
+<div class="math notranslate nohighlight">
+\[z = 4 x_0 z_0 \left((x_0 - z_0)^2 + 4a_{24}x_0z_0\right) \mod n.\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">ecm_inf</span></code> is used just to use temporary <code class="docutils literal notranslate"><span class="pre">mp_ptr</span></code>’s in the
+structure. This group doubling is valid only for points expressed in
+Montgomery projective coordinates.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_ecm_add">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_ecm_add</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">z</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">x1</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">z1</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">x2</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">z2</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">x0</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">z0</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">ecm_t</span></span><span class="w"> </span><span class="n"><span class="pre">ecm_inf</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_ecm_add" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the point <span class="math notranslate nohighlight">\((x : z)\)</span> to the sum of <span class="math notranslate nohighlight">\((x_1 : z_1)\)</span> and <span class="math notranslate nohighlight">\((x_2 : z_2)\)</span>
+modulo <span class="math notranslate nohighlight">\(n\)</span>, given the difference <span class="math notranslate nohighlight">\((x_0 : z_0)\)</span> according to the formula</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}x = 4z_0(x_1x_2 - z_1z_2)^2 \mod n, \\ z = 4x_0(x_2z_1 - x_1z_2)^2 \mod n.\end{split}\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">ecm_inf</span></code> is used just to use temporary <code class="docutils literal notranslate"><span class="pre">mp_ptr</span></code>’s in the
+structure. This group addition is valid only for points expressed in
+Montgomery projective coordinates.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_ecm_mul_montgomery_ladder">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_ecm_mul_montgomery_ladder</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">z</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">x0</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">z0</span></span>, <span class="n"><span class="pre">mp_limb_t</span></span><span class="w"> </span><span class="n"><span class="pre">k</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">ecm_t</span></span><span class="w"> </span><span class="n"><span class="pre">ecm_inf</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_ecm_mul_montgomery_ladder" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Montgomery ladder algorithm for scalar multiplication of elliptic points.</p>
+<p>Sets the point <span class="math notranslate nohighlight">\((x : z)\)</span> to <span class="math notranslate nohighlight">\(k(x_0 : z_0)\)</span> modulo <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ecm_inf</span></code> is used just to use temporary <code class="docutils literal notranslate"><span class="pre">mp_ptr</span></code>’s in the
+structure. Valid only for points expressed in Montgomery projective
+coordinates.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_ecm_select_curve">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_ecm_select_curve</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">sigma</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">ecm_t</span></span><span class="w"> </span><span class="n"><span class="pre">ecm_inf</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_ecm_select_curve" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Selects a random elliptic curve given a random integer <code class="docutils literal notranslate"><span class="pre">sigma</span></code>,
+according to Suyama’s parameterization. If the factor is found while
+selecting the curve, the number of limbs required to store the factor
+is returned, otherwise <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p>It could be possible that the selected curve is unsuitable for further
+computations, in such a case, <span class="math notranslate nohighlight">\(-1\)</span> is returned.</p>
+<p>Also selects the initial point <span class="math notranslate nohighlight">\(x_0\)</span>, and the value of <span class="math notranslate nohighlight">\((a + 2)/4\)</span>, where <span class="math notranslate nohighlight">\(a\)</span>
+is a curve parameter. Sets <span class="math notranslate nohighlight">\(z_0\)</span> as <span class="math notranslate nohighlight">\(1\)</span>. All these are stored in the
+<code class="docutils literal notranslate"><span class="pre">ecm_t</span></code> struct.</p>
+<p>The curve selected is of Montgomery form, the points selected satisfy the
+curve and are projective coordinates.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_ecm_stage_I">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_ecm_stage_I</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">mp_limb_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">prime_array</span></span>, <span class="n"><span class="pre">mp_limb_t</span></span><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <span class="n"><span class="pre">mp_limb_t</span></span><span class="w"> </span><span class="n"><span class="pre">B1</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">ecm_t</span></span><span class="w"> </span><span class="n"><span class="pre">ecm_inf</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_ecm_stage_I" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Stage I implementation of the ECM algorithm.</p>
+<p><code class="docutils literal notranslate"><span class="pre">f</span></code> is set as the factor if found. <code class="docutils literal notranslate"><span class="pre">num</span></code> is number of prime numbers
+<span class="math notranslate nohighlight">\(\le\)</span> the bound <code class="docutils literal notranslate"><span class="pre">B1</span></code>. <code class="docutils literal notranslate"><span class="pre">prime_array</span></code> is an array of first <code class="docutils literal notranslate"><span class="pre">B1</span></code>
+primes. <span class="math notranslate nohighlight">\(n\)</span> is the number being factored.</p>
+<p>If the factor is found, number of words required to store the factor is
+returned, otherwise <span class="math notranslate nohighlight">\(0\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_ecm_stage_II">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_ecm_stage_II</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">mp_limb_t</span></span><span class="w"> </span><span class="n"><span class="pre">B1</span></span>, <span class="n"><span class="pre">mp_limb_t</span></span><span class="w"> </span><span class="n"><span class="pre">B2</span></span>, <span class="n"><span class="pre">mp_limb_t</span></span><span class="w"> </span><span class="n"><span class="pre">P</span></span>, <span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">ecm_t</span></span><span class="w"> </span><span class="n"><span class="pre">ecm_inf</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_ecm_stage_II" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Stage II implementation of the ECM algorithm.</p>
+<p><code class="docutils literal notranslate"><span class="pre">f</span></code> is set as the factor if found. <code class="docutils literal notranslate"><span class="pre">B1</span></code>, <code class="docutils literal notranslate"><span class="pre">B2</span></code> are the two
+bounds. <code class="docutils literal notranslate"><span class="pre">P</span></code> is the primorial (approximately equal to <span class="math notranslate nohighlight">\(\sqrt{B2}\)</span>).
+<span class="math notranslate nohighlight">\(n\)</span> is the number being factored.</p>
+<p>If the factor is found, number of words required to store the factor is
+returned, otherwise <span class="math notranslate nohighlight">\(0\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_ecm">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_ecm</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="n"><span class="pre">mp_limb_t</span></span><span class="w"> </span><span class="n"><span class="pre">curves</span></span>, <span class="n"><span class="pre">mp_limb_t</span></span><span class="w"> </span><span class="n"><span class="pre">B1</span></span>, <span class="n"><span class="pre">mp_limb_t</span></span><span class="w"> </span><span class="n"><span class="pre">B2</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n_in</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_ecm" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Outer wrapper function for the ECM algorithm. In case <code class="docutils literal notranslate"><span class="pre">f</span></code> can fit
+in a single unsigned word, a call to <code class="docutils literal notranslate"><span class="pre">n_factor_ecm</span></code> is made.</p>
+<p>The function calls stage I and II, and
+the precomputations (builds <code class="docutils literal notranslate"><span class="pre">prime_array</span></code> for stage I,
+<code class="docutils literal notranslate"><span class="pre">GCD_table</span></code> and <code class="docutils literal notranslate"><span class="pre">prime_table</span></code> for stage II).</p>
+<p><code class="docutils literal notranslate"><span class="pre">f</span></code> is set as the factor if found. <code class="docutils literal notranslate"><span class="pre">curves</span></code> is the number of
+random curves being tried. <code class="docutils literal notranslate"><span class="pre">B1</span></code>, <code class="docutils literal notranslate"><span class="pre">B2</span></code> are the two bounds or
+stage I and stage II. <span class="math notranslate nohighlight">\(n\)</span> is the number being factored.</p>
+<p>If a factor is found in stage I, <span class="math notranslate nohighlight">\(1\)</span> is returned.
+If a factor is found in stage II, <span class="math notranslate nohighlight">\(2\)</span> is returned.
+If a factor is found while selecting the curve, <span class="math notranslate nohighlight">\(-1\)</span> is returned.
+Otherwise <span class="math notranslate nohighlight">\(0\)</span> is returned.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><strong>fmpz_factor.h</strong> – integer factorisation</a><ul>
+<li><a class="reference internal" href="#types-macros-and-constants">Types, macros and constants</a></li>
+<li><a class="reference internal" href="#factoring-integers">Factoring integers</a></li>
+<li><a class="reference internal" href="#elliptic-curve-ecm-method">Elliptic curve (ECM) method</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="fmpz_vec.html"
+                          title="previous chapter"><strong>fmpz_vec.h</strong> – vectors of integers</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="fmpz_mat.html"
+                          title="next chapter"><strong>fmpz_mat.h</strong> – matrices over the integers</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/fmpz_factor.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="fmpz_mat.html" title="fmpz_mat.h – matrices over the integers"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="fmpz_vec.html" title="fmpz_vec.h – vectors of integers"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>fmpz_factor.h</strong> – integer factorisation</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2018, The Flint development team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

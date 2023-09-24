@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>arith.h – arithmetic and special functions &#8212; Flint 2.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    
+    <script src="_static/documentation_options.js?v=182a64a0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="fft.h – Schoenhage-Strassen FFT" href="fft.html" />
+    <link rel="prev" title="aprcl.h – APRCL primality testing" href="aprcl.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="fft.html" title="fft.h – Schoenhage-Strassen FFT"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="aprcl.html" title="aprcl.h – APRCL primality testing"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>arith.h</strong> – arithmetic and special functions</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="arith-h-arithmetic-and-special-functions">
+<span id="arith"></span><h1><strong>arith.h</strong> – arithmetic and special functions<a class="headerlink" href="#arith-h-arithmetic-and-special-functions" title="Link to this heading">¶</a></h1>
+<section id="primorials">
+<h2>Primorials<a class="headerlink" href="#primorials" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_primorial">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_primorial</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_primorial" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to <code class="docutils literal notranslate"><span class="pre">n</span></code> primorial or <span class="math notranslate nohighlight">\(n \#\)</span>, the product of all prime
+numbers less than or equal to <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="harmonic-numbers">
+<h2>Harmonic numbers<a class="headerlink" href="#harmonic-numbers" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._arith_harmonic_number">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_arith_harmonic_number</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._arith_harmonic_number" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.arith_harmonic_number">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_harmonic_number</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_harmonic_number" title="Link to this definition">¶</a><br /></dt>
+<dd><p>These are aliases for the functions in the fmpq module.</p>
+</dd></dl>
+
+</section>
+<section id="stirling-numbers">
+<h2>Stirling numbers<a class="headerlink" href="#stirling-numbers" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_stirling_number_1u">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_stirling_number_1u</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">s</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">k</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_stirling_number_1u" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_stirling_number_1">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_stirling_number_1</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">s</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">k</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_stirling_number_1" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_stirling_number_2">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_stirling_number_2</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">s</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">k</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_stirling_number_2" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(s\)</span> to <span class="math notranslate nohighlight">\(S(n,k)\)</span> where <span class="math notranslate nohighlight">\(S(n,k)\)</span> denotes an unsigned Stirling
+number of the first kind <span class="math notranslate nohighlight">\(|S_1(n, k)|\)</span>, a signed Stirling number
+of the first kind <span class="math notranslate nohighlight">\(S_1(n, k)\)</span>, or a Stirling number of the second
+kind <span class="math notranslate nohighlight">\(S_2(n, k)\)</span>.  The Stirling numbers are defined using the
+generating functions</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}x_{(n)} = \sum_{k=0}^n S_1(n,k) x^k\\x^{(n)} = \sum_{k=0}^n |S_1(n,k)| x^k\\x^n     = \sum_{k=0}^n S_2(n,k) x_{(k)}\end{aligned}\end{align} \]</div>
+<p>where <span class="math notranslate nohighlight">\(x_{(n)} = x(x-1)(x-2) \dotsm (x-n+1)\)</span> is a falling factorial
+and <span class="math notranslate nohighlight">\(x^{(n)} = x(x+1)(x+2) \dotsm (x+n-1)\)</span> is a rising factorial.
+<span class="math notranslate nohighlight">\(S(n,k)\)</span> is taken to be zero if <span class="math notranslate nohighlight">\(n &lt; 0\)</span> or <span class="math notranslate nohighlight">\(k &lt; 0\)</span>.</p>
+<p>These three functions are useful for computing isolated Stirling
+numbers efficiently. To compute a range of numbers, the vector or
+matrix versions should generally be used.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_stirling_number_1u_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_stirling_number_1u_vec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">row</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">klen</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_stirling_number_1u_vec" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_stirling_number_1_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_stirling_number_1_vec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">row</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">klen</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_stirling_number_1_vec" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_stirling_number_2_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_stirling_number_2_vec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">row</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">klen</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_stirling_number_2_vec" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the row of Stirling numbers
+<code class="docutils literal notranslate"><span class="pre">S(n,0),</span> <span class="pre">S(n,1),</span> <span class="pre">S(n,2),</span> <span class="pre">...,</span> <span class="pre">S(n,klen-1)</span></code>.</p>
+<p>To compute a full row, this function can be called with
+<code class="docutils literal notranslate"><span class="pre">klen</span> <span class="pre">=</span> <span class="pre">n+1</span></code>. It is assumed that <code class="docutils literal notranslate"><span class="pre">klen</span></code> is at most <span class="math notranslate nohighlight">\(n + 1\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_stirling_number_1u_vec_next">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_stirling_number_1u_vec_next</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">row</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">prev</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">klen</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_stirling_number_1u_vec_next" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_stirling_number_1_vec_next">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_stirling_number_1_vec_next</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">row</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">prev</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">klen</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_stirling_number_1_vec_next" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_stirling_number_2_vec_next">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_stirling_number_2_vec_next</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">row</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">prev</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">klen</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_stirling_number_2_vec_next" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Given the vector <code class="docutils literal notranslate"><span class="pre">prev</span></code> containing a row of Stirling numbers
+<code class="docutils literal notranslate"><span class="pre">S(n-1,0),</span> <span class="pre">S(n-1,1),</span> <span class="pre">S(n-1,2),</span> <span class="pre">...,</span> <span class="pre">S(n-1,klen-1)</span></code>, computes
+and stores in the row argument
+<code class="docutils literal notranslate"><span class="pre">S(n,0),</span> <span class="pre">S(n,1),</span> <span class="pre">S(n,2),</span> <span class="pre">...,</span> <span class="pre">S(n,klen-1)</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">klen</span></code> is greater than <code class="docutils literal notranslate"><span class="pre">n</span></code>, the output ends with
+<code class="docutils literal notranslate"><span class="pre">S(n,n)</span> <span class="pre">=</span> <span class="pre">1</span></code> followed by <code class="docutils literal notranslate"><span class="pre">S(n,n+1)</span> <span class="pre">=</span> <span class="pre">S(n,n+2)</span> <span class="pre">=</span> <span class="pre">...</span> <span class="pre">=</span> <span class="pre">0</span></code>.
+In this case, the input only needs to have length <code class="docutils literal notranslate"><span class="pre">n-1</span></code>;
+only the input entries up to <code class="docutils literal notranslate"><span class="pre">S(n-1,n-2)</span></code> are read.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">row</span></code> and <code class="docutils literal notranslate"><span class="pre">prev</span></code> arguments are permitted to be the
+same, meaning that the row will be updated in-place.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_stirling_matrix_1u">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_stirling_matrix_1u</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_stirling_matrix_1u" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_stirling_matrix_1">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_stirling_matrix_1</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_stirling_matrix_1" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_stirling_matrix_2">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_stirling_matrix_2</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz_mat.html#c.fmpz_mat_t" title="fmpz_mat_t"><span class="n"><span class="pre">fmpz_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_stirling_matrix_2" title="Link to this definition">¶</a><br /></dt>
+<dd><p>For an arbitrary <span class="math notranslate nohighlight">\(m\)</span>-by-<span class="math notranslate nohighlight">\(n\)</span> matrix, writes the truncation of the
+infinite Stirling number matrix:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">row</span> <span class="mi">0</span>   <span class="p">:</span> <span class="n">S</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">row</span> <span class="mi">1</span>   <span class="p">:</span> <span class="n">S</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">S</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">row</span> <span class="mi">2</span>   <span class="p">:</span> <span class="n">S</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">S</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">S</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">row</span> <span class="mi">3</span>   <span class="p">:</span> <span class="n">S</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">S</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">S</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">S</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>up to row <span class="math notranslate nohighlight">\(m-1\)</span> and column <span class="math notranslate nohighlight">\(n-1\)</span> inclusive. The upper triangular
+part of the matrix is zeroed.</p>
+<p>For any <span class="math notranslate nohighlight">\(n\)</span>, the <span class="math notranslate nohighlight">\(S_1\)</span> and <span class="math notranslate nohighlight">\(S_2\)</span> matrices thus obtained are
+inverses of each other.</p>
+</dd></dl>
+
+</section>
+<section id="bell-numbers">
+<h2>Bell numbers<a class="headerlink" href="#bell-numbers" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_bell_number">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_bell_number</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">b</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_bell_number" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.arith_bell_number_dobinski">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_bell_number_dobinski</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_bell_number_dobinski" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.arith_bell_number_multi_mod">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_bell_number_multi_mod</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_bell_number_multi_mod" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(b\)</span> to the Bell number <span class="math notranslate nohighlight">\(B_n\)</span>, defined as the
+number of partitions of a set with <span class="math notranslate nohighlight">\(n\)</span> members. Equivalently,
+<span class="math notranslate nohighlight">\(B_n = \sum_{k=0}^n S_2(n,k)\)</span> where <span class="math notranslate nohighlight">\(S_2(n,k)\)</span> denotes a Stirling number
+of the second kind.</p>
+<p>The default version automatically selects between table lookup,
+Dobinski’s formula, and the multimodular algorithm.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">dobinski</span></code> version evaluates a precise truncation of
+the series <span class="math notranslate nohighlight">\(B_n = e^{-1} \sum_{k=0}^{\infty} \frac{k^n}{k!}\)</span>
+(Dobinski’s formula). In fact, we compute <span class="math notranslate nohighlight">\(P = N! \sum_{k=0}^N \frac{k^n}{k!}\)</span>
+and <span class="math notranslate nohighlight">\(Q = N! \sum_{k=0}^N \frac{1}{k!} \approx N! e\)</span> and
+evaluate <span class="math notranslate nohighlight">\(B_n = \lceil P / Q \rceil\)</span>, avoiding the use
+of floating-point arithmetic.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">multi_mod</span></code> version computes the result modulo several limb-size
+primes and reconstructs the integer value using the fast
+Chinese remainder algorithm.
+A bound for the number of needed primes is computed using
+<code class="docutils literal notranslate"><span class="pre">arith_bell_number_size</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_bell_number_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_bell_number_vec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">b</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_bell_number_vec" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.arith_bell_number_vec_recursive">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_bell_number_vec_recursive</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">b</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_bell_number_vec_recursive" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.arith_bell_number_vec_multi_mod">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_bell_number_vec_multi_mod</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">b</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_bell_number_vec_multi_mod" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(b\)</span> to the vector of Bell numbers <span class="math notranslate nohighlight">\(B_0, B_1, \ldots, B_{n-1}\)</span>
+inclusive. The <code class="docutils literal notranslate"><span class="pre">recursive</span></code> version uses the <span class="math notranslate nohighlight">\(O(n^3 \log n)\)</span>
+triangular recurrence, while the <code class="docutils literal notranslate"><span class="pre">multi_mod</span></code> version implements
+multimodular evaluation of the exponential generating function,
+running in time <span class="math notranslate nohighlight">\(O(n^2 \log^{O(1)} n)\)</span>. The default version
+chooses an algorithm automatically.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_bell_number_nmod">
+<span class="n"><span class="pre">mp_limb_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_bell_number_nmod</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">nmod_t</span></span><span class="w"> </span><span class="n"><span class="pre">mod</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_bell_number_nmod" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the Bell number <span class="math notranslate nohighlight">\(B_n\)</span> modulo an integer given by <code class="docutils literal notranslate"><span class="pre">mod</span></code>.</p>
+<p>After handling special cases, we use the formula</p>
+<div class="math notranslate nohighlight">
+\[B_n = \sum_{k=0}^n \frac{(n-k)^n}{(n-k)!}
+    \sum_{j=0}^k \frac{(-1)^j}{j!}.\]</div>
+<p>We arrange the operations in such a way that we only have to
+multiply (and not divide) in the main loop. As a further optimisation,
+we use sieving to reduce the number of powers that need to be
+evaluated. This results in <span class="math notranslate nohighlight">\(O(n)\)</span> memory usage.</p>
+<p>If the divisions by factorials are impossible, we fall back to
+calling <code class="docutils literal notranslate"><span class="pre">arith_bell_number_nmod_vec</span></code> and reading the last
+coefficient.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_bell_number_nmod_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_bell_number_nmod_vec</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">b</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">nmod_t</span></span><span class="w"> </span><span class="n"><span class="pre">mod</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_bell_number_nmod_vec" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.arith_bell_number_nmod_vec_recursive">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_bell_number_nmod_vec_recursive</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">b</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">nmod_t</span></span><span class="w"> </span><span class="n"><span class="pre">mod</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_bell_number_nmod_vec_recursive" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.arith_bell_number_nmod_vec_ogf">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_bell_number_nmod_vec_ogf</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">b</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">nmod_t</span></span><span class="w"> </span><span class="n"><span class="pre">mod</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_bell_number_nmod_vec_ogf" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.arith_bell_number_nmod_vec_series">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_bell_number_nmod_vec_series</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">b</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">nmod_t</span></span><span class="w"> </span><span class="n"><span class="pre">mod</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_bell_number_nmod_vec_series" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(b\)</span> to the vector of Bell numbers <span class="math notranslate nohighlight">\(B_0, B_1, \ldots, B_{n-1}\)</span>
+inclusive modulo an integer given by <code class="docutils literal notranslate"><span class="pre">mod</span></code>.</p>
+<p>The <em>recursive</em> version uses the <span class="math notranslate nohighlight">\(O(n^2)\)</span> triangular recurrence.
+The <em>ogf</em> version expands the ordinary generating function
+using binary splitting, which is <span class="math notranslate nohighlight">\(O(n \log^2 n)\)</span>.</p>
+<p>The <em>series</em> version uses the exponential generating function
+<span class="math notranslate nohighlight">\(\sum_{k=0}^{\infty} \frac{B_n}{n!} x^n = \exp(e^x-1)\)</span>,
+running in <span class="math notranslate nohighlight">\(O(n \log n)\)</span>.
+This only works if division by <span class="math notranslate nohighlight">\(n!\)</span> is possible, and the function
+returns whether it is successful. All other versions
+support any modulus.</p>
+<p>The default version of this function selects an algorithm
+automatically.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_bell_number_size">
+<span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_bell_number_size</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_bell_number_size" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns <span class="math notranslate nohighlight">\(b\)</span> such that <span class="math notranslate nohighlight">\(B_n &lt; 2^{\lfloor b \rfloor}\)</span>. A previous
+version of this function used the inequality
+<code class="docutils literal notranslate"><span class="pre">B_n</span> <span class="pre">&lt;</span> <span class="pre">\left(\frac{0.792n}{\log(n+1)}\right)^n</span></code> which is given
+in <a class="reference internal" href="references.html#bertas2010" id="id1"><span>[BerTas2010]</span></a>; we now use a slightly better bound
+based on an asymptotic expansion.</p>
+</dd></dl>
+
+</section>
+<section id="bernoulli-numbers-and-polynomials">
+<h2>Bernoulli numbers and polynomials<a class="headerlink" href="#bernoulli-numbers-and-polynomials" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._arith_bernoulli_number">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_arith_bernoulli_number</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._arith_bernoulli_number" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(num,</span> <span class="pre">den)</span></code> to the reduced numerator and denominator
+of the <span class="math notranslate nohighlight">\(n\)</span>-th Bernoulli number. As presently implemented,
+this function simply calls\ <code class="docutils literal notranslate"><span class="pre">_arith_bernoulli_number_zeta</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_bernoulli_number">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_bernoulli_number</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_bernoulli_number" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">x</span></code> to the <span class="math notranslate nohighlight">\(n\)</span>-th Bernoulli number. This function is
+equivalent to\ <code class="docutils literal notranslate"><span class="pre">_arith_bernoulli_number</span></code> apart from the output
+being a single <code class="docutils literal notranslate"><span class="pre">fmpq_t</span></code> variable.</p>
+<p>Warning: this function does not use proven precision bounds, and
+could return the wrong results for very large <span class="math notranslate nohighlight">\(n\)</span>.
+It is recommended to use the Bernoulli number functions in Arb instead.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._arith_bernoulli_number_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_arith_bernoulli_number_vec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">num</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">den</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._arith_bernoulli_number_vec" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the elements of <code class="docutils literal notranslate"><span class="pre">num</span></code> and <code class="docutils literal notranslate"><span class="pre">den</span></code> to the reduced
+numerators and denominators of the Bernoulli numbers
+<span class="math notranslate nohighlight">\(B_0, B_1, B_2, \ldots, B_{n-1}\)</span> inclusive. This function automatically
+chooses between the <code class="docutils literal notranslate"><span class="pre">recursive</span></code>, <code class="docutils literal notranslate"><span class="pre">zeta</span></code> and <code class="docutils literal notranslate"><span class="pre">multi_mod</span></code>
+algorithms according to the size of <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_bernoulli_number_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_bernoulli_number_vec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><span class="n"><span class="pre">fmpq</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_bernoulli_number_vec" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the <code class="docutils literal notranslate"><span class="pre">x</span></code> to the vector of Bernoulli numbers
+<span class="math notranslate nohighlight">\(B_0, B_1, B_2, \ldots, B_{n-1}\)</span> inclusive. This function is
+equivalent to <code class="docutils literal notranslate"><span class="pre">_arith_bernoulli_number_vec</span></code> apart
+from the output being a single <code class="docutils literal notranslate"><span class="pre">fmpq</span></code> vector.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_bernoulli_number_denom">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_bernoulli_number_denom</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_bernoulli_number_denom" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">den</span></code> to the reduced denominator of the <span class="math notranslate nohighlight">\(n\)</span>-th
+Bernoulli number <span class="math notranslate nohighlight">\(B_n\)</span>. For even <span class="math notranslate nohighlight">\(n\)</span>, the denominator is computed
+as the product of all primes <span class="math notranslate nohighlight">\(p\)</span> for which <span class="math notranslate nohighlight">\(p - 1\)</span> divides <span class="math notranslate nohighlight">\(n\)</span>;
+this property is a consequence of the von Staudt-Clausen theorem.
+For odd <span class="math notranslate nohighlight">\(n\)</span>, the denominator is trivial (<code class="docutils literal notranslate"><span class="pre">den</span></code> is set to 1 whenever
+<span class="math notranslate nohighlight">\(B_n = 0\)</span>). The initial sequence of values smaller than <span class="math notranslate nohighlight">\(2^{32}\)</span> are
+looked up directly from a table.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_bernoulli_number_size">
+<span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_bernoulli_number_size</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_bernoulli_number_size" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns <span class="math notranslate nohighlight">\(b\)</span> such that <span class="math notranslate nohighlight">\(|B_n| &lt; 2^{\lfloor b \rfloor}\)</span>, using the inequality
+<code class="docutils literal notranslate"><span class="pre">|B_n|</span> <span class="pre">&lt;</span> <span class="pre">\frac{4</span> <span class="pre">n!}{(2\pi)^n}</span></code> and <span class="math notranslate nohighlight">\(n! \le (n+1)^{n+1} e^{-n}\)</span>.
+No special treatment is given to odd <span class="math notranslate nohighlight">\(n\)</span>. Accuracy is not guaranteed
+if <span class="math notranslate nohighlight">\(n &gt; 10^{14}\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_bernoulli_polynomial">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_bernoulli_polynomial</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq_poly.html#c.fmpq_poly_t" title="fmpq_poly_t"><span class="n"><span class="pre">fmpq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_bernoulli_polynomial" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">poly</span></code> to the Bernoulli polynomial of degree <span class="math notranslate nohighlight">\(n\)</span>,
+<span class="math notranslate nohighlight">\(B_n(x) = \sum_{k=0}^n \binom{n}{k} B_k x^{n-k}\)</span> where <span class="math notranslate nohighlight">\(B_k\)</span>
+is a Bernoulli number. This function basically calls
+<code class="docutils literal notranslate"><span class="pre">arith_bernoulli_number_vec</span></code> and then rescales the coefficients
+efficiently.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._arith_bernoulli_number_zeta">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_arith_bernoulli_number_zeta</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._arith_bernoulli_number_zeta" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">(num,</span> <span class="pre">den)</span></code> to the reduced numerator and denominator
+of the <span class="math notranslate nohighlight">\(n\)</span>-th Bernoulli number.</p>
+<p>This function first computes the exact denominator and a bound
+for the size of the numerator. It then computes an approximation
+of <span class="math notranslate nohighlight">\(|B_n| = 2n! \zeta(n) / (2 \pi)^n\)</span> as a floating-point number
+and multiplies by the denominator to to obtain a real number
+that rounds to the exact numerator. For tiny <span class="math notranslate nohighlight">\(n\)</span>, the numerator
+is looked up from a table to avoid unnecessary overhead.</p>
+<p>Warning: this function does not use proven precision bounds, and
+could return the wrong results for very large <span class="math notranslate nohighlight">\(n\)</span>.
+It is recommended to use the Bernoulli number functions in Arb instead.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._arith_bernoulli_number_vec_recursive">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_arith_bernoulli_number_vec_recursive</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">num</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">den</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._arith_bernoulli_number_vec_recursive" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the elements of <code class="docutils literal notranslate"><span class="pre">num</span></code> and <code class="docutils literal notranslate"><span class="pre">den</span></code> to the reduced
+numerators and denominators of <span class="math notranslate nohighlight">\(B_0, B_1, B_2, \ldots, B_{n-1}\)</span>
+inclusive.</p>
+<p>The first few entries are computed using <code class="docutils literal notranslate"><span class="pre">arith_bernoulli_number</span></code>,
+and then Ramanujan’s recursive formula expressing <span class="math notranslate nohighlight">\(B_m\)</span> as a sum over
+<span class="math notranslate nohighlight">\(B_k\)</span> for <span class="math notranslate nohighlight">\(k\)</span> congruent to <span class="math notranslate nohighlight">\(m\)</span> modulo 6 is applied repeatedly.</p>
+<p>To avoid costly GCDs, the numerators are transformed internally
+to a common denominator and all operations are performed using
+integer arithmetic. This makes the algorithm fast for small <span class="math notranslate nohighlight">\(n\)</span>,
+say <span class="math notranslate nohighlight">\(n &lt; 1000\)</span>. The common denominator is calculated directly
+as the primorial of <span class="math notranslate nohighlight">\(n + 1\)</span>.</p>
+<p>%[1] <a class="reference external" href="https://en.wikipedia.org/w/index.php">https://en.wikipedia.org/w/index.php</a>?
+%    title=Bernoulli_number&amp;oldid=405938876</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._arith_bernoulli_number_vec_zeta">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_arith_bernoulli_number_vec_zeta</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">num</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">den</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._arith_bernoulli_number_vec_zeta" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the elements of <code class="docutils literal notranslate"><span class="pre">num</span></code> and <code class="docutils literal notranslate"><span class="pre">den</span></code> to the reduced
+numerators and denominators of <span class="math notranslate nohighlight">\(B_0, B_1, B_2, \ldots, B_{n-1}\)</span>
+inclusive. Uses repeated direct calls to\
+<code class="docutils literal notranslate"><span class="pre">_arith_bernoulli_number_zeta</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._arith_bernoulli_number_vec_multi_mod">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_arith_bernoulli_number_vec_multi_mod</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">num</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">den</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._arith_bernoulli_number_vec_multi_mod" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the elements of <code class="docutils literal notranslate"><span class="pre">num</span></code> and <code class="docutils literal notranslate"><span class="pre">den</span></code> to the reduced
+numerators and denominators of <span class="math notranslate nohighlight">\(B_0, B_1, B_2, \ldots, B_{n-1}\)</span>
+inclusive. Uses the generating function</p>
+<div class="math notranslate nohighlight">
+\[\frac{x^2}{\cosh(x)-1} = \sum_{k=0}^{\infty}
+    \frac{(2-4k) B_{2k}}{(2k)!} x^{2k}\]</div>
+<p>which is evaluated modulo several limb-size primes using <code class="docutils literal notranslate"><span class="pre">nmod_poly</span></code>
+arithmetic to yield the numerators of the Bernoulli numbers after
+multiplication by the denominators and CRT reconstruction. This formula,
+given (incorrectly) in <a class="reference internal" href="references.html#buhlercrandallsompolski1992" id="id2"><span>[BuhlerCrandallSompolski1992]</span></a>, saves about
+half of the time compared to the usual generating function <span class="math notranslate nohighlight">\(x/(e^x-1)\)</span>
+since the odd terms vanish.</p>
+</dd></dl>
+
+</section>
+<section id="euler-numbers-and-polynomials">
+<h2>Euler numbers and polynomials<a class="headerlink" href="#euler-numbers-and-polynomials" title="Link to this heading">¶</a></h2>
+<p>Euler numbers are the integers <span class="math notranslate nohighlight">\(E_n\)</span> defined by
+<span class="math notranslate nohighlight">\(\frac{1}{\cosh(t)} = \sum_{n=0}^{\infty} \frac{E_n}{n!} t^n.\)</span>
+With this convention, the odd-indexed numbers are zero and the even
+ones alternate signs, viz.
+<span class="math notranslate nohighlight">\(E_0, E_1, E_2, \ldots = 1, 0, -1, 0, 5, 0, -61, 0, 1385, 0, \ldots\)</span>.
+The corresponding Euler polynomials are defined by
+<span class="math notranslate nohighlight">\(\frac{2e^{xt}}{e^t+1} = \sum_{n=0}^{\infty} \frac{E_n(x)}{n!} t^n.\)</span></p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_euler_number">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_euler_number</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_euler_number" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the Euler number <span class="math notranslate nohighlight">\(E_n\)</span>. Currently calls
+<code class="docutils literal notranslate"><span class="pre">_arith_euler_number_zeta</span></code>.</p>
+<p>Warning: this function does not use proven precision bounds, and
+could return the wrong results for very large <span class="math notranslate nohighlight">\(n\)</span>.
+It is recommended to use the Euler number functions in Arb instead.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_euler_number_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_euler_number_vec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">res</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_euler_number_vec" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the Euler numbers <span class="math notranslate nohighlight">\(E_0, E_1, \dotsc, E_{n-1}\)</span> for <span class="math notranslate nohighlight">\(n \geq 0\)</span>
+and stores the result in <code class="docutils literal notranslate"><span class="pre">res</span></code>, which must be an initialised
+<code class="docutils literal notranslate"><span class="pre">fmpz</span></code> vector of sufficient size.</p>
+<p>This function evaluates the even-index <span class="math notranslate nohighlight">\(E_k\)</span> modulo several limb-size
+primes using the generating function and <code class="docutils literal notranslate"><span class="pre">nmod_poly</span></code> arithmetic.
+A tight bound for the number of needed primes is computed using
+<code class="docutils literal notranslate"><span class="pre">arith_euler_number_size</span></code>, and the final integer values are recovered
+using balanced CRT reconstruction.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_euler_number_size">
+<span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_euler_number_size</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_euler_number_size" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns <span class="math notranslate nohighlight">\(b\)</span> such that <span class="math notranslate nohighlight">\(|E_n| &lt; 2^{\lfloor b \rfloor}\)</span>, using the inequality
+<code class="docutils literal notranslate"><span class="pre">|E_n|</span> <span class="pre">&lt;</span> <span class="pre">\frac{2^{n+2}</span> <span class="pre">n!}{\pi^{n+1}}</span></code> and <span class="math notranslate nohighlight">\(n! \le (n+1)^{n+1} e^{-n}\)</span>.
+No special treatment is given to odd <span class="math notranslate nohighlight">\(n\)</span>.
+Accuracy is not guaranteed if <span class="math notranslate nohighlight">\(n &gt; 10^{14}\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_euler_polynomial">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_euler_polynomial</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq_poly.html#c.fmpq_poly_t" title="fmpq_poly_t"><span class="n"><span class="pre">fmpq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_euler_polynomial" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">poly</span></code> to the Euler polynomial <span class="math notranslate nohighlight">\(E_n(x)\)</span>. Uses the formula</p>
+<div class="math notranslate nohighlight">
+\[E_n(x) = \frac{2}{n+1}\left(B_{n+1}(x) -
+    2^{n+1}B_{n+1}\left(\frac{x}{2}\right)\right),\]</div>
+<p>with the Bernoulli polynomial <span class="math notranslate nohighlight">\(B_{n+1}(x)\)</span> evaluated once
+using <code class="docutils literal notranslate"><span class="pre">bernoulli_polynomial</span></code> and then rescaled.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._arith_euler_number_zeta">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_arith_euler_number_zeta</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._arith_euler_number_zeta" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the Euler number <span class="math notranslate nohighlight">\(E_n\)</span>. For even <span class="math notranslate nohighlight">\(n\)</span>, this function
+uses the relation <code class="docutils literal notranslate"><span class="pre">|E_n|</span> <span class="pre">=</span> <span class="pre">\frac{2^{n+2}</span> <span class="pre">n!}{\pi^{n+1}}</span> <span class="pre">L(n+1)</span></code>
+where <span class="math notranslate nohighlight">\(L(n+1)\)</span> denotes the Dirichlet <span class="math notranslate nohighlight">\(L\)</span>-function with character
+<span class="math notranslate nohighlight">\(\chi = \{ 0, 1, 0, -1 \}\)</span>.</p>
+<p>Warning: this function does not use proven precision bounds, and
+could return the wrong results for very large <span class="math notranslate nohighlight">\(n\)</span>.
+It is recommended to use the Euler number functions in Arb instead.</p>
+</dd></dl>
+
+</section>
+<section id="multiplicative-functions">
+<h2>Multiplicative functions<a class="headerlink" href="#multiplicative-functions" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_euler_phi">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_euler_phi</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_euler_phi" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.arith_moebius_mu">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_moebius_mu</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_moebius_mu" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.arith_divisor_sigma">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_divisor_sigma</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">k</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_divisor_sigma" title="Link to this definition">¶</a><br /></dt>
+<dd><p>These are aliases for the functions in the fmpz module.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_divisors">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_divisors</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz_poly.html#c.fmpz_poly_t" title="fmpz_poly_t"><span class="n"><span class="pre">fmpz_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_divisors" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set the coefficients of the polynomial <code class="docutils literal notranslate"><span class="pre">res</span></code> to the divisors of <span class="math notranslate nohighlight">\(n\)</span>,
+including <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(n\)</span> itself, in ascending order.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_ramanujan_tau">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_ramanujan_tau</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_ramanujan_tau" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the Ramanujan tau function <span class="math notranslate nohighlight">\(\tau(n)\)</span> which is the
+coefficient of <span class="math notranslate nohighlight">\(q^n\)</span> in the series expansion of
+<span class="math notranslate nohighlight">\(f(q) = q  \prod_{k \geq 1} \bigl(1 - q^k\bigr)^{24}\)</span>.</p>
+<p>We factor <span class="math notranslate nohighlight">\(n\)</span> and use the identity <span class="math notranslate nohighlight">\(\tau(pq) = \tau(p) \tau(q)\)</span>
+along with the recursion
+<span class="math notranslate nohighlight">\(\tau(p^{r+1}) = \tau(p) \tau(p^r) - p^{11} \tau(p^{r-1})\)</span>
+for prime powers.</p>
+<p>The base values <span class="math notranslate nohighlight">\(\tau(p)\)</span> are obtained using the function
+<code class="docutils literal notranslate"><span class="pre">arith_ramanujan_tau_series()</span></code>. Thus the speed of
+<code class="docutils literal notranslate"><span class="pre">arith_ramanujan_tau()</span></code> depends on the largest prime factor of <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>Future improvement:  optimise this function for small <span class="math notranslate nohighlight">\(n\)</span>, which
+could be accomplished using a lookup table or by calling
+<code class="docutils literal notranslate"><span class="pre">arith_ramanujan_tau_series()</span></code> directly.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_ramanujan_tau_series">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_ramanujan_tau_series</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz_poly.html#c.fmpz_poly_t" title="fmpz_poly_t"><span class="n"><span class="pre">fmpz_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_ramanujan_tau_series" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the polynomial with coefficients
+<span class="math notranslate nohighlight">\(\tau(0),\tau(1), \dotsc, \tau(n-1)\)</span>, giving the initial <span class="math notranslate nohighlight">\(n\)</span> terms
+in the series expansion of
+<span class="math notranslate nohighlight">\(f(q) = q \prod_{k \geq 1} \bigl(1-q^k\bigr)^{24}\)</span>.</p>
+<p>We use the theta function identity</p>
+<div class="math notranslate nohighlight">
+\[f(q) = q  \Biggl( \sum_{k \geq 0} (-1)^k (2k+1) q^{k(k+1)/2} \Biggr)^8\]</div>
+<p>which is evaluated using three squarings. The first squaring is done
+directly since the polynomial is very sparse at this point.</p>
+</dd></dl>
+
+</section>
+<section id="cyclotomic-polynomials">
+<h2>Cyclotomic polynomials<a class="headerlink" href="#cyclotomic-polynomials" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._arith_cos_minpoly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_arith_cos_minpoly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">coeffs</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">d</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._arith_cos_minpoly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>For <span class="math notranslate nohighlight">\(n \ge 1\)</span>, sets <code class="docutils literal notranslate"><span class="pre">(coeffs,</span> <span class="pre">d+1)</span></code> to the minimal polynomial
+<span class="math notranslate nohighlight">\(\Psi_n(x)\)</span> of <span class="math notranslate nohighlight">\(\cos(2 \pi / n)\)</span>, scaled to have integer coefficients
+by multiplying by <span class="math notranslate nohighlight">\(2^d\)</span> (<span class="math notranslate nohighlight">\(2^{d-1}\)</span> when <span class="math notranslate nohighlight">\(n\)</span> is a power of two).</p>
+<p>The polynomial <span class="math notranslate nohighlight">\(\Psi_n(x)\)</span> is described in <a class="reference internal" href="references.html#waktinszeitlin1993" id="id3"><span>[WaktinsZeitlin1993]</span></a>.
+As proved in that paper, the roots of <span class="math notranslate nohighlight">\(\Psi_n(x)\)</span> for <span class="math notranslate nohighlight">\(n \ge 3\)</span> are
+<span class="math notranslate nohighlight">\(\cos(2 \pi k / n)\)</span> where <span class="math notranslate nohighlight">\(0 \le k &lt; d\)</span> and where <span class="math notranslate nohighlight">\(\gcd(k, n) = 1\)</span>.</p>
+<p>To calculate <span class="math notranslate nohighlight">\(\Psi_n(x)\)</span>, we compute the roots numerically with MPFR
+and use a balanced product tree to form a polynomial with fixed-point
+coefficients, i.e. an approximation of <span class="math notranslate nohighlight">\(2^p 2^d \Psi_n(x)\)</span>.</p>
+<p>To determine the precision <span class="math notranslate nohighlight">\(p\)</span>, we note that the coefficients
+in <span class="math notranslate nohighlight">\(\prod_{i=1}^d (x - \alpha)\)</span> can be bounded by the central
+coefficient in the binomial expansion of <span class="math notranslate nohighlight">\((x+1)^d\)</span>.</p>
+<p>When <span class="math notranslate nohighlight">\(n\)</span> is an odd prime, we use a direct formula for the coefficients
+(<a class="reference external" href="https://mathworld.wolfram.com/TrigonometryAngles.html">https://mathworld.wolfram.com/TrigonometryAngles.html</a> ).</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_cos_minpoly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_cos_minpoly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz_poly.html#c.fmpz_poly_t" title="fmpz_poly_t"><span class="n"><span class="pre">fmpz_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_cos_minpoly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">poly</span></code> to the minimal polynomial <span class="math notranslate nohighlight">\(\Psi_n(x)\)</span> of
+<span class="math notranslate nohighlight">\(\cos(2 \pi / n)\)</span>, scaled to have integer coefficients. This
+polynomial has degree 1 if <span class="math notranslate nohighlight">\(n = 1\)</span> or <span class="math notranslate nohighlight">\(n = 2\)</span>, and
+degree <span class="math notranslate nohighlight">\(\phi(n) / 2\)</span> otherwise.</p>
+<p>We allow <span class="math notranslate nohighlight">\(n = 0\)</span> and define <span class="math notranslate nohighlight">\(\Psi_0 = 1\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="landau-s-function">
+<h2>Landau’s function<a class="headerlink" href="#landau-s-function" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_landau_function_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_landau_function_vec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">res</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_landau_function_vec" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the first <code class="docutils literal notranslate"><span class="pre">len</span></code> values of Landau’s function <span class="math notranslate nohighlight">\(g(n)\)</span>
+starting with <span class="math notranslate nohighlight">\(g(0)\)</span>. Landau’s function gives the largest order
+of an element of the symmetric group <span class="math notranslate nohighlight">\(S_n\)</span>.</p>
+<p>Implements the “basic algorithm” given in
+<a class="reference internal" href="references.html#deleglisenicolaszimmermann2009" id="id4"><span>[DelegliseNicolasZimmermann2009]</span></a>. The running time is
+<span class="math notranslate nohighlight">\(O(n^{3/2} / \sqrt{\log n})\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="dedekind-sums">
+<h2>Dedekind sums<a class="headerlink" href="#dedekind-sums" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_dedekind_sum_naive">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_dedekind_sum_naive</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">s</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">h</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">k</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_dedekind_sum_naive" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.arith_dedekind_sum_coprime_d">
+<span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_dedekind_sum_coprime_d</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n"><span class="pre">h</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n"><span class="pre">k</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_dedekind_sum_coprime_d" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.arith_dedekind_sum_coprime_large">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_dedekind_sum_coprime_large</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">s</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">h</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">k</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_dedekind_sum_coprime_large" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.arith_dedekind_sum_coprime">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_dedekind_sum_coprime</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">s</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">h</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">k</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_dedekind_sum_coprime" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.arith_dedekind_sum">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_dedekind_sum</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpq.html#c.fmpq_t" title="fmpq_t"><span class="n"><span class="pre">fmpq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">s</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">h</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">k</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_dedekind_sum" title="Link to this definition">¶</a><br /></dt>
+<dd><p>These are aliases for the functions in the fmpq module.</p>
+</dd></dl>
+
+</section>
+<section id="number-of-partitions">
+<h2>Number of partitions<a class="headerlink" href="#number-of-partitions" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_number_of_partitions_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_number_of_partitions_vec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">res</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_number_of_partitions_vec" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes first <code class="docutils literal notranslate"><span class="pre">len</span></code> values of the partition function <span class="math notranslate nohighlight">\(p(n)\)</span>
+starting with <span class="math notranslate nohighlight">\(p(0)\)</span>. Uses inversion of Euler’s pentagonal series.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_number_of_partitions_nmod_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_number_of_partitions_nmod_vec</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mp_ptr</span></span><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="n"><span class="pre">nmod_t</span></span><span class="w"> </span><span class="n"><span class="pre">mod</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_number_of_partitions_nmod_vec" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes first <code class="docutils literal notranslate"><span class="pre">len</span></code> values of the partition function <span class="math notranslate nohighlight">\(p(n)\)</span>
+starting with <span class="math notranslate nohighlight">\(p(0)\)</span>, modulo the modulus defined by <code class="docutils literal notranslate"><span class="pre">mod</span></code>.
+Uses inversion of Euler’s pentagonal series.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_hrr_expsum_factored">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_hrr_expsum_factored</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">trig_prod_t</span></span><span class="w"> </span><span class="n"><span class="pre">prod</span></span>, <span class="n"><span class="pre">mp_limb_t</span></span><span class="w"> </span><span class="n"><span class="pre">k</span></span>, <span class="n"><span class="pre">mp_limb_t</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_hrr_expsum_factored" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Symbolically evaluates the exponential sum</p>
+<div class="math notranslate nohighlight">
+\[A_k(n) = \sum_{h=0}^{k-1}
+    \exp\left(\pi i \left[ s(h,k) - \frac{2hn}{k}\right]\right)\]</div>
+<p>appearing in the Hardy-Ramanujan-Rademacher formula, where <span class="math notranslate nohighlight">\(s(h,k)\)</span> is a
+Dedekind sum.</p>
+<p>Rather than evaluating the sum naively, we factor <span class="math notranslate nohighlight">\(A_k(n)\)</span> into a
+product of cosines based on the prime factorisation of <span class="math notranslate nohighlight">\(k\)</span>. This
+process is based on the identities given in <a class="reference internal" href="references.html#whiteman1956" id="id5"><span>[Whiteman1956]</span></a>.</p>
+<p>The special <code class="docutils literal notranslate"><span class="pre">trig_prod_t</span></code> structure <code class="docutils literal notranslate"><span class="pre">prod</span></code> represents a
+product of cosines of rational arguments, multiplied by an algebraic
+prefactor. It must be pre-initialised with <code class="docutils literal notranslate"><span class="pre">trig_prod_init</span></code>.</p>
+<p>This function assumes that <span class="math notranslate nohighlight">\(24k\)</span> and <span class="math notranslate nohighlight">\(24n\)</span> do not overflow a single limb.
+If <span class="math notranslate nohighlight">\(n\)</span> is larger, it can be pre-reduced modulo <span class="math notranslate nohighlight">\(k\)</span>, since <span class="math notranslate nohighlight">\(A_k(n)\)</span>
+only depends on the value of <span class="math notranslate nohighlight">\(n \bmod k\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_number_of_partitions_mpfr">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_number_of_partitions_mpfr</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mpfr_t</span></span><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_number_of_partitions_mpfr" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the pre-initialised MPFR variable <span class="math notranslate nohighlight">\(x\)</span> to the exact value of <span class="math notranslate nohighlight">\(p(n)\)</span>.
+The value is computed using the Hardy-Ramanujan-Rademacher formula.</p>
+<p>The precision of <span class="math notranslate nohighlight">\(x\)</span> will be changed to allow <span class="math notranslate nohighlight">\(p(n)\)</span> to be represented
+exactly. The interface of this function may be updated in the future
+to allow computing an approximation of <span class="math notranslate nohighlight">\(p(n)\)</span> to smaller precision.</p>
+<p>The Hardy-Ramanujan-Rademacher formula is given with error bounds
+in <a class="reference internal" href="references.html#rademacher1937" id="id6"><span>[Rademacher1937]</span></a>. We evaluate it in the form</p>
+<div class="math notranslate nohighlight">
+\[p(n) = \sum_{k=1}^N B_k(n) U(C/k) + R(n,N)\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}U(x) = \cosh(x) + \frac{\sinh(x)}{x},
+    \quad C = \frac{\pi}{6} \sqrt{24n-1}\\B_k(n) = \sqrt{\frac{3}{k}} \frac{4}{24n-1} A_k(n)\end{aligned}\end{align} \]</div>
+<p>and where <span class="math notranslate nohighlight">\(A_k(n)\)</span> is a certain exponential sum. The remainder satisfies</p>
+<div class="math notranslate nohighlight">
+\[|R(n,N)| &lt; \frac{44 \pi^2}{225 \sqrt{3}} N^{-1/2} +
+    \frac{\pi \sqrt{2}}{75} \left(\frac{N}{n-1}\right)^{1/2}
+    \sinh\left(\pi \sqrt{\frac{2}{3}} \frac{\sqrt{n}}{N} \right).\]</div>
+<p>We choose <span class="math notranslate nohighlight">\(N\)</span> such that <span class="math notranslate nohighlight">\(|R(n,N)| &lt; 0.25\)</span>, and a working precision
+at term <span class="math notranslate nohighlight">\(k\)</span> such that the absolute error of the term is expected to be
+less than <span class="math notranslate nohighlight">\(0.25 / N\)</span>. We also use a summation variable with increased
+precision, essentially making additions exact. Thus the sum of errors
+adds up to less than 0.5, giving the correct value of <span class="math notranslate nohighlight">\(p(n)\)</span> when
+rounding to the nearest integer.</p>
+<p>The remainder estimate at step <span class="math notranslate nohighlight">\(k\)</span> provides an upper bound for the size
+of the <span class="math notranslate nohighlight">\(k\)</span>-th term. We add <span class="math notranslate nohighlight">\(\log_2 N\)</span> bits to get low bits in the terms
+below <span class="math notranslate nohighlight">\(0.25 / N\)</span> in magnitude.</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">arith_hrr_expsum_factored</span></code>, each <span class="math notranslate nohighlight">\(B_k(n)\)</span> evaluation
+is broken down to a product of cosines of exact rational multiples
+of <span class="math notranslate nohighlight">\(\pi\)</span>. We transform all angles to <span class="math notranslate nohighlight">\((0, \pi/4)\)</span> for optimal accuracy.</p>
+<p>Since the evaluation of each term involves only <span class="math notranslate nohighlight">\(O(\log k)\)</span> multiplications
+and evaluations of trigonometric functions of small angles, the
+relative rounding error is at most a few bits. We therefore just add
+an additional <span class="math notranslate nohighlight">\(\log_2 (C/k)\)</span> bits for the <span class="math notranslate nohighlight">\(U(x)\)</span> when <span class="math notranslate nohighlight">\(x\)</span> is large.
+The cancellation of terms in <span class="math notranslate nohighlight">\(U(x)\)</span> is of no concern, since Rademacher’s
+bound allows us to terminate before <span class="math notranslate nohighlight">\(x\)</span> becomes small.</p>
+<p>This analysis should be performed in more detail to give a rigorous
+error bound, but the precision currently implemented is almost
+certainly sufficient, not least considering that Rademacher’s
+remainder bound significantly overshoots the actual values.</p>
+<p>To improve performance, we switch to doubles when the working precision
+becomes small enough. We also use a separate accumulator variable
+which gets added to the main sum periodically, in order to avoid
+costly updates of the full-precision result when <span class="math notranslate nohighlight">\(n\)</span> is large.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_number_of_partitions">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_number_of_partitions</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_number_of_partitions" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\(p(n)\)</span>, the number of ways that <span class="math notranslate nohighlight">\(n\)</span> can be written
+as a sum of positive integers without regard to order.</p>
+<p>This function uses a lookup table for <span class="math notranslate nohighlight">\(n &lt; 128\)</span> (where <span class="math notranslate nohighlight">\(p(n) &lt; 2^{32}\)</span>),
+and otherwise calls <code class="docutils literal notranslate"><span class="pre">arith_number_of_partitions_mpfr</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="sums-of-squares">
+<h2>Sums of squares<a class="headerlink" href="#sums-of-squares" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_sum_of_squares">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_sum_of_squares</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">r</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">k</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_sum_of_squares" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(r\)</span> to the number of ways <span class="math notranslate nohighlight">\(r_k(n)\)</span> in which <span class="math notranslate nohighlight">\(n\)</span> can be represented
+as a sum of <span class="math notranslate nohighlight">\(k\)</span> squares.</p>
+<p>If <span class="math notranslate nohighlight">\(k = 2\)</span> or <span class="math notranslate nohighlight">\(k = 4\)</span>, we write <span class="math notranslate nohighlight">\(r_k(n)\)</span> as a divisor sum.</p>
+<p>Otherwise, we either recurse on <span class="math notranslate nohighlight">\(k\)</span> or compute the theta function
+expansion up to <span class="math notranslate nohighlight">\(O(x^{n+1})\)</span> and read off the last coefficient.
+This is generally optimal.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arith_sum_of_squares_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arith_sum_of_squares_vec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><span class="n"><span class="pre">fmpz</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">r</span></span>, <span class="n"><span class="pre">ulong</span></span><span class="w"> </span><span class="n"><span class="pre">k</span></span>, <span class="n"><span class="pre">slong</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arith_sum_of_squares_vec" title="Link to this definition">¶</a><br /></dt>
+<dd><p>For <span class="math notranslate nohighlight">\(i = 0, 1, \ldots, n-1\)</span>, sets <span class="math notranslate nohighlight">\(r_i\)</span> to the number of
+representations of <span class="math notranslate nohighlight">\(i\)</span> a sum of <span class="math notranslate nohighlight">\(k\)</span> squares, <span class="math notranslate nohighlight">\(r_k(i)\)</span>.
+This effectively computes the <span class="math notranslate nohighlight">\(q\)</span>-expansion of <span class="math notranslate nohighlight">\(\vartheta_3(q)\)</span>
+raised to the <span class="math notranslate nohighlight">\(k\)</span>-th power, i.e.</p>
+<div class="math notranslate nohighlight">
+\[\vartheta_3^k(q) = \left( \sum_{i=-\infty}^{\infty} q^{i^2} \right)^k.\]</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><strong>arith.h</strong> – arithmetic and special functions</a><ul>
+<li><a class="reference internal" href="#primorials">Primorials</a></li>
+<li><a class="reference internal" href="#harmonic-numbers">Harmonic numbers</a></li>
+<li><a class="reference internal" href="#stirling-numbers">Stirling numbers</a></li>
+<li><a class="reference internal" href="#bell-numbers">Bell numbers</a></li>
+<li><a class="reference internal" href="#bernoulli-numbers-and-polynomials">Bernoulli numbers and polynomials</a></li>
+<li><a class="reference internal" href="#euler-numbers-and-polynomials">Euler numbers and polynomials</a></li>
+<li><a class="reference internal" href="#multiplicative-functions">Multiplicative functions</a></li>
+<li><a class="reference internal" href="#cyclotomic-polynomials">Cyclotomic polynomials</a></li>
+<li><a class="reference internal" href="#landau-s-function">Landau’s function</a></li>
+<li><a class="reference internal" href="#dedekind-sums">Dedekind sums</a></li>
+<li><a class="reference internal" href="#number-of-partitions">Number of partitions</a></li>
+<li><a class="reference internal" href="#sums-of-squares">Sums of squares</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="aprcl.html"
+                          title="previous chapter"><strong>aprcl.h</strong> – APRCL primality testing</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="fft.html"
+                          title="next chapter"><strong>fft.h</strong> – Schoenhage-Strassen FFT</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/arith.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+<div id="sidebarbutton" title="Collapse sidebar">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="fft.html" title="fft.h – Schoenhage-Strassen FFT"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="aprcl.html" title="aprcl.h – APRCL primality testing"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Flint 2.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><strong>arith.h</strong> – arithmetic and special functions</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2018, The Flint development team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

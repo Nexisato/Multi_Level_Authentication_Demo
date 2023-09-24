@@ -21,6 +21,7 @@ link_directories(
 
 set(CODE_SOURCES 
     preprocess.cpp
+    utils.cpp
 )
 
 
@@ -35,5 +36,7 @@ target_include_directories( ${TARGET_NAME}  PRIVATE
 target_link_libraries(${TARGET_NAME} 
     ${OPENSSL_LIBRARIES}
     jsoncpp
+    ${PROJECT_SOURCE_DIR}/lib/libgmp.so
+    ${PROJECT_SOURCE_DIR}/lib/libgmpxx.so
 )
 

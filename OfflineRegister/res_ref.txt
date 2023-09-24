@@ -6,3 +6,7 @@ md5sum Feishu-linux_x64-6.9.16.deb  0.45s user 0.00s system 99% cpu 0.448 total
 
 d837574222efd75877f7e89708a59fdd  wps-office_11.1.0.11704_amd64.deb --- 395M
 md5sum wps-office_11.1.0.11704_amd64.deb  0.47s user 0.07s system 99% cpu 0.540 total
+
+dce0588874fd369ce493ea5bc2a21d99  qt-opensource-linux-x64-5.14.2.run --- 1.3G
+md5sum qt-opensource-linux-x64-5.14.2.run  1.68s user 0.03s system 99% cpu 1.709 total
+

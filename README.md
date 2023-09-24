@@ -11,7 +11,7 @@
     - mpfr-4.2.1: https://www.mpfr.org/
   - cryptopp880 (INSTALLED in /usr/local)
   - jsoncpp (INSTALLED in /usr/local)
-  - OpenSSL (INSTALLED in /usr/local/openssl)
+  - OpenSSL (INSTALLED in /usr/local/openssl): 
 - 2023-09-23: finish batch compute of MD5 checksum stored in JSON
   - ignore all built target dirs
 - 2023-09-17: finish CL_Auth_Demo with PBC: 
@@ -35,6 +35,7 @@
 ## UI
 - Electron 模板：https://github.com/dromara/electron-egg
 - 前端模板：https://github.com/773579084/leno-admin-electron
+- Qt in CLion: https://zhuanlan.zhihu.com/p/461896034
 
 
 

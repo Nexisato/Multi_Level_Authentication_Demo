@@ -1,4 +1,4 @@
-prefix=/home/nexisato/Projects/LABS/auth_demo/accumulator_auth/cpp_acc/ext/mpfr-4.2.1/build
+prefix=/home/nexisato/Projects/LABS/auth_demo/accumulator_auth/cpp_acc/ext_archive/mpfr-4.2.1/build
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include

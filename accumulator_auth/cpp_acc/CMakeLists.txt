@@ -34,10 +34,10 @@ target_include_directories( ${TARGET_NAME}  PRIVATE
 
 target_link_libraries(${TARGET_NAME} 
     ${OPENSSL_LIBRARIES}
-    /usr/local/lib/cryptopp
-    /usr/local/lib/jsoncpp
-    ${PROJECT_SOURCE_DIR}/lib/flint
-    ${PROJECT_SOURCE_DIR}/lib/mpfr
-    ${PROJECT_SOURCE_DIR}/lib/gmp
+    cryptopp
+    jsoncpp
+    flint
+    mpfr
+    gmp
 )
 

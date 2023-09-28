@@ -1,11 +1,8 @@
 #pragma once
 
-#include "gmpxx.h"
+#include <gmpxx.h>
 
 const int _KEY_LEN = 256;
-
-
-
 
 namespace utils {
 /**
@@ -51,7 +48,6 @@ mpz_class rand_big_num(int bits);
 mpz_class rand_prime(int bits);
 mpz_class rand_safe_prime(int bits);
 bool is_safe_prime(mpz_class num);
-
 
 void test();
 } // namespace utils

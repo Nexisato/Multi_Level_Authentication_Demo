@@ -38,7 +38,7 @@ mpz_class quick_pow(mpz_class base, mpz_class power, mpz_class mod) {
     mpz_class ans = 1;
     while (power > 0) {
         if (power % 2 == 1)
-            ans = quick_mul(ans, ans, mod);
+            ans = quick_mul(ans, base, mod);
         base = quick_mul(base, base, mod);
         power /= 2;
     }

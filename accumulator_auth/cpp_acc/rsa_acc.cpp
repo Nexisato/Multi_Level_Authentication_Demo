@@ -58,7 +58,7 @@ public:
         mpz_class p = utils::rand_safe_prime(this->bits);
         mpz_class q = utils::rand_safe_prime(this->bits);
 
-        //this->public_key = utils::quick_mul(p, q, this->MODULAR);
+        // this->public_key = utils::quick_mul(p, q, this->MODULAR);
         mpz_mul(this->public_key.get_mpz_t(), p.get_mpz_t(), q.get_mpz_t());
 
         this->secret_key.first = p;
@@ -83,23 +83,23 @@ public:
     // generate only after all members are added
     mpz_class witness_generate(mpz_class &pid) {
         mpz_class product = 1;
-//#pragma omp parallel for
+        // #pragma omp parallel for
         for (const auto &pid_val : this->members) {
             if (pid_val == pid)
                 continue;
             mpz_mul(product.get_mpz_t(), product.get_mpz_t(),
                     pid_val.get_mpz_t());
         }
-        //std::cout << "product: " << product << std::endl;   
-        mpz_class witness = utils::quick_pow(this->acc_init, product, this->public_key);
+        // std::cout << "product: " << product << std::endl;
+        mpz_class witness =
+            utils::quick_pow(this->acc_init, product, this->public_key);
         return witness;
     }
-
 
     void get_all_witness() {
         const int acc_size = this->members.size();
         // add OpenMP for parallel computing
-//#pragma omp parallel for
+        // #pragma omp parallel for
         for (size_t i = 0; i < acc_size; ++i) {
             mpz_class witness = witness_generate(this->members[i]);
             this->wits.emplace_back(witness);
@@ -123,26 +123,32 @@ public:
         return false;
     }
 
+    bool is_contained(const mpz_class &pid) {
+        auto it = std::find(this->members.begin(), this->members.end(), pid);
+        if (it != this->members.end())
+            return true;
+        return false;
+    }
+
+    // remove one member
     mpz_class remove_member(mpz_class &pid_val) {
-        mpz_class aggrX = 1;
-        const int size = this->members.size();
-        for (size_t i = 0; i < size; ++i) {
-            aggrX = utils::quick_mul(aggrX, this->members[i], this->public_key);
+        if (!this->is_contained(pid_val)) {
+            std::cerr << "pid not in members" << std::endl;
+            return 0;
         }
-        // std::cout << "aggrX: " << aggrX << std::endl;
+        mpz_class euler_pk, p_l, q_l;
+        p_l = this->secret_key.first - 1, q_l = this->secret_key.second - 1;
+        mpz_mul(euler_pk.get_mpz_t(), p_l.get_mpz_t(), q_l.get_mpz_t());
 
-        mpz_class euler_pk =
-            utils::quick_mul(this->secret_key.first - 1,
-                             this->secret_key.second - 1, this->MODULAR);
-        mpz_class AUX = utils::mod_reverse(aggrX, euler_pk);
+        mpz_class AUX = utils::mod_reverse(pid_val, euler_pk);
 
-        // std::cout << "eleur_pk: " << euler_pk << std::endl;
-        // std::cout << "AUX: " << AUX << std::endl;
+        std::cout << "eleur_pk: " << euler_pk << std::endl;
+        std::cout << "AUX: " << AUX << std::endl;
 
         // mpz_class tmp = utils::quick_mul(aggrX, AUX, euler_pk);
         // std::cout << "tmp: " << tmp << std::endl;   // expect 1
-        this->acc = utils::quick_pow(this->acc, AUX, this->public_key);
-        this->acc_init = this->acc;
+        this->acc = utils::quick_pow(this->acc, AUX, this->public_key); //利用更新后的累加值验证
+        std::cout << "acc: " << this->acc << std::endl;
 
         std::cout << "Before Remove: " << this->wits.size() << std::endl;
         this->remove_by_pid(pid_val);
@@ -156,10 +162,14 @@ public:
 
     void update_wit_all(mpz_class &update_aux) {
         const int size = this->wits.size();
-//#pragma omp parallel for
+        // #pragma omp parallel for
         for (size_t i = 0; i < size; ++i) {
+            std::cout << "original: wits[" << i + 1 << "]: " << this->wits[i]
+                      << std::endl;
             this->wits[i] =
                 utils::quick_pow(this->wits[i], update_aux, this->public_key);
+            std::cout << "updated: wits[" << i + 1 << "]: " << this->wits[i]
+                      << std::endl;
         }
     }
 
@@ -186,7 +196,7 @@ int main() {
     acc_ptr->print_wits();
 
     // 3. verify
-    //#pragma omp parallel for
+    #pragma omp parallel for
     for (size_t i = 0; i < pids.size(); ++i) {
         if (acc_ptr->verify_member(acc_ptr->wits[i], pids[i]))
             std::cout << "verify success" << std::endl;
@@ -196,7 +206,18 @@ int main() {
 
     // 4. remove member
     mpz_class pid = pids[0];
-    acc_ptr->remove_member(pid);
+    mpz_class aux = acc_ptr->remove_member(pid);
+
+    acc_ptr->update_wit_all(aux);
+
+    // 5. ReVerify
+    #pragma omp parallel for
+    for (size_t i = 0; i < acc_ptr->wits.size(); ++i) {
+        if (acc_ptr->verify_member(acc_ptr->wits[i], pids[i + 1]))
+            std::cout << "verify success" << std::endl;
+        else
+            std::cout << "verify failed" << std::endl;
+    }
 
     return 0;
 }

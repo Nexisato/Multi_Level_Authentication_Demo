@@ -1,10 +1,4 @@
-#include <pbc/pbc.h>
-#include <pbc/pbc_test.h>
-
-#include <chrono>
-#include <cstring>
-#include <iostream>
-#include <string>
+#include "KGC.h"
 
 using chrono_time = std::chrono::_V2::system_clock::time_point;
 /**
@@ -23,18 +17,6 @@ double count_time(chrono_time t0, chrono_time t1) {
                  std::chrono::milliseconds::period::den;
     return res;
 }
-
-
-/**
- * @brief 
- * Implementation of CL-PKS Algorithm
- * 
- * @Class: KGC: Key Generation Center
- * @Struct Payload: Message Payload produced(recevide) by process
- * @Class: Process: Process Entity in the system
- */
-
-
 
 class KGC {
 private:

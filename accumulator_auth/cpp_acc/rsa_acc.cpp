@@ -1,11 +1,5 @@
-#include "utils.h"
-#include <algorithm>
-#include <fstream>
-#include <iostream>
-#include <json/json.h>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
+#include "accumulator.h"
+
 
 void get_pid_from_json(const char *&path, std::vector<mpz_class> &pids) {
     std::ifstream ifs(path);
@@ -25,6 +19,7 @@ void get_pid_from_json(const char *&path, std::vector<mpz_class> &pids) {
         pids.emplace_back(pid_val);
     }
 }
+
 
 class Accmulator {
 private:

@@ -27,8 +27,9 @@ link_directories(
 )
 
 set(CODE_SOURCES 
-    rsa_acc.cpp
     utils.cpp
+    accumulator.cpp
+    test.cpp
 )
 
 

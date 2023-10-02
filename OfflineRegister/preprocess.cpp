@@ -1,5 +1,5 @@
 #include "utils.h"
-#include "preload.h"
+#include "loader.h"
 
 #include <cstring>
 #include <dirent.h> //only available in linux
@@ -41,7 +41,7 @@ void getFileList(const char *&path, std::vector<std::string> &fileList) {
 void get_md5_list(std::vector<std::string> &fileList,
                   std::vector<std::string> &md5List) {
     for (const auto &path : fileList) {
-        std::string md5_str = preload::compute_file_md5(path);
+        std::string md5_str = loader::compute_file_md5(path);
         md5List.push_back(std::string(md5_str));
     }
 }
@@ -57,7 +57,7 @@ void write_json(const char *&path, std::vector<std::string> &fileList,
         size_t r_pos = fileList[i].length();
         item["file"] = fileList[i].substr(l_pos, r_pos - l_pos);
         item["md5"] = md5List[i];
-        item["pid"] = preload::md5_to_entityId(md5List[i]);
+        item["pid"] = loader::md5_to_entityId(md5List[i]);
         arrayObj.append(item);
     }
     root["packages"] = arrayObj;

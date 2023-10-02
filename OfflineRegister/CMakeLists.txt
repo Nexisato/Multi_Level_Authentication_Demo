@@ -20,9 +20,9 @@ link_directories(
 )
 
 set(CODE_SOURCES 
-    preload.cpp
     utils.cpp
-    preprocess.cpp
+    loader.cpp
+    test_loader.cpp
 )
 
 
@@ -37,7 +37,7 @@ target_include_directories( ${TARGET_NAME}  PRIVATE
 target_link_libraries(${TARGET_NAME} 
     ${OPENSSL_LIBRARIES}
     jsoncpp
-    ${PROJECT_SOURCE_DIR}/lib/libgmp.so
-    ${PROJECT_SOURCE_DIR}/lib/libgmpxx.so
+    libgmp.so
+    libgmpxx.so
 )
 

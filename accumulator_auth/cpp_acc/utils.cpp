@@ -4,6 +4,7 @@
 #include <random>
 #include <string>
 
+
 namespace utils {
 mpz_class ex_gcd(mpz_class a, mpz_class b, mpz_class &x, mpz_class &y) {
     if (b == 0)
@@ -108,6 +109,9 @@ bool is_safe_prime(mpz_class num) {
         return true;
     return false;
 }
+
+
+
 
 void test() {
     mpz_class P, Q;

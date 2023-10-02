@@ -1,6 +1,7 @@
 # Multi-Level Authentication Demo
 ---
 
+
 ## Logs
 - 2023-10-02: Accumulator Revocation Success
 - 2023-09-28: RSA Accmulator Verification Success

@@ -1,5 +1,25 @@
 #include "Process.h"
-#include "KGC.h"
+
+void Payload::getSignedMsg() {
+    if (!this->isSigned) {
+        std::cout << "[Error] payload not Signed." << std::endl;
+        return;
+    }
+    element_printf("[Sign].U = %B\n", this->sigma.first);
+    element_printf("[Sign].V = %B\n", this->sigma.second);
+}
+
+Payload::Payload(std::string &msg, KGC*& kgc) : msg(msg) {
+    element_init_G1(this->sigma.first, kgc->e);
+    element_init_GT(this->sigma.second, kgc->e);
+}
+
+Payload::~Payload() {
+    element_clear(this->sigma.first);
+    element_clear(this->sigma.second);
+}
+
+
 
 Process::Process(std::string &id) : pid(id) {}
 
@@ -22,6 +42,7 @@ void Process::generate_full_key(KGC *&kgc) {
     this->generate_secret_value(kgc);
 
     element_init_G1(this->partial_key, kgc->e);
+
     kgc->generate_partial_key(this->pid, this->partial_key);
 
     element_init_G1(this->secret_key, kgc->e);
@@ -135,12 +156,8 @@ void Process::verify_msg(Payload &payload, KGC *&kgc, Process *&sender) {
     element_clear(pair_2);
     element_clear(PID_hash);
     element_clear(neg_pk_second);
-    element_clear(lhs);
-    element_clear(rhs);
     element_clear(V_verify);
 }
-
-
 
 ///////////// Test ////////////////
 

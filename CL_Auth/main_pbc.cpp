@@ -1,4 +1,10 @@
-#include "KGC.h"
+#include <pbc/pbc.h>
+#include <pbc/pbc_test.h>
+
+#include <chrono>
+#include <cstring>
+#include <iostream>
+#include <string>
 
 using chrono_time = std::chrono::_V2::system_clock::time_point;
 /**
@@ -147,7 +153,7 @@ public:
             std::cout << "[Error] payload already Signed." << std::endl;
             return;
         }
-
+        std::cout << "[Sign] Message Raw: " << payload.msg << std::endl;
         element_t Msg_hash;
         element_t ri, ri_P;
         element_t T, U, V;
@@ -244,8 +250,6 @@ public:
         element_clear(pair_2);
         element_clear(PID_hash);
         element_clear(neg_pk_second);
-        element_clear(lhs);
-        element_clear(rhs);
         element_clear(V_verify);
     }
 
@@ -273,7 +277,7 @@ int main() {
 
     // [2] Partial- Secret Key Generation
     std::cout << "-----[2] Partial Secret Key Generation-----" << std::endl;
-    std::string PID_i = "0x000adeq01_process_i";
+    std::string PID_i = "1b434b3bcef96ae2729a244af433a33eb"; // wps: pid
     std::cout << "PID_i: " << PID_i << std::endl;
     Process *process = new Process(PID_i);
     process->generateKey(kgc);
@@ -288,7 +292,7 @@ int main() {
               << std::endl;
     auto sign_start = std::chrono::system_clock::now();
 
-    std::string msg_i = "hello message from process_i";
+    std::string msg_i = "Process_i: Hello World!";
     Payload payload(msg_i, kgc);
 
     process->SignMsg(payload, kgc);
@@ -304,7 +308,8 @@ int main() {
               << std::endl;
     auto verify_start = std::chrono::system_clock::now();
 
-    Process *process_j = new Process("0x000adeq01_process_j");
+    Process *process_j = new Process("117f4a4378d49325120f76ceee7499923"); //linuxqq: pid
+    std::cout << "PID_j: " << process_j->PID << std::endl;
     process_j->generateKey(kgc);
 
     process_j->VerifyMsg(payload, kgc, process);

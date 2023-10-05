@@ -1,36 +1,18 @@
 #include <pbc/pbc.h>
-#include <pbc/pbc_test.h>
-
-#include <cstring>
 #include <iostream>
 #include <string>
-
-class KGC;
+#include "KGC.h"
 
 struct Payload {
     std::string msg;
     bool isSigned = false;
     std::pair<element_t, element_t> sigma;
 
-    void getSignedMsg() {
-        if (!this->isSigned) {
-            std::cout << "[Error] payload not Signed." << std::endl;
-            return;
-        }
-        element_printf("[Sign].U = %B\n", this->sigma.first);
-        element_printf("[Sign].V = %B\n", this->sigma.second);
-    }
-
-    Payload(std::string &msg, KGC *&kgc) : msg(msg) {
-        element_init_G1(this->sigma.first, kgc->e);
-        element_init_GT(this->sigma.second, kgc->e);
-    }
-
-    ~Payload() {
-        element_clear(this->sigma.first);
-        element_clear(this->sigma.second);
-    }
+    Payload(std::string &, KGC*&);
+    ~Payload();
+    void getSignedMsg();
 };
+
 
 class Process {
 private:
@@ -42,7 +24,7 @@ private:
      *
      * @param kgc
      */
-    void generate_secret_value(KGC *&kgc);
+    void generate_secret_value(KGC*&);
 
 public:
     std::string pid;
@@ -55,9 +37,9 @@ public:
      * @brief generate the public_key & secret_key for a process
      *  to communicate with other process
      *
-     * @param kgc
+     * @param KGC
      */
-    void generate_full_key(KGC *&kgc);
+    void generate_full_key(KGC*&);
 
     /**
      * @brief Sign the message with the secret_key

@@ -3,6 +3,7 @@
 
 
 ## Logs
+- 2023-10-05: Code Splitting Success.
 - 2023-10-02: Accumulator Revocation Success
 - 2023-09-28: RSA Accmulator Verification Success
   - Only rely on `jsoncpp` and `gmp`

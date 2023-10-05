@@ -23,7 +23,7 @@ set(CODE_SOURCES
 add_executable(${TARGET_NAME} ${CODE_SOURCES})
 
 
-target_include_directories( ${TARGET_NAME}  PUBLIC 
+target_include_directories( ${TARGET_NAME}  PRIVATE 
     /usr/local/include
     ${PROJECT_SOURCE_DIR}/include
     )
@@ -32,7 +32,7 @@ target_include_directories( ${TARGET_NAME}  PUBLIC
 # 静态链接 PBC wrapper：这个是自己编译生成的需要手动添加
 # gmp需要放到最后面
 target_link_libraries(${TARGET_NAME} 
-    pbc
-    gmp
+    libpbc.so
+    libgmp.so
 )
 

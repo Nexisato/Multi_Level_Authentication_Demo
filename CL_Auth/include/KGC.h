@@ -1,5 +1,4 @@
 #include <pbc/pbc.h>
-#include <pbc/pbc_test.h>
 #include <string>
 
 

@@ -1,6 +1,0 @@
-./configure     --enable-cxx \                                                      
-    --disable-static                                \
-    --with-gmp=/home/nexisato/Projects/LABS/auth_demo/accumulator_auth/cpp_acc/ext/gmp-6.3.0/build/ \
-    --with-mpfr=/home/nexisato/Projects/LABS/auth_demo/accumulator_auth/cpp_acc/ext/mpfr-4.2.1/build/    \
-    --prefix=/home/nexisato/Projects/LABS/auth_demo/accumulator_auth/cpp_acc/ext/flint2-2.9.0/build/            \
-    CC=g++-9                                        

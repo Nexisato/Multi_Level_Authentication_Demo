@@ -1,6 +1,11 @@
 # Multi-Level Authentication Demo
 ---
 
+## Denpendencies
+- gmp && gmpxx
+- openssl
+- jsoncpp
+- pbc
 
 ## Logs
 - 2023-10-05: Code Splitting Success.

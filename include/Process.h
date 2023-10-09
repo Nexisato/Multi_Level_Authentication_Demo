@@ -1,4 +1,6 @@
-#include <pbc/pbc.h>
+#pragma once
+
+#include "pbc/pbc.h"
 #include <iostream>
 #include <string>
 #include "KGC.h"

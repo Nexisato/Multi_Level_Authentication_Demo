@@ -46,7 +46,7 @@ set(CLPKC_PART
 # FILE(GLOB ${PROJECT_NAME}_TEST "test/test_loader.cpp")
 
 add_executable(${TARGET_NAME} 
-    ${CLPKC_PART}
+    ${ACCUMULATOR_PART}
 )
 
 target_include_directories(${TARGET_NAME}  PRIVATE

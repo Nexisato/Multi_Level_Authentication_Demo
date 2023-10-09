@@ -1,8 +1,10 @@
+#pragma once
+
 #include "utils.h"
 #include <fstream>
 #include <iostream>
 #include <openssl/md5.h>
-#include <json/json.h>
+#include "json/json.h"
 #include <dirent.h> //only available in linux
 #include <string>
 

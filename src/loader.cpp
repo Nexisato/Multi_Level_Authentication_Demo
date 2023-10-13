@@ -40,17 +40,6 @@ std::string md5_to_entityId(const std::string &md5_str) {
     //     mpz_nextprime(result.get_mpz_t(), result.get_mpz_t());
     // }
     return result.get_str(16);
-
-    ///////////////
-    // mpz_class md5_num;
-    // mpz_set_str(md5_num.get_mpz_t(), md5_str.c_str(), 16);
-    // std::cout << "[RAW] MD5: " << md5_str << std::endl;
-    // std::cout << "[RAW] MD5_Num: " << md5_num << std::endl;
-    // std::cout << "[RAW] PID: " << result << std::endl;
-    // std::cout << "[RAW] IsPIDPrime?: " <<
-    // utils::is_prime_miller_rabin(result) << std::endl;
-    //////////////
-    // return result.get_str(16);
 }
 
 void md5_to_id_test() {

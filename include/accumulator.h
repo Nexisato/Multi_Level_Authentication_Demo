@@ -1,10 +1,11 @@
 #pragma once
 
-#include "utils.h"
 #include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <vector>
+
+#include "utils.h"
 
 class Accumulator {
 private:
@@ -74,7 +75,7 @@ public:
 
     /**
      * @brief Update all witnesses according to the auxiliary value
-     * 
+     *
      */
     void update_wit_all(const mpz_class &aux);
 

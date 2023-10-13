@@ -1,4 +1,5 @@
 #include "utils.h"
+
 #include <chrono>
 #include <iostream>
 #include <random>
@@ -47,28 +48,28 @@ mpz_class quick_pow(mpz_class base, mpz_class power, mpz_class mod) {
 
 bool is_prime_miller_rabin(mpz_class num) {
     if (num == 2)
-        return true; // 2为质数保留
+        return true;  // 2为质数保留
     if (num % 2 != 1 || num < 2)
-        return false; // 筛掉偶数和小于2的数
+        return false;  // 筛掉偶数和小于2的数
     mpz_class s = 0, t = num - 1;
-    while (t % 2 != 1) { // 当t为偶数时，继续分解, s递增
+    while (t % 2 != 1) {  // 当t为偶数时，继续分解, s递增
         s++;
         t /= 2;
     }
     for (int i = 0; i < 10;
-         i++) { // 二次探测定理, 进行十次探测, 使方程a^(num-1)=1(mod
-                // num)成立的解有仅有a=1或者a=num-1
+         i++) {  // 二次探测定理, 进行十次探测, 使方程a^(num-1)=1(mod
+                 // num)成立的解有仅有a=1或者a=num-1
         gmp_randclass randz(gmp_randinit_default);
-        mpz_class a = randz.get_z_range(num - 1); // 随机整数a，取(1, num-1)
-        mpz_class x = quick_pow(a, t, num);       // x为二次探测的解
-        for (int j = 0; j < s; j++) {             // x^s=a^(num-1)
+        mpz_class a = randz.get_z_range(num - 1);  // 随机整数a，取(1, num-1)
+        mpz_class x = quick_pow(a, t, num);        // x为二次探测的解
+        for (int j = 0; j < s; j++) {              // x^s=a^(num-1)
             mpz_class test = quick_mul(x, x, num);
             if (test == 1 && x != 1 && x != num - 1)
-                return false; // 若平方取模结果为1，但x不是1或者num-1，则num不是质数
+                return false;  // 若平方取模结果为1，但x不是1或者num-1，则num不是质数
             x = test;
         }
         if (x != 1)
-            return false; // 费马小定理
+            return false;  // 费马小定理
     }
     return true;
 }
@@ -119,8 +120,9 @@ void test() {
     std::cout << "P: " << P << std::endl;
     std::cout << "Q: " << Q << std::endl;
 
-    std::cout << "P-1 _isPrime? : " << is_prime_miller_rabin(P - 1) << std::endl;
+    std::cout << "P-1 _isPrime? : " << is_prime_miller_rabin(P - 1)
+              << std::endl;
     std::cout << "P_isSafe ?: " << is_safe_prime(P) << std::endl;
     std::cout << "Q_isSafe ?: " << is_safe_prime(Q) << std::endl;
 }
-} // namespace utils
+}  // namespace utils

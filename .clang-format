@@ -1,0 +1,32 @@
+# 语言: None, Cpp, Java, JavaScript, ObjC, Proto, TableGen, TextProto
+Language: Cpp
+
+# 基于某一主题上的修改
+BasedOnStyle: Google
+
+# 缩进宽度
+IndentWidth: 4
+
+# 缩进case标签
+IndentCaseLabels: false
+
+# 访问说明符(public、private等)的偏移
+AccessModifierOffset: -4
+
+# 每行字符的限制，0表示没有限制
+ColumnLimit: 80
+
+# 对齐连续的尾随的注释
+AlignTrailingComments: true
+
+# 允许函数声明的所有参数在放在下一行
+AllowAllParametersOfDeclarationOnNextLine: false
+# 允许短的if语句保持在同一行
+AllowShortIfStatementsOnASingleLine: false
+# 允许短的case标签放在同一行
+AllowShortCaseLabelsOnASingleLine: true
+# 允许短的循环保持在同一行
+AllowShortLoopsOnASingleLine: false
+
+# 允许排序#include
+SortIncludes: true

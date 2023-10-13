@@ -9,7 +9,7 @@ void Payload::getSignedMsg() {
     element_printf("[Sign].V = %B\n", this->sigma.second);
 }
 
-Payload::Payload(std::string &msg, KGC*& kgc) : msg(msg) {
+Payload::Payload(std::string &msg, KGC *&kgc) : msg(msg) {
     element_init_G1(this->sigma.first, kgc->e);
     element_init_GT(this->sigma.second, kgc->e);
 }
@@ -18,8 +18,6 @@ Payload::~Payload() {
     element_clear(this->sigma.first);
     element_clear(this->sigma.second);
 }
-
-
 
 Process::Process(std::string &id) : pid(id) {}
 
@@ -74,10 +72,10 @@ void Process::sign_msg(Payload &payload, KGC *&kgc) {
 
     element_random(ri);
     element_mul_zn(ri_P, kgc->P, ri);
-    pairing_apply(T, kgc->P, ri_P, kgc->e); // e(P, P)^r = e(P, rP)
+    pairing_apply(T, kgc->P, ri_P, kgc->e);  // e(P, P)^r = e(P, rP)
     element_from_hash(Msg_hash, const_cast<char *>(payload.msg.c_str()),
                       payload.msg.length());
-    element_mul_zn(V, T, Msg_hash); // GT <- GT * Zr
+    element_mul_zn(V, T, Msg_hash);  // GT <- GT * Zr
     element_mul_zn(U, this->secret_key, V);
     element_add(U, U, ri_P);
 
@@ -137,8 +135,8 @@ void Process::verify_msg(Payload &payload, KGC *&kgc, Process *&sender) {
     pairing_apply(pair_2, PID_hash, neg_pk_second, kgc->e);
 
     element_pow_zn(pair_2, pair_2,
-                   payload.sigma.second); // e(PID_hash, -pk_2)^V
-    element_mul(T, pair_1, pair_2); // e(sigma_1, P) * e(PID_hash, -pk_2)^V
+                   payload.sigma.second);  // e(PID_hash, -pk_2)^V
+    element_mul(T, pair_1, pair_2);  // e(sigma_1, P) * e(PID_hash, -pk_2)^V
 
     element_t V_verify;
     element_init_GT(V_verify, kgc->e);

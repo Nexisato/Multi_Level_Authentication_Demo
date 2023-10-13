@@ -1,5 +1,6 @@
-#include "accumulator.h"
 #include <json/json.h>
+
+#include "accumulator.h"
 
 void get_pid_from_json(const char *&path, std::vector<mpz_class> &pids) {
     std::ifstream ifs(path);
@@ -39,8 +40,8 @@ int main() {
 
     acc_ptr->print_wits();
 
-    // 3. verify
-    #pragma omp parallel for
+// 3. verify
+#pragma omp parallel for
     for (size_t i = 0; i < pids.size(); ++i) {
         if (acc_ptr->verify_member(acc_ptr->wits[i], pids[i]))
             std::cout << "verify success" << std::endl;
@@ -54,8 +55,8 @@ int main() {
 
     acc_ptr->update_wit_all(aux);
 
-    // 5. ReVerify
-    #pragma omp parallel for
+// 5. ReVerify
+#pragma omp parallel for
     for (size_t i = 0; i < acc_ptr->wits.size(); ++i) {
         if (acc_ptr->verify_member(acc_ptr->wits[i], pids[i + 1]))
             std::cout << "verify success" << std::endl;

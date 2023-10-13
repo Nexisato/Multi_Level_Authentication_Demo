@@ -1,12 +1,14 @@
 #pragma once
 
-#include "utils.h"
+#include <dirent.h>  //only available in linux
+#include <openssl/md5.h>
+
 #include <fstream>
 #include <iostream>
-#include <openssl/md5.h>
-#include "json/json.h"
-#include <dirent.h> //only available in linux
 #include <string>
+
+#include "json/json.h"
+#include "utils.h"
 
 namespace loader {
 /**
@@ -43,25 +45,24 @@ void get_file_list(const char *&path, std::vector<std::string> &fileList);
 void get_md5_list(std::vector<std::string> &fileList,
                   std::vector<std::string> &md5List);
 
-
 /**
  * @brief write the assets to json file
- * 
- * @param path 
- * @param fileList 
- * @param md5List 
+ *
+ * @param path
+ * @param fileList
+ * @param md5List
  */
 void write_json(const char *&path, std::vector<std::string> &fileList,
                 std::vector<std::string> &md5List);
 
 /**
  * @brief Get the pid from json object
- * 
+ *
  * @param path json file path
- * @param pids 
+ * @param pids
  */
 void get_pid_from_json(const char *&path, std::vector<mpz_class> &pids);
 
 void md5_to_id_test();
 
-} // namespace loader
+}  // namespace loader

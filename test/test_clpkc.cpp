@@ -1,6 +1,6 @@
-#include "Process.h"
 #include <chrono>
 
+#include "Process.h"
 
 using chrono_time = std::chrono::_V2::system_clock::time_point;
 /**
@@ -20,9 +20,7 @@ double count_time(chrono_time t0, chrono_time t1) {
     return res;
 }
 
-
 int main() {
-
     const char *path = "../param/a.param";
     KGC *kgc = new KGC();
 
@@ -67,14 +65,11 @@ int main() {
               << std::endl;
     auto verify_start = std::chrono::system_clock::now();
 
-
     std::string pid_j = "1b434b3bcef96ae2729a244af433a33eb";
     Process *process_j = new Process(pid_j);
     process_j->generate_full_key(kgc);
 
     process_j->verify_msg(payload, kgc, process);
-
-
 
     auto verify_end = std::chrono::system_clock::now();
     std::cout << "[Timing]Verify Time: " << count_time(verify_start, verify_end)

@@ -28,8 +28,6 @@ void KGC::setup_params() {
     element_mul_zn(P0, P, s);
 }
 
-
-
 void KGC::generate_partial_key(std::string &pid, element_t &partial_key) {
     element_t Qi, Di;
     element_init_G1(Qi, this->e);
@@ -44,10 +42,7 @@ void KGC::generate_partial_key(std::string &pid, element_t &partial_key) {
     element_clear(Di);
 }
 
-
-KGC::KGC() {
-
-}
+KGC::KGC() {}
 
 KGC::~KGC() {
     pairing_clear(this->e);

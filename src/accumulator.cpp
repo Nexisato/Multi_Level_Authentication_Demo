@@ -39,12 +39,10 @@ void Accumulator::setup() {
     this->acc_cur = this->acc_init;
 }
 
-
 void Accumulator::add_member(const mpz_class &pid) {
     this->members.emplace_back(pid);
     this->acc_cur = utils::quick_pow(this->acc_cur, pid, this->public_key);
 }
-
 
 mpz_class Accumulator::witness_generate_by_pid(mpz_class &pid) {
     mpz_class product = 1;
@@ -58,7 +56,6 @@ mpz_class Accumulator::witness_generate_by_pid(mpz_class &pid) {
     return witness;
 }
 
-
 void Accumulator::witness_generate_all() {
     for (auto &member : this->members) {
         mpz_class witness = witness_generate_by_pid(member);
@@ -66,11 +63,9 @@ void Accumulator::witness_generate_all() {
     }
 }
 
-
 bool Accumulator::verify_member(const mpz_class &wit, const mpz_class &pid) {
     return utils::quick_pow(wit, pid, this->public_key) == this->acc_cur;
 }
-
 
 mpz_class Accumulator::remove_member(const mpz_class &pid_val) {
     if (!this->is_contained(pid_val)) {
@@ -85,22 +80,20 @@ mpz_class Accumulator::remove_member(const mpz_class &pid_val) {
 
     this->acc_cur =
         utils::quick_pow(this->acc_cur, AUX,
-                         this->public_key); // 利用更新后的累加值验证
+                         this->public_key);  // 利用更新后的累加值验证
     this->remove_by_pid(pid_val);
-    
+
     return AUX;
 }
 
-
 void Accumulator::update_wit_all(const mpz_class &update_aux) {
-    #pragma omp parallel for
+#pragma omp parallel for
     for (auto &wit : this->wits) {
-        //std::cout << "original_wit: " << wit << std::endl;
+        // std::cout << "original_wit: " << wit << std::endl;
         wit = utils::quick_pow(wit, update_aux, this->public_key);
-        //std::cout << "update_wit: " << wit << std::endl;
+        // std::cout << "update_wit: " << wit << std::endl;
     }
 }
-
 
 ///////////////// Public Test Functions:///////////////////////
 void Accumulator::print_params() {

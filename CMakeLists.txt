@@ -4,8 +4,18 @@ project(auth_demo)
 set(TARGET_NAME auth_test)
 set(CMAKE_CXX_STANDARD 17)
 set(OPENSSL_ROOT_DIR /usr/local/openssl)
+set(OPENSSL_LIBRARIES /usr/local/openssl/lib64)
+set(OPENSSL_INCLUDE_DIR /usr/local/openssl/include)
 
-find_package(OpenSSL REQUIRED)
+#find_package(OpenSSL REQUIRED)
+
+FIND_PACKAGE( OpenMP REQUIRED)
+if(OPENMP_FOUND)
+    message("OPENMP FOUND")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
+endif()
 
 
 include_directories(
@@ -46,7 +56,9 @@ set(CLPKC_PART
 # FILE(GLOB ${PROJECT_NAME}_TEST "test/test_loader.cpp")
 
 add_executable(${TARGET_NAME} 
-    ${ACCUMULATOR_PART}
+    ${OFFLINE_PART}
+    #${ACCUMULATOR_PART}
+    #${CLPKC_PART}
 )
 
 target_include_directories(${TARGET_NAME}  PRIVATE
@@ -56,7 +68,7 @@ target_include_directories(${TARGET_NAME}  PRIVATE
 
 target_link_libraries(${TARGET_NAME}  PRIVATE
     ${PROJECT_SOURCE_DIR}/lib/libpbc.so
-    #${OPENSSL_ROOT_DIR}/lib64/libcrypto.so
+    ${OPENSSL_ROOT_DIR}/lib64/libcrypto.so
     ${PROJECT_SOURCE_DIR}/lib/libjsoncpp.so
     libgmp.so
     libgmpxx.so

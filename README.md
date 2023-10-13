@@ -8,6 +8,8 @@
 - pbc
 
 ## Logs
+- 2023-10-13: entityID NO NEED to be SAFE PRIME (less time cost!)
+- 2023-10-11: Packed to Docker Image on Ubuntu 22.04
 - 2023-10-05: Code Splitting Success.
 - 2023-10-02: Accumulator Revocation Success
 - 2023-09-28: RSA Accmulator Verification Success

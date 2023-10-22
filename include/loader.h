@@ -1,13 +1,15 @@
-#pragma once
+#ifndef LOADER_H
+#define LOADER_H
 
+#pragma once
 #include <dirent.h>  //only available in linux
+#include <jsoncpp/json/json.h>
 #include <openssl/md5.h>
 
 #include <fstream>
 #include <iostream>
 #include <string>
 
-#include <jsoncpp/json/json.h>
 #include "utils.h"
 
 namespace loader {
@@ -65,4 +67,8 @@ void get_pid_from_json(const char *&path, std::vector<mpz_class> &pids);
 
 void md5_to_id_test();
 
+bool write_json_single(const std::string &path, const std::string &filename,
+                       std::string &md5, std::string &pid);
 }  // namespace loader
+
+#endif  // LOADER_H

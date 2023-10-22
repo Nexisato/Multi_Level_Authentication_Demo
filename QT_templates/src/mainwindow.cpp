@@ -1,12 +1,10 @@
 #include "mainwindow.h"
+
 #include "ui_mainwindow.h"
 
-
 //主页面，控制三个页面
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
-{
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
     ui->stackedWidget->addWidget(&homeWnd);
@@ -15,18 +13,14 @@ MainWindow::MainWindow(QWidget *parent) :
     btnGroup.addButton(ui->btn_home, 0);
     btnGroup.addButton(ui->btn_filechose, 1);
 
-
-
-    connect(&btnGroup, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked),
-            ui->stackedWidget, &QStackedWidget::setCurrentIndex);
+    connect(
+        &btnGroup,
+        static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked),
+        ui->stackedWidget, &QStackedWidget::setCurrentIndex);
 
     // 设置默认选中的页面
     btnGroup.button(0)->setChecked(true);
     ui->stackedWidget->setCurrentIndex(0);
-
 }
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
+MainWindow::~MainWindow() { delete ui; }

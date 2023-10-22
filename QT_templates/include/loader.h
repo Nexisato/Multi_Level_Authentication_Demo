@@ -2,6 +2,7 @@
 #define LOADER_H
 
 #pragma once
+
 #include <dirent.h>  //only available in linux
 #include <jsoncpp/json/json.h>
 #include <openssl/md5.h>

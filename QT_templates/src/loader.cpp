@@ -12,10 +12,10 @@ std::string compute_file_md5(const std::string &path) {
     char buf[1024];
     while (file) {
         file.read(buf, sizeof(buf));  // read len[buf] bytes each time: avoid of
-                                      // memory overflow
+        // memory overflow
         MD5_Update(&md5_ctx, buf,
                    file.gcount());  // method depreacated in openssl 3.0, but
-                                    // still works
+        // still works
     }
     unsigned char md5[MD5_DIGEST_LENGTH];
     MD5_Final(md5, &md5_ctx);
@@ -66,8 +66,9 @@ void get_file_list(const char *&path, std::vector<std::string> &fileList) {
     }
 
     while ((ent = readdir(dir)) != nullptr) {
-        if (strcmp(ent->d_name, ".") == 0 || strcmp(ent->d_name, "..") == 0)
+        if (strcmp(ent->d_name, ".") == 0 || strcmp(ent->d_name, "..") == 0) {
             continue;
+        }
         std::string filename = base_name + std::string(ent->d_name);
         fileList.push_back(filename);  // we don't care about the file type
     }
@@ -80,31 +81,6 @@ void get_md5_list(std::vector<std::string> &fileList,
         std::string md5_str = loader::compute_file_md5(path);
         md5List.push_back(std::string(md5_str));
     }
-}
-
-void write_json(const char *&path, std::vector<std::string> &fileList,
-                std::vector<std::string> &md5List) {
-    Json::Value root;
-    Json::Value arrayObj;
-    for (int i = 0; i < fileList.size(); ++i) {
-        Json::Value item;
-        size_t l_pos = fileList[i].find_last_of('/') + 1;
-        // size_t r_pos = fileList[i].find_last_of('.');
-        size_t r_pos = fileList[i].length();
-        item["file"] = fileList[i].substr(l_pos, r_pos - l_pos);
-        item["md5"] = md5List[i];
-        item["pid"] = loader::md5_to_entityId(md5List[i]);
-        arrayObj.append(item);
-    }
-    root["packages"] = arrayObj;
-    Json::StyledWriter writer;
-    std::ofstream file(path);
-    if (!file) {
-        std::cerr << "[Error]: could not open file" << std::endl;
-        return;
-    }
-    file << writer.write(root);
-    file.close();
 }
 
 bool write_json_single(const std::string &path, const std::string &filename,
@@ -160,6 +136,30 @@ bool write_json_single(const std::string &path, const std::string &filename,
     }
 }
 
+void write_json(const char *&path, std::vector<std::string> &fileList,
+                std::vector<std::string> &md5List) {
+    Json::Value root;
+    Json::Value arrayObj;
+    for (int i = 0; i < fileList.size(); ++i) {
+        Json::Value item;
+        size_t l_pos = fileList[i].find_last_of('/') + 1;
+        // size_t r_pos = fileList[i].find_last_of('.');
+        size_t r_pos = fileList[i].length();
+        item["file"] = fileList[i].substr(l_pos, r_pos - l_pos);
+        item["md5"] = md5List[i];
+        item["pid"] = loader::md5_to_entityId(md5List[i]);
+        arrayObj.append(item);
+    }
+    root["packages"] = arrayObj;
+    Json::StyledWriter writer;
+    std::ofstream file(path);
+    if (!file) {
+        std::cerr << "[Error]: could not open file" << std::endl;
+        return;
+    }
+    file << writer.write(root);
+    file.close();
+}
 
 void get_pid_from_json(const char *&path, std::vector<mpz_class> &pids) {
     std::ifstream ifs(path);

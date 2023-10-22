@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>600</width>
+    <height>370</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>500</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,9">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <item row="0" column="0">
+     <widget class="QWidget" name="sideBar" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>1000</width>
+        <height>1000</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QWidget{
+	background-color: rgb(228, 228, 228);  /* 设置背景色为灰色 */
+}
+</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QToolButton" name="btn_home">
+         <property name="minimumSize">
+          <size>
+           <width>76</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">/* 默认 */
+QToolButton{   
+	border-top: 3px outset transparent;           /* 上边框宽度3像素、突出显示、颜色为透明 */
+	border-bottom: 7px outset transparent;
+	border-right: 3px outset transparent;
+	border-left: 3px outset transparent;
+	min-width: 70px;                            /* 控件最小宽度 */
+    min-height: 40px;
+	background-color: rgb(228, 228, 228);
+}
+
+/* 鼠标悬停 */
+QToolButton:hover{
+	background-color: rgb(205, 205, 205);
+}
+
+/* 点击和按下 */
+QToolButton:pressed,QToolButton:checked{
+	border-left: 3px outset rgb(93, 95, 97);  /* 左边框宽度3像素、突出显示、颜色为深深灰 */
+	background-color: rgb(246, 246, 246);	
+}
+
+QPushButton:default {
+    border-color: navy; /* make the default button prominent */
+}
+</string>
+         </property>
+         <property name="text">
+          <string>主页</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="autoExclusive">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QToolButton" name="btn_filechose">
+         <property name="minimumSize">
+          <size>
+           <width>76</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">/* 默认 */
+QToolButton{   
+	border-top: 3px outset transparent;           /* 上边框宽度3像素、突出显示、颜色为透明 */
+	border-bottom: 7px outset transparent;
+	border-right: 3px outset transparent;
+	border-left: 3px outset transparent;
+	min-width: 70px;                            /* 控件最小宽度 */
+    min-height: 40px;
+	background-color: rgb(228, 228, 228);
+}
+
+/* 鼠标悬停 */
+QToolButton:hover{
+	background-color: rgb(205, 205, 205);
+}
+
+/* 点击和按下 */
+QToolButton:pressed,QToolButton:checked{
+	border-left: 3px outset rgb(93, 95, 97);  /* 左边框宽度3像素、突出显示、颜色为深深灰 */
+	background-color: rgb(246, 246, 246);	
+}
+
+QPushButton:default {
+    border-color: navy; /* make the default button prominent */
+}
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;ui version=&quot;4.0&quot;&gt;
+ &lt;widget name=&quot;__qt_fake_top_level&quot;&gt;
+  &lt;widget class=&quot;QToolButton&quot; name=&quot;toolButton&quot;&gt;
+   &lt;property name=&quot;geometry&quot;&gt;
+    &lt;rect&gt;
+     &lt;x&gt;0&lt;/x&gt;
+     &lt;y&gt;0&lt;/y&gt;
+     &lt;width&gt;70&lt;/width&gt;
+     &lt;height&gt;50&lt;/height&gt;
+    &lt;/rect&gt;
+   &lt;/property&gt;
+   &lt;property name=&quot;minimumSize&quot;&gt;
+    &lt;size&gt;
+     &lt;width&gt;70&lt;/width&gt;
+     &lt;height&gt;50&lt;/height&gt;
+    &lt;/size&gt;
+   &lt;/property&gt;
+   &lt;property name=&quot;styleSheet&quot;&gt;
+    &lt;string notr=&quot;true&quot;&gt;/* 默认 */
+QToolButton{   
+	border-top: 3px outset transparent;           /* 上边框宽度3像素、突出显示、颜色为透明 */
+	border-bottom: 7px outset transparent;
+	border-right: 3px outset transparent;
+	border-left: 3px outset transparent;
+	min-width: 70px;                            /* 控件最小宽度 */
+    min-height: 40px;
+	background-color: rgb(228, 228, 228);
+}
+
+/* 鼠标悬停 */
+QToolButton:hover{
+	background-color: rgb(205, 205, 205);
+}
+
+/* 点击和按下 */
+QToolButton:pressed,QToolButton:checked{
+	border-left: 3px outset rgb(93, 95, 97);  /* 左边框宽度3像素、突出显示、颜色为深深灰 */
+	background-color: rgb(246, 246, 246);	
+}
+
+QPushButton:default {
+    border-color: navy; /* make the default button prominent */
+}
+&lt;/string&gt;
+   &lt;/property&gt;
+   &lt;property name=&quot;text&quot;&gt;
+    &lt;string&gt;...&lt;/string&gt;
+   &lt;/property&gt;
+   &lt;property name=&quot;checkable&quot;&gt;
+    &lt;bool&gt;true&lt;/bool&gt;
+   &lt;/property&gt;
+   &lt;property name=&quot;autoExclusive&quot;&gt;
+    &lt;bool&gt;true&lt;/bool&gt;
+   &lt;/property&gt;
+  &lt;/widget&gt;
+ &lt;/widget&gt;
+ &lt;resources/&gt;
+&lt;/ui&gt;
+</string>
+         </property>
+         <property name="text">
+          <string>文件选择</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="autoExclusive">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QToolButton" name="toolButton_3">
+         <property name="minimumSize">
+          <size>
+           <width>76</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">/* 默认 */
+QToolButton{   
+	border-top: 3px outset transparent;           /* 上边框宽度3像素、突出显示、颜色为透明 */
+	border-bottom: 7px outset transparent;
+	border-right: 3px outset transparent;
+	border-left: 3px outset transparent;
+	min-width: 70px;                            /* 控件最小宽度 */
+    min-height: 40px;
+	background-color: rgb(228, 228, 228);
+}
+
+/* 鼠标悬停 */
+QToolButton:hover{
+	background-color: rgb(205, 205, 205);
+}
+
+/* 点击和按下 */
+QToolButton:pressed,QToolButton:checked{
+	border-left: 3px outset rgb(93, 95, 97);  /* 左边框宽度3像素、突出显示、颜色为深深灰 */
+	background-color: rgb(246, 246, 246);	
+}
+
+QPushButton:default {
+    border-color: navy; /* make the default button prominent */
+}
+</string>
+         </property>
+         <property name="text">
+          <string>文件授权</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="autoExclusive">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>338</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>1000</width>
+        <height>1000</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

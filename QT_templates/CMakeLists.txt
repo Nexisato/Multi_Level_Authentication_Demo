@@ -11,6 +11,10 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(OPENSSL_ROOT_DIR /usr/local/openssl)
+set(OPENSSL_LIBRARIES /usr/local/openssl/lib64)
+set(OPENSSL_INCLUDE_DIR /usr/local/openssl/include)
+
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check http://doc.qt.io/qt-5/deployment-android.html for more information.
 # They need to be set before the find_package(Qt5 ...) call.
@@ -25,6 +29,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #endif()
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
+
+include_directories(
+    ${PROJECT_SOURCE_DIR}/include
+)
+
+link_libraries(
+    ${PROJECT_SOURCE_DIR}/lib
+)
 
 if(ANDROID)
   add_library(AP SHARED
@@ -41,6 +53,9 @@ if(ANDROID)
     homewindow.cpp
     homewindow.h
     homewindow.ui
+    loader.h
+    loader.cpp
+    utils.cpp
   )
 else()
   add_executable(AP
@@ -57,7 +72,17 @@ else()
     homewindow.cpp
     homewindow.h
     homewindow.ui
+    include/loader.h
+    include/utils.h
+    loader.cpp
+    utils.cpp
   )
 endif()
 
-target_link_libraries(AP PRIVATE Qt5::Widgets)
+target_link_libraries(AP PRIVATE
+    Qt5::Widgets
+    ${OPENSSL_ROOT_DIR}/lib64/libcrypto.so
+    libjsoncpp.so
+    libgmp.so
+    libgmpxx.so
+    )

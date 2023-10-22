@@ -1,11 +1,34 @@
 # Multi-Level Authentication Demo
 ---
+## Environment
+- **OS**：Ubuntu 20.04~22.04
+- **Language**：C++
+- **Build**: CMake
+- **Dependencies**：
+  - PBC Library
+  - OpenSSL v3.0.x
+  - gmp & gmpxx
+  - jsoncpp
+- **UI**:
+  - Qt v5.14.2
+> Conisdering Electron supported in the future.
 
-## Denpendencies
-- gmp && gmpxx
-- openssl
-- jsoncpp
-- pbc
+
+## Usages
+- `OpenSSL` need to be compiled from source: https://github.com/openssl/openssl/releases
+V3.0.x version recommended. (1.1.1x version also worked)
+- `PBC Library` also need to be compiled from source:  https://crypto.stanford.edu/pbc/
+
+### Install Dev Lib
+```bash
+sudo apt install libgmp-dev libjsoncpp-dev
+```
+
+### Docker
+```bash
+docker pull registry.cn-hangzhou.aliyuncs.com/nexisato/ubuntu_auth_demo:latest
+```
+
 
 ## Logs
 - 2023-10-13: entityID NO NEED to be SAFE PRIME (less time cost!)
@@ -29,26 +52,6 @@
 - 2023-09-17: finish CL_Auth_Demo with PBC: 
   - References: https://github.com/Superhank718/Java_CLS_jpbc
 
-## Environment
-- **OS**：Ubuntu 20.04 （Windows Subsystem for Linux 2）
-- **Language**：C++, Rust, Golang, Python
-- **Dependencies**：
-  - pbc library & PBC-Wrapper: 无证书通信构造
-    - https://crysp.uwaterloo.ca/software/PBCWrapper/
-    - https://jeza-chen.com/2020/06/05/PBC-Cpp-Wrapper/ 
-  - OpenSSL 3.0.10（C++）
-  - gmpy2 (Python)
-  - PyPBC Python）
-  - Accumulator-rs(Rust): [[Repo]](https://github.com/mikelodder7/accumulator-rs)
-  - libsm(rust): [[Repo]](https://github.com/citahub/libsm) 
-  - 蚂蚁金服铜锁密码库：
-    - https://www.yuque.com/tsdoc/ts
-
-## UI
-- Electron 模板：https://github.com/dromara/electron-egg
-- 前端模板：https://github.com/773579084/leno-admin-electron
-- Qt in CLion: https://zhuanlan.zhihu.com/p/461896034
-
 
 
 ## References
@@ -56,7 +59,9 @@
     - [【Design Docs】](https://uqc1fm1ybzl.feishu.cn/docx/TveddkLhtoxDByxmqmBcS9fsnge)
     - [【Demand Analysis】](https://rjwalmzfj2.feishu.cn/docx/Mp6XdDhTPoZhclxc2Yvc4kRZn9i)
 
-- TREMEL E. Real-World Performance of Cryptographic Accumulators.
+- https://github.com/v0y4g3r/rsa-accumulator-java
+- https://jeza-chen.com/2020/06/04/PBC-Library/
+- https://zhuanlan.zhihu.com/p/461896034
 
 
 ## Acknowledgements

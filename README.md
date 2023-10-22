@@ -11,6 +11,7 @@
   - jsoncpp
 - **UI**:
   - Qt v5.14.2
+  - Packing: linuxdeployqt
 > Conisdering Electron supported in the future.
 
 
@@ -21,7 +22,11 @@ V3.0.x version recommended. (1.1.1x version also worked)
 
 ### Install Dev Lib
 ```bash
+sudo apt install build-essential
 sudo apt install libgmp-dev libjsoncpp-dev
+
+#for OpenGL-supported
+sudo apt-get install libgl1-mesa-dev
 ```
 
 ### Docker

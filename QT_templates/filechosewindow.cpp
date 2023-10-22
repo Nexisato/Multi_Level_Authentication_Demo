@@ -14,11 +14,55 @@ FileChoseWindow::FileChoseWindow(QWidget *parent) :
     connect(ui->btn_delete, &QPushButton::clicked, this, &FileChoseWindow::btn_fliedelte_clicked);
     connect(ui->listWidget, &QListWidget::itemClicked, this, &FileChoseWindow::listwidget_clicked);
     connect(ui->btn_clear, &QPushButton::clicked, this, &FileChoseWindow::btn_clear_clicked);
+    connect(ui->btn_calculate, &QPushButton::clicked, this, &FileChoseWindow::btn_calculate_clicked);
 }
 
 FileChoseWindow::~FileChoseWindow()
 {
     delete ui;
+}
+
+void FileChoseWindow::dropEvent(QDropEvent *event)
+{
+    QList<QUrl> urls = event->mimeData()->urls();
+    QFileInfo info;
+    QStringList filenames;
+    if (urls.isEmpty())
+    {
+        qDebug() << "empty";
+        return ;
+    }
+    QStringList filepaths;
+
+    for (int i = 0 ; i < urls.size(); i++)
+    {
+        filepaths.append(urls.at(i).toLocalFile());
+    }
+
+    for (int i = 0; i < filepaths.size(); i++)
+    {
+        QString filename;
+        info = QFileInfo(filepaths[i]);//获得每个路径的文件信息
+        filename = info.fileName();
+
+        if (filemap.contains(filename))
+        {
+            QMessageBox::warning(this, "警告", "请勿上传重复文件");
+            return ;
+        }
+        filenames.append(filename);
+    }
+    //插入文件名
+    for (int i = 0; i < filepaths.size(); i++)
+    {
+        filemap.insert(filenames[i], filepaths[i]);
+
+        QListWidgetItem *pItem = new QListWidgetItem;
+        pItem->setSizeHint(QSize(0, 30));
+        pItem->setText(filenames[i]);
+        ui->listWidget->addItem(pItem);
+    }
+
 }
 
 
@@ -54,6 +98,7 @@ void FileChoseWindow::btn_filechose_clicked()
         for (int i = 0; i < filepaths.size(); i++)
         {
             filemap.insert(filenames[i], filepaths[i]);
+
             QListWidgetItem *pItem = new QListWidgetItem;
             pItem->setSizeHint(QSize(0, 40));
             pItem->setText(filenames[i]);
@@ -111,6 +156,8 @@ void FileChoseWindow::btn_clear_clicked()
 {
     ui->listWidget->clear();
     ui->listwidget_fileinfo->clear();
+    ui->edit_pid->clear();
+    ui->edit_hash->clear();
     QStringList keylist = filemap.keys();
     for (int i = 0 ; i < keylist.size(); i++)
     {
@@ -118,3 +165,28 @@ void FileChoseWindow::btn_clear_clicked()
     }
 
 }
+
+void FileChoseWindow::btn_calculate_clicked()
+{
+    QListWidgetItem *item = ui->listWidget->currentItem();
+    QString filename = item->text();
+    QString filepath = filemap.value(filename);
+    QString savepath = "./test.json";
+
+    //计算文件hash和身份
+    std::string  md5 = loader::compute_file_md5(filepath.toStdString());
+    std::string pid = loader::md5_to_entityId(md5);
+
+    if (loader::write_json_single(savepath.toStdString(), filename.toStdString(), md5, pid))
+    {
+        ui->edit_hash->setText(QString::fromStdString(md5));
+        ui->edit_pid->setText(QString::fromStdString(pid));
+        ui->listwidget_fileinfo->addItem("计算成功，信息写入：" + savepath);
+    }
+    else
+    {
+        ui->listwidget_fileinfo->addItem("计算失败");
+    }
+
+}
+

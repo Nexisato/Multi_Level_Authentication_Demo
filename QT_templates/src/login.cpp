@@ -1,35 +1,27 @@
 #include "login.h"
+
 #include "./ui_login.h"
 
-
 //登陆界面
-Login::Login(QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::Login)
-{
+Login::Login(QWidget *parent) : QWidget(parent), ui(new Ui::Login) {
     ui->setupUi(this);
     // set front size
     this->setMinimumSize(470, 200);
     this->setMaximumSize(470, 200);
 
-
     // connect enums and slots
 
-    connect(ui->btn_login, &QPushButton::clicked, this, &Login::btn_login_clicked);
-    connect(ui->btn_cancel, &QPushButton::clicked, this, &Login::btn_cancel_clicked);
-
+    connect(ui->btn_login, &QPushButton::clicked, this,
+            &Login::btn_login_clicked);
+    connect(ui->btn_cancel, &QPushButton::clicked, this,
+            &Login::btn_cancel_clicked);
 }
 
-Login::~Login()
-{
-    delete ui;
-}
+Login::~Login() { delete ui; }
 
 //回车键登录
-void Login::keyPressEvent(QKeyEvent *event)
-{
-    switch (event->key())
-    {
+void Login::keyPressEvent(QKeyEvent *event) {
+    switch (event->key()) {
         case Qt::Key_Return:
             btn_login_clicked();
             break;
@@ -41,8 +33,7 @@ void Login::keyPressEvent(QKeyEvent *event)
     }
 }
 
-void Login::btn_login_clicked()
-{
+void Login::btn_login_clicked() {
     mainwnd.show();
     this->close();
 }
@@ -76,8 +67,4 @@ void Login::btn_login_clicked()
 }
 */
 
-void Login::btn_cancel_clicked()
-{
-    this->close();
-}
-
+void Login::btn_cancel_clicked() { this->close(); }

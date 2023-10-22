@@ -7,8 +7,7 @@ namespace Ui {
 class HomeWindow;
 }
 
-class HomeWindow : public QWidget
-{
+class HomeWindow : public QWidget {
     Q_OBJECT
 
 public:
@@ -19,4 +18,4 @@ private:
     Ui::HomeWindow *ui;
 };
 
-#endif // HOMEWINDOW_H
+#endif  // HOMEWINDOW_H

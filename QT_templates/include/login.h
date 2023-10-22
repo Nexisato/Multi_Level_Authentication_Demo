@@ -1,28 +1,25 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 #pragma execution_character_set("utf-8")
-#include <QWidget>
-#include <QPushButton>
-#include <QMessageBox>
-#include <QKeyEvent>
-
 #include <mainwindow.h>
 
+#include <QKeyEvent>
+#include <QMessageBox>
+#include <QPushButton>
+#include <QWidget>
+
 QT_BEGIN_NAMESPACE
-namespace Ui
-{
-    class Login;
+namespace Ui {
+class Login;
 }
 QT_END_NAMESPACE
 
-class Login : public QWidget
-{
+class Login : public QWidget {
     Q_OBJECT
 
 public:
     Login(QWidget *parent = nullptr);
     ~Login();
-
 
 protected:
     virtual void keyPressEvent(QKeyEvent *event);
@@ -37,6 +34,5 @@ private:
     QString pass = "admin";
 
     MainWindow mainwnd;
-
 };
-#endif // LOGIN_H
+#endif  // LOGIN_H

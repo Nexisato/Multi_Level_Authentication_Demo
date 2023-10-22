@@ -1,19 +1,18 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
-#include <QButtonGroup>
-#include <QPainter>
-#include <QPropertyAnimation>
 #include <filechosewindow.h>
 #include <homewindow.h>
-namespace Ui
-{
-    class MainWindow;
+
+#include <QButtonGroup>
+#include <QMainWindow>
+#include <QPainter>
+#include <QPropertyAnimation>
+namespace Ui {
+class MainWindow;
 }
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
@@ -28,4 +27,4 @@ private:
     HomeWindow homeWnd;
 };
 
-#endif // MAINWINDOW_H
+#endif  // MAINWINDOW_H

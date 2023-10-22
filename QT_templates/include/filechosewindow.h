@@ -1,22 +1,21 @@
 #ifndef FILECHOSEWINDOW_H
 #define FILECHOSEWINDOW_H
-#include "loader.h"
-#include <QWidget>
-#include <QMessageBox>
-#include <QFileDialog>
-#include <QPushButton>
-#include <QFileInfo>
+#include <QDateTime>
 #include <QDebug>
-#include<QDateTime>
 #include <QDropEvent>
+#include <QFileDialog>
+#include <QFileInfo>
+#include <QMessageBox>
 #include <QMimeData>
-namespace Ui
-{
-    class FileChoseWindow;
+#include <QPushButton>
+#include <QWidget>
+
+#include "loader.h"
+namespace Ui {
+class FileChoseWindow;
 }
 
-class FileChoseWindow : public QWidget
-{
+class FileChoseWindow : public QWidget {
     Q_OBJECT
 
 public:
@@ -36,4 +35,4 @@ private:
     QMap<QString, QString> filemap;
 };
 
-#endif // FILECHOSEWINDOW_H
+#endif  // FILECHOSEWINDOW_H

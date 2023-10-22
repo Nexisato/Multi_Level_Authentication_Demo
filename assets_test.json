@@ -3,22 +3,22 @@
       {
          "file" : "wps-office_11.1.0.11704_amd64.deb",
          "md5" : "d837574222efd75877f7e89708a59fdd",
-         "pid" : "10c180430dd8bfc352ceac88630e38f2f"
+         "pid" : "1cfaa9746e4c4c3293cc59b4dbc6eef4d"
       },
       {
          "file" : "linuxqq_3.2.1-17153_amd64.deb",
          "md5" : "485ab0ee479da6dd8f6c724df4bde69c",
-         "pid" : "dec6e52b40f8b1b58b721c8fe6dea493"
+         "pid" : "ef0580c70df1196612e38830a8835b7f"
       },
       {
          "file" : "Feishu-linux_x64-6.9.16.deb",
          "md5" : "540f105b2dc71a143b2a87d5b71f168b",
-         "pid" : "8116ad28f54f3971277ac6f529ce17e1"
+         "pid" : "9ce9d01f5ab63fa38389748136b0229f"
       },
       {
          "file" : "qt-opensource-linux-x64-5.14.2.run",
          "md5" : "dce0588874fd369ce493ea5bc2a21d99",
-         "pid" : "e28280329f9e75c356d4930722009ad7"
+         "pid" : "fa9a1b13339ec7daeec0747621efb9ab"
       }
    ]
 }

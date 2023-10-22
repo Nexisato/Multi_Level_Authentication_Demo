@@ -56,9 +56,9 @@ set(CLPKC_PART
 # FILE(GLOB ${PROJECT_NAME}_TEST "test/test_loader.cpp")
 
 add_executable(${TARGET_NAME} 
-    ${OFFLINE_PART}
+    #${OFFLINE_PART}
     #${ACCUMULATOR_PART}
-    #${CLPKC_PART}
+    ${CLPKC_PART}
 )
 
 target_include_directories(${TARGET_NAME}  PRIVATE
@@ -68,8 +68,8 @@ target_include_directories(${TARGET_NAME}  PRIVATE
 
 target_link_libraries(${TARGET_NAME}  PRIVATE
     ${PROJECT_SOURCE_DIR}/lib/libpbc.so
-    ${OPENSSL_ROOT_DIR}/lib64/libcrypto.so
-    ${PROJECT_SOURCE_DIR}/lib/libjsoncpp.so
+    ${OPENSSL_LIBRARIES}/libcrypto.so
+    libjsoncpp.so
     libgmp.so
     libgmpxx.so
 )

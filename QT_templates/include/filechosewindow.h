@@ -7,12 +7,11 @@
 #include <QFileInfo>
 #include <QMessageBox>
 #include <QMimeData>
-#include <QPushButton>
-#include <QWidget>
-
-#include "loader.h"
-namespace Ui {
-class FileChoseWindow;
+#include <QCheckBox>
+#include <list>
+namespace Ui
+{
+    class FileChoseWindow;
 }
 
 class FileChoseWindow : public QWidget {
@@ -30,9 +29,12 @@ private slots:
     void btn_clear_clicked();
     void btn_calculate_clicked();
 
+    void checkbox_state_changed(int);
+
 private:
     Ui::FileChoseWindow *ui;
     QMap<QString, QString> filemap;
+    QStringList itemlist;
 };
 
 #endif  // FILECHOSEWINDOW_H

@@ -1,5 +1,4 @@
 # Multi-Level Authentication Demo
----
 ## Environment
 - **OS**：Ubuntu 20.04~22.04
 - **Language**：C++
@@ -36,6 +35,7 @@ docker pull registry.cn-hangzhou.aliyuncs.com/nexisato/ubuntu_auth_demo:latest
 
 
 ## Logs
+- 2023-10-23: release portable CA application
 - 2023-10-13: entityID NO NEED to be SAFE PRIME (less time cost!)
 - 2023-10-11: Packed to Docker Image on Ubuntu 22.04
 - 2023-10-05: Code Splitting Success.

@@ -105,6 +105,7 @@ namespace loader
         Json::Value item;
         Json::Value item1;
         std::ifstream ifs;
+        Json::Value del;
         ifs.open(path);
         item1["file"] = filename;
         item1["md5"] = md5;
@@ -136,8 +137,9 @@ namespace loader
                 std::string str_md5 = item["md5"].asString();
                 if (str_md5 == md5)
                 {
-                    ifs.close();
-                    return true;
+                    root["packages"].removeIndex(i, &del);
+
+                    break;
                 }
             }
             ifs.close();

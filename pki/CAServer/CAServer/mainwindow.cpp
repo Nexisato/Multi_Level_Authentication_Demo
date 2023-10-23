@@ -10,10 +10,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     /*/--------------------变量初始化部分----------------------\*/
     //公共部分
-    coredir = "../core/";      //根证书及根证书私钥相对路径
-    reqdir = "../reqfiles/";   //存储请求文件相对路径
-    reqfindir = "../reqfin/";  //存储完成签发的请求文件相对路径
-    signdir = "../signedfiles/";  //存储签发文件相对路径
+    coredir = "./core/";      //根证书及根证书私钥相对路径
+    reqdir = "./reqfiles/";   //存储请求文件相对路径
+    reqfindir = "./reqfin/";  //存储完成签发的请求文件相对路径
+    signdir = "./signedfiles/";  //存储签发文件相对路径
+
 
     indexptr1 = -1;  // ListWidget2索引
     indexptr2 = -1;  // ListWidget2索引

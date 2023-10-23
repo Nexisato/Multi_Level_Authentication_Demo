@@ -67,7 +67,7 @@
        <item>
         <widget class="QPushButton" name="btn_delete">
          <property name="text">
-          <string>删除文件</string>
+          <string>移除文件</string>
          </property>
         </widget>
        </item>

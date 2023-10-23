@@ -5,7 +5,7 @@
 #include <openssl/pem.h>
 #include <openssl/rsa.h>
 #include <openssl/x509.h>
-#include <qdir.h>
+#include <QDir>
 #include <qdirmodel.h>
 #include <qstring.h>
 #include <qtimer.h>

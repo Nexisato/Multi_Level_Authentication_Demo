@@ -61,3 +61,4 @@ Qt5::Gui
 Qt5::Widgets 
 Qt5::Network 
 ${LIBRARIES})
+

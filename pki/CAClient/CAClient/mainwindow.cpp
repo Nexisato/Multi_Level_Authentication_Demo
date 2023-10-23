@@ -37,8 +37,8 @@ MainWindow::MainWindow(QWidget *parent)
     tcpclient = new QTcpSocket(this);
 
     //公共部分
-    reqdir = "../reqfile/";
-    pridir = "../core/";
+    reqdir = "./reqfile/";
+    pridir = "./core/";
 
     //请求文件部分
     bits = 0;  //推荐1024;

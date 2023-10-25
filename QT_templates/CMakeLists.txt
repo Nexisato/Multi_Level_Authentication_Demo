@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(AP LANGUAGES CXX)
+project(AuthenticationServer LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -48,7 +48,7 @@ add_executable(${PROJECT_NAME}
         ${${PROJECT_NAME}_SOURCES})
 
 
-target_link_libraries(AP PRIVATE
+target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt5::Widgets
     ${OPENSSL_LIBRARIES}/libcrypto.so
     libjsoncpp.so

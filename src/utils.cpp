@@ -6,46 +6,6 @@
 #include <string>
 
 namespace utils {
-mpz_class ex_gcd(mpz_class a, mpz_class b, mpz_class &x, mpz_class &y) {
-    if (b == 0)
-        return x = 1, y = 0, a;
-    mpz_class d = ex_gcd(b, a % b, x, y);
-    mpz_class t = x;
-    x = y, y = t - a / b * y;
-    return d;
-}
-
-mpz_class mod_reverse(mpz_class a, mpz_class mod) {
-    mpz_class d, x, y;
-    d = ex_gcd(a, mod, x, y);
-    if (d == 1)
-        return (x % mod + mod) % mod;
-    else
-        return -1;
-}
-
-// mpz_class quick_mul(mpz_class a, mpz_class b, mpz_class mod) {
-//     mpz_class ans = 0;
-//     while (b) {
-//         if (b % 2 == 1)
-//             ans = (ans + a) % mod;
-//         a = (a + a) % mod;
-//         b /= 2;
-//     }
-//     return ans;
-// }
-
-// mpz_class quick_pow(mpz_class base, mpz_class power, mpz_class mod) {
-//     mpz_class ans = 1;
-//     while (power > 0) {
-//         if (power % 2 == 1)
-//             ans = quick_mul(ans, base, mod);
-//         base = quick_mul(base, base, mod);
-//         power /= 2;
-//     }
-//     return ans % mod;
-// }
-
 
 mpz_class quick_mul(mpz_class a, mpz_class b, mpz_class mod) {
     mpz_class ans;
@@ -56,17 +16,14 @@ mpz_class quick_mul(mpz_class a, mpz_class b, mpz_class mod) {
 
 mpz_class quick_pow(mpz_class base, mpz_class power, mpz_class mod) {
     mpz_class ans;
-    mpz_powm(ans.get_mpz_t(), base.get_mpz_t(), power.get_mpz_t(), mod.get_mpz_t());
+    mpz_powm(ans.get_mpz_t(), base.get_mpz_t(), power.get_mpz_t(),
+             mod.get_mpz_t());
     return ans;
 }
 
-
-
 bool is_prime_miller_rabin(mpz_class num) {
-    if (num == 2)
-        return true;  // 2为质数保留
-    if (num % 2 != 1 || num < 2)
-        return false;  // 筛掉偶数和小于2的数
+    if (num == 2) return true;                  // 2为质数保留
+    if (num % 2 != 1 || num < 2) return false;  // 筛掉偶数和小于2的数
     mpz_class s = 0, t = num - 1;
     while (t % 2 != 1) {  // 当t为偶数时，继续分解, s递增
         s++;
@@ -84,8 +41,7 @@ bool is_prime_miller_rabin(mpz_class num) {
                 return false;  // 若平方取模结果为1，但x不是1或者num-1，则num不是质数
             x = test;
         }
-        if (x != 1)
-            return false;  // 费马小定理
+        if (x != 1) return false;  // 费马小定理
     }
     return true;
 }
@@ -118,11 +74,9 @@ mpz_class rand_safe_prime(int bits) {
 }
 
 bool is_safe_prime(mpz_class num) {
-    if (!is_prime_miller_rabin(num))
-        return false;
+    if (!is_prime_miller_rabin(num)) return false;
     mpz_class tmp = (num - 1) / 2;
-    if (is_prime_miller_rabin(tmp))
-        return true;
+    if (is_prime_miller_rabin(tmp)) return true;
     return false;
 }
 

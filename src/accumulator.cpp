@@ -1,6 +1,5 @@
 #include "accumulator.h"
-#include <gmp.h>
-#include <gmpxx.h>
+
 
 Accumulator::Accumulator(int bits) {
     this->SYSTEM_BITS = bits;

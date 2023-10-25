@@ -17,6 +17,7 @@ set(OPENSSL_INCLUDE_DIR /usr/local/openssl/include)
 
 #find_package(OpenSSL REQUIRED)
 
+## Parallel Computing ##
 # FIND_PACKAGE( OpenMP REQUIRED)
 # if(OPENMP_FOUND)
 #     message("OPENMP FOUND")
@@ -65,8 +66,8 @@ set(CLPKC_PART
 
 add_executable(${TARGET_NAME} 
     #${OFFLINE_PART}
-    ${ACCUMULATOR_PART}
-    #${CLPKC_PART}
+    #${ACCUMULATOR_PART}
+    ${CLPKC_PART}
 )
 
 target_include_directories(${TARGET_NAME}  PRIVATE
@@ -75,7 +76,7 @@ target_include_directories(${TARGET_NAME}  PRIVATE
 
 
 target_link_libraries(${TARGET_NAME}  PRIVATE
-    ${PROJECT_SOURCE_DIR}/lib/libpbc.so
+    ${PROJECT_SOURCE_DIR}/lib/libpbc.a
     ${OPENSSL_LIBRARIES}/libcrypto.so
     libjsoncpp.so
     libgmp.so

@@ -6,7 +6,7 @@
 
 /**
  * @brief
- * Implementation of CL-PKS Algorithm
+ * Implementation of Al'Ryami CL-PKS Algorithm
  *
  * @Class: KGC: Key Generation Center
  * @Struct Payload: Message Payload produced(recevide) by process

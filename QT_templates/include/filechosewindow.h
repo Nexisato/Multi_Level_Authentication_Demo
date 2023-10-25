@@ -9,6 +9,7 @@
 #include <QMimeData>
 #include <QCheckBox>
 #include <list>
+#include "loader.h"
 namespace Ui
 {
     class FileChoseWindow;

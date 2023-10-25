@@ -12,7 +12,7 @@
   - Qt v5.14.2
   - Packing: linuxdeployqt
 > Conisdering Electron supported in the future.
-
+> No need OpenMP for parallel computing
 
 ## Usages
 - `OpenSSL` need to be compiled from source: https://github.com/openssl/openssl/releases
@@ -35,6 +35,7 @@ docker pull registry.cn-hangzhou.aliyuncs.com/nexisato/ubuntu_auth_demo:latest
 
 
 ## Logs
+- 2023-10-25: Performance Optimized (just shut down omp)
 - 2023-10-23: release portable CA application
 - 2023-10-13: entityID NO NEED to be SAFE PRIME (less time cost!)
 - 2023-10-11: Packed to Docker Image on Ubuntu 22.04

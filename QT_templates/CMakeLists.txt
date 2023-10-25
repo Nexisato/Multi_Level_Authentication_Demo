@@ -50,7 +50,7 @@ add_executable(${PROJECT_NAME}
 
 target_link_libraries(AP PRIVATE
     Qt5::Widgets
-    ${OPENSSL_ROOT_DIR}/lib64/libcrypto.so
+    ${OPENSSL_LIBRARIES}/libcrypto.so
     libjsoncpp.so
     libgmp.so
     libgmpxx.so

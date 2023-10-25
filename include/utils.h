@@ -4,7 +4,9 @@
 
 const int _KEY_LEN = 256;
 
+
 namespace utils {
+
 /**
  * @brief Extended Euclidean algorithm
  *

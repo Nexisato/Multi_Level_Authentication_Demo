@@ -29,16 +29,12 @@ std::string compute_file_md5(const std::string &path) {
 
 std::string md5_to_entityId(const std::string &md5_str) {
     mpz_class result;
-    mpz_set_str(result.get_mpz_t(), md5_str.c_str(),
-                16);  // transfer from hex to decimal
-    // std::cout << "md5_str_decimal: " << result << std::endl;
+    // transfer from hex to decimal
+    mpz_set_str(result.get_mpz_t(), md5_str.c_str(), 16);  
     mpz_class nonce = utils::rand_big_num(128);
     result = result + nonce;
 
     mpz_nextprime(result.get_mpz_t(), result.get_mpz_t());
-    // while (!utils::is_safe_prime(result)) {
-    //     mpz_nextprime(result.get_mpz_t(), result.get_mpz_t());
-    // }
     return result.get_str(16);
 }
 

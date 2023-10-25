@@ -1,6 +1,26 @@
 #include <jsoncpp/json/json.h>
 
+#include <chrono>
+
 #include "accumulator.h"
+
+using chrono_time = std::chrono::_V2::system_clock::time_point;
+/**
+ * @brief Calculate the Time Duration between 2 points
+ *
+ * @param t0 : start_time
+ * @param t1 : end_time
+ * @return double / (unit):milliseconds
+ */
+double count_time(chrono_time t0, chrono_time t1) {
+    auto duration =
+        std::chrono::duration_cast<std::chrono::microseconds>(t1 - t0);
+
+    double res = double(duration.count()) *
+                 std::chrono::microseconds::period::num /
+                 std::chrono::milliseconds::period::den;
+    return res;
+}
 
 void get_pid_from_json(const char *&path, std::vector<mpz_class> &pids) {
     std::ifstream ifs(path);
@@ -32,6 +52,7 @@ int main() {
     acc_ptr->print_params();
 
     // 2. add members
+    auto add_start = std::chrono::system_clock::now();
     for (const auto &pid : pids) {
         acc_ptr->add_member(pid);
     }
@@ -40,29 +61,43 @@ int main() {
 
     acc_ptr->print_wits();
 
-// 3. verify
-#pragma omp parallel for
+    auto add_end = std::chrono::system_clock::now();
+
+    std::cout << "[Timing]Register Time: " << count_time(add_start, add_end)
+              << " ms" << std::endl;
+
+    // 3. verify
+    auto verfiy_start = std::chrono::system_clock::now();
+//#pragma omp parallel for
     for (size_t i = 0; i < pids.size(); ++i) {
         if (acc_ptr->verify_member(acc_ptr->wits[i], pids[i]))
             std::cout << "verify success" << std::endl;
         else
             std::cout << "verify failed" << std::endl;
     }
-
+    
+    auto verify_end = std::chrono::system_clock::now();
+    std::cout << "[Timing]Verify Time: " << count_time(verfiy_start, verify_end)
+              << " ms" << std::endl;
     // 4. remove member
     mpz_class pid = pids[0];
-    mpz_class aux = acc_ptr->remove_member(pid);
 
+    std::cout << "Remove PID: " << pid.get_str(16) << std::endl;
+    mpz_class aux = acc_ptr->remove_member(pid);
     acc_ptr->update_wit_all(aux);
 
 // 5. ReVerify
-#pragma omp parallel for
+    auto reverify_start = std::chrono::system_clock::now();
+//#pragma omp parallel for
     for (size_t i = 0; i < acc_ptr->wits.size(); ++i) {
         if (acc_ptr->verify_member(acc_ptr->wits[i], pids[i + 1]))
             std::cout << "verify success" << std::endl;
         else
             std::cout << "verify failed" << std::endl;
     }
+    auto reverify_end = std::chrono::system_clock::now();
+    std::cout << "[Timing]Reverify Time: " << count_time(verfiy_start, verify_end)
+              << " ms" << std::endl;
 
     return 0;
 }

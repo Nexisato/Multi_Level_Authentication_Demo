@@ -24,27 +24,43 @@ mpz_class mod_reverse(mpz_class a, mpz_class mod) {
         return -1;
 }
 
+// mpz_class quick_mul(mpz_class a, mpz_class b, mpz_class mod) {
+//     mpz_class ans = 0;
+//     while (b) {
+//         if (b % 2 == 1)
+//             ans = (ans + a) % mod;
+//         a = (a + a) % mod;
+//         b /= 2;
+//     }
+//     return ans;
+// }
+
+// mpz_class quick_pow(mpz_class base, mpz_class power, mpz_class mod) {
+//     mpz_class ans = 1;
+//     while (power > 0) {
+//         if (power % 2 == 1)
+//             ans = quick_mul(ans, base, mod);
+//         base = quick_mul(base, base, mod);
+//         power /= 2;
+//     }
+//     return ans % mod;
+// }
+
+
 mpz_class quick_mul(mpz_class a, mpz_class b, mpz_class mod) {
-    mpz_class ans = 0;
-    while (b) {
-        if (b % 2 == 1)
-            ans = (ans + a) % mod;
-        a = (a + a) % mod;
-        b /= 2;
-    }
+    mpz_class ans;
+    mpz_mul(ans.get_mpz_t(), a.get_mpz_t(), b.get_mpz_t());
+    mpz_mod(ans.get_mpz_t(), ans.get_mpz_t(), mod.get_mpz_t());
     return ans;
 }
 
 mpz_class quick_pow(mpz_class base, mpz_class power, mpz_class mod) {
-    mpz_class ans = 1;
-    while (power > 0) {
-        if (power % 2 == 1)
-            ans = quick_mul(ans, base, mod);
-        base = quick_mul(base, base, mod);
-        power /= 2;
-    }
-    return ans % mod;
+    mpz_class ans;
+    mpz_powm(ans.get_mpz_t(), base.get_mpz_t(), power.get_mpz_t(), mod.get_mpz_t());
+    return ans;
 }
+
+
 
 bool is_prime_miller_rabin(mpz_class num) {
     if (num == 2)

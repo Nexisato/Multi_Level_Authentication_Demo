@@ -1,21 +1,26 @@
 #include "loader.h"
+#include <openssl/md5.h>
+#include <algorithm>
+#include <cstddef>
 
 namespace loader {
 std::string compute_file_md5(const std::string &path) {
-    std::ifstream file(path, std::ios::binary);
+    std::ifstream file(path, std::ios::binary | std::ios::ate);
     if (!file) {
-        std::cerr << "[Error]: could not open file" << std::endl;
+        std::cout << "[Error]: could not open file" << std::endl;
         return "";
     }
+    size_t filesize = file.tellg();
+    file.seekg(0);
+    //std::cout << "---FilePath: " <<  path << "\t\t-----filesize: " << filesize << std::endl;
     MD5_CTX md5_ctx;
     MD5_Init(&md5_ctx);
-    char buf[1024];
-    while (file) {
-        file.read(buf, sizeof(buf));  // read len[buf] bytes each time: avoid of
-                                      // memory overflow
-        MD5_Update(&md5_ctx, buf,
-                   file.gcount());  // method depreacated in openssl 3.0, but
-                                    // still works
+    const unsigned long block_size = (1 << 20);
+    char* buf = new char[block_size];
+    for (size_t i = 0; i < filesize; i += block_size) {
+        size_t read_size = std::min(block_size, filesize - i);  
+        file.read(buf, read_size);
+        MD5_Update(&md5_ctx, buf, read_size);
     }
     unsigned char md5[MD5_DIGEST_LENGTH];
     MD5_Final(md5, &md5_ctx);
@@ -24,6 +29,8 @@ std::string compute_file_md5(const std::string &path) {
         sprintf(md5_str + i * 2, "%02x", md5[i]);
     }
     md5_str[32] = '\0';
+    delete[] buf;
+    file.close();
     return std::string(md5_str);
 }
 
@@ -73,7 +80,9 @@ void get_file_list(const char *&path, std::vector<std::string> &fileList) {
 void get_md5_list(std::vector<std::string> &fileList,
                   std::vector<std::string> &md5List) {
     for (const auto &path : fileList) {
+        // 这里计算 md5，主要问题在这
         std::string md5_str = loader::compute_file_md5(path);
+        // 这里计算 md5 
         md5List.push_back(std::string(md5_str));
     }
 }

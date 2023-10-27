@@ -2,6 +2,7 @@
 
 #include <gmp.h>
 #include <gmpxx.h>
+#include "utils.h"
 
 Accumulator::Accumulator(int bits) {
     this->SYSTEM_BITS = bits;
@@ -34,6 +35,10 @@ void Accumulator::remove_by_pid(const mpz_class &pid) {
 void Accumulator::setup() {
     mpz_class p = utils::rand_safe_prime(this->SYSTEM_BITS);
     mpz_class q = utils::rand_safe_prime(this->SYSTEM_BITS);
+
+    std::cout << "p is safe: " << utils::is_safe_prime(p) << std::endl;
+    std::cout << "q is safe: " << utils::is_safe_prime(q) << std::endl;
+
 
     mpz_mul(this->public_key.get_mpz_t(), p.get_mpz_t(), q.get_mpz_t());
 
@@ -151,6 +156,8 @@ void Accumulator::print_wits() {
     const int acc_size = this->members.size();
     for (size_t i = 0; i < acc_size; ++i) {
         std::cout << "member[" << i << "]: " << this->members[i].get_str(16)
+                  << std::endl;
+        std::cout << "member[" << i << "]-dec: " << this->members[i]
                   << std::endl;
         std::cout << "witness[" << i << "]: " << this->wits[i] << "\n"
                   << std::endl;

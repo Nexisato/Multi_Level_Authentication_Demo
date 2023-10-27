@@ -5,6 +5,7 @@
 - **Build**: CMake
 - **Dependencies**：
   - PBC Library
+  - PBC Wrapper (recommended for C++)
   - OpenSSL v3.0.x
   - gmp & gmpxx
   - jsoncpp
@@ -28,13 +29,14 @@ sudo apt install libgmp-dev libjsoncpp-dev
 sudo apt-get install libgl1-mesa-dev
 ```
 
-### Docker
+### ~~Docker~~(deprecreated)
 ```bash
 docker pull registry.cn-hangzhou.aliyuncs.com/nexisato/ubuntu_auth_demo:latest
 ```
 
 
 ## Logs
+- 2023-10-25: fix CL-PKS bug & add PBC Wrapper Version
 - 2023-10-25: Performance Optimized (just shut down omp)
 - 2023-10-23: release portable CA application
 - 2023-10-13: entityID NO NEED to be SAFE PRIME (less time cost!)

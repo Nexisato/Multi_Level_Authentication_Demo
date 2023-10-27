@@ -1,5 +1,50 @@
 #include "Process.h"
 
+#include <cstring>
+#include <string>
+
+
+/**
+ * @brief 将 element_t 转换为字符串
+ * 
+ * @param element 
+ * @return char* 
+ */
+char *element_to_string(element_t element) {
+    size_t length = element_length_in_bytes(element);
+    // std::cout << "(element_to_string): element_t_length: " << length
+    //           << std::endl;
+    uint8_t *bytes = (uint8_t *)malloc(length * sizeof(uint8_t));
+    element_to_bytes(bytes, element);
+    char *string = (char *)malloc((2 * length + 1) * sizeof(char));
+
+    for (size_t i = 0; i < length; ++i) {
+        sprintf(&string[2 * i], "%02X", bytes[i]);
+    }
+
+    free(bytes);
+    return string;
+}
+
+
+/**
+ * @brief 将字符串转换为 element_t
+ * 
+ * @param element 
+ * @param string 
+ */
+void string_to_element(element_t element, const char *string) {
+    size_t length = strlen(string) / 2;
+    uint8_t *bytes = (uint8_t *)malloc(length * sizeof(uint8_t));
+
+    for (size_t i = 0; i < length; ++i) {
+        sscanf(&string[2 * i], "%02X", &bytes[i]);
+    }
+    element_from_bytes(element, bytes);
+    free(bytes);
+}
+
+
 void Payload::getSignedMsg() {
     if (!this->isSigned) {
         std::cout << "[Error] payload not Signed." << std::endl;
@@ -11,7 +56,7 @@ void Payload::getSignedMsg() {
 
 Payload::Payload(std::string &msg, KGC *&kgc) : msg(msg) {
     element_init_G1(this->sigma.first, kgc->e);
-    element_init_GT(this->sigma.second, kgc->e);
+    element_init_Zr(this->sigma.second, kgc->e);
 }
 
 Payload::~Payload() {
@@ -59,32 +104,37 @@ void Process::sign_msg(Payload &payload, KGC *&kgc) {
         return;
     }
 
-    element_t Msg_hash;
     element_t ri, ri_P;
     element_t T, U, V;
 
     element_init_Zr(ri, kgc->e);
-    element_init_Zr(Msg_hash, kgc->e);
     element_init_G1(ri_P, kgc->e);
     element_init_GT(T, kgc->e);
-    element_init_GT(V, kgc->e);
+    element_init_Zr(V, kgc->e);
     element_init_G1(U, kgc->e);
 
     element_random(ri);
     element_mul_zn(ri_P, kgc->P, ri);
     pairing_apply(T, kgc->P, ri_P, kgc->e);  // e(P, P)^r = e(P, rP)
-    element_from_hash(Msg_hash, const_cast<char *>(payload.msg.c_str()),
-                      payload.msg.length());
-    element_mul_zn(V, T, Msg_hash);  // GT <- GT * Zr
-    element_mul_zn(U, this->secret_key, V);
-    element_add(U, U, ri_P);
+
+    char *T_str = element_to_string(T);
+    std::cout << "T_str: " << T_str << std::endl;
+
+    std::string msg_input = payload.msg + std::string(T_str);
+    // std::cout << "msg_input: " << msg_input << std::endl;
+
+    element_from_hash(V, const_cast<char *>(msg_input.c_str()),
+                       msg_input.length());
+
+    element_mul_zn(U, this->secret_key, V); //G1 <- G1 * Zr
+    element_add(U, U, ri_P);    // G1 <- G1 + G1
 
     element_set(payload.sigma.first, U);
     element_set(payload.sigma.second, V);
     payload.isSigned = true;
 
     // remember to clear tmp element
-    element_clear(Msg_hash);
+    free(T_str);
     element_clear(ri);
     element_clear(ri_P);
     element_clear(T);
@@ -122,8 +172,6 @@ void Process::verify_msg(Payload &payload, KGC *&kgc, Process *&sender) {
     element_init_Zr(msg_hash, kgc->e);
     element_from_hash(PID_hash, const_cast<char *>(sender->pid.c_str()),
                       sender->pid.length());
-    element_from_hash(msg_hash, const_cast<char *>(payload.msg.c_str()),
-                      payload.msg.length());
 
     element_init_GT(T, kgc->e);
     element_init_GT(pair_1, kgc->e);
@@ -131,18 +179,19 @@ void Process::verify_msg(Payload &payload, KGC *&kgc, Process *&sender) {
 
     element_init_G1(neg_pk_second, kgc->e);
     element_neg(neg_pk_second, sender->public_key.second);
+    element_mul_zn(neg_pk_second, neg_pk_second, payload.sigma.second);// e(PID_hash, -pk_2)^V
+    
     pairing_apply(pair_1, payload.sigma.first, kgc->P, kgc->e);
     pairing_apply(pair_2, PID_hash, neg_pk_second, kgc->e);
 
-    element_pow_zn(pair_2, pair_2,
-                   payload.sigma.second);  // e(PID_hash, -pk_2)^V
     element_mul(T, pair_1, pair_2);  // e(sigma_1, P) * e(PID_hash, -pk_2)^V
 
-    element_t V_verify;
-    element_init_GT(V_verify, kgc->e);
-    element_mul_zn(V_verify, T, msg_hash);
+    char *T_str = element_to_string(T);
+    std::string msg_input = payload.msg + std::string(T_str);
+    element_from_hash(msg_hash, const_cast<char *>(msg_input.c_str()),
+                       msg_input.length());
 
-    if (!element_cmp(V_verify, payload.sigma.second)) {
+    if (!element_cmp(msg_hash, payload.sigma.second)) {
         std::cout << "[Verifiy Success] Message Verified." << std::endl;
     } else {
         std::cout << "[FAILED] Message Unverified." << std::endl;
@@ -154,7 +203,7 @@ void Process::verify_msg(Payload &payload, KGC *&kgc, Process *&sender) {
     element_clear(pair_2);
     element_clear(PID_hash);
     element_clear(neg_pk_second);
-    element_clear(V_verify);
+
 }
 
 ///////////// Test ////////////////

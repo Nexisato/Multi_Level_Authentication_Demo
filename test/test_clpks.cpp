@@ -1,23 +1,5 @@
-#include <chrono>
 #include "Process.h"
-
-using chrono_time = std::chrono::_V2::system_clock::time_point;
-/**
- * @brief Calculate the Time Duration between 2 points
- *
- * @param t0 : start_time
- * @param t1 : end_time
- * @return double / (unit):milliseconds
- */
-double count_time(chrono_time t0, chrono_time t1) {
-    auto duration =
-        std::chrono::duration_cast<std::chrono::microseconds>(t1 - t0);
-
-    double res = double(duration.count()) *
-                 std::chrono::microseconds::period::num /
-                 std::chrono::milliseconds::period::den;
-    return res;
-}
+#include "utils.h"
 
 
 int main() {
@@ -59,8 +41,8 @@ int main() {
     payload.getSignedMsg();
 
     auto sign_end = std::chrono::system_clock::now();
-    std::cout << "[Timing]Sign Time: " << count_time(sign_start, sign_end)
-              << " ms" << std::endl;
+    std::cout << "[Timing]Sign Time: " << utils::count_time(sign_start, sign_end)
+               << " ms" << std::endl;
 
     // [5] message Verified
     std::cout << "\n-----[5] message VERIFIED process for receiver -----"
@@ -76,7 +58,7 @@ int main() {
     process_j->verify_msg(payload, kgc, process);
 
     auto verify_end = std::chrono::system_clock::now();
-    std::cout << "[Timing]Verify Time: " << count_time(verify_start, verify_end)
+    std::cout << "[Timing]Verify Time: " << utils::count_time(verify_start, verify_end)
               << " ms" << std::endl;
 
 

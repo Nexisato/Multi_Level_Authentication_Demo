@@ -6,9 +6,9 @@ set(CMAKE_CXX_STANDARD 17)
 
 
 # 添加 gprof 
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
-SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pg")
-SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -pg")
+# SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
+# SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pg")
+# SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -pg")
 
 
 set(OPENSSL_ROOT_DIR /usr/local/openssl)
@@ -37,37 +37,39 @@ link_libraries(
 
 
 set(OFFLINE_PART
-    include/utils.h
-    include/loader.h
     src/utils.cpp
     src/loader.cpp
     test/test_loader.cpp
 )
 
 set(ACCUMULATOR_PART
-    include/utils.h
-    include/accumulator.h
     src/utils.cpp
     src/accumulator.cpp
     test/test_accumulator.cpp
 )
 
-set(CLPKC_PART
-    include/KGC.h
-    include/Process.h
+set(CLPKS_PART
     src/KGC.cpp
     src/Process.cpp
-    test/test_clpkc.cpp
+    src/utils.cpp
+    test/test_clpks.cpp
 )
 
+set(CLPKS_WRAPPER_PART
+    src/KGC_wrapper.cpp
+    src/Process_wrapper.cpp
+    src/utils.cpp
+    test/test_clpks_wrapper.cpp
+)
 
 # FILE(GLOB ${PROJECT_NAME}_SOURCES "src/*.cpp")
 # FILE(GLOB ${PROJECT_NAME}_TEST "test/test_loader.cpp")
 
 add_executable(${TARGET_NAME} 
-    ${OFFLINE_PART}
+    #${OFFLINE_PART}
     #${ACCUMULATOR_PART}
-    #${CLPKC_PART}
+    #${CLPKS_PART}
+    ${CLPKS_WRAPPER_PART}
 )
 
 target_include_directories(${TARGET_NAME}  PRIVATE
@@ -76,7 +78,8 @@ target_include_directories(${TARGET_NAME}  PRIVATE
 
 
 target_link_libraries(${TARGET_NAME}  PRIVATE
-    #${PROJECT_SOURCE_DIR}/lib/libpbc.a
+    ${PROJECT_SOURCE_DIR}/lib/libPBC.a    
+    ${PROJECT_SOURCE_DIR}/lib/libpbc.a
     ${OPENSSL_LIBRARIES}/libcrypto.so
     libjsoncpp.so
     libgmp.so

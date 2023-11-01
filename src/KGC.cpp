@@ -1,22 +1,20 @@
 #include "KGC.h"
 
-bool KGC::init_pairing(const char *&path) {
-    this->isParingInit = false;
+void KGC::init_pairing(const char *&path) {
     char param[1024];
     FILE *file = fopen(path, "r");
     size_t count = fread(param, 1, 1024, file);
     fclose(file);
     if (!count) {
         pbc_die("Input error");
-        return false;
+        return;
     }
     pairing_init_set_buf(this->e, param, count);
     if (!pairing_is_symmetric(this->e)) {
         pbc_die("pairing must be symmetric");
-        return false;
+        return;
     }
-    this->isParingInit = true;
-    return this->isParingInit;
+
 }
 
 void KGC::setup_params() {
@@ -43,6 +41,11 @@ void KGC::generate_partial_key(std::string &pid, element_t &partial_key) {
 }
 
 KGC::KGC() {}
+
+KGC::KGC(const char*& path) {
+    this->init_pairing(path);
+    this->setup_params();
+}
 
 KGC::~KGC() {
     pairing_clear(this->e);

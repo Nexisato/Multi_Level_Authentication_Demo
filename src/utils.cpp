@@ -1,8 +1,7 @@
 #include "utils.h"
+
 #include <iostream>
 #include <string>
-
-
 
 namespace utils {
 
@@ -37,6 +36,8 @@ std::vector<uint8_t> xorBytes(const std::vector<uint8_t>& data1,
 
     return result;
 }
+
+
 
 mpz_class quick_mul(mpz_class a, mpz_class b, mpz_class mod) {
     mpz_class ans;
@@ -78,7 +79,8 @@ bool is_prime_miller_rabin(mpz_class num) {
 }
 
 mpz_class rand_big_num(int bits) {
-    // unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    // unsigned seed =
+    // std::chrono::system_clock::now().time_since_epoch().count();
     // std::mt19937_64 rng(seed);
 
     std::random_device rd;
@@ -102,7 +104,7 @@ mpz_class rand_safe_prime(int bits) {
     mpz_class tmp = (prime - 1) / 2;
 
     // return 2 if tmp must be prime
-    while (mpz_probab_prime_p(tmp.get_mpz_t(), 15) == 0 ) {
+    while (mpz_probab_prime_p(tmp.get_mpz_t(), 15) == 0) {
         mpz_nextprime(prime.get_mpz_t(), prime.get_mpz_t());
         tmp = (prime - 1) / 2;
     }
@@ -124,7 +126,7 @@ bool is_safe_prime(mpz_class num) {
 void test() {
     mpz_class P, Q;
     int len_prime = _KEY_LEN;
-    mpz_class *primerand = new mpz_class[2];
+    mpz_class* primerand = new mpz_class[2];
     P = rand_prime(len_prime);
     Q = rand_safe_prime(len_prime);
 

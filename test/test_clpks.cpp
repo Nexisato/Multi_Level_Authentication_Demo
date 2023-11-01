@@ -2,17 +2,50 @@
 #include "utils.h"
 
 
+// 将 element_t 转换为字符串
+std::string element_to_string(element_t element) {
+    size_t length = element_length_in_bytes(element);
+    std::cout << "(element_to_string): element_t_length: " << length
+              << std::endl;
+    uint8_t* bytes = (uint8_t*)malloc(length * sizeof(uint8_t));
+    element_to_bytes(bytes, element);
+    char* res = (char*)malloc((2 * length + 1) * sizeof(char));
+
+    for (size_t i = 0; i < length; ++i) {
+        sprintf(&res[2 * i], "%02X", bytes[i]);
+    }
+
+    free(bytes);
+
+    return std::string(res);
+}
+
+// 将字符串转换为 element_t
+void string_to_element(element_t element, const std::string& str) {
+    char* str_tmp = const_cast<char*>(str.c_str());
+    size_t length = strlen(str_tmp) / 2;
+    uint8_t* bytes = (uint8_t*)malloc(length * sizeof(uint8_t));
+    for (size_t i = 0; i < length; ++i) {
+        sscanf(&str_tmp[2 * i], "%02X", &bytes[i]);
+    }
+    element_from_bytes(element, bytes);
+    free(bytes);
+}
+
+
+
 int main() {
     const char *path = "../param/a.param";
-    KGC *kgc = new KGC();
-
+    
     // [1] Setup, system parameters generation
     std::cout << "\n-----[1] Setup, system parameters generation-----"
               << std::endl;
-    kgc->init_pairing(path);
-    kgc->setup_params();
+    KGC *kgc = new KGC(path);
+
     element_printf("P = %B\n", kgc->P);
     element_printf("P0 = %B\n", kgc->P0);
+
+
 
     // [2] Partial- Secret Key Generation
     std::cout << "\n-----[2] Partial Secret Key Generation-----" << std::endl;

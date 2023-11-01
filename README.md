@@ -5,7 +5,6 @@
 - **Build**: CMake
 - **Dependencies**：
   - PBC Library
-  - PBC Wrapper (recommended for C++)
   - OpenSSL v3.0.x
   - gmp & gmpxx
   - jsoncpp
@@ -36,6 +35,7 @@ docker pull registry.cn-hangzhou.aliyuncs.com/nexisato/ubuntu_auth_demo:latest
 
 
 ## Logs
+- 2023-10-30: PBC Wrapper aborted (NO DOCS, USELESS)
 - 2023-10-25: fix CL-PKS bug & add PBC Wrapper Version
 - 2023-10-25: Performance Optimized (just shut down omp)
 - 2023-10-23: release portable CA application

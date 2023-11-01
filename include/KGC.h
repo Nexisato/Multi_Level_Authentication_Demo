@@ -15,7 +15,6 @@
 class KGC {
 private:
     element_t s;
-    bool isParingInit;
 
 public:
     /**
@@ -25,7 +24,7 @@ public:
      * @param path  .param file path
      * @return true/false
      */
-    bool init_pairing(const char *&path);
+    void init_pairing(const char *&path);
 
     /**
      * @brief Initialize the System Parameters
@@ -46,5 +45,6 @@ public:
     void generate_partial_key(std::string &pid, element_t &partial_key);
 
     KGC();
+    KGC(const char *&path);
     ~KGC();
 };

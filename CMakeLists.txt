@@ -55,11 +55,11 @@ set(CLPKS_PART
     test/test_clpks.cpp
 )
 
-set(CLPKS_WRAPPER_PART
-    src/KGC_wrapper.cpp
-    src/Process_wrapper.cpp
+set(SERIAL_TEST_PART
+    src/KGC.cpp
+    src/Process.cpp
     src/utils.cpp
-    test/test_clpks_wrapper.cpp
+    test/test_serial_unserial.cpp
 )
 
 # FILE(GLOB ${PROJECT_NAME}_SOURCES "src/*.cpp")
@@ -67,9 +67,9 @@ set(CLPKS_WRAPPER_PART
 
 add_executable(${TARGET_NAME} 
     #${OFFLINE_PART}
-    #${ACCUMULATOR_PART}
-    #####${CLPKS_PART}
-    ${CLPKS_WRAPPER_PART}
+    ${ACCUMULATOR_PART}
+    #${CLPKS_PART}
+    #${SERIAL_TEST_PART}
 )
 
 target_include_directories(${TARGET_NAME}  PRIVATE
@@ -77,8 +77,7 @@ target_include_directories(${TARGET_NAME}  PRIVATE
 )
 
 
-target_link_libraries(${TARGET_NAME}  PRIVATE
-    ${PROJECT_SOURCE_DIR}/lib/libPBC.a    
+target_link_libraries(${TARGET_NAME}  PRIVATE 
     ${PROJECT_SOURCE_DIR}/lib/libpbc.a
     ${OPENSSL_LIBRARIES}/libcrypto.so
     libjsoncpp.so

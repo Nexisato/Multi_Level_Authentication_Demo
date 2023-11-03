@@ -1,10 +1,11 @@
 # Multi-Level Authentication Demo
 ## Environment
 - **OS**：Ubuntu 20.04~22.04
-- **Language**：C++
+- **Language**：C++; GO
 - **Build**: CMake
 - **Dependencies**：
   - PBC Library
+  - PBC Go Wrapper
   - OpenSSL v3.0.x
   - gmp & gmpxx
   - jsoncpp
@@ -35,6 +36,7 @@ docker pull registry.cn-hangzhou.aliyuncs.com/nexisato/ubuntu_auth_demo:latest
 
 
 ## Logs
+- 2023-11-03: Refactor PBC with Go Wrappe.version(Serialize Supported): https://github.com/Nik-U/pbc
 - 2023-10-30: PBC Wrapper aborted (NO DOCS, USELESS)
 - 2023-10-25: fix CL-PKS bug & add PBC Wrapper Version
 - 2023-10-25: Performance Optimized (just shut down omp)

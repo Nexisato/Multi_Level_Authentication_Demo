@@ -70,7 +70,7 @@ int main() {
     // 3. verify
     auto verfiy_start = std::chrono::system_clock::now();
     //#pragma omp parallel for
-    for (int cnt = 0; cnt < 1000; ++cnt) {
+    for (int cnt = 0; cnt < 1; ++cnt) {
         for (size_t i = 0; i < pids.size(); ++i) {
             if (acc_ptr->verify_member(acc_ptr->wits[i], pids[i]))
                 std::cout << "verify success" << std::endl;

@@ -159,7 +159,7 @@ void Accumulator::print_wits() {
                   << std::endl;
         std::cout << "member[" << i << "]-dec: " << this->members[i]
                   << std::endl;
-        std::cout << "witness[" << i << "]: " << this->wits[i] << "\n"
+        std::cout << "witness[" << i << "]: " << this->wits[i].get_str(16) << "\n"
                   << std::endl;
     }
 }

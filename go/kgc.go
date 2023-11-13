@@ -17,6 +17,7 @@ type KGC struct {
 	P0 *pbc.Element
 }
 
+// export Setup
 func (kgc *KGC) Setup() {
 	kgc.params = pbc.GenerateA(160, 512)
 	kgc.pairing = kgc.params.NewPairing()
@@ -25,10 +26,12 @@ func (kgc *KGC) Setup() {
 	kgc.P0 = kgc.pairing.NewG1().MulZn(kgc.P, kgc.s)
 }
 
+// export ShareParams
 func (kgc *KGC) ShareParams() string {
 	return kgc.params.String()
 }
 
+// export GeneratePartialKey
 func (kgc *KGC) GeneratePartialKey(pid string) []byte {
 	Q := kgc.pairing.NewG1().SetFromStringHash(pid, sha256.New())
 	D := kgc.pairing.NewG1().MulZn(Q, kgc.s)

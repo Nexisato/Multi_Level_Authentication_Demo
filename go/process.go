@@ -20,12 +20,14 @@ type Process struct {
 	Pid    string
 }
 
+// export Setup
 func (p *Process) Setup(params string, pid string) {
 	p.Pid = pid
 	p.pairing, _ = pbc.NewPairingFromString(params)
 	p.secret_value = p.pairing.NewZr().Rand()
 }
 
+// export GeneratePartialKey
 func (p *Process) GenerateFullKey(partial_key []byte, P_bytes []byte, P0_bytes []byte) {
 	D := p.pairing.NewG1().SetBytes(partial_key)
 	P := p.pairing.NewG1().SetBytes(P_bytes)
@@ -37,6 +39,7 @@ func (p *Process) GenerateFullKey(partial_key []byte, P_bytes []byte, P0_bytes [
 	p.PubKey[1] = p.pairing.NewG1().MulZn(P0, p.secret_value)
 }
 
+// export SignMessage
 func (p *Process) SignMessage(message string, P_bytes []byte) (Payload, [2][]byte) {
 	ri := p.pairing.NewZr().Rand()
 	P := p.pairing.NewG1().SetBytes(P_bytes)
@@ -70,6 +73,7 @@ func (p *Process) SignMessage(message string, P_bytes []byte) (Payload, [2][]byt
 
 }
 
+// export VerifyMessage
 func (p *Process) VerifyMessage(pid string, payload Payload, params string,
 	P_bytes []byte, P0_bytes []byte, pubkey [2][]byte) bool {
 	// Extract Params

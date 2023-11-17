@@ -36,6 +36,7 @@ docker pull registry.cn-hangzhou.aliyuncs.com/nexisato/ubuntu_auth_demo:latest
 
 
 ## Logs
+- 2023-11-17: CLS-Pair-free method validated (except for aggregate sig&ver)
 - 2023-11-03: Refactor PBC with Go Wrappe.version(Serialize Supported): https://github.com/Nik-U/pbc
 - 2023-10-30: PBC Wrapper aborted (NO DOCS, USELESS)
 - 2023-10-25: fix CL-PKS bug & add PBC Wrapper Version

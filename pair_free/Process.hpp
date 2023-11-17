@@ -12,6 +12,8 @@ struct Payload {
     std::string msg;
     std::string sig1, sig2;
     std::string pk1, pk2;
+    std::string time_stamp;
+    std::string wit_new;
 };
 
 class Process {
@@ -85,22 +87,22 @@ public:
      *
      * @param msg
      * @param wit_hex
-     * @param acc_cur
+     * @param N: public key in accumulator system
      * @return Payload: include (pid, msg, sig1, sig2, pk1, pk2)
       sig1(EC_point): Y1
       sig2 (BIGNUM): w
      */
     Payload sign(const std::string &msg, std::string &wit_hex,
-                 const std::string &acc_cur) {
+                 const std::string &N_hex) {
         std::string ti = getTimeTamp();  // current timestamp
         BIGNUM *ht = string2bn(ti);
-
+        BIGNUM *N = hex2bn(N_hex);
         BIGNUM *wit = hex2bn(wit_hex);
-        BIGNUM *acc = hex2bn(acc_cur);
 
         BN_CTX *bn_ctx = BN_CTX_new();
-        BN_mod_exp(wit, wit, ht, acc, bn_ctx);
-        BN_free(acc);
+        // wit = wit ^ ht mod N
+        BN_mod_exp(wit, wit, ht, N, bn_ctx);
+        BN_free(N);
 
         BIGNUM *y1 = BN_new();
         BN_rand_range(y1, this->q);
@@ -135,7 +137,9 @@ public:
                            point2hex(this->ec_group, Y1),
                            bn2hex(w),
                            point2hex(this->ec_group, this->public_key.first),
-                           point2hex(this->ec_group, this->public_key.second)};
+                           point2hex(this->ec_group, this->public_key.second),
+                           ti,
+                           bn2hex(wit)};
 
         BN_free(ht);
         BN_free(wit);
@@ -158,17 +162,17 @@ public:
      * @return true
      * @return false
      */
-    bool verify(Payload &payload, const int nid, std::string &wit,
-                std::string &Ppub_hex, std::string &acc_cur) {
+    bool verify(Payload &payload, const int nid, std::string &Ppub_hex,
+                std::string &acc_cur, std::string &N) {
         BN_CTX *bn_ctx = BN_CTX_new();
         EC_GROUP *sender_group = EC_GROUP_new_by_curve_name(nid);
 
-        std::string ti = getTimeTamp();  // current timestamp
+        std::string ti = payload.time_stamp;  // current timestamp
         BIGNUM *ht = string2bn(ti);
 
         std::string h1_input = payload.pid + payload.pk2 + Ppub_hex;
-        std::string h3_input =
-            payload.msg + wit + payload.pid + payload.pk1 + payload.pk2 + ti;
+        std::string h3_input = payload.msg + payload.wit_new + payload.pid +
+                               payload.pk1 + payload.pk2 + ti;
         std::string u_input = h3_input + payload.sig1;
 
         BIGNUM *h1 = string2bn(h1_input);
@@ -205,16 +209,23 @@ public:
 
         std::cout << "[CONTINUE]进入累加器参数验证环节" << std::endl;
         BIGNUM *acc = hex2bn(acc_cur);
-        BIGNUM *pid_val = string2bn(payload.pid);
-        BIGNUM *wit_val = hex2bn(wit);
-        BIGNUM *bn_lhs = BN_new();
-        BIGNUM *bn_rhs = BN_new();
-        BN_exp(bn_lhs, wit_val, pid_val, bn_ctx);
-        BN_exp(bn_rhs, acc, ht, bn_ctx);
-        if (BN_cmp(bn_lhs, bn_rhs) != 0) {
-            std::cout << "[INVALID]累加器参数验证失败" << std::endl;
+        // std::cout << "[test] 这里行不行?" << std::endl;
+
+        std::string ti_hex = bn2hex(ht);
+        std::cout << "rhs: \n";
+        std::string bn_rhs = quickPow(acc_cur, ti_hex, N);
+        std::cout << "\n\nlhs: \n";
+        std::string bn_lhs = quickPow(payload.wit_new, payload.pid, N);
+
+        std::cout << "bn_lhs: " << bn_lhs << std::endl;
+        std::cout << "bn_rhs: " << bn_rhs << std::endl;
+
+        if (bn_lhs != bn_rhs) {
+            std::cout << "[INVALID]累加器参数不合法" << std::endl;
             return false;
         }
+
+        std::cout << "[SUCCESS]过了" << std::endl;
 
         BN_CTX_free(bn_ctx);
         BN_free(ht);
@@ -232,10 +243,6 @@ public:
         EC_POINT_free(Y1);
         BN_free(wi);
         BN_free(acc);
-        BN_free(pid_val);
-        BN_free(wit_val);
-        BN_free(bn_lhs);
-        BN_free(bn_rhs);
         return true;
     }
 

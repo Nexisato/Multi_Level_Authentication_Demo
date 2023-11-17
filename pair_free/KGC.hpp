@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <openssl/bn.h>
 #include <openssl/obj_mac.h>
 
@@ -8,7 +7,6 @@
 #include <vector>
 
 #include "transfer.h"
-
 
 class KGC {
 private:
@@ -21,7 +19,7 @@ public:
 
     KGC(int nid = NID_secp256k1) {
         this->ec_group = EC_GROUP_new_by_curve_name(nid);
-        //const EC_POINT *P = EC_GROUP_get0_generator(ec_group);
+        // const EC_POINT *P = EC_GROUP_get0_generator(ec_group);
         const BIGNUM *order = EC_GROUP_get0_order(ec_group);
 
         this->q = BN_dup(order);
@@ -44,15 +42,12 @@ public:
         std::string h_input = pid + point2hex(this->ec_group, R) +
                               point2hex(this->ec_group, this->P_pub);
 
-       
         BIGNUM *h1 = string2bn(h_input);
         BIGNUM *d = BN_new();
-        
 
-        //d = s * h1 + r
+        // d = s * h1 + r
         BN_mod_mul(d, this->s, h1, this->q, bn_ctx);
         BN_mod_add(d, d, r, this->q, bn_ctx);
-
 
         // [0][1]: Zr, point
         std::vector<std::string> res(2);
@@ -73,5 +68,4 @@ public:
         EC_POINT_free(this->P_pub);
         EC_GROUP_free(this->ec_group);
     }
-    
 };

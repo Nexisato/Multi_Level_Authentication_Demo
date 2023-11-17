@@ -10,6 +10,11 @@
 #include "Process.hpp"
 #include "transfer.h"
 
+/**
+ * @brief
+ *  注意规范：除时间戳外，所有中间数值全部以16进制方式存储
+ * @return int
+ */
 int main() {
     // // 椭圆曲线确定，生成元和阶也确定
     // const EC_GROUP *ec_group = EC_GROUP_new_by_curve_name(NID_secp256k1);
@@ -39,14 +44,17 @@ int main() {
     bool isKeyFull1 = process1->GenerateFullKey(partial_key1);
     std::string msg = "hello world";
     std::string wit1 =
-        "5c3bb79df26c13832bf0ccc36d53df63e93836fbae0b82cf17486c303a002ea2bb5c26"
-        "023e81723b18a65536ea24f5b8a9b1939bd60872a7007febe64eb4dd";
+        "7154a3d17795d52ffb0e22f3d34c01c4134c544f3367f208f2d6c80dd6750128bfe7f6"
+        "72a642a9c4a3ed644543330467e8751f3b2a80e53ca978f3a74aca0d4";
+    std::string N =
+        "256ab0535223b7f396e9a83baf495485643f53fe0b169abbf9c65f319a90f11fd9d6e7"
+        "42bc96511164a482acad9fbd3436908ab81b80ec400738175539d10e11";
     std::string acc_cur =
-        "535b8cc77e3535e8f631bfee85514f2b0da03a74d55d14543c0d52eabadf20a08b4f38"
-        "d97390166d270828dc203896b6d8b94382aed4ed106633d74ad0b427e";
+        "16d09945c33747913fddf4ddb8fc0fe9548676ea060f47901d8acdc35e7476637fdcba"
+        "2cb3d71fe0b09848c77ba82579b39b39a754d4d86d2031797dae92a40f";
 
     // 4. process1 签名
-    Payload payload1 = process1->sign(msg, wit1, acc_cur);
+    Payload payload1 = process1->sign(msg, wit1, N);
     std::cout << "payload1.sig1: " << bn2dec(hex2bn(payload1.sig1))
               << std::endl;
     std::cout << "payload1.sig2: " << bn2dec(hex2bn(payload1.sig2))
@@ -55,7 +63,11 @@ int main() {
     // 5. process2 验签
     std::string pid2 = "12767b506ebefbacab00b1f080737958f";
     Process *process2 = new Process(pid2, k + 1, Ppub_hex);
-    bool isVerify = process2->verify(payload1, k, wit1, Ppub_hex, acc_cur);
+    bool isVerify = process2->verify(payload1, k, Ppub_hex, acc_cur, N);
+
+
+    std::cout << "isVerify: " << isVerify << std::endl;
+
 
     return 0;
 }

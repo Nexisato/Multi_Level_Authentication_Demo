@@ -83,6 +83,8 @@ int main() {
     std::cout << "[Timing]Verify Time: "
               << count_time(verfiy_start, verify_end) / (test_time * pids.size())
               << " ms" << std::endl;
+    std::cout << "[4]acc_cur: " << acc_ptr->acc_cur.get_str(16) << std::endl;
+    
     // 4. remove member
     mpz_class pid = pids[0];
     std::vector<mpz_class> revoke_pids;
@@ -98,7 +100,7 @@ int main() {
 
     std::cout << "Current Wits.size(): " << acc_ptr->wits.size() << std::endl;
 
-    std::cout << "\n\n acc_cur: " << acc_ptr->acc_cur.get_str(16) << "\n\n" << std::endl;
+    std::cout << "\n\n[removed-2]acc_cur: " << acc_ptr->acc_cur.get_str(16) << "\n\n" << std::endl;
 
     // 5. ReVerify
     auto reverify_start = std::chrono::system_clock::now();

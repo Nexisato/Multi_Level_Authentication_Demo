@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.0)
 
 project(my_project)
 
+
 set(TARGET_NAME my_executable)
 
 find_package(OpenSSL REQUIRED)
@@ -19,4 +20,6 @@ add_executable(${TARGET_NAME}
     )
 
 target_link_libraries(${TARGET_NAME} 
-    OpenSSL::Crypto)
+    OpenSSL::Crypto
+    gmp
+)

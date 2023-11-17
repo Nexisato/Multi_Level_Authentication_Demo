@@ -146,7 +146,7 @@ void Accumulator::update_wit_all(const mpz_class &update_aux) {
 
 ///////////////// Public Test Functions:///////////////////////
 void Accumulator::print_params() {
-    std::cout << "\npublic_key: " << this->public_key << std::endl;
+    std::cout << "\npublic_key: " << this->public_key.get_str(16) << std::endl;
     std::cout << "secret_key: (" << this->secret_key.first << ", "
               << this->secret_key.second << ")" << std::endl;
     std::cout << "acc_init: " << this->acc_init << "\n" << std::endl;

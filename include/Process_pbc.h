@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-#include "KGC.h"
+#include "KGC_pbc.h"
 #include "pbc/pbc.h"
 
 struct Payload {

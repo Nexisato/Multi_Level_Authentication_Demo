@@ -4,18 +4,21 @@ project(auth_demo)
 set(TARGET_NAME auth_test)
 set(CMAKE_CXX_STANDARD 17)
 
+## 编译优化
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
 
 # 添加 gprof 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
 SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pg")
 SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -pg")
 
+find_package(OpenSSL REQUIRED)
 
-set(OPENSSL_ROOT_DIR /usr/local/openssl)
-set(OPENSSL_LIBRARIES /usr/local/openssl/lib64)
-set(OPENSSL_INCLUDE_DIR /usr/local/openssl/include)
+# set(OPENSSL_ROOT_DIR /usr/local/openssl)
+# set(OPENSSL_LIBRARIES /usr/local/openssl/lib64)
+# set(OPENSSL_INCLUDE_DIR /usr/local/openssl/include)
 
-#find_package(OpenSSL REQUIRED)
+
 
 ## Parallel Computing ##
 # FIND_PACKAGE( OpenMP REQUIRED)
@@ -49,17 +52,24 @@ set(ACCUMULATOR_PART
 )
 
 set(CLPKS_PART
-    src/KGC.cpp
-    src/Process.cpp
+    src/KGC_pbc.cpp
+    src/Process_pbc.cpp
     src/utils.cpp
     test/test_clpks.cpp
 )
 
-set(SERIAL_TEST_PART
-    src/KGC.cpp
-    src/Process.cpp
-    src/utils.cpp
-    test/test_serial_unserial.cpp
+# set(SERIAL_TEST_PART
+#     src/KGC.cpp
+#     src/Process.cpp
+#     src/utils.cpp
+#     test/test_serial_unserial.cpp
+# )
+
+set(PAIR_FREE_PART
+    src/transfer.cpp
+    src/KGC_pairFree.cpp
+    src/Process_pairFree.cpp
+    test/test_pairFree.cpp
 )
 
 # FILE(GLOB ${PROJECT_NAME}_SOURCES "src/*.cpp")
@@ -67,9 +77,10 @@ set(SERIAL_TEST_PART
 
 add_executable(${TARGET_NAME} 
     #${OFFLINE_PART}
-    ${ACCUMULATOR_PART}
+    #${ACCUMULATOR_PART}
     #${CLPKS_PART}
     #${SERIAL_TEST_PART}
+    ${PAIR_FREE_PART}
 )
 
 target_include_directories(${TARGET_NAME}  PRIVATE
@@ -79,8 +90,7 @@ target_include_directories(${TARGET_NAME}  PRIVATE
 
 target_link_libraries(${TARGET_NAME}  PRIVATE 
     ${PROJECT_SOURCE_DIR}/lib/libpbc.a
-    ${OPENSSL_LIBRARIES}/libcrypto.so
-    libjsoncpp.so
-    libgmp.so
-    libgmpxx.so
+    OpenSSL::Crypto
+    jsoncpp
+    gmp
 )

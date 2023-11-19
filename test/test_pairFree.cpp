@@ -6,9 +6,9 @@
 #include <iostream>
 #include <string>
 
-#include "KGC.hpp"
-#include "Process.hpp"
-#include "transfer.h"
+#include "KGC_pariFree.h"
+#include "Process_pairFree.h"
+
 
 /**
  * @brief

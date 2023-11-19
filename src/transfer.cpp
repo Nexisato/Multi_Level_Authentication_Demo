@@ -1,14 +1,14 @@
-#ifndef TRANSFER_H
-#pragma once
-
-#include <gmpxx.h>
-#include <openssl/ec.h>
-#include <openssl/evp.h>
-#include <time.h>
-
-#include <chrono>
-#include <iostream>
-#include <string>
+/**
+ * @file transfer.cpp
+ * @author CaddiesNew
+ * @brief 
+ * @version 0.1
+ * @date 2023-11-19
+ * 
+ * @copyright Copyright (c) 2023
+ *  Implement the functions defined in transfer.h
+ */
+#include "../include/transfer.h"
 
 std::string getTimeTamp() {
     auto now = std::chrono::time_point_cast<std::chrono::milliseconds>(
@@ -94,5 +94,3 @@ std::string quickPow(std::string &a_hex, std::string &b_hex,
     // convert to hex
     return c.get_str(16);
 }
-
-#endif  // TRANSFER_H

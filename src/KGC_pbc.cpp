@@ -1,4 +1,4 @@
-#include "KGC.h"
+#include "KGC_pbc.h"
 
 void KGC::init_pairing(const char *&path) {
     char param[1024];

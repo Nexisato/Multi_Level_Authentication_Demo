@@ -130,8 +130,8 @@ void test() {
     P = rand_prime(len_prime);
     Q = rand_safe_prime(len_prime);
 
-    std::cout << "P: " << P << std::endl;
-    std::cout << "Q: " << Q << std::endl;
+    std::cout << "P: " << P.get_str() << std::endl;
+    std::cout << "Q: " << Q.get_str() << std::endl;
 
     std::cout << "P-1 _isPrime? : " << is_prime_miller_rabin(P - 1)
               << std::endl;

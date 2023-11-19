@@ -58,12 +58,12 @@ set(CLPKS_PART
     test/test_clpks.cpp
 )
 
-# set(SERIAL_TEST_PART
-#     src/KGC.cpp
-#     src/Process.cpp
-#     src/utils.cpp
-#     test/test_serial_unserial.cpp
-# )
+set(SERIAL_TEST_PART
+    src/utils.cpp
+    src/KGC_pbc.cpp
+    src/Process_pbc.cpp
+    test/test_serial_unserial.cpp
+)
 
 set(PAIR_FREE_PART
     src/transfer.cpp
@@ -89,7 +89,7 @@ target_include_directories(${TARGET_NAME}  PRIVATE
 
 
 target_link_libraries(${TARGET_NAME}  PRIVATE 
-    ${PROJECT_SOURCE_DIR}/lib/libpbc.a
+    #${PROJECT_SOURCE_DIR}/lib/libpbc.a
     OpenSSL::Crypto
     jsoncpp
     gmp

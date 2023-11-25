@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <cstddef>
 
+
 namespace loader {
 std::string compute_file_md5(const std::string &path) {
     std::ifstream file(path, std::ios::binary | std::ios::ate);
@@ -10,6 +11,7 @@ std::string compute_file_md5(const std::string &path) {
         std::cout << "[Error]: could not open file" << std::endl;
         return "";
     }
+    
     size_t filesize = file.tellg();
     file.seekg(0);
     //std::cout << "---FilePath: " <<  path << "\t\t-----filesize: " << filesize << std::endl;

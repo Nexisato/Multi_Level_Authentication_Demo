@@ -1,5 +1,5 @@
 #include "accumulator.h"
-
+#include <iostream>
 #include <gmp.h>
 #include <gmpxx.h>
 #include "utils.h"
@@ -147,9 +147,9 @@ void Accumulator::update_wit_all(const mpz_class &update_aux) {
 ///////////////// Public Test Functions:///////////////////////
 void Accumulator::print_params() {
     std::cout << "\npublic_key: " << this->public_key.get_str(16) << std::endl;
-    std::cout << "secret_key: (" << this->secret_key.first << ", "
-              << this->secret_key.second << ")" << std::endl;
-    std::cout << "acc_init: " << this->acc_init << "\n" << std::endl;
+    std::cout << "secret_key: (" << this->secret_key.first.get_str() << ", "
+              << this->secret_key.second.get_str() << ")" << std::endl;
+    std::cout << "acc_init: " << this->acc_init.get_str() << "\n" << std::endl;
 }
 
 void Accumulator::print_wits() {
@@ -157,7 +157,7 @@ void Accumulator::print_wits() {
     for (size_t i = 0; i < acc_size; ++i) {
         std::cout << "member[" << i << "]: " << this->members[i].get_str(16)
                   << std::endl;
-        std::cout << "member[" << i << "]-dec: " << this->members[i]
+        std::cout << "member[" << i << "]-dec: " << this->members[i].get_str()
                   << std::endl;
         std::cout << "witness[" << i << "]: " << this->wits[i].get_str(16) << "\n"
                   << std::endl;

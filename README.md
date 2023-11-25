@@ -6,7 +6,7 @@
 - **Dependencies**：
   - PBC Library
   - PBC Go Wrapper
-  - OpenSSL v3.0.x
+  - OpenSSL v3.X (3.2.0)
   - gmp & gmpxx
   - jsoncpp
 - **UI**:
@@ -36,6 +36,7 @@ docker pull registry.cn-hangzhou.aliyuncs.com/nexisato/ubuntu_auth_demo:latest
 
 
 ## Logs
+- 2023-11-25: Update WSL2 dev to Ubuntu-22.04.
 - 2023-11-17: Tidy Project structure.
 - 2023-11-17: CLS-Pair-free method validated (except for aggregate sig&ver)
 - 2023-11-03: Refactor PBC with Go Wrappe.version(Serialize Supported): https://github.com/Nik-U/pbc

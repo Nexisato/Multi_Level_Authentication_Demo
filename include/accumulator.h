@@ -1,9 +1,6 @@
 #pragma once
 
 #include <gmpxx.h>
-#include <algorithm>
-#include <fstream>
-#include <iostream>
 #include <vector>
 
 #include "utils.h"

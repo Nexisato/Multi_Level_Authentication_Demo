@@ -2,6 +2,8 @@
 #include <jsoncpp/json/json.h>
 
 #include <chrono>
+#include <fstream>  // Add this line to include the <fstream> header
+#include <iostream>
 
 #include "accumulator.h"
 
@@ -25,7 +27,7 @@ double count_time(chrono_time t0, chrono_time t1) {
 
 void get_pid_from_json(const char *&path, std::vector<mpz_class> &pids) {
     std::ifstream ifs(path);
-    Json::Reader reader;
+    Json::Reader reader;  // Declare and initialize the 'ifs' variable
     Json::Value root;
     Json::Value item;
     if (!reader.parse(ifs, root, false)) {
@@ -81,10 +83,11 @@ int main() {
     }
     auto verify_end = std::chrono::system_clock::now();
     std::cout << "[Timing]Verify Time: "
-              << count_time(verfiy_start, verify_end) / (test_time * pids.size())
+              << count_time(verfiy_start, verify_end) /
+                     (test_time * pids.size())
               << " ms" << std::endl;
     std::cout << "[4]acc_cur: " << acc_ptr->acc_cur.get_str(16) << std::endl;
-    
+
     // 4. remove member
     mpz_class pid = pids[0];
     std::vector<mpz_class> revoke_pids;
@@ -100,7 +103,9 @@ int main() {
 
     std::cout << "Current Wits.size(): " << acc_ptr->wits.size() << std::endl;
 
-    std::cout << "\n\n[removed-2]acc_cur: " << acc_ptr->acc_cur.get_str(16) << "\n\n" << std::endl;
+    std::cout << "\n\n[removed-2]acc_cur: " << acc_ptr->acc_cur.get_str(16)
+              << "\n\n"
+              << std::endl;
 
     // 5. ReVerify
     auto reverify_start = std::chrono::system_clock::now();
@@ -115,9 +120,9 @@ int main() {
     }
     auto reverify_end = std::chrono::system_clock::now();
     std::cout << "[Timing]Reverify Time: "
-              << count_time(reverify_start, reverify_end) / (test_time * acc_ptr->wits.size()) << " ms" << std::endl;
-
-
+              << count_time(reverify_start, reverify_end) /
+                     (test_time * acc_ptr->wits.size())
+              << " ms" << std::endl;
 
     return 0;
 }

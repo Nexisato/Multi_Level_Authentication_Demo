@@ -8,15 +8,17 @@ set(CMAKE_CXX_STANDARD 17)
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
 
 # 添加 gprof 
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
-SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pg")
-SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -pg")
+# SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
+# SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pg")
+# SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -pg")
 
-find_package(OpenSSL REQUIRED)
+#find_package(OpenSSL REQUIRED)
 
-# set(OPENSSL_ROOT_DIR /usr/local/openssl)
-# set(OPENSSL_LIBRARIES /usr/local/openssl/lib64)
-# set(OPENSSL_INCLUDE_DIR /usr/local/openssl/include)
+
+set(OPENSSL_ROOT_DIR /usr/local/openssl)
+set(OPENSSL_INCLUDE_DIR /usr/local/openssl/include)
+set(OPENSSL_LIBRARIES /usr/local/openssl/lib64)
+
 
 
 
@@ -90,7 +92,8 @@ target_include_directories(${TARGET_NAME}  PRIVATE
 
 target_link_libraries(${TARGET_NAME}  PRIVATE 
     #${PROJECT_SOURCE_DIR}/lib/libpbc.a
-    OpenSSL::Crypto
+    ${OPENSSL_LIBRARIES}/libcrypto.so
+    #OpenSSL::Crypto
     jsoncpp
     gmp
 )

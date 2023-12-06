@@ -49,10 +49,16 @@ int main() {
     std::vector<mpz_class> pids;
     get_pid_from_json(json_path, pids);
 
+    auto setup_start = std::chrono::system_clock::now();
+
     // 1. system setup
     Accumulator *acc_ptr = new Accumulator(_KEY_LEN);
     acc_ptr->setup();
     acc_ptr->print_params();
+
+    auto setup_end = std::chrono::system_clock::now();
+    std::cout << "[Timing]Setup Time: " << count_time(setup_start, setup_end)
+              << " ms" << std::endl;
 
     // 2. add members
     auto add_start = std::chrono::system_clock::now();

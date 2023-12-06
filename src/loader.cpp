@@ -55,7 +55,7 @@ void md5_to_id_test() {
 
     mpz_class decoded_pid;
     mpz_set_str(decoded_pid.get_mpz_t(), res.c_str(), 16);
-    std::cout << "decoded_pid: " << decoded_pid << std::endl;
+    std::cout << "decoded_pid: " << decoded_pid.get_str() << std::endl;
     std::cout << "decoded_pid_is_safeprime: "
               << utils::is_safe_prime(decoded_pid) << std::endl;
 }

@@ -29,18 +29,19 @@ sudo apt install libgmp-dev libjsoncpp-dev
 sudo apt-get install libgl1-mesa-dev
 ```
 
-### ~~Docker~~(deprecreated)
+### Docker Image (~~deprecrated~~)
 ```bash
 docker pull registry.cn-hangzhou.aliyuncs.com/nexisato/ubuntu_auth_demo:latest
 ```
 
 
 ## Logs
+- 2023-12-06: build new version of Docker Image. Use `1024bit` RSA Prime instead of `Safe Prime`.
 - 2023-11-25: Update WSL2 dev to Ubuntu-22.04.
 - 2023-11-17: Tidy Project structure.
 - 2023-11-17: CLS-Pair-free method validated (except for aggregate sig&ver)
-- 2023-11-03: Refactor PBC with Go Wrappe.version(Serialize Supported): https://github.com/Nik-U/pbc
-- 2023-10-30: PBC Wrapper aborted (NO DOCS, USELESS)
+- 2023-11-03: Refactor PBC with Go Wrapper.version(Serialize Supported): https://github.com/Nik-U/pbc
+- 2023-10-30: PBC Wrapper aborted (NO DOCS, FUCKING USELESS)
 - 2023-10-25: fix CL-PKS bug & add PBC Wrapper Version
 - 2023-10-25: Performance Optimized (just shut down omp)
 - 2023-10-23: release portable CA application

@@ -33,12 +33,9 @@ void Accumulator::remove_by_pid(const mpz_class &pid) {
 
 // Public Functions:
 void Accumulator::setup() {
-    mpz_class p = utils::rand_safe_prime(this->SYSTEM_BITS);
-    mpz_class q = utils::rand_safe_prime(this->SYSTEM_BITS);
-
-    std::cout << "p is safe: " << utils::is_safe_prime(p) << std::endl;
-    std::cout << "q is safe: " << utils::is_safe_prime(q) << std::endl;
-
+    mpz_class p = utils::rand_prime(this->SYSTEM_BITS);
+    mpz_class q = utils::rand_prime(this->SYSTEM_BITS);
+    
 
     mpz_mul(this->public_key.get_mpz_t(), p.get_mpz_t(), q.get_mpz_t());
 

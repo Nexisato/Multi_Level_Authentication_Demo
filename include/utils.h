@@ -4,7 +4,7 @@
 #include <chrono>
 #include <random>
 
-const int _KEY_LEN = 256;
+const int _KEY_LEN = 1024;
 
 using chrono_time = std::chrono::_V2::system_clock::time_point;
 
@@ -60,13 +60,13 @@ mpz_class mod_reverse(mpz_class a, mpz_class mod);
  *
  * @return mpz_class
  */
-mpz_class quick_mul(mpz_class a, mpz_class b, mpz_class mod);
-/**
- * @brief (base ^ power) % mod with gmp
- *
- * @return mpz_class
- */
-mpz_class quick_pow(mpz_class base, mpz_class power, mpz_class mod);
+// mpz_class quick_mul(mpz_class a, mpz_class b, mpz_class mod);
+// /**
+//  * @brief (base ^ power) % mod with gmp
+//  *
+//  * @return mpz_class
+//  */
+// mpz_class quick_pow(mpz_class base, mpz_class power, mpz_class mod);
 
 /**
  * @brief judge whether num is prime with Miller-Rabin algorithm
@@ -85,6 +85,7 @@ mpz_class rand_big_num(int bits);
 mpz_class rand_prime(int bits);
 mpz_class rand_safe_prime(int bits);
 bool is_safe_prime(mpz_class num);
+
 
 void test();
 }  // namespace utils

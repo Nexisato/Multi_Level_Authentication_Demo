@@ -1,6 +1,7 @@
 #pragma once
 
 #include <gmpxx.h>
+
 #include <vector>
 
 #include "utils.h"
@@ -70,7 +71,7 @@ public:
      * @return mpz_class : auxiliary value (to update witness)
      */
     mpz_class remove_member(const mpz_class &pid_val);
-    mpz_class remove_member(std::vector<mpz_class>& pid_vals);
+    mpz_class remove_member(std::vector<mpz_class> &pid_vals);
 
     /**
      * @brief Update all witnesses according to the auxiliary value

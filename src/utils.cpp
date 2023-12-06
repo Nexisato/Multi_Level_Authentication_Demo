@@ -37,8 +37,6 @@ std::vector<uint8_t> xorBytes(const std::vector<uint8_t>& data1,
     return result;
 }
 
-
-
 mpz_class quick_mul(mpz_class a, mpz_class b, mpz_class mod) {
     mpz_class ans;
     mpz_mul(ans.get_mpz_t(), a.get_mpz_t(), b.get_mpz_t());
@@ -46,12 +44,12 @@ mpz_class quick_mul(mpz_class a, mpz_class b, mpz_class mod) {
     return ans;
 }
 
-mpz_class quick_pow(mpz_class base, mpz_class power, mpz_class mod) {
-    mpz_class ans;
-    mpz_powm(ans.get_mpz_t(), base.get_mpz_t(), power.get_mpz_t(),
-             mod.get_mpz_t());
-    return ans;
-}
+// mpz_class quick_pow(mpz_class base, mpz_class power, mpz_class mod) {
+//     mpz_class ans;
+//     mpz_powm(ans.get_mpz_t(), base.get_mpz_t(), power.get_mpz_t(),
+//              mod.get_mpz_t());
+//     return ans;
+// }
 
 bool is_prime_miller_rabin(mpz_class num) {
     if (num == 2) return true;                  // 2为质数保留
@@ -66,8 +64,10 @@ bool is_prime_miller_rabin(mpz_class num) {
                  // num)成立的解有仅有a=1或者a=num-1
         gmp_randclass randz(gmp_randinit_default);
         mpz_class a = randz.get_z_range(num - 1);  // 随机整数a，取(1, num-1)
-        mpz_class x = quick_pow(a, t, num);        // x为二次探测的解
-        for (int j = 0; j < s; j++) {              // x^s=a^(num-1)
+        mpz_class x;                               // x为二次探测的解
+        mpz_powm(x.get_mpz_t(), a.get_mpz_t(), t.get_mpz_t(),
+                 num.get_mpz_t());     // a^t % num
+        for (int j = 0; j < s; j++) {  // x^s=a^(num-1)
             mpz_class test = quick_mul(x, x, num);
             if (test == 1 && x != 1 && x != num - 1)
                 return false;  // 若平方取模结果为1，但x不是1或者num-1，则num不是质数
@@ -100,20 +100,38 @@ mpz_class rand_prime(int bits) {
 }
 
 mpz_class rand_safe_prime(int bits) {
-    mpz_class prime = rand_prime(bits);
-    mpz_class tmp = (prime - 1) / 2;
+    // mpz_class prime = rand_prime(bits);
+    // mpz_class tmp = (prime - 1) / 2;
 
-    // return 2 if tmp must be prime
-    while (mpz_probab_prime_p(tmp.get_mpz_t(), 15) == 0) {
-        mpz_nextprime(prime.get_mpz_t(), prime.get_mpz_t());
-        tmp = (prime - 1) / 2;
-    }
-
-    // while (!is_prime_miller_rabin(tmp)) {
+    // // return 2 if tmp must be prime, 1 if probably prime
+    // while (mpz_probab_prime_p(tmp.get_mpz_t(), 15) == 0) {
     //     mpz_nextprime(prime.get_mpz_t(), prime.get_mpz_t());
     //     tmp = (prime - 1) / 2;
     // }
-    return prime;
+
+    // // while (!is_prime_miller_rabin(tmp)) {
+    // //     mpz_nextprime(prime.get_mpz_t(), prime.get_mpz_t());
+    // //     tmp = (prime - 1) / 2;
+    // // }
+    // return prime;
+    gmp_randclass rand(gmp_randinit_default);
+    rand.seed(time(NULL));
+
+    mpz_class prime;
+    while (true) {
+        prime = rand.get_z_bits(bits);
+        mpz_setbit(prime.get_mpz_t(), 0);  // Ensure it's odd
+
+        // Miller-Rabin test with 15 iterations
+        if (mpz_probab_prime_p(prime.get_mpz_t(), 15)) {
+            mpz_class tmp = (prime - 1) / 2;
+
+            // Check if (prime - 1) / 2 is also prime
+            if (mpz_probab_prime_p(tmp.get_mpz_t(), 15)) {
+                return prime;
+            }
+        }
+    }
 }
 
 bool is_safe_prime(mpz_class num) {

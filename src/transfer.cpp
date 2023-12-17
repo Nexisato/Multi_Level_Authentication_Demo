@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2023
  *  Implement the functions defined in transfer.h
  */
-#include "../include/transfer.h"
+#include "transfer.h"
 
 std::string getTimeTamp() {
     auto now = std::chrono::time_point_cast<std::chrono::milliseconds>(
@@ -43,7 +43,7 @@ BIGNUM *string2bn(const std::string &str) {
     BIGNUM *bn = BN_new();
     unsigned char hash[EVP_MAX_MD_SIZE];
     unsigned int hashlen;
-
+    // 先计算SHA256，再转换成BIGNUM
     if (EVP_Digest(reinterpret_cast<const unsigned char *>(str.c_str()),
                    str.length(), hash, &hashlen, EVP_sha256(), NULL)) {
         BN_bin2bn(hash, hashlen, bn);

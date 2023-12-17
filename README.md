@@ -36,6 +36,7 @@ docker pull registry.cn-hangzhou.aliyuncs.com/nexisato/ubuntu_auth_demo:latest
 
 
 ## Logs
+- 2023-12-17: debugging for aggregate sign (not completed, do not use!)
 - 2023-12-06: build new version of Docker Image. Use `1024bit` RSA Prime instead of `Safe Prime`.
 - 2023-11-25: Update WSL2 dev to Ubuntu-22.04.
 - 2023-11-17: Tidy Project structure.

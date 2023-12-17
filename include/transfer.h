@@ -25,6 +25,20 @@
 #include <string>
 #include <vector>
 
+/**
+* @brief 
+* the payload of the signed msg
+*/
+struct Payload {
+    std::string pid;    // from process
+    std::string msg;
+    std::string sig1, sig2;
+    std::string pk1, pk2;
+    std::string time_stamp;
+    std::string wit_new;
+    std::string u_generated;    // for aggregate(contains P_pub_hex)
+};
+
 std::string getTimeTamp();
 
 std::string point2hex(const EC_GROUP *ec_group, const EC_POINT *point);

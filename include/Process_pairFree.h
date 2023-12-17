@@ -15,14 +15,9 @@
 #pragma once
 #include "transfer.h"
 
-struct Payload {
-    std::string pid;
-    std::string msg;
-    std::string sig1, sig2;
-    std::string pk1, pk2;
-    std::string time_stamp;
-    std::string wit_new;
-};
+
+
+
 
 class Process {
 private:
@@ -81,6 +76,7 @@ public:
     bool verify(Payload &payload, const int nid, std::string &Ppub_hex,
                 std::string &acc_cur, std::string &N);
 
+    
     ~Process();
 };
 #endif

@@ -3,7 +3,6 @@
 Process::Process(const std::string &pid_val, int nid,
                  const std::string &P_pub_str) {
     this->pid = pid_val;
-    ;
     this->ec_group = EC_GROUP_new_by_curve_name(nid);
     const EC_POINT *P = EC_GROUP_get0_generator(ec_group);
     const BIGNUM *order = EC_GROUP_get0_order(ec_group);
@@ -95,7 +94,8 @@ Payload Process::sign(const std::string &msg, std::string &wit_hex,
                        point2hex(this->ec_group, this->public_key.first),
                        point2hex(this->ec_group, this->public_key.second),
                        ti,
-                       bn2hex(wit)};
+                       bn2hex(wit),
+                       bn2hex(u)};
 
     BN_free(ht);
     BN_free(wit);
@@ -192,6 +192,8 @@ bool Process::verify(Payload &payload, const int nid, std::string &Ppub_hex,
     BN_free(acc);
     return true;
 }
+
+
 
 Process::~Process() {
     BN_free(this->q);

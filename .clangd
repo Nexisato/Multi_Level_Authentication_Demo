@@ -1,0 +1,9 @@
+CompileFlags:
+  Add: 
+    - -std=c++17
+    - -I${workspaceFolder}/include
+    - -I/usr/include
+    - -I.
+  
+Index:
+  Background: true

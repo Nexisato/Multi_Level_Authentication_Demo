@@ -1,0 +1,24 @@
+{
+    "packages" : [
+       {
+          "file" : "wps-office_11.1.0.11704_amd64.deb",
+          "md5" : "d837574222efd75877f7e89708a59fdd",
+          "pid" : "197b4c349c9e1a426383f09ba576249cb"
+       },
+       {
+          "file" : "linuxqq_3.2.1-17153_amd64.deb",
+          "md5" : "485ab0ee479da6dd8f6c724df4bde69c",
+          "pid" : "5158ee15ec9beeae6cfcb3c5728e4313"
+       },
+       {
+          "file" : "Feishu-linux_x64-6.9.16.deb",
+          "md5" : "540f105b2dc71a143b2a87d5b71f168b",
+          "pid" : "12767b506ebefbacab00b1f080737958f"
+       },
+       {
+          "file" : "qt-opensource-linux-x64-5.14.2.run",
+          "md5" : "dce0588874fd369ce493ea5bc2a21d99",
+          "pid" : "12241674a45b168c0140ca94d55980a23"
+       }
+    ]
+ }

@@ -26,7 +26,7 @@
 [go-version-shield]: https://img.shields.io/badge/Go-Pipeline-00ADD8?style=flat-square&logo=go&logoColor=white
 [go-readme-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/tree/main/go/README.md
 
-[java-version-shield]: https://img.shields.io/badge/Java-Pipeline-ED8B00?style=flat-square&logo=java&logoColor=white
+[java-version-shield]: https://img.shields.io/badge/Java-Pipeline-ED8B00?style=flat-square&logo=openjdk&logoColor=white
 [java-readme-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/tree/main/java/README.md
 
 [python-version-shield]: https://img.shields.io/badge/Python-Pipeline-3776AB?style=flat-square&logo=python&logoColor=white

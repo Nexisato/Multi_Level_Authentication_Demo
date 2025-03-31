@@ -12,21 +12,37 @@
 
 
 
-## Environment
-- **OS**：Ubuntu 20.04~22.04
-- **Language**：C++; GO
-- **Build**: CMake
-- **Dependencies**：
-  - PBC Library
-  - PBC Go Wrapper
-  - OpenSSL v3.X (3.2.0)
-  - gmp & gmpxx
-  - jsoncpp
-- **UI**:
-  - Qt v5.14.2
-  - Packing: linuxdeployqt
-> Conisdering Electron supported in the future.
-> No need OpenMP for parallel computing
+## Requirements
+
+### Operating System
+- Linux: Ubuntu 20.04~24.04, WSL2 (Ubuntu 20.04+)
+
+### Development Environment
+- C++17 compatible compiler (GCC 9+ or Clang 10+)
+- Go 1.18+
+- CMake 3.16+
+
+### Dependencies
+- **Core Libraries**:
+  - PBC Library v0.5.14+ (for pairing-based cryptography)
+  - OpenSSL v3.X (v3.2.0 recommended, v1.1.1 also works)
+  - GMP/GMPXX v6.2.0+ (GNU Multiple Precision Arithmetic Library)
+  - jsoncpp v1.9.0+ (JSON data exchange format)
+  
+- **For Go Implementation**:
+  - PBC Go Wrapper: github.com/Nik-U/pbc
+
+- **For UI Components**:
+  - Qt v5.14.2+
+  - linuxdeployqt (for packaging)
+
+### Optional
+- Docker (for containerized deployment)
+- Git (for version control)
+
+> Electron may be supported in future versions
+> OpenMP is not required as parallel computation is not implemented
+
 
 ## Usages
 - `OpenSSL` need to be compiled from source: https://github.com/openssl/openssl/releases
@@ -42,7 +58,7 @@ sudo apt install libgmp-dev libjsoncpp-dev
 sudo apt-get install libgl1-mesa-dev
 ```
 
-### Docker Image (~~deprecrated~~)
+### Docker Images
 ```bash
 docker pull registry.cn-hangzhou.aliyuncs.com/nexisato/ubuntu_auth_demo:latest
 ```

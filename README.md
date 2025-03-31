@@ -67,6 +67,10 @@
   - Qt v5.14.2+
   - linuxdeployqt (for packaging)
 
+ - **For Perf Utils**:
+  - Gperf (Define in CMakeLists.txt)
+  - Valgrind
+
 ### Optional
 - Docker (for containerized deployment)
 - Git (for version control)
@@ -79,6 +83,17 @@
 - `OpenSSL` need to be compiled from source: https://github.com/openssl/openssl/releases
 V3.0.x version recommended. (1.1.1x version also worked)
 - `PBC Library` also need to be compiled from source:  https://crypto.stanford.edu/pbc/
+
+```bash
+# Define the KGC and Entity params in src/KGC*.cpp and src/Process*.cpp respectively.
+mkdir build
+cd build
+cmake ..
+make -j
+
+# Verify the process in you local logs and terminal
+```
+
 
 ### Install Dev Lib
 ```bash

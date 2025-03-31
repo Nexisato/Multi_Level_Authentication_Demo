@@ -5,3 +5,13 @@
 **/ext_archive
 **/archive
 **/.cache
+
+
+
+# linter & cache
+.ruff_cache
+.mypy_cache
+.cache
+
+# python
+__pycache__

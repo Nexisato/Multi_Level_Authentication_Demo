@@ -1,14 +1,39 @@
-# Multi-Level Identity Authentication Framework for Resource-Constrained IoT Environment
+# MLAuth: Multi-Level Identity Authentication Framework for Resource-Constrained IoT Environment
+
+
+
 
 
 [![][github-stars-shield]][github-stars-link]
 [![][github-contributors-shield]][github-contributors-link]
 
-[github-stars-shield]: https://img.shields.io/github/stars/Nexisato/Multi_Level_Authentication_Demo.svg?style=flat-square
+[![][go-version-shield]][go-readme-link]
+[![][java-version-shield]][java-readme-link]
+[![][python-version-shield]][python-readme-link]
+[![][cpp-version-shield]][cpp-readme-link]
+
+[github-stars-shield]: https://img.shields.io/github/stars/Nexisato/Multi_Level_Authentication_Demo.svg?style=flat-square&label=✨%20Stars&color=yellow
 [github-stars-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/stargazers
-[github-contributors-shield]: https://img.shields.io/github/contributors/Nexisato/Multi_Level_Authentication_Demo.svg?style=flat-square
+[github-contributors-shield]: https://img.shields.io/github/contributors/Nexisato/Multi_Level_Authentication_Demo.svg?style=flat-square&label=👥%20Contributors&color=blue
 [github-contributors-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/graphs/contributors
 
+[go-version-shield]: https://img.shields.io/badge/Go-Pipeline-00ADD8?style=flat-square&logo=go&logoColor=white
+[go-readme-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/tree/main/go/README.md
+
+[java-version-shield]: https://img.shields.io/badge/Java-Pipeline-ED8B00?style=flat-square&logo=java&logoColor=white
+[java-readme-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/tree/main/java/README.md
+
+[python-version-shield]: https://img.shields.io/badge/Python-Pipeline-3776AB?style=flat-square&logo=python&logoColor=white
+[python-readme-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/tree/main/Python/Readme.md
+
+[cpp-version-shield]: https://img.shields.io/badge/C++-Pipeline-00599C?style=flat-square&logo=cplusplus&logoColor=white
+[cpp-readme-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/tree/main/README.md
+
+
+## Function
+1. Elliptic Curve Cryptography provides efficient authentication and key generation mechanisms. By leveraging the mathematical properties of elliptic curves, the system achieves high security with shorter key lengths compared to traditional cryptographic solutions, resulting in faster operations and reduced computational overhead.
+2. Bilinear Pairings enable sophisticated functionality such as trusted delegation and fine-grained access control. These mathematical mappings allow for advanced cryptographic protocols that support complex trust relationships, attribute-based encryption schemes, and context-sensitive authorization that can adapt to varying security requirements.
+3. RSA Accumulators deliver membership proofs and revocable anonymous credentials. This component allows the system to efficiently verify whether an element belongs to a set without revealing the entire set, supporting privacy-preserving identity management with the ability to selectively revoke credentials when necessary
 
 
 

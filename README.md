@@ -30,7 +30,7 @@
 [java-readme-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/tree/main/java/README.md
 
 [python-version-shield]: https://img.shields.io/badge/Python-Pipeline-3776AB?style=flat-square&logo=python&logoColor=white
-[python-readme-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/tree/main/Python/Readme.md
+[python-readme-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/tree/main/python/README.md
 
 [cpp-version-shield]: https://img.shields.io/badge/C++-Pipeline-00599C?style=flat-square&logo=cplusplus&logoColor=white
 [cpp-readme-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/tree/main/README.md

@@ -1,13 +1,12 @@
 gmpy2
 sympy
-pypbc
 fastecdsa
 cryptography
 orjson
 loguru
 
 # linter
-mypy
 ruff
 black
 isort
+# pypbc

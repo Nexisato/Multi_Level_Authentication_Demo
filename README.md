@@ -4,29 +4,35 @@
 
 
 
-[![][github-stars-shield]][github-stars-link]
-[![][github-contributors-shield]][github-contributors-link]
+
 
 [![][go-version-shield]][go-readme-link]
 [![][java-version-shield]][java-readme-link]
 [![][python-version-shield]][python-readme-link]
 [![][cpp-version-shield]][cpp-readme-link]
 
+
+[![][github-stars-shield]][github-stars-link]
+[![][github-contributors-shield]][github-contributors-link]
+[![][license-shield]][license-link]
+
 [github-stars-shield]: https://img.shields.io/github/stars/Nexisato/Multi_Level_Authentication_Demo.svg?style=flat-square&label=✨%20Stars&color=yellow
 [github-stars-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/stargazers
 [github-contributors-shield]: https://img.shields.io/github/contributors/Nexisato/Multi_Level_Authentication_Demo.svg?style=flat-square&label=👥%20Contributors&color=blue
 [github-contributors-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/graphs/contributors
+[license-shield]: https://img.shields.io/github/license/Nexisato/Multi_Level_Authentication_Demo.svg?style=flat-square&color=green
+[license-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/blob/main/LICENSE
 
-[go-version-shield]: https://img.shields.io/badge/Go-Pipeline-00ADD8?style=flat-square&logo=go&logoColor=white
+[go-version-shield]: https://img.shields.io/badge/Go-实现-00ADD8?style=flat-square&logo=go&logoColor=white
 [go-readme-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/tree/main/go/README.md
 
-[java-version-shield]: https://img.shields.io/badge/Java-Pipeline-ED8B00?style=flat-square&logo=java&logoColor=white
+[java-version-shield]: https://img.shields.io/badge/Java-实现-ED8B00?style=flat-square&logo=java&logoColor=white
 [java-readme-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/tree/main/java/README.md
 
-[python-version-shield]: https://img.shields.io/badge/Python-Pipeline-3776AB?style=flat-square&logo=python&logoColor=white
+[python-version-shield]: https://img.shields.io/badge/Python-实现-3776AB?style=flat-square&logo=python&logoColor=white
 [python-readme-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/tree/main/Python/Readme.md
 
-[cpp-version-shield]: https://img.shields.io/badge/C++-Pipeline-00599C?style=flat-square&logo=cplusplus&logoColor=white
+[cpp-version-shield]: https://img.shields.io/badge/C++-实现-00599C?style=flat-square&logo=cplusplus&logoColor=white
 [cpp-readme-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/tree/main/README.md
 
 

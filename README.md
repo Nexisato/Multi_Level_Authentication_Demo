@@ -68,8 +68,8 @@
   - linuxdeployqt (for packaging)
 
  - **For Perf Utils**:
-  - Gperf (Define in CMakeLists.txt)
-  - Valgrind
+    - gprof (Define in CMakeLists.txt)
+    - Valgrind
 
 ### Optional
 - Docker (for containerized deployment)

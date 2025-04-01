@@ -70,6 +70,7 @@ set(PAIR_FREE_PART
     src/transfer.cpp
     src/KGC_pairFree.cpp
     src/Process_pairFree.cpp
+    src/utils.cpp
     test/test_pairFree.cpp
 )
 
@@ -79,9 +80,9 @@ set(PAIR_FREE_PART
 add_executable(${TARGET_NAME} 
     #${OFFLINE_PART}
     #${ACCUMULATOR_PART}
-    ${CLPKS_PART}
+    #${CLPKS_PART}
     #${SERIAL_TEST_PART}
-    #${PAIR_FREE_PART}
+    ${PAIR_FREE_PART}
 )
 
 target_include_directories(${TARGET_NAME}  PRIVATE

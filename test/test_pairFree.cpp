@@ -8,7 +8,7 @@
 
 #include "KGC_pariFree.h"
 #include "Process_pairFree.h"
-
+#include "utils.h"
 
 /**
  * @brief
@@ -54,17 +54,26 @@ int main() {
         "2cb3d71fe0b09848c77ba82579b39b39a754d4d86d2031797dae92a40f";
 
     // 4. process1 签名
+    auto start = std::chrono::system_clock::now();
     Payload payload1 = process1->sign(msg, wit1, N);
     std::cout << "payload1.sig1: " << bn2dec(hex2bn(payload1.sig1))
               << std::endl;
     std::cout << "payload1.sig2: " << bn2dec(hex2bn(payload1.sig2))
               << std::endl;
 
+    auto end = std::chrono::system_clock::now();
+    std::cout << "Sign Time: " << utils::count_time(start, end) << "ms"
+              << std::endl;
+
     // 5. process2 验签
+    auto start2 = std::chrono::system_clock::now();
     std::string pid2 = "12767b506ebefbacab00b1f080737958f";
     Process *process2 = new Process(pid2, k + 1, Ppub_hex);
     bool isVerify = process2->verify(payload1, k, Ppub_hex, acc_cur, N);
 
+    auto end2 = std::chrono::system_clock::now();
+    std::cout << "Verify Time: " << utils::count_time(start2, end2) << "ms"
+              << std::endl;
 
     std::cout << "isVerify: " << isVerify << std::endl;
 

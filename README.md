@@ -5,10 +5,10 @@
 
 [![][go-version-shield]][go-readme-link] &nbsp; [![][java-version-shield]][java-readme-link] &nbsp; [![][python-version-shield]][python-readme-link] &nbsp; [![][cpp-version-shield]][cpp-readme-link]
 
-![][SEU-shield] &nbsp; [![][github-stars-shield]][github-stars-link] &nbsp; [![][github-contributors-shield]][github-contributors-link] &nbsp; [![][license-shield]][license-link]
-
+[![][SEU-shield]][SEU-link] &nbsp; [![][github-stars-shield]][github-stars-link] &nbsp; [![][github-contributors-shield]][github-contributors-link] &nbsp; [![][license-shield]][license-link]
 
 [SEU-shield]: https://img.shields.io/badge/Southeast%20University%20-50755B
+[SEU-link]: https://www.seu.edu.cn/english/main.htm
 [github-stars-shield]: https://img.shields.io/github/stars/Nexisato/Multi_Level_Authentication_Demo.svg?style=flat-square&label=✨%20Stars&color=yellow
 [github-stars-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/stargazers
 [github-contributors-shield]: https://img.shields.io/github/contributors/Nexisato/Multi_Level_Authentication_Demo.svg?style=flat-square&label=👥%20Contributors&color=blue

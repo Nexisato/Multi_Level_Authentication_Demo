@@ -139,10 +139,6 @@ docker pull registry.cn-hangzhou.aliyuncs.com/nexisato/ubuntu_auth_demo:latest
 
 
 ## References
-- [【Original Share Space】](https://rjwalmzfj2.feishu.cn/drive/folder/fldcnpvD9hTdMQ1ZXHU9ufPumTf?from=space_shared_folder&fromShareWithMeNew=1)
-    - [【Design Docs】](https://uqc1fm1ybzl.feishu.cn/docx/TveddkLhtoxDByxmqmBcS9fsnge)
-    - [【Demand Analysis】](https://rjwalmzfj2.feishu.cn/docx/Mp6XdDhTPoZhclxc2Yvc4kRZn9i)
-
 - https://github.com/v0y4g3r/rsa-accumulator-java
 - https://jeza-chen.com/2020/06/04/PBC-Library/
 - https://zhuanlan.zhihu.com/p/461896034

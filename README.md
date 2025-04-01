@@ -1,21 +1,14 @@
 # MLAuth: Multi-Level Identity Authentication Framework for Resource-Constrained IoT Environment
 
 
+<div align="center">
+
+[![][go-version-shield]][go-readme-link] &nbsp; [![][java-version-shield]][java-readme-link] &nbsp; [![][python-version-shield]][python-readme-link] &nbsp; [![][cpp-version-shield]][cpp-readme-link]
+
+![][SEU-shield] &nbsp; [![][github-stars-shield]][github-stars-link] &nbsp; [![][github-contributors-shield]][github-contributors-link] &nbsp; [![][license-shield]][license-link]
 
 
-
-
-
-[![][go-version-shield]][go-readme-link]
-[![][java-version-shield]][java-readme-link]
-[![][python-version-shield]][python-readme-link]
-[![][cpp-version-shield]][cpp-readme-link]
-
-
-[![][github-stars-shield]][github-stars-link]
-[![][github-contributors-shield]][github-contributors-link]
-[![][license-shield]][license-link]
-
+[SEU-shield]: https://img.shields.io/badge/Southeast%20University%20-50755B
 [github-stars-shield]: https://img.shields.io/github/stars/Nexisato/Multi_Level_Authentication_Demo.svg?style=flat-square&label=✨%20Stars&color=yellow
 [github-stars-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/stargazers
 [github-contributors-shield]: https://img.shields.io/github/contributors/Nexisato/Multi_Level_Authentication_Demo.svg?style=flat-square&label=👥%20Contributors&color=blue
@@ -34,6 +27,8 @@
 
 [cpp-version-shield]: https://img.shields.io/badge/C++-Pipeline-00599C?style=flat-square&logo=cplusplus&logoColor=white
 [cpp-readme-link]: https://github.com/Nexisato/Multi_Level_Authentication_Demo/tree/main/README.md
+
+</div>
 
 
 ## Function
